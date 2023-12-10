@@ -36,14 +36,15 @@
 
                 <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7" CornerRadius="5">
                     <Grid Margin="7 9">
-                        <TextBlock x:Name="lblKorime" Text="Korisničko ime" Style="{StaticResource textHint}"/>
-                        <TextBox x:Name="txtKorime" Style="{StaticResource textBox}"/>
+                        <TextBlock x:Name="lblKorime" MouseDown="lblKorime_MouseDown" Text="Korisničko ime" Style="{StaticResource textHint}"/>
+                        <TextBox x:Name="txtKorime" TextChanged="txtKorime_TextChanged" Style="{StaticResource textBox}"/>
                     </Grid>
                 </Border>
+                
                 <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7" CornerRadius="5">
                     <Grid Margin="7 9">
-                        <TextBlock x:Name="lblPassword" Text="Lozinka" Style="{StaticResource textHint}"/>
-                        <TextBox x:Name="txtPasssword" Style="{StaticResource textBox}"/>
+                        <TextBlock x:Name="lblPassword" MouseDown="lblPassword_MouseDown" Text="Lozinka" Style="{StaticResource textHint}"/>
+                        <PasswordBox x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged" Style="{StaticResource textBox}"/>
                     </Grid>
                 </Border>
 
