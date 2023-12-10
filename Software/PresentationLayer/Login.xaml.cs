@@ -24,27 +24,27 @@ namespace PresentationLayer
 
         private void lblKorime_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            lblKorime.Focus();
+            txtKorime.Focus();
         }
 
         private void txtKorime_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(string.IsNullOrEmpty(txtKorime.Text) && txtKorime.Text.Length > 0) {
-                txtKorime.Visibility = Visibility.Collapsed;
+            if(!string.IsNullOrEmpty(txtKorime.Text) && txtKorime.Text.Length > 0) {
+                lblKorime.Visibility = Visibility.Collapsed;
             } else
             {
-                txtKorime.Visibility = Visibility.Visible;
+                lblKorime.Visibility = Visibility.Visible;
             }
         }
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
+            if (!string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
             {
-                txtPassword.Visibility = Visibility.Collapsed;
+                lblPassword.Visibility = Visibility.Collapsed;
             } else
             {
-                txtPassword.Visibility = Visibility.Visible;
+                lblPassword.Visibility = Visibility.Visible;
             }
         }
 
