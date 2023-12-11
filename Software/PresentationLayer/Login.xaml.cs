@@ -52,5 +52,13 @@ namespace PresentationLayer
         {
             txtPassword.Focus();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            UserPanel userPanel = new UserPanel();
+            Hide();
+            userPanel.ShowDialog();
+            Close();
+        }
     }
 }
