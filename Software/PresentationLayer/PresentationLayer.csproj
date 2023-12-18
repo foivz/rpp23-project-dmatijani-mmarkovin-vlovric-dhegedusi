@@ -58,8 +58,8 @@
     <Compile Include="EmployeePanel.xaml.cs">
       <DependentUpon>EmployeePanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserPanel.xaml.cs">
-      <DependentUpon>UserPanel.xaml</DependentUpon>
+    <Compile Include="MemberPanel.xaml.cs">
+      <DependentUpon>MemberPanel.xaml</DependentUpon>
     </Compile>
     <Page Include="EmployeePanel.xaml">
       <SubType>Designer</SubType>
@@ -77,7 +77,7 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserPanel.xaml">
+    <Page Include="MemberPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
