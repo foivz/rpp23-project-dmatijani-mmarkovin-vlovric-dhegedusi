@@ -1,14 +1,20 @@
-namespace EntitiesLayer.Entities {
+namespace DataAccessLayer
+{
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
     [Table("Employee")]
-    public partial class Employee {
+    public partial class Employee
+    {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee() {
+        public Employee()
+        {
             Archives = new HashSet<Archive>();
+            Borrows = new HashSet<Borrow>();
+            Borrows1 = new HashSet<Borrow>();
         }
 
         public int id { get; set; }
@@ -35,6 +41,12 @@ namespace EntitiesLayer.Entities {
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Archive> Archives { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Borrow> Borrows { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Borrow> Borrows1 { get; set; }
 
         public virtual Library Library { get; set; }
     }
