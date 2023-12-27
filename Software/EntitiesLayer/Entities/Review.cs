@@ -1,11 +1,13 @@
-namespace EntitiesLayer.Entities {
+namespace EntitiesLayer
+{
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Review")]
-    public partial class Review {
+    public partial class Review
+    {
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

@@ -5,20 +5,27 @@ namespace EntitiesLayer
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("Genre")]
-    public partial class Genre
+    [Table("Author")]
+    public partial class Author
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genre()
+        public Author()
         {
             Books = new HashSet<Book>();
         }
 
-        public int id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int idAuthor { get; set; }
 
-        [Required]
         [StringLength(45)]
         public string name { get; set; }
+
+        [StringLength(45)]
+        public string surname { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? birth_date { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books { get; set; }

@@ -1,11 +1,13 @@
-namespace EntitiesLayer.Entities {
+namespace EntitiesLayer
+{
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Administrator")]
-    public partial class Administrator {
+    public partial class Administrator
+    {
         public int id { get; set; }
 
         [StringLength(45)]

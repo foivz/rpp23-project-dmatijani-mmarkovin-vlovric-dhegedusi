@@ -1,17 +1,21 @@
-using EntitiesLayer.Entities;
+using EntitiesLayer;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace DataAccessLayer {
-    public partial class DatabaseModel : DbContext {
+namespace DataAccessLayer
+{
+    public partial class DatabaseModel : DbContext
+    {
         public DatabaseModel()
-            : base("name=DatabaseModelConfig") {
+            : base("name=DatabaseModelConf")
+        {
         }
 
         public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Archive> Archives { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Borrow> Borrows { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
@@ -22,7 +26,8 @@ namespace DataAccessLayer {
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Administrator>()
                 .Property(e => e.name)
                 .IsUnicode(false);
@@ -39,16 +44,25 @@ namespace DataAccessLayer {
                 .Property(e => e.password)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Author>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Author>()
+                .Property(e => e.surname)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Author>()
+                .HasMany(e => e.Books)
+                .WithMany(e => e.Authors)
+                .Map(m => m.ToTable("Book_Author"));
+
             modelBuilder.Entity<Book>()
                 .Property(e => e.name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Book>()
                 .Property(e => e.description)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Book>()
-                .Property(e => e.author)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Book>()
@@ -60,13 +74,11 @@ namespace DataAccessLayer {
                 .IsUnicode(false);
 
             modelBuilder.Entity<Book>()
-                .HasMany(e => e.Archives)
-                .WithRequired(e => e.Book)
-                .HasForeignKey(e => e.Book_id)
-                .WillCascadeOnDelete(false);
+                .Property(e => e.barcode_id)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Book>()
-                .HasMany(e => e.Borrows)
+                .HasMany(e => e.Archives)
                 .WithRequired(e => e.Book)
                 .HasForeignKey(e => e.Book_id)
                 .WillCascadeOnDelete(false);
@@ -84,9 +96,10 @@ namespace DataAccessLayer {
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Book>()
-                .HasMany(e => e.Members)
-                .WithMany(e => e.Books)
-                .Map(m => m.ToTable("WishList"));
+                .HasMany(e => e.Borrows)
+                .WithRequired(e => e.Book)
+                .HasForeignKey(e => e.Book_id)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Employee>()
                 .Property(e => e.name)
@@ -114,6 +127,17 @@ namespace DataAccessLayer {
                 .WithRequired(e => e.Employee)
                 .HasForeignKey(e => e.Employee_id)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.Borrows)
+                .WithRequired(e => e.Employee)
+                .HasForeignKey(e => e.Employee_borrow_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.Borrows1)
+                .WithOptional(e => e.Employee1)
+                .HasForeignKey(e => e.Employee_return_id);
 
             modelBuilder.Entity<Genre>()
                 .Property(e => e.name)
@@ -220,6 +244,11 @@ namespace DataAccessLayer {
                 .HasMany(e => e.Notifications)
                 .WithMany(e => e.Members)
                 .Map(m => m.ToTable("NotificationRead"));
+
+            modelBuilder.Entity<Member>()
+                .HasMany(e => e.Books)
+                .WithMany(e => e.Members)
+                .Map(m => m.ToTable("WishList"));
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.title)

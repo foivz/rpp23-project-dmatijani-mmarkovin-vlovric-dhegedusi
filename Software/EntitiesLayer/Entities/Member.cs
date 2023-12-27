@@ -1,13 +1,16 @@
-namespace EntitiesLayer.Entities {
+namespace EntitiesLayer
+{
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Member")]
-    public partial class Member {
+    public partial class Member
+    {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Member() {
+        public Member()
+        {
             Borrows = new HashSet<Borrow>();
             Reservations = new HashSet<Reservation>();
             Reviews = new HashSet<Review>();
