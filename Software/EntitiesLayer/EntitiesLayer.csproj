@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Entities\Administrator.cs" />
     <Compile Include="Entities\Archive.cs" />
+    <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Borrow.cs" />
     <Compile Include="Entities\Employee.cs" />
@@ -55,5 +56,6 @@
     <Compile Include="Entities\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
