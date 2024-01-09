@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +36,21 @@ namespace PresentationLayer {
                 lblPassword.Visibility = Visibility.Collapsed;
             } else {
                 lblPassword.Visibility = Visibility.Visible;
+            }
+        }
+        private void lblUsrname_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtUsername.Focus();
+        }
+
+        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtUsername.Text) && txtUsername.Text.Length > 0)
+            {
+                lblUsrname.Visibility = Visibility.Collapsed;
+            } else
+            {
+                lblUsrname.Visibility = Visibility.Visible;
             }
         }
 
