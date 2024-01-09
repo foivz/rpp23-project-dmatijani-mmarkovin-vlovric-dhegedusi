@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BussinessLogicLayer
+namespace BussinessLogicLayer.services
 {
-    public class Class1
+    public class MemberService
     {
     }
 }
