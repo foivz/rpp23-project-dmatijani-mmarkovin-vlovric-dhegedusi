@@ -18,10 +18,5 @@ namespace DataAccessLayer.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public override int Add(Book entity, bool saveChanges = true)
-        {
-            return base.Add(entity, saveChanges);
-        }
     }
 }
