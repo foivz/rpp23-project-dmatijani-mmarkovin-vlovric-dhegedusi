@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationLayer.AdminPanels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,20 @@ namespace PresentationLayer {
             MemberPanel userPanel = new MemberPanel();
             Hide();
             userPanel.ShowDialog();
+            Close();
+        }
+
+        /// <summary>
+        /// Metoda "btnAdminPanel_Click" otvara novi WPF prozor sa administratorskim kontrolama.
+        /// Ova metoda je privremena te bi ju se trebalo ukloniti nakon što se u potpunosti realizira F02 - Prijava i odjava
+        /// David Matijanić
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAdminPanel_Click(object sender, RoutedEventArgs e) {
+            AdminPanel adminPanel = new AdminPanel();
+            Hide();
+            adminPanel.ShowDialog();
             Close();
         }
     }

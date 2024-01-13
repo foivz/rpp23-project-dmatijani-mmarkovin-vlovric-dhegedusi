@@ -50,6 +50,7 @@
                 </Border>
 
                 <Button x:Name="btnLogin" Content="Prijava" Width="130" Margin="0 10 0 0 " Style="{StaticResource bigButton}" Click="btnLogin_Click"/>
+                <Button x:Name="btnAdminPanel" Content="Admin Panel (ukloniti gumb!)" Width="300" Margin="0 10 0 0 " Style="{StaticResource bigButton}" Click="btnAdminPanel_Click"/>
 
                 <TextBlock Style="{StaticResource normalTextCenter}" Foreground="#637E60" Margin="0 30 0 0 " Width="400">Svoje korisničke podatke dobivate pri registraciji u svojoj knjižnici</TextBlock>
             </StackPanel>
