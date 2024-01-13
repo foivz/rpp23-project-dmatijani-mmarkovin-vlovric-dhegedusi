@@ -33,5 +33,15 @@ namespace PresentationLayer.AdminPanels {
         private void btnAddNewLibrary_Click(object sender, RoutedEventArgs e) {
 
         }
+
+        /// <summary>
+        /// Metoda "btnLibraryEmployees_Click" otvara novi UserControl koji ima popis svih zaposlenika odabrane knjižnice
+        /// David Matijanić
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLibraryEmployees_Click(object sender, RoutedEventArgs e) {
+            // IMPLEMENTIRATI !
+        }
     }
 }
