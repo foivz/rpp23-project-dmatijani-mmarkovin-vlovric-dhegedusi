@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,16 @@ namespace PresentationLayer {
     public partial class EmployeePanel : Window {
         public EmployeePanel() {
             InitializeComponent();
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            LoggedUser.Username = null;
+            LoggedUser.UserType = null;
+            Hide();
+            MainWindow login = new MainWindow();
+            login.Show();
+            Close();
         }
     }
 }
