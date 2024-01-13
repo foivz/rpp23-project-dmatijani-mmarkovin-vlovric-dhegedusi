@@ -10,20 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PresentationLayer {
+namespace PresentationLayer
+{
     /// <summary>
-    /// Interaction logic for EmployeePanel.xaml
+    /// Interaction logic for UcNewCopies.xaml
     /// </summary>
-    public partial class EmployeePanel : Window {
-        public EmployeePanel() {
+    public partial class UcNewCopies : UserControl
+    {
+        public UcNewCopies()
+        {
             InitializeComponent();
         }
 
-        private void btnBookCatalog_Click(object sender, RoutedEventArgs e)
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            contentPanel.Content = new UcCatalogueOptions();
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcCatalogueOptions();
         }
     }
 }

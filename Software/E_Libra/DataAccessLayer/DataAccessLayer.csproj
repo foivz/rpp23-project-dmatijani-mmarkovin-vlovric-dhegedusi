@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DatabaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
   <ItemGroup>

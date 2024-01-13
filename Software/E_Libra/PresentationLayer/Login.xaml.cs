@@ -44,7 +44,8 @@ namespace PresentationLayer {
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e) {
-            MemberPanel userPanel = new MemberPanel();
+            //MemberPanel userPanel = new MemberPanel();
+            EmployeePanel userPanel = new EmployeePanel();
             Hide();
             userPanel.ShowDialog();
             Close();
