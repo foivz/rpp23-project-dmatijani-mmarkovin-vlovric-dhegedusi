@@ -32,5 +32,16 @@ namespace PresentationLayer.AdminPanels {
             UcAllLibraries ucAllLibraries = new UcAllLibraries();
             contentPanel.Content = ucAllLibraries;
         }
+
+        /// <summary>
+        /// Metoda "btnAllEmployees_Click" otvara novi UserControl koji ima popis svih zaposlenika
+        /// David Matijanić
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAllEmployees_Click(object sender, RoutedEventArgs e) {
+            UcAllEmployees ucAllEmployees = new UcAllEmployees();
+            contentPanel.Content = ucAllEmployees;
+        }
     }
 }

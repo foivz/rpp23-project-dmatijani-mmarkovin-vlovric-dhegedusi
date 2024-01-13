@@ -18,7 +18,8 @@
                 <Button x:Name="btnAllLibraries" Content="Sve knjižnice" Style="{StaticResource navButton}"
                         Click="btnAllLibraries_Click"/>
                 <Button x:Name="btnNewLibrary" Content="Nova knjižnica" Style="{StaticResource navButton}" />
-                <Button x:Name="btnAllEmployees" Content="Svi zaposlenici" Style="{StaticResource navButton}" />
+                <Button x:Name="btnAllEmployees" Content="Svi zaposlenici" Style="{StaticResource navButton}" 
+                        Click="btnAllEmployees_Click"/>
                 <Button x:Name="btnNewEmployee" Content="Novi zaposlenik" Style="{StaticResource navButton}" />
             </StackPanel>
             <StackPanel Grid.Row="1"/>

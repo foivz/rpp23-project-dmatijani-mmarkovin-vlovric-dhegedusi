@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AdminPanels\UcAllEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminPanels\UcAllLibraries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -83,6 +87,9 @@
     </Page>
     <Compile Include="AdminPanels\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanels\UcAllEmployees.xaml.cs">
+      <DependentUpon>UcAllEmployees.xaml</DependentUpon>
     </Compile>
     <Compile Include="AdminPanels\UcAllLibraries.xaml.cs">
       <DependentUpon>UcAllLibraries.xaml</DependentUpon>
