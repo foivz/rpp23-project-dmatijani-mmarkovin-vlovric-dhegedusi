@@ -15,10 +15,11 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
                 <TextBlock x:Name="tbAdmin" Text="Administratorske&#x0a;kontrole" Style="{StaticResource titleText}" FontSize="20" Foreground="#F8DFD4" Margin="0 20"/>
-                <Button x:Name="btnMembership" Content="Sve knjižnice" Style="{StaticResource navButton}"/>
-                <Button x:Name="btnBookCatalog" Content="Nova knjižnica" Style="{StaticResource navButton}" />
-                <Button x:Name="btnBorrow" Content="Svi zaposlenici" Style="{StaticResource navButton}" />
-                <Button x:Name="btnNotifications" Content="Novi zaposlenik" Style="{StaticResource navButton}" />
+                <Button x:Name="btnAllLibraries" Content="Sve knjižnice" Style="{StaticResource navButton}"
+                        Click="btnAllLibraries_Click"/>
+                <Button x:Name="btnNewLibrary" Content="Nova knjižnica" Style="{StaticResource navButton}" />
+                <Button x:Name="btnAllEmployees" Content="Svi zaposlenici" Style="{StaticResource navButton}" />
+                <Button x:Name="btnNewEmployee" Content="Novi zaposlenik" Style="{StaticResource navButton}" />
             </StackPanel>
             <StackPanel Grid.Row="1"/>
             <Button x:Name="btnLogout" Grid.Row="2" Content="Odjava" Style="{StaticResource navButton}" />

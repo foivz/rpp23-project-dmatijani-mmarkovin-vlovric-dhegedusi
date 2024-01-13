@@ -14,11 +14,23 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
     /// <summary>
-    /// Interaction logic for AdminPanel.xaml
+    /// Klasa AdminPanel omogućuje administratoru sve administratorske kontrole
+    /// David Matijanić
     /// </summary>
     public partial class AdminPanel : Window {
         public AdminPanel() {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Metoda "btnAllLibraries_Click" otvara novi UserControl koji ima popis svih knjižnica
+        /// David Matijanić
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAllLibraries_Click(object sender, RoutedEventArgs e) {
+            UcAllLibraries ucAllLibraries = new UcAllLibraries();
+            contentPanel.Content = ucAllLibraries;
         }
     }
 }
