@@ -15,9 +15,10 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer {
     public partial class MainWindow : Window {
+        private AdministratorService adminService;
         public MainWindow() {
             InitializeComponent();
-        }
+            adminService = new AdministratorService();
 
         private void lblKorime_MouseDown(object sender, MouseButtonEventArgs e) {
             txtKorime.Focus();
@@ -59,9 +60,11 @@ namespace PresentationLayer {
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e) {
-            MemberPanel userPanel = new MemberPanel();
-            Hide();
-            userPanel.ShowDialog();
+
+            var password = txtPassword.Password;
+            var username = txtUsername.Text;
+
+            adminService.CheckLoginCredentials(username, password);
             Close();
         }
     }
