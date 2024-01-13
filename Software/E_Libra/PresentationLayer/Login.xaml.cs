@@ -1,3 +1,5 @@
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +25,6 @@ namespace PresentationLayer {
             adminService = new AdministratorService();
             memberService = new MemberService();
             employeeService = new EmployeeService();
-            txtKorime.Focus();
-        }
-
-        private void txtKorime_TextChanged(object sender, TextChangedEventArgs e) {
-            if (!string.IsNullOrEmpty(txtKorime.Text) && txtKorime.Text.Length > 0) {
-                lblKorime.Visibility = Visibility.Collapsed;
-            } else {
-                lblKorime.Visibility = Visibility.Visible;
-            }
         }
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e) {
@@ -69,7 +62,37 @@ namespace PresentationLayer {
             adminService.CheckLoginCredentials(username, password);
             employeeService.CheckLoginCredentials(username, password);
             memberService.CheckLoginCredentials(username, password);
-            Close();
+
+            switch (LoggedUser.UserType)
+            {
+                case Role.Admin:
+                    {
+                        // ovdje treba vratiti AdminPanel kojeg radi David
+                        break;
+                    }
+                case Role.Employee:
+                    {
+                        EmployeePanel employeePanel = new EmployeePanel();
+                        Hide();
+                        employeePanel.ShowDialog();
+                        Close();
+                        break;
+                    }
+                    
+                case Role.Member:
+                    {
+                        MemberPanel memberPanel = new MemberPanel();
+                        Hide();
+                        memberPanel.ShowDialog();
+                        Close();
+                        break;
+                    }
+                default:
+                    {
+                        MessageBox.Show("Greška", "Unjeli ste krive korisničke podatke!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    }
+            }
         }
     }
 }
