@@ -16,11 +16,12 @@ using System.Windows.Shapes;
 namespace PresentationLayer {
     public partial class MainWindow : Window {
         private AdministratorService adminService;
+        private MemberService memberService;
         private EmployeeService employeeService;
         public MainWindow() {
             InitializeComponent();
             adminService = new AdministratorService();
-
+            memberService = new MemberService();
             employeeService = new EmployeeService();
             txtKorime.Focus();
         }
@@ -67,6 +68,7 @@ namespace PresentationLayer {
 
             adminService.CheckLoginCredentials(username, password);
             employeeService.CheckLoginCredentials(username, password);
+            memberService.CheckLoginCredentials(username, password);
             Close();
         }
     }
