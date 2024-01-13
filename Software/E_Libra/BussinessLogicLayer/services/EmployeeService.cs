@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataAccessLayer.Repositories;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,18 @@ namespace BussinessLogicLayer.services
 {
     public class EmployeeService
     {
+        public void CheckLoginCredentials(string username, string password)
+        {
+            using (var employeeRepo = new EmployeeRepository())
+            {
+                var returned = employeeRepo.GetEmployeeLogin(username, password).ToList();
+
+                if (returned.Count() == 1)
+                {
+                    LoggedUser.Username = username;
+                    LoggedUser.UserType = Role.Employee;
+                }
+            }
+        }
     }
 }
