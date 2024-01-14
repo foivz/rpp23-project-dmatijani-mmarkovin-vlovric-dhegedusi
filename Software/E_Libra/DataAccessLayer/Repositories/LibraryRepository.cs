@@ -11,6 +11,30 @@ namespace DataAccessLayer.Repositories {
 
         }
 
+        public IQueryable<Library> GetLibrariesById(int libraryId) {
+            var query = from l in Entities
+                        where l.id == libraryId
+                        select l;
+
+            return query;
+        }
+
+        public IQueryable<Library> GetLibrariesByName(string libraryName) {
+            var query = from l in Entities
+                        where l.name == libraryName
+                        select l;
+
+            return query;
+        }
+
+        public IQueryable<Library> GetLibrariesByOIB(string libraryOIB) {
+            var query = from l in Entities
+                        where l.OIB == libraryOIB
+                        select l;
+
+            return query;
+        }
+
         public override int Update(Library entity, bool saveChanges = true) {
             return 0; // TODO
         }

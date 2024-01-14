@@ -39,6 +39,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -48,47 +49,53 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
+                   Content="ID knjižnice:"
+                   FontSize="16" HorizontalAlignment="Right"
+                   VerticalAlignment="Center" x:Name="lblLibraryID"/>
+            <Label Grid.Row="1" Grid.Column="0"
                    Content="Naziv knjižnice:"
                    FontSize="16" HorizontalAlignment="Right"
                    VerticalAlignment="Center" x:Name="lblLibraryName"/>
-            <Label Grid.Row="1" Grid.Column="0"
+            <Label Grid.Row="2" Grid.Column="0"
                    Content="OIB knjižnice:"
                    FontSize="16" HorizontalAlignment="Right"
                    VerticalAlignment="Center" x:Name="lblLibraryOIB"/>
-            <Label Grid.Row="2" Grid.Column="0"
+            <Label Grid.Row="3" Grid.Column="0"
                    Content="Telefonski broj:"
                    FontSize="16" HorizontalAlignment="Right"
                    VerticalAlignment="Center" x:Name="lblLibraryPhone"/>
-            <Label Grid.Row="3" Grid.Column="0"
+            <Label Grid.Row="4" Grid.Column="0"
                    Content="Elektronička pošta:"
                    FontSize="16" HorizontalAlignment="Right"
                    VerticalAlignment="Center" x:Name="lblLibraryEmail"/>
-            <Label Grid.Row="4" Grid.Column="0"
+            <Label Grid.Row="5" Grid.Column="0"
                    Content="Cijena kašnjenja vraćanja po danu:"
                    FontSize="16" HorizontalAlignment="Right"
                    VerticalAlignment="Center" x:Name="lblLibraryPriceDayLate"/>
-            <Label Grid.Row="5" Grid.Column="0"
+            <Label Grid.Row="6" Grid.Column="0"
                    Content="Adresa knjižnice:"
                    FontSize="16" HorizontalAlignment="Right"
                    VerticalAlignment="Center" x:Name="lblLibraryAddress"/>
-            <Label Grid.Row="6" Grid.Column="0"
+            <Label Grid.Row="7" Grid.Column="0"
                    Content="Trajanje članarine:"
                    FontSize="16" HorizontalAlignment="Right"
                    VerticalAlignment="Center" x:Name="lblLibraryMembershipDuration"/>
 
             <TextBox Width="200" Height="25" Grid.Row="0" Grid.Column="3"
-                     HorizontalAlignment="Left" x:Name="tbLibraryName"/>
+                     HorizontalAlignment="Left" x:Name="tbLibraryID"/>
             <TextBox Width="200" Height="25" Grid.Row="1" Grid.Column="3"
-                     HorizontalAlignment="Left" x:Name="tbLibraryOIB"/>
+                     HorizontalAlignment="Left" x:Name="tbLibraryName"/>
             <TextBox Width="200" Height="25" Grid.Row="2" Grid.Column="3"
-                     HorizontalAlignment="Left" x:Name="tbLibraryPhone"/>
+                     HorizontalAlignment="Left" x:Name="tbLibraryOIB"/>
             <TextBox Width="200" Height="25" Grid.Row="3" Grid.Column="3"
-                     HorizontalAlignment="Left" x:Name="tbLibraryEmail"/>
+                     HorizontalAlignment="Left" x:Name="tbLibraryPhone"/>
             <TextBox Width="200" Height="25" Grid.Row="4" Grid.Column="3"
-                     HorizontalAlignment="Left" x:Name="tbLibraryPriceDayLate"/>
+                     HorizontalAlignment="Left" x:Name="tbLibraryEmail"/>
             <TextBox Width="200" Height="25" Grid.Row="5" Grid.Column="3"
-                     HorizontalAlignment="Left" x:Name="tbLibraryMembershipDuration"/>
+                     HorizontalAlignment="Left" x:Name="tbLibraryPriceDayLate"/>
             <TextBox Width="200" Height="25" Grid.Row="6" Grid.Column="3"
+                     HorizontalAlignment="Left" x:Name="tbLibraryMembershipDuration"/>
+            <TextBox Width="200" Height="25" Grid.Row="7" Grid.Column="3"
                      HorizontalAlignment="Left" x:Name="tbLibraryAddress"/>
         </Grid>
     </DockPanel>
