@@ -19,6 +19,22 @@ namespace DataAccessLayer.Repositories {
             return query;
         }
 
+        public IQueryable<Employee> GetEmployeesById(int employeeId) {
+            var query = from e in Entities.Include("Library")
+                        where e.id == employeeId
+                        select e;
+
+            return query;
+        }
+
+        public IQueryable<Employee> GetEmployeesByOIB(string employeeOIB) {
+            var query = from e in Entities.Include("Library")
+                        where e.OIB == employeeOIB
+                        select e;
+
+            return query;
+        }
+
         public override int Add(Employee employee, bool saveChanges = true) {
             var library = Context.Libraries.SingleOrDefault(l => l.id == employee.Library.id);
 

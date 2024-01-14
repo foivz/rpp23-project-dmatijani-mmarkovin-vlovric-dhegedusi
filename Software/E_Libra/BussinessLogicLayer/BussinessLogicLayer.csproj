@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\EmployeeException.cs" />
+    <Compile Include="Exceptions\EmployeeWithSameIDException.cs" />
+    <Compile Include="Exceptions\EmployeeWithSameOIBException.cs" />
     <Compile Include="Exceptions\LibraryException.cs" />
     <Compile Include="Exceptions\LibraryHasEmployeesException.cs" />
     <Compile Include="Exceptions\LibraryWithSameIDException.cs" />
