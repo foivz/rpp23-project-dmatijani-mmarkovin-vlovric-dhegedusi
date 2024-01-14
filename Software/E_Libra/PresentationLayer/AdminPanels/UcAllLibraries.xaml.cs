@@ -1,4 +1,5 @@
-﻿using BussinessLogicLayer.services;
+﻿using BussinessLogicLayer.Exceptions;
+using BussinessLogicLayer.services;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,27 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void btnRemoveLibrary_Click(object sender, RoutedEventArgs e) {
+            if (dgAllLibraries.SelectedItems.Count != 1) {
+                MessageBox.Show("Odaberite jednu knjižnicu!");
+                return;
+            }
 
+            Library selectedLibrary = dgAllLibraries.SelectedItem as Library;
+            if (selectedLibrary == null) {
+                MessageBox.Show("Odaberite jednu knjižnicu!");
+                return;
+            }
+
+            try {
+                int successful = service.DeleteLibrary(selectedLibrary);
+                if (successful == 0) {
+                    MessageBox.Show("Brisanje nije uspjelo!");
+                }
+
+                ShowAllLibraries();
+            } catch (LibraryHasEmployeesException ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEditLibrary_Click(object sender, RoutedEventArgs e) {
@@ -39,11 +60,13 @@ namespace PresentationLayer.AdminPanels {
 
         private void btnLibraryEmployees_Click(object sender, RoutedEventArgs e) {
             if (dgAllLibraries.SelectedItems.Count != 1) {
+                MessageBox.Show("Odaberite jednu knjižnicu!");
                 return;
             }
 
             Library selectedLibrary = dgAllLibraries.SelectedItem as Library;
             if (selectedLibrary == null) {
+                MessageBox.Show("Odaberite jednu knjižnicu!");
                 return;
             }
 
