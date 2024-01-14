@@ -34,17 +34,17 @@ namespace BussinessLogicLayer.services {
         public int UpdateEmployee(Employee employee) {
             using (var repository = new EmployeeRepository()) {
                 var employeesWithId = repository.GetEmployeesById(employee.id);
-                if (employeesWithId.ToList().Count == 0) {
-                    throw new EmployeeWithSameIDException("Zaposlenik sa tim ID ne postoji!");
+                var otherEmployeesWithId = employeesWithId.ToList().FindAll(e => e.OIB != employee.OIB);
+                if (otherEmployeesWithId.Count > 0) {
+                    throw new EmployeeWithSameIDException("Zaposlenik sa tim ID već postoji!");
                 }
 
                 var employeesWithOIB = repository.GetEmployeesByOIB(employee.OIB);
-                List<Employee> otherEmployeesWithOIB = employeesWithOIB.ToList().FindAll(e => e.id != employee.id);
-                if (employeesWithOIB.ToList().Count > 0) {
-                    throw new EmployeeWithSameOIBException("Drugi zaposlenik već ima taj OIB!");
+                if (employeesWithOIB.ToList().Count == 0) {
+                    throw new EmployeeWithSameOIBException("Ne postoji zaposlenik sa odabranim OIB!");
                 }
 
-                return repository.Add(employee);
+                return repository.Update(employee);
             }
         }
 

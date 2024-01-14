@@ -98,7 +98,7 @@ namespace PresentationLayer.AdminPanels {
                     if (result > 0) {
                         AdminGuiControl.LoadNewControl(new UcAllLibraries());
                     } else {
-                        MessageBox.Show("Knjižnicu nije moguće urediti.");
+                        MessageBox.Show("Nije napravljena promjena.");
                     }
                 }
             } catch (LibraryException ex) {

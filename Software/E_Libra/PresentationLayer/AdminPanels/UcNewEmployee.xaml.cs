@@ -21,9 +21,19 @@ namespace PresentationLayer.AdminPanels {
     /// Interaction logic for UcNewEmployee.xaml
     /// </summary>
     public partial class UcNewEmployee : UserControl {
+        private bool editing { get; set; }
+
         public UcNewEmployee(Library selectedLibrary = null) {
             InitializeComponent();
             PopulateComboBox(selectedLibrary);
+            editing = false;
+        }
+
+        public UcNewEmployee(Employee employeeToChange) {
+            InitializeComponent();
+            PopulateComboBox(employeeToChange.Library);
+            LoadEmployeeDataIntoTextBoxes(employeeToChange);
+            editing = true;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
@@ -68,15 +78,35 @@ namespace PresentationLayer.AdminPanels {
             try {
                 EmployeeService service = new EmployeeService();
 
-                int result = service.AddEmployee(newEmployee);
-                if (result > 0) {
-                    AdminGuiControl.LoadNewControl(new UcAllEmployees(selectedLibrary));
+                if (!editing) {
+                    int result = service.AddEmployee(newEmployee);
+                    if (result > 0) {
+                        AdminGuiControl.LoadNewControl(new UcAllEmployees(selectedLibrary));
+                    } else {
+                        MessageBox.Show("Zaposlenika nije moguće dodati.");
+                    }
                 } else {
-                    MessageBox.Show("Zaposlenika nije moguće dodati.");
+                    int result = service.UpdateEmployee(newEmployee);
+                    if (result > 0) {
+                        AdminGuiControl.LoadNewControl(new UcAllEmployees(selectedLibrary));
+                    } else {
+                        MessageBox.Show("Nije napravljena promjena.");
+                    }
                 }
+                
             } catch (EmployeeException ex) {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void LoadEmployeeDataIntoTextBoxes(Employee employee) {
+            cboLibrary.IsEnabled = false;
+            tbEmployeeName.Text = employee.name;
+            tbEmployeeSurname.Text = employee.surname;
+            tbEmployeeUsername.Text = employee.username;
+            tbEmployeePassword.Text = employee.password;
+            tbEmployeeOIB.Text = employee.OIB;
+            tbEmployeeOIB.IsEnabled = false;
         }
     }
 }

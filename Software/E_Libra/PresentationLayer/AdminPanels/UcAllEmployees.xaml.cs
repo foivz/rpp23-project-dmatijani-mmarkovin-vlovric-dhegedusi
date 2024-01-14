@@ -58,5 +58,30 @@ namespace PresentationLayer.AdminPanels {
             List<Employee> employees = service.GetEmployeesByLibrary(selectedLibrary);
             dgAllEmployees.ItemsSource = employees;
         }
+
+        private void btnEditEmployee_Click(object sender, RoutedEventArgs e) {
+            Employee selectedEmployee = GetSelectedEmployee();
+            if (selectedEmployee == null) {
+                return;
+            }
+
+            UcNewEmployee ucEditEmployee = new UcNewEmployee(selectedEmployee);
+            AdminGuiControl.LoadNewControl(ucEditEmployee);
+        }
+
+        private Employee GetSelectedEmployee() {
+            if (dgAllEmployees.SelectedItems.Count != 1) {
+                MessageBox.Show("Odaberite jednog zaposlenika!");
+                return null;
+            }
+
+            Employee selectedEmployee = dgAllEmployees.SelectedItem as Employee;
+            if (selectedEmployee == null) {
+                MessageBox.Show("Odaberite jednog zaposlenika!");
+                return null;
+            }
+
+            return selectedEmployee;
+        }
     }
 }

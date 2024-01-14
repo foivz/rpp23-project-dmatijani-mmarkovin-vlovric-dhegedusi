@@ -59,12 +59,11 @@ namespace DataAccessLayer.Repositories {
         public override int Update(Employee employee, bool saveChanges = true) {
             var library = Context.Libraries.SingleOrDefault(l => l.id == employee.Library.id);
 
-            var existingEmployee = Entities.SingleOrDefault(e => e.id == employee.id);
+            var existingEmployee = Entities.SingleOrDefault(e => e.OIB == employee.OIB);
             existingEmployee.name = employee.name;
             existingEmployee.surname = employee.surname;
             existingEmployee.username = employee.username;
             existingEmployee.password = employee.password;
-            existingEmployee.OIB = employee.OIB;
             existingEmployee.Library = library;
 
             if (saveChanges) {

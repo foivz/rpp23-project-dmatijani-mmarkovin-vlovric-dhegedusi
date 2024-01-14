@@ -24,7 +24,8 @@
                     HorizontalAlignment="Right"
                     x:Name="btnEditEmployee"
                     Style="{StaticResource bigButton}"
-                    Background="#637E78">Izmijeni</Button>
+                    Background="#637E78"
+                    Click="btnEditEmployee_Click">Izmijeni</Button>
             <Button Width="120" Height="40" Margin="0,5,5,5"
                     HorizontalAlignment="Right"
                     x:Name="btnAddNewEmployee"
