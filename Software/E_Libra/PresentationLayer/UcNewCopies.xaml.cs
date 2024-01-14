@@ -92,5 +92,19 @@ namespace PresentationLayer
                 throw new BookException("Broj novih primjeraka mora sadržavati samo brojeve!");
             }
         }
+
+        private void txtBookName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            BookServices bookServices = new BookServices();
+            string text = txtBookName.Text;
+            dgvBookNamesArchive.ItemsSource = bookServices.GetNonArchivedBooksByName(text);
+            foreach (var column in dgvBookNamesArchive.Columns)
+            {
+                if (column.Header.ToString() != "name" && column.Header.ToString() != "total_copies")
+                {
+                    column.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
     }
 }

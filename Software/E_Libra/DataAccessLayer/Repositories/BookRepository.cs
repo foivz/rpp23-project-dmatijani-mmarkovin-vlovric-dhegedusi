@@ -53,8 +53,19 @@ namespace DataAccessLayer.Repositories
         private string GenerateBarcodeId()
         {
             var rand = new Random();
-            return rand.Next(10000000, 99999999).ToString();
+            string res;
+            do
+            {
+                res = rand.Next(10000000, 99999999).ToString();
+            } while (BarcodeExists(res));
+            return res;
 
+        }
+
+        public bool BarcodeExists(string barcode)
+        {
+            var sql = from b in Entities where b.barcode_id == barcode select b;
+            return sql.Count() > 0;
         }
 
         public override IQueryable<Book> GetAll()
@@ -92,5 +103,15 @@ namespace DataAccessLayer.Repositories
             book.Archives.Add(archive);
             return SaveChanges();
         }
+
+        public IQueryable<Book> GetNonArchivedBooksByName(string searchTerm)
+        {
+            var nonArchivedBooks = from book in GetNonArchivedBooks()
+                                   where book.name.Contains(searchTerm)
+                                   select book;
+
+            return nonArchivedBooks;
+        }
+
     }
 }

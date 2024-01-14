@@ -55,5 +55,12 @@ namespace BussinessLogicLayer.services
             }
             return isSuccesful;
         }
+        public List<Book> GetNonArchivedBooksByName(string searchTerm)
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.GetNonArchivedBooksByName(searchTerm).ToList();
+            }
+        }
     }
 }
