@@ -129,7 +129,6 @@
       <Name>EntitiesLayer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\profile.png" />
   </ItemGroup>
