@@ -69,7 +69,13 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void ShowAllLibraries() {
-            dgAllLibraries.ItemsSource = service.GetAllLibraries();
+            Task.Run(() => {
+                var libraries = service.GetAllLibraries();
+
+                Application.Current.Dispatcher.Invoke(() => {
+                    dgAllLibraries.ItemsSource = libraries;
+                });
+            });
         }
 
         private Library GetSelectedLibrary() {

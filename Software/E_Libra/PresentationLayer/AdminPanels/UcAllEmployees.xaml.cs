@@ -36,12 +36,17 @@ namespace PresentationLayer.AdminPanels {
 
         private void PopulateComboBox(Library selectedLibrary = null) {
             var libraryService = new LibraryService();
-            var allLibraries = libraryService.GetAllLibraries();
-            cboLibrary.ItemsSource = allLibraries;
+            Task.Run(() => {
+                var allLibraries = libraryService.GetAllLibraries();
 
-            if (selectedLibrary != null) {
-                cboLibrary.SelectedItem = allLibraries.FirstOrDefault(l => l.id == selectedLibrary.id);
-            }
+                Application.Current.Dispatcher.Invoke(() => {
+                    cboLibrary.ItemsSource = allLibraries;
+
+                    if (selectedLibrary != null) {
+                        cboLibrary.SelectedItem = allLibraries.FirstOrDefault(l => l.id == selectedLibrary.id);
+                    }
+                });
+            });
         }
 
         private void cboLibrary_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -55,8 +60,13 @@ namespace PresentationLayer.AdminPanels {
                 return;
             }
 
-            List<Employee> employees = service.GetEmployeesByLibrary(selectedLibrary);
-            dgAllEmployees.ItemsSource = employees;
+            Task.Run(() => {
+                List<Employee> employees = service.GetEmployeesByLibrary(selectedLibrary);
+
+                Application.Current.Dispatcher.Invoke(() => {
+                    dgAllEmployees.ItemsSource = employees;
+                });
+            });
         }
 
         private void btnEditEmployee_Click(object sender, RoutedEventArgs e) {
