@@ -65,12 +65,16 @@ namespace PresentationLayer.AdminPanels {
             string newEmployeeUsername = tbEmployeeUsername.Text;
             string newEmployeePassword = tbEmployeePassword.Text;
             string newEmployeeOIB = tbEmployeeOIB.Text;
+            if (newEmployeeOIB.Length != 11) {
+                MessageBox.Show("OIB mora imati 11 znakova!");
+                return;
+            }
 
             Employee newEmployee = new Employee {
-                name = newEmployeeName,
-                surname = newEmployeeSurname,
-                username = newEmployeeUsername,
-                password = newEmployeePassword,
+                name = newEmployeeName.Length <= 45 ? newEmployeeName : newEmployeeName.Substring(0, 45),
+                surname = newEmployeeSurname.Length <= 50 ? newEmployeeSurname : newEmployeeSurname.Substring(0, 50),
+                username = newEmployeeUsername.Length <= 45 ? newEmployeeUsername : newEmployeeUsername.Substring(0, 45),
+                password = newEmployeePassword.Length <= 45 ? newEmployeePassword : newEmployeePassword.Substring(0, 45),
                 OIB = newEmployeeOIB,
                 Library = selectedLibrary
             };

@@ -59,11 +59,19 @@ namespace PresentationLayer.AdminPanels {
                 MessageBox.Show("Cijena kašnjenja po danu treba biti decimalan broj!");
                 return;
             }
+            if (newLibraryPriceDayLate < 0) {
+                MessageBox.Show("Cijena kašnjenja po danu ne može biti negativna!");
+                return;
+            }
             string newLibraryAddress = tbLibraryAddress.Text;
             int newLibraryMembershipDurationDays;
             if (int.TryParse(tbLibraryMembershipDuration.Text, out newLibraryMembershipDurationDays)) {}
             else {
                 MessageBox.Show("Broj dana trajanja članarine treba biti cijeli broj!");
+                return;
+            }
+            if (newLibraryMembershipDurationDays < 0) {
+                MessageBox.Show("Broj dana trajanja članarine ne može biti negativan!");
                 return;
             }
 
@@ -72,12 +80,12 @@ namespace PresentationLayer.AdminPanels {
 
             Library newLibrary = new Library {
                 id = newLibraryID,
-                name = newLibraryName,
-                OIB = newLibraryOIB,
-                phone = newLibraryPhone,
-                email = newLibraryEmail,
+                name = newLibraryName.Length <= 45 ? newLibraryName : newLibraryName.Substring(0, 45),
+                OIB = newLibraryOIB.Length <= 20 ? newLibraryOIB : newLibraryOIB.Substring(0, 20),
+                phone = newLibraryPhone.Length <= 45 ? newLibraryPhone : newLibraryPhone.Substring(0, 45),
+                email = newLibraryEmail.Length <= 45 ? newLibraryEmail : newLibraryEmail.Substring(0, 45),
                 price_day_late = newLibraryPriceDayLate,
-                address = newLibraryAddress,
+                address = newLibraryAddress.Length <= 100 ? newLibraryAddress : newLibraryAddress.Substring(0, 100),
                 membership_duration = newLibraryMembershipDuration
             };
 
