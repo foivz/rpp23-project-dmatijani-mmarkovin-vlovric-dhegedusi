@@ -44,6 +44,7 @@ namespace DataAccessLayer.Repositories {
                 surname = employee.surname,
                 username = employee.username,
                 password = employee.password,
+                OIB = employee.OIB,
                 Library = library
             };
 
@@ -63,6 +64,7 @@ namespace DataAccessLayer.Repositories {
             existingEmployee.surname = employee.surname;
             existingEmployee.username = employee.username;
             existingEmployee.password = employee.password;
+            existingEmployee.OIB = employee.OIB;
             existingEmployee.Library = library;
 
             if (saveChanges) {

@@ -20,7 +20,8 @@
                     Margin="2.5,5,2.5,5"
                     x:Name="btnAddNewLibrary"
                     Style="{StaticResource bigButton}"
-                    Background="#637E78">Spremi</Button>
+                    Background="#637E78"
+                    Click="btnAddNewLibrary_Click">Spremi</Button>
 
             <Button Width="120" Height="40"
                     Margin="2.5,5,2.5,5"
@@ -72,7 +73,7 @@
                    VerticalAlignment="Center" x:Name="lblEmployeeOIB"/>
 
             <ComboBox Width="200" Height="25" Grid.Row="0" Grid.Column="3"
-                      HorizontalAlignment="Left" x:Name="cbLibrary"/>
+                      HorizontalAlignment="Left" x:Name="cboLibrary"/>
             <TextBox Width="200" Height="25" Grid.Row="1" Grid.Column="3"
                      HorizontalAlignment="Left" x:Name="tbEmployeeName"/>
             <TextBox Width="200" Height="25" Grid.Row="2" Grid.Column="3"

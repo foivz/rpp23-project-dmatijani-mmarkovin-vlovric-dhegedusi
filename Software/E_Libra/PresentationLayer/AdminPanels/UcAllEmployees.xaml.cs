@@ -29,11 +29,12 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void btnAddNewEmployee_Click(object sender, RoutedEventArgs e) {
-            UcNewEmployee ucNewEmployee = new UcNewEmployee();
+            Library selectedLibrary = cboLibrary.SelectedItem as Library;
+            UcNewEmployee ucNewEmployee = new UcNewEmployee(selectedLibrary);
             AdminGuiControl.LoadNewControl(ucNewEmployee);
         }
 
-        private void PopulateComboBox(Library selectedLibrary) {
+        private void PopulateComboBox(Library selectedLibrary = null) {
             var libraryService = new LibraryService();
             var allLibraries = libraryService.GetAllLibraries();
             cboLibrary.ItemsSource = allLibraries;
