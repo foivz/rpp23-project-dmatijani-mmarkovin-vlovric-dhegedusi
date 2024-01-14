@@ -56,5 +56,26 @@ namespace DataAccessLayer.Repositories
             return rand.Next(10000000, 99999999).ToString();
 
         }
+
+        public override IQueryable<Book> GetAll()
+        {
+            var sql = from b in Entities select b;
+            return sql;
+        }
+
+        public int InsertNewCopies(int number, Book passedBook, bool saveChanges = true)
+        {
+            string name = passedBook.name;
+            var book = (from b in Entities where b.name == name select b).FirstOrDefault();
+            book.total_copies += number;
+            if (saveChanges)
+            {
+                return SaveChanges();
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

@@ -20,5 +20,22 @@ namespace BussinessLogicLayer.services
             }
             return isSuccesful;
         }
+        public List<Book> GetAllBooks()
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.GetAll().ToList();
+            }
+        }
+        public bool InsertNewCopies(int number, Book book)
+        {
+            bool isSuccesful = false;
+            using (var repo = new BookRepository())
+            {
+                int affectedRows = repo.InsertNewCopies(number, book);
+                isSuccesful = affectedRows > 0;
+            }
+            return isSuccesful;
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BussinessLogicLayer.Exceptions;
+using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +31,60 @@ namespace PresentationLayer
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcCatalogueOptions();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadDataGrid();
+        }
+
+        private void LoadDataGrid()
+        {
+            BookServices services = new BookServices();
+            dgvBookNamesArchive.ItemsSource = services.GetAllBooks();
+            foreach (var column in dgvBookNamesArchive.Columns)
+            {
+                if (column.Header.ToString() != "name" && column.Header.ToString() != "total_copies")
+                {
+                    column.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TryParseInt(txtNumberCopies.Text);
+            }catch (BookException ex)
+            {
+                MessageBox.Show(ex.Poruka);
+                return;
+            }
+            BookServices services = new BookServices();
+            int number = TryParseInt(txtNumberCopies.Text);
+            var book = dgvBookNamesArchive.SelectedItem as Book;
+            if(services.InsertNewCopies(number, book))
+            {
+                MessageBox.Show("Uspjesno!");
+            }
+            else
+            {
+                MessageBox.Show("Neuspjesno!");
+            };
+            LoadDataGrid();
+        }
+
+        private int TryParseInt(string input)
+        {
+            if (int.TryParse(input, out int result))
+            {
+                return result;
+            }
+            else
+            {
+                throw new BookException("Broj novih primjeraka mora sadržavati samo brojeve!");
+            }
         }
     }
 }
