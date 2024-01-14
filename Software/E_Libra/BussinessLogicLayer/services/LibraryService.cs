@@ -51,8 +51,9 @@ namespace BussinessLogicLayer.services {
                 }
 
                 var librariesWithOIB = repository.GetLibrariesByOIB(library.OIB);
-                if (librariesWithOIB.ToList().Count > 0) {
-                    throw new LibraryWithSameOIBException("Knjižnica sa istim OIB već postoji!");
+                List<Library> otherLibrariesWithOIB = librariesWithOIB.ToList().FindAll(l => l.id != library.id);
+                if (otherLibrariesWithOIB.Count > 0) {
+                    throw new LibraryWithSameOIBException("Druga knjižnica već ima taj OIB!");
                 }
 
                 return repository.Update(library);

@@ -26,14 +26,8 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void btnRemoveLibrary_Click(object sender, RoutedEventArgs e) {
-            if (dgAllLibraries.SelectedItems.Count != 1) {
-                MessageBox.Show("Odaberite jednu knjižnicu!");
-                return;
-            }
-
-            Library selectedLibrary = dgAllLibraries.SelectedItem as Library;
+            Library selectedLibrary = GetSelectedLibrary();
             if (selectedLibrary == null) {
-                MessageBox.Show("Odaberite jednu knjižnicu!");
                 return;
             }
 
@@ -50,7 +44,13 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void btnEditLibrary_Click(object sender, RoutedEventArgs e) {
+            Library selectedLibrary = GetSelectedLibrary();
+            if (selectedLibrary == null) {
+                return;
+            }
 
+            UcNewLibrary ucNewLibrary = new UcNewLibrary(selectedLibrary);
+            AdminGuiControl.LoadNewControl(ucNewLibrary);
         }
 
         private void btnAddNewLibrary_Click(object sender, RoutedEventArgs e) {
@@ -59,14 +59,8 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void btnLibraryEmployees_Click(object sender, RoutedEventArgs e) {
-            if (dgAllLibraries.SelectedItems.Count != 1) {
-                MessageBox.Show("Odaberite jednu knjižnicu!");
-                return;
-            }
-
-            Library selectedLibrary = dgAllLibraries.SelectedItem as Library;
+            Library selectedLibrary = GetSelectedLibrary();
             if (selectedLibrary == null) {
-                MessageBox.Show("Odaberite jednu knjižnicu!");
                 return;
             }
 
@@ -76,6 +70,21 @@ namespace PresentationLayer.AdminPanels {
 
         private void ShowAllLibraries() {
             dgAllLibraries.ItemsSource = service.GetAllLibraries();
+        }
+
+        private Library GetSelectedLibrary() {
+            if (dgAllLibraries.SelectedItems.Count != 1) {
+                MessageBox.Show("Odaberite jednu knjižnicu!");
+                return null;
+            }
+
+            Library selectedLibrary = dgAllLibraries.SelectedItem as Library;
+            if (selectedLibrary == null) {
+                MessageBox.Show("Odaberite jednu knjižnicu!");
+                return null;
+            }
+
+            return selectedLibrary;
         }
     }
 }

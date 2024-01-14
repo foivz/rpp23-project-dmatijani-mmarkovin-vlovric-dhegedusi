@@ -21,8 +21,17 @@ namespace PresentationLayer.AdminPanels {
     /// Interaction logic for UcNewLibrary.xaml
     /// </summary>
     public partial class UcNewLibrary : UserControl {
+        private bool editing { get; set; }
+
         public UcNewLibrary() {
             InitializeComponent();
+            editing = false;
+        }
+
+        public UcNewLibrary(Library libraryToChange) {
+            InitializeComponent();
+            LoadLibraryDataIntoTextBoxes(libraryToChange);
+            editing = true;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
@@ -30,10 +39,10 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void btnAddNewLibrary_Click(object sender, RoutedEventArgs e) {
-            SaveNewLibrary();
+            SaveLibrary();
         }
 
-        private void SaveNewLibrary() {
+        private void SaveLibrary() {
             int newLibraryID;
             if (int.TryParse(tbLibraryID.Text, out newLibraryID)) {}
             else {
@@ -74,16 +83,40 @@ namespace PresentationLayer.AdminPanels {
 
             try {
                 LibraryService service = new LibraryService();
-                int result = service.AddLibrary(newLibrary);
 
-                if (result > 0) {
-                    AdminGuiControl.LoadNewControl(new UcAllLibraries());
+                if (!editing) {
+                    int result = service.AddLibrary(newLibrary);
+
+                    if (result > 0) {
+                        AdminGuiControl.LoadNewControl(new UcAllLibraries());
+                    } else {
+                        MessageBox.Show("Knjižnicu nije moguće dodati.");
+                    }
                 } else {
-                    MessageBox.Show("Knjižnicu nije moguće dodati.");
+                    int result = service.UpdateLibrary(newLibrary);
+
+                    if (result > 0) {
+                        AdminGuiControl.LoadNewControl(new UcAllLibraries());
+                    } else {
+                        MessageBox.Show("Knjižnicu nije moguće urediti.");
+                    }
                 }
             } catch (LibraryException ex) {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void LoadLibraryDataIntoTextBoxes(Library library) {
+            tbLibraryID.IsEnabled = false;
+
+            tbLibraryID.Text = library.id.ToString();
+            tbLibraryName.Text = library.name;
+            tbLibraryOIB.Text = library.OIB;
+            tbLibraryPhone.Text = library.phone;
+            tbLibraryEmail.Text = library.email;
+            tbLibraryPriceDayLate.Text = library.price_day_late.ToString();
+            tbLibraryAddress.Text = library.address;
+            tbLibraryMembershipDuration.Text = ((library.membership_duration - new DateTime(2024, 1, 1)).Days + 1).ToString();
         }
     }
 }
