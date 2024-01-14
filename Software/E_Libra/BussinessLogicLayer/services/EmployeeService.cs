@@ -47,5 +47,11 @@ namespace BussinessLogicLayer.services {
                 return repository.Add(employee);
             }
         }
+
+        public int DeleteEmployee(Employee employee) {
+            using (var repository = new EmployeeRepository()) {
+                return repository.Remove(employee);
+            }
+        }
     }
 }
