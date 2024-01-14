@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,20 +17,14 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer {
     public partial class MainWindow : Window {
+        private AdministratorService adminService;
+        private MemberService memberService;
+        private EmployeeService employeeService;
         public MainWindow() {
             InitializeComponent();
-        }
-
-        private void lblKorime_MouseDown(object sender, MouseButtonEventArgs e) {
-            txtKorime.Focus();
-        }
-
-        private void txtKorime_TextChanged(object sender, TextChangedEventArgs e) {
-            if (!string.IsNullOrEmpty(txtKorime.Text) && txtKorime.Text.Length > 0) {
-                lblKorime.Visibility = Visibility.Collapsed;
-            } else {
-                lblKorime.Visibility = Visibility.Visible;
-            }
+            adminService = new AdministratorService();
+            memberService = new MemberService();
+            employeeService = new EmployeeService();
         }
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e) {
@@ -38,17 +34,65 @@ namespace PresentationLayer {
                 lblPassword.Visibility = Visibility.Visible;
             }
         }
+        private void lblUsrname_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtUsername.Focus();
+        }
+
+        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtUsername.Text) && txtUsername.Text.Length > 0)
+            {
+                lblUsrname.Visibility = Visibility.Collapsed;
+            } else
+            {
+                lblUsrname.Visibility = Visibility.Visible;
+            }
+        }
 
         private void lblPassword_MouseDown(object sender, MouseButtonEventArgs e) {
             txtPassword.Focus();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e) {
-            //MemberPanel userPanel = new MemberPanel();
-            EmployeePanel userPanel = new EmployeePanel();
-            Hide();
-            userPanel.ShowDialog();
-            Close();
+
+            var password = txtPassword.Password;
+            var username = txtUsername.Text;
+
+            adminService.CheckLoginCredentials(username, password);
+            employeeService.CheckLoginCredentials(username, password);
+            memberService.CheckLoginCredentials(username, password);
+
+            switch (LoggedUser.UserType)
+            {
+                case Role.Admin:
+                    {
+                        // ovdje treba vratiti AdminPanel kojeg radi David
+                        break;
+                    }
+                case Role.Employee:
+                    {
+                        EmployeePanel employeePanel = new EmployeePanel();
+                        Hide();
+                        employeePanel.ShowDialog();
+                        Close();
+                        break;
+                    }
+                    
+                case Role.Member:
+                    {
+                        MemberPanel memberPanel = new MemberPanel();
+                        Hide();
+                        memberPanel.ShowDialog();
+                        Close();
+                        break;
+                    }
+                default:
+                    {
+                        MessageBox.Show("Greška", "Unjeli ste krive korisničke podatke!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    }
+            }
         }
     }
 }
