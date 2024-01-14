@@ -54,6 +54,7 @@
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\Review.cs" />
+    <Compile Include="Library.code.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
