@@ -26,5 +26,15 @@ namespace DataAccessLayer.Repositories
         {
             throw new NotImplementedException();
         }
+        public int GetEmployeeLibraryId(string username)
+        {
+            var sql = (from e in Employee where e.username == username select e.Library_id).FirstOrDefault();
+            return sql;
+        }
+        public int GetEmployeeId(string username)
+        {
+            var sql = (from e in Employee where e.username == username select e.id).FirstOrDefault();
+            return sql;
+        }
     }
 }

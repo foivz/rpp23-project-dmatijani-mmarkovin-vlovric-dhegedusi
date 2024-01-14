@@ -28,5 +28,10 @@ namespace PresentationLayer {
             LoggedUser.UserType = null;
             Close();
         }
+
+        private void btnBookCatalog_Click(object sender, RoutedEventArgs e)
+        {
+            contentPanel.Content = new UcCatalogueOptions();
+        }
     }
 }

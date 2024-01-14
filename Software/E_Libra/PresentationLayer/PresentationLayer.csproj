@@ -65,6 +65,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UcAddNewBook.xaml.cs">
+      <DependentUpon>UcAddNewBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcArchiveBook.xaml.cs">
+      <DependentUpon>UcArchiveBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcCatalogueOptions.xaml.cs">
+      <DependentUpon>UcCatalogueOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcNewCopies.xaml.cs">
+      <DependentUpon>UcNewCopies.xaml</DependentUpon>
+    </Compile>
     <Page Include="EmployeePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +97,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MemberPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcAddNewBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcArchiveBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcCatalogueOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcNewCopies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +151,10 @@
     <ProjectReference Include="..\BussinessLogicLayer\BussinessLogicLayer.csproj">
       <Project>{7f1a9a1c-b853-4f27-9a2d-03dc5088f8e4}</Project>
       <Name>BussinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{35d148d2-ed6d-4188-95bd-e67d6c7b8fe2}</Project>
+      <Name>DataAccessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntitiesLayer\EntitiesLayer.csproj">
       <Project>{334b2ef2-cc21-4264-86b0-5177e914e1e2}</Project>

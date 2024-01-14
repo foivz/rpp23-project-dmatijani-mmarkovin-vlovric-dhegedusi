@@ -23,5 +23,19 @@ namespace BussinessLogicLayer.services
                 }
             }
         }
+        public int GetEmployeeLibraryId(string username)
+        {
+            using(var employeeRepo = new EmployeeRepository())
+            {
+                return employeeRepo.GetEmployeeLibraryId(username);
+            }
+        }
+        public int GetEmployeeId(string username)
+        {
+            using (var employeeRepo = new EmployeeRepository())
+            {
+                return employeeRepo.GetEmployeeId(username);
+            }
+        }
     }
 }
