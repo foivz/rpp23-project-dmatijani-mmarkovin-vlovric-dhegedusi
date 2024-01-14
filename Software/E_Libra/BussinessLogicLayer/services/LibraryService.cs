@@ -42,5 +42,21 @@ namespace BussinessLogicLayer.services {
                 return repository.Remove(library);
             }
         }
+
+        public int UpdateLibrary(Library library) {
+            using (var repository = new LibraryRepository()) {
+                var librariesWithId = repository.GetLibrariesById(library.id);
+                if (librariesWithId.ToList().Count > 0) {
+                    throw new LibraryWithSameIDException("Knjižnica sa istim ID već postoji!");
+                }
+
+                var librariesWithOIB = repository.GetLibrariesByOIB(library.OIB);
+                if (librariesWithOIB.ToList().Count > 0) {
+                    throw new LibraryWithSameOIBException("Knjižnica sa istim OIB već postoji!");
+                }
+
+                return repository.Update(library);
+            }
+        }
     }
 }
