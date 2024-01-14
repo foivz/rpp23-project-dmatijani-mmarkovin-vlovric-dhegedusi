@@ -19,6 +19,10 @@ namespace DataAccessLayer.Repositories
             throw new NotImplementedException();
         }
 
-
+        public override IQueryable<Genre> GetAll()
+        {
+            var query = from g in Entities select g;
+            return query;
+        }
     }
 }

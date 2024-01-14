@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,18 @@ namespace PresentationLayer
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcCatalogueOptions();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadGenres();
+        }
+
+        private void LoadGenres()
+        {
+            GenreServices genreServices = new GenreServices();
+            var genres = genreServices.GetGenres();
+            cmbGenre.ItemsSource = genres;
         }
     }
 }

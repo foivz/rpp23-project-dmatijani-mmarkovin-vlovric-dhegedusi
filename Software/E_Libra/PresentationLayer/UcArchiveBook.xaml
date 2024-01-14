@@ -17,7 +17,7 @@
             <Label Content="Jeste li sigurno da želite arhivirati ovu knjigu?"></Label>
             <Button x:Name="btnCancel" Content="Odustani" Width="60" Height="30" Margin="10,0,10,0" 
     Background="#637E60" Foreground="#FFEFE8" Click="btnCancel_Click"></Button>
-            <Button x:Name="btnSave" Content="Unesi"  Width="60" Height="30" Margin="10,0,10,0" 
+            <Button x:Name="btnSave" Content="Arhiviraj"  Width="60" Height="30" Margin="10,0,10,0" 
     Background="#637E60" Foreground="#FFEFE8"></Button>
         </StackPanel>
 
