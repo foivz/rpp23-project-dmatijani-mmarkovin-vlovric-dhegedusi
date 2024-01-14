@@ -26,9 +26,6 @@ namespace PresentationLayer {
         {
             LoggedUser.Username = null;
             LoggedUser.UserType = null;
-            Hide();
-            MainWindow login = new MainWindow();
-            login.Show();
             Close();
         }
     }
