@@ -48,7 +48,18 @@
                     Click="btnAddNewLibrary_Click">Dodaj novu</Button>
             </StackPanel>
         </Grid>
-        
-        <DataGrid x:Name="dgvAllLibraries"/>
+
+        <DataGrid x:Name="dgAllLibraries" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}"/>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="OIB" Binding="{Binding OIB}"/>
+                <DataGridTextColumn Header="Telefon" Binding="{Binding phone}"/>
+                <DataGridTextColumn Header="E-pošta" Binding="{Binding email}"/>
+                <DataGridTextColumn Header="Cijena kašnjenja po danu" Binding="{Binding price_day_late}"/>
+                <DataGridTextColumn Header="Adresa" Binding="{Binding address}"/>
+                <DataGridTextColumn Header="Trajanje članarine" Binding="{Binding membership_duration}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </UserControl>

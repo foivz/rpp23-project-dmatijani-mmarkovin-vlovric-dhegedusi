@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +17,11 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
     public partial class UcAllLibraries : UserControl {
+        private LibraryService service = new LibraryService();
+
         public UcAllLibraries() {
             InitializeComponent();
+            ShowAllLibraries();
         }
 
         private void btnRemoveLibrary_Click(object sender, RoutedEventArgs e) {
@@ -35,6 +40,10 @@ namespace PresentationLayer.AdminPanels {
         private void btnLibraryEmployees_Click(object sender, RoutedEventArgs e) {
             UcAllEmployees ucAllEmployees = new UcAllEmployees();
             AdminGuiControl.LoadNewControl(ucAllEmployees);
+        }
+
+        private void ShowAllLibraries() {
+            dgAllLibraries.ItemsSource = service.GetAllLibraries();
         }
     }
 }
