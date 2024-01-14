@@ -46,8 +46,8 @@ namespace BussinessLogicLayer.services {
         public int UpdateLibrary(Library library) {
             using (var repository = new LibraryRepository()) {
                 var librariesWithId = repository.GetLibrariesById(library.id);
-                if (librariesWithId.ToList().Count > 0) {
-                    throw new LibraryWithSameIDException("Knjižnica sa istim ID već postoji!");
+                if (librariesWithId.ToList().Count == 0) {
+                    throw new LibraryWithSameIDException("Knjižnica sa tim ID ne postoji!");
                 }
 
                 var librariesWithOIB = repository.GetLibrariesByOIB(library.OIB);
