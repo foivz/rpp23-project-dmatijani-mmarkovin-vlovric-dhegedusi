@@ -64,7 +64,8 @@
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\Review.cs" />
-    <Compile Include="LoggedUser.cs" />
+	  <Compile Include="Library.code.cs" />
+	  <Compile Include="LoggedUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

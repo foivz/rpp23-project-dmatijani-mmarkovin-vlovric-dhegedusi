@@ -1,4 +1,5 @@
-﻿using BussinessLogicLayer.services;
+﻿using PresentationLayer.AdminPanels;
+using BussinessLogicLayer.services;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -93,6 +94,13 @@ namespace PresentationLayer {
                         break;
                     }
             }
+        }
+
+        private void btnAdminPanel_Click(object sender, RoutedEventArgs e) {
+            AdminPanel adminPanel = new AdminPanel();
+            Hide();
+            adminPanel.ShowDialog();
+            Close();
         }
     }
 }

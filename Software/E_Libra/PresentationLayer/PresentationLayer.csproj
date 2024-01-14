@@ -65,18 +65,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UcAddNewBook.xaml.cs">
-      <DependentUpon>UcAddNewBook.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UcArchiveBook.xaml.cs">
-      <DependentUpon>UcArchiveBook.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UcCatalogueOptions.xaml.cs">
-      <DependentUpon>UcCatalogueOptions.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UcNewCopies.xaml.cs">
-      <DependentUpon>UcNewCopies.xaml</DependentUpon>
-    </Compile>
+	  <Page Include="AdminPanels\AdminPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanels\UcAllEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanels\UcAllLibraries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanels\UcNewEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanels\UcNewLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+	  <Compile Include="UcAddNewBook.xaml.cs">
+		  <DependentUpon>UcAddNewBook.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="UcArchiveBook.xaml.cs">
+		  <DependentUpon>UcArchiveBook.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="UcCatalogueOptions.xaml.cs">
+		  <DependentUpon>UcCatalogueOptions.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="UcNewCopies.xaml.cs">
+		  <DependentUpon>UcNewCopies.xaml</DependentUpon>
+	  </Compile>
     <Page Include="EmployeePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +105,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AdminPanels\AdminGuiControl.cs" />
+    <Compile Include="AdminPanels\AdminPanel.xaml.cs">
+      <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanels\MembershipDurationConverter.cs" />
+    <Compile Include="AdminPanels\UcAllEmployees.xaml.cs">
+      <DependentUpon>UcAllEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanels\UcAllLibraries.xaml.cs">
+      <DependentUpon>UcAllLibraries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanels\UcNewEmployee.xaml.cs">
+      <DependentUpon>UcNewEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanels\UcNewLibrary.xaml.cs">
+      <DependentUpon>UcNewLibrary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
