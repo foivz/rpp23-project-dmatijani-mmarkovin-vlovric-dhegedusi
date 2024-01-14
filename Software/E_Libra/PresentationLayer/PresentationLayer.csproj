@@ -77,6 +77,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AdminPanels\UcNewEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminPanels\UcNewLibrary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,6 +101,9 @@
     </Compile>
     <Compile Include="AdminPanels\UcAllLibraries.xaml.cs">
       <DependentUpon>UcAllLibraries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanels\UcNewEmployee.xaml.cs">
+      <DependentUpon>UcNewEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="AdminPanels\UcNewLibrary.xaml.cs">
       <DependentUpon>UcNewLibrary.xaml</DependentUpon>

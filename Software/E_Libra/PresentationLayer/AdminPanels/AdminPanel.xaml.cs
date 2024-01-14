@@ -32,5 +32,10 @@ namespace PresentationLayer.AdminPanels {
             UcNewLibrary ucNewLibrary = new UcNewLibrary();
             contentPanel.Content = ucNewLibrary;
         }
+
+        private void btnNewEmployee_Click(object sender, RoutedEventArgs e) {
+            UcNewEmployee ucNewEmployee = new UcNewEmployee();
+            contentPanel.Content = ucNewEmployee;
+        }
     }
 }

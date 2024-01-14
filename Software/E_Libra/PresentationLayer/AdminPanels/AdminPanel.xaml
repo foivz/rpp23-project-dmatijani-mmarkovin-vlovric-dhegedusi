@@ -21,7 +21,8 @@
                         Click="btnNewLibrary_Click"/>
                 <Button x:Name="btnAllEmployees" Content="Svi zaposlenici" Style="{StaticResource navButton}" 
                         Click="btnAllEmployees_Click"/>
-                <Button x:Name="btnNewEmployee" Content="Novi zaposlenik" Style="{StaticResource navButton}" />
+                <Button x:Name="btnNewEmployee" Content="Novi zaposlenik" Style="{StaticResource navButton}"
+                        Click="btnNewEmployee_Click"/>
             </StackPanel>
             <StackPanel Grid.Row="1"/>
             <Button x:Name="btnLogout" Grid.Row="2" Content="Odjava" Style="{StaticResource navButton}" />
