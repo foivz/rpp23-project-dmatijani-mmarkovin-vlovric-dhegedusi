@@ -21,5 +21,10 @@ namespace PresentationLayer.AdminPanels {
         public UcAllEmployees() {
             InitializeComponent();
         }
+
+        private void btnAddNewEmployee_Click(object sender, RoutedEventArgs e) {
+            UcNewEmployee ucNewEmployee = new UcNewEmployee();
+            AdminGuiControl.LoadNewControl(ucNewEmployee);
+        }
     }
 }

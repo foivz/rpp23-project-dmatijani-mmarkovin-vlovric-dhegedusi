@@ -16,26 +16,27 @@ namespace PresentationLayer.AdminPanels {
     public partial class AdminPanel : Window {
         public AdminPanel() {
             InitializeComponent();
+            AdminGuiControl.AdminPanel = this;
         }
 
         private void btnAllLibraries_Click(object sender, RoutedEventArgs e) {
             UcAllLibraries ucAllLibraries = new UcAllLibraries();
-            contentPanel.Content = ucAllLibraries;
+            AdminGuiControl.LoadNewControl(ucAllLibraries);
         }
 
         private void btnAllEmployees_Click(object sender, RoutedEventArgs e) {
             UcAllEmployees ucAllEmployees = new UcAllEmployees();
-            contentPanel.Content = ucAllEmployees;
+            AdminGuiControl.LoadNewControl(ucAllEmployees);
         }
 
         private void btnNewLibrary_Click(object sender, RoutedEventArgs e) {
             UcNewLibrary ucNewLibrary = new UcNewLibrary();
-            contentPanel.Content = ucNewLibrary;
+            AdminGuiControl.LoadNewControl(ucNewLibrary);
         }
 
         private void btnNewEmployee_Click(object sender, RoutedEventArgs e) {
             UcNewEmployee ucNewEmployee = new UcNewEmployee();
-            contentPanel.Content = ucNewEmployee;
+            AdminGuiControl.LoadNewControl(ucNewEmployee);
         }
     }
 }

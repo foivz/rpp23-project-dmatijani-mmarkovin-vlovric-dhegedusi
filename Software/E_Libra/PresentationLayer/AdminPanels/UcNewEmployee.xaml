@@ -26,7 +26,8 @@
                     Margin="2.5,5,2.5,5"
                     x:Name="btnCancel"
                     Style="{StaticResource bigButton}"
-                    Background="#637E78">Odustani</Button>
+                    Background="#637E78"
+                    Click="btnCancel_Click">Odustani</Button>
         </StackPanel>
 
         <Grid>

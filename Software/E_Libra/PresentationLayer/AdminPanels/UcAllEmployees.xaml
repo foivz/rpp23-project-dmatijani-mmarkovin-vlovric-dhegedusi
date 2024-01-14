@@ -29,7 +29,8 @@
                     HorizontalAlignment="Right"
                     x:Name="btnAddNewEmployee"
                     Style="{StaticResource bigButton}"
-                    Background="#637E78">Dodaj novog</Button>
+                    Background="#637E78"
+                    Click="btnAddNewEmployee_Click">Dodaj novog</Button>
         </StackPanel>
 
         <Grid>

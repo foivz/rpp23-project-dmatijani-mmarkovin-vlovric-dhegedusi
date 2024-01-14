@@ -28,11 +28,13 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void btnAddNewLibrary_Click(object sender, RoutedEventArgs e) {
-
+            UcNewLibrary ucNewLibrary = new UcNewLibrary();
+            AdminGuiControl.LoadNewControl(ucNewLibrary);
         }
 
         private void btnLibraryEmployees_Click(object sender, RoutedEventArgs e) {
-            // IMPLEMENTIRATI !
+            UcAllEmployees ucAllEmployees = new UcAllEmployees();
+            AdminGuiControl.LoadNewControl(ucAllEmployees);
         }
     }
 }

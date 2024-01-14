@@ -21,5 +21,9 @@ namespace PresentationLayer.AdminPanels {
         public UcNewLibrary() {
             InitializeComponent();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e) {
+            AdminGuiControl.LoadPreviousControl();
+        }
     }
 }
