@@ -14,9 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
-    /// <summary>
-    /// Interaction logic for UcAllLibraries.xaml
-    /// </summary>
     public partial class UcAllLibraries : UserControl {
         public UcAllLibraries() {
             InitializeComponent();
@@ -34,12 +31,6 @@ namespace PresentationLayer.AdminPanels {
 
         }
 
-        /// <summary>
-        /// Metoda "btnLibraryEmployees_Click" otvara novi UserControl koji ima popis svih zaposlenika odabrane knjižnice
-        /// David Matijanić
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnLibraryEmployees_Click(object sender, RoutedEventArgs e) {
             // IMPLEMENTIRATI !
         }

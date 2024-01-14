@@ -13,35 +13,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
-    /// <summary>
-    /// Klasa AdminPanel omogućuje administratoru sve administratorske kontrole
-    /// David Matijanić
-    /// </summary>
     public partial class AdminPanel : Window {
         public AdminPanel() {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Metoda "btnAllLibraries_Click" otvara novi UserControl koji ima popis svih knjižnica
-        /// David Matijanić
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnAllLibraries_Click(object sender, RoutedEventArgs e) {
             UcAllLibraries ucAllLibraries = new UcAllLibraries();
             contentPanel.Content = ucAllLibraries;
         }
 
-        /// <summary>
-        /// Metoda "btnAllEmployees_Click" otvara novi UserControl koji ima popis svih zaposlenika
-        /// David Matijanić
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnAllEmployees_Click(object sender, RoutedEventArgs e) {
             UcAllEmployees ucAllEmployees = new UcAllEmployees();
             contentPanel.Content = ucAllEmployees;
+        }
+
+        private void btnNewLibrary_Click(object sender, RoutedEventArgs e) {
+            UcNewLibrary ucNewLibrary = new UcNewLibrary();
+            contentPanel.Content = ucNewLibrary;
         }
     }
 }

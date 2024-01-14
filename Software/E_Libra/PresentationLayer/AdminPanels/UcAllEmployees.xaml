@@ -39,8 +39,8 @@
             </Grid.RowDefinitions>
 
             <StackPanel Height="50" Grid.Row="0">
-                <ComboBox Grid.Column="0" Width="200" Height="20"
-                          x:Name="cboLibrary" Margin="15" HorizontalAlignment="Left"></ComboBox>
+                <ComboBox Grid.Column="0" Width="200" Height="25"
+                          x:Name="cboLibrary" Margin="12.5" HorizontalAlignment="Left"></ComboBox>
             </StackPanel>
             <DataGrid x:Name="dgAllEmployees" Grid.Row="1"></DataGrid>
         </Grid>
