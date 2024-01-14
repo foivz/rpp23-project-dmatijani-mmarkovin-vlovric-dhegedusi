@@ -68,7 +68,10 @@ namespace PresentationLayer {
             {
                 case Role.Admin:
                     {
-                        // ovdje treba vratiti AdminPanel kojeg radi David
+                        AdminPanel adminPanel = new AdminPanel();
+                        Hide();
+                        adminPanel.ShowDialog();
+                        Close();
                         break;
                     }
                 case Role.Employee:
@@ -90,17 +93,10 @@ namespace PresentationLayer {
                     }
                 default:
                     {
-                        MessageBox.Show("Greška", "Unjeli ste krive korisničke podatke!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Unijeli ste krive korisničke podatke!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                         break;
                     }
             }
-        }
-
-        private void btnAdminPanel_Click(object sender, RoutedEventArgs e) {
-            AdminPanel adminPanel = new AdminPanel();
-            Hide();
-            adminPanel.ShowDialog();
-            Close();
         }
     }
 }
