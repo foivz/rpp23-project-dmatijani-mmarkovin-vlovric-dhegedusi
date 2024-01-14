@@ -113,6 +113,7 @@ namespace PresentationLayer
             var bookService = new BookServices();
             var rez = bookService.AddBook(book);
             MessageBox.Show(rez ? "Uspjesno": "Neuspjesno");
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcAddNewBook();
         }
 
         private DateTime? ConvertIntoDateTime(TextBox txtDate)

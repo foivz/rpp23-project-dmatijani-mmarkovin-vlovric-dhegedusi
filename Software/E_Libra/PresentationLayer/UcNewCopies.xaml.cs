@@ -61,6 +61,12 @@ namespace PresentationLayer
                 MessageBox.Show(ex.Poruka);
                 return;
             }
+            if(dgvBookNamesArchive.SelectedItem == null)
+            {
+                MessageBox.Show("Morate odabrati knjigu!");
+                return;
+            }
+
             BookServices services = new BookServices();
             int number = TryParseInt(txtNumberCopies.Text);
             var book = dgvBookNamesArchive.SelectedItem as Book;
@@ -72,7 +78,7 @@ namespace PresentationLayer
             {
                 MessageBox.Show("Neuspjesno!");
             };
-            LoadDataGrid();
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcNewCopies();
         }
 
         private int TryParseInt(string input)

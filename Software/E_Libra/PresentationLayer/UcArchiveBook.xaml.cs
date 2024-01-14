@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +30,37 @@ namespace PresentationLayer
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcCatalogueOptions();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if(dgvBookNamesArchive.SelectedItem == null)
+            {
+                MessageBox.Show("Morate odabrati knjigu!");
+                return;
+            }
+
+            Book book = dgvBookNamesArchive.SelectedItem as Book;
+
+            
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadDgv();
+        }
+
+        private void LoadDgv()
+        {
+            BookServices services = new BookServices();
+            dgvBookNamesArchive.ItemsSource = services.GetAllBooks();
+            foreach (var column in dgvBookNamesArchive.Columns)
+            {
+                if (column.Header.ToString() != "name")
+                {
+                    column.Visibility = Visibility.Collapsed;
+                }
+            }
         }
     }
 }
