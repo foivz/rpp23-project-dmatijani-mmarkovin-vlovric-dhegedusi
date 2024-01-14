@@ -97,6 +97,7 @@
     <Compile Include="AdminPanels\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminPanels\MembershipDurationConverter.cs" />
     <Compile Include="AdminPanels\UcAllEmployees.xaml.cs">
       <DependentUpon>UcAllEmployees.xaml</DependentUpon>
     </Compile>
