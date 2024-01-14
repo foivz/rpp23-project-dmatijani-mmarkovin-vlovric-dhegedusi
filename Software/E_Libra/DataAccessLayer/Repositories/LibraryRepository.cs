@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
     public class LibraryRepository : Repository<Library> {
-        public LibraryRepository() : base(new DatabaseModel()) {
+        public LibraryRepository(DatabaseModel context) : base(context) {
 
         }
 
