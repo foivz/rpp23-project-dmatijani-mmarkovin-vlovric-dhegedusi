@@ -12,7 +12,7 @@ namespace DataAccessLayer.Repositories {
         }
 
         public IQueryable<Employee> GetEmployeesByLibrary(Library library) {
-            var query = from e in Entities
+            var query = from e in Entities.Include("Library")
                         where e.Library_id == library.id
                         select e;
 
