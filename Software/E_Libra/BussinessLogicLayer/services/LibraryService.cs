@@ -30,5 +30,17 @@ namespace BussinessLogicLayer.services {
                 return repository.Add(newLibrary);
             }
         }
+
+        public int DeleteLibrary(Library library) {
+            using (var repository = new LibraryRepository()) {
+                var employeeRepository = new EmployeeRepository();
+                List<Employee> libraryEmployees = employeeRepository.GetEmployeesByLibrary(library).ToList();
+                if (libraryEmployees.Count > 0) {
+                    throw new LibraryHasEmployeesException("Odabrana knjižnica ima zaposlenike!");
+                }
+
+                return repository.Remove(library);
+            }
+        }
     }
 }

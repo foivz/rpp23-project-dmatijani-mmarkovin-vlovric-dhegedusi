@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\LibraryException.cs" />
+    <Compile Include="Exceptions\LibraryHasEmployeesException.cs" />
     <Compile Include="Exceptions\LibraryWithSameIDException.cs" />
     <Compile Include="Exceptions\LibraryWithSameOIBException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
