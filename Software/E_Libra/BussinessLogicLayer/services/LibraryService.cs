@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Repositories;
+﻿using BussinessLogicLayer.Exceptions;
+using DataAccessLayer.Repositories;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,12 @@ namespace BussinessLogicLayer.services {
             using (var repository = new LibraryRepository()) {
                 var librariesWithId = repository.GetLibrariesById(newLibrary.id);
                 if (librariesWithId.ToList().Count > 0) {
-                    // Ovo implementirati
-                }
-
-                var librariesWithName = repository.GetLibrariesByName(newLibrary.name);
-                if (librariesWithName.ToList().Count > 0) {
-                    // Ovo implementirati
+                    throw new LibraryWithSameIDException("Knjižnica sa istim ID već postoji!");
                 }
 
                 var librariesWithOIB = repository.GetLibrariesByOIB(newLibrary.OIB);
                 if (librariesWithOIB.ToList().Count > 0) {
-                    // Ovo implementirati
+                    throw new LibraryWithSameOIBException("Knjižnica sa istim OIB već postoji!");
                 }
 
                 return repository.Add(newLibrary);

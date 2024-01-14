@@ -20,7 +20,8 @@
                     Margin="2.5,5,2.5,5"
                     x:Name="btnAddNewLibrary"
                     Style="{StaticResource bigButton}"
-                    Background="#637E78">Spremi</Button>
+                    Background="#637E78"
+                    Click="btnAddNewLibrary_Click">Spremi</Button>
 
             <Button Width="120" Height="40"
                     Margin="2.5,5,2.5,5"
@@ -94,9 +95,9 @@
             <TextBox Width="200" Height="25" Grid.Row="5" Grid.Column="3"
                      HorizontalAlignment="Left" x:Name="tbLibraryPriceDayLate"/>
             <TextBox Width="200" Height="25" Grid.Row="6" Grid.Column="3"
-                     HorizontalAlignment="Left" x:Name="tbLibraryMembershipDuration"/>
-            <TextBox Width="200" Height="25" Grid.Row="7" Grid.Column="3"
                      HorizontalAlignment="Left" x:Name="tbLibraryAddress"/>
+            <TextBox Width="200" Height="25" Grid.Row="7" Grid.Column="3"
+                     HorizontalAlignment="Left" x:Name="tbLibraryMembershipDuration"/>
         </Grid>
     </DockPanel>
 </UserControl>
