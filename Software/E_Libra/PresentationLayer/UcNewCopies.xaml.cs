@@ -47,9 +47,13 @@ namespace PresentationLayer
 
         private void HideColumns()
         {
+            var columnName = dgvBookNamesArchive.Columns.FirstOrDefault(c => c.Header.ToString() == "name");
+            columnName.Header = "Naziv";
+            var columnCopies = dgvBookNamesArchive.Columns.FirstOrDefault(c => c.Header.ToString() == "total_copies");
+            columnCopies.Header = "Ukupan broj primjeraka";
             foreach (var column in dgvBookNamesArchive.Columns)
             {
-                if (column.Header.ToString() != "name" && column.Header.ToString() != "total_copies")
+                if (column.Header.ToString() != "Naziv" && column.Header.ToString() != "Ukupan broj primjeraka")
                 {
                     column.Visibility = Visibility.Collapsed;
                 }

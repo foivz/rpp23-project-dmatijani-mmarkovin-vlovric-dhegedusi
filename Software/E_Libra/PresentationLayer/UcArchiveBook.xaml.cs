@@ -77,9 +77,11 @@ namespace PresentationLayer
 
         private void HideColumns()
         {
+            var columnName = dgvBookNamesArchive.Columns.FirstOrDefault(c => c.Header.ToString() == "name");
+            columnName.Header = "Naziv";
             foreach (var column in dgvBookNamesArchive.Columns)
             {
-                if (column.Header.ToString() != "name")
+                if (column.Header.ToString() != "Naziv")
                 {
                     column.Visibility = Visibility.Collapsed;
                 }
