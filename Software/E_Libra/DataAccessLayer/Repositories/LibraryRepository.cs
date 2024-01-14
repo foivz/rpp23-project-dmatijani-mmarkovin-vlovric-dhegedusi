@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
     public class LibraryRepository : Repository<Library> {
-        public LibraryRepository(DatabaseModel context) : base(context) {
-
-        }
+        public LibraryRepository() : base(new DatabaseModel()) { }
 
         public override int Update(Library entity, bool saveChanges = true) {
             return 0; // TODO
