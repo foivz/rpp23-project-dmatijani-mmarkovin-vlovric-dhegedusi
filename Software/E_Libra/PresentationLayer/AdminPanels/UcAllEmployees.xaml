@@ -19,7 +19,8 @@
                     HorizontalAlignment="Right"
                     x:Name="btnRemoveEmployee"
                     Style="{StaticResource bigButton}"
-                    Background="#637E78">Ukloni</Button>
+                    Background="#637E78"
+                    Click="btnRemoveEmployee_Click">Ukloni</Button>
             <Button Width="120" Height="40" Margin="0,5,5,5"
                     HorizontalAlignment="Right"
                     x:Name="btnEditEmployee"

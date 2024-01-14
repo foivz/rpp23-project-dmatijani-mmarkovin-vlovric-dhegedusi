@@ -83,5 +83,16 @@ namespace PresentationLayer.AdminPanels {
 
             return selectedEmployee;
         }
+
+        private void btnRemoveEmployee_Click(object sender, RoutedEventArgs e) {
+            Employee selectedEmployee = GetSelectedEmployee();
+            if (selectedEmployee == null) return;
+
+            service.DeleteEmployee(selectedEmployee);
+            Library selectedLibrary = cboLibrary.SelectedItem as Library;
+            if (selectedLibrary != null) {
+                LoadEmployees(selectedLibrary);
+            }
+        }
     }
 }
