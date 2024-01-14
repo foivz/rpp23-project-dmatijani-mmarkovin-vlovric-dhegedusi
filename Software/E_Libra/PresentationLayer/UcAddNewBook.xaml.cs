@@ -112,7 +112,7 @@ namespace PresentationLayer
             };
             var bookService = new BookServices();
             var rez = bookService.AddBook(book);
-            MessageBox.Show(rez ? "Uspjesno": "Neuspjesno");
+            MessageBox.Show(rez ? "Uspješno" : "Neuspješno");
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcAddNewBook();
         }
 

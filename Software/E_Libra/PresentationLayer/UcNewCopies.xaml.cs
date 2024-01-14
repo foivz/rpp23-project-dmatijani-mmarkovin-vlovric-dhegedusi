@@ -42,6 +42,11 @@ namespace PresentationLayer
         {
             BookServices services = new BookServices();
             dgvBookNamesArchive.ItemsSource = services.GetNonArchivedBooks();
+            HideColumns();
+        }
+
+        private void HideColumns()
+        {
             foreach (var column in dgvBookNamesArchive.Columns)
             {
                 if (column.Header.ToString() != "name" && column.Header.ToString() != "total_copies")
@@ -72,11 +77,11 @@ namespace PresentationLayer
             var book = dgvBookNamesArchive.SelectedItem as Book;
             if(services.InsertNewCopies(number, book))
             {
-                MessageBox.Show("Uspjesno!");
+                MessageBox.Show("Uspješno!");
             }
             else
             {
-                MessageBox.Show("Neuspjesno!");
+                MessageBox.Show("Neuspješno!");
             };
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcNewCopies();
         }
@@ -98,13 +103,7 @@ namespace PresentationLayer
             BookServices bookServices = new BookServices();
             string text = txtBookName.Text;
             dgvBookNamesArchive.ItemsSource = bookServices.GetNonArchivedBooksByName(text);
-            foreach (var column in dgvBookNamesArchive.Columns)
-            {
-                if (column.Header.ToString() != "name" && column.Header.ToString() != "total_copies")
-                {
-                    column.Visibility = Visibility.Collapsed;
-                }
-            }
+            HideColumns();
         }
     }
 }

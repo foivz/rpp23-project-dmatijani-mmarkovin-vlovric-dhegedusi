@@ -72,6 +72,11 @@ namespace PresentationLayer
         {
             BookServices services = new BookServices();
             dgvBookNamesArchive.ItemsSource = services.GetNonArchivedBooks();
+            HideColumns();
+        }
+
+        private void HideColumns()
+        {
             foreach (var column in dgvBookNamesArchive.Columns)
             {
                 if (column.Header.ToString() != "name")
@@ -86,13 +91,7 @@ namespace PresentationLayer
             BookServices bookServices = new BookServices();
             string text = txtBookName.Text;
             dgvBookNamesArchive.ItemsSource= bookServices.GetNonArchivedBooksByName(text);
-            foreach (var column in dgvBookNamesArchive.Columns)
-            {
-                if (column.Header.ToString() != "name")
-                {
-                    column.Visibility = Visibility.Collapsed;
-                }
-            }
+            HideColumns();
         }
     }
 }
