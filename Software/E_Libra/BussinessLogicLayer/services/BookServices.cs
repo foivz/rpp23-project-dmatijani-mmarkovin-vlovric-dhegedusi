@@ -27,12 +27,30 @@ namespace BussinessLogicLayer.services
                 return repo.GetAll().ToList();
             }
         }
+
+        public List<Book> GetNonArchivedBooks()
+        {
+            using(var repo = new BookRepository())
+            {
+                return repo.GetNonArchivedBooks().ToList();
+            }
+        }
         public bool InsertNewCopies(int number, Book book)
         {
             bool isSuccesful = false;
             using (var repo = new BookRepository())
             {
                 int affectedRows = repo.InsertNewCopies(number, book);
+                isSuccesful = affectedRows > 0;
+            }
+            return isSuccesful;
+        }
+        public bool ArchiveBook(Book book, Archive archive)
+        {
+            bool isSuccesful = false;
+            using(var repo = new BookRepository())
+            {
+                int affectedRows = repo.ArhiveBook(book, archive);
                 isSuccesful = affectedRows > 0;
             }
             return isSuccesful;

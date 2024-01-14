@@ -63,6 +63,14 @@ namespace DataAccessLayer.Repositories
             return sql;
         }
 
+        public IQueryable<Book> GetNonArchivedBooks()
+        {
+            var sql = from b in Context.Books
+                      where !Context.Archives.Any(a => a.Book_id == b.id)
+                      select b;
+            return sql;
+        }
+
         public int InsertNewCopies(int number, Book passedBook, bool saveChanges = true)
         {
             string name = passedBook.name;
@@ -76,6 +84,13 @@ namespace DataAccessLayer.Repositories
             {
                 return 0;
             }
+        }
+        public int ArhiveBook(Book passedBook, Archive archive)
+        {
+            string name = passedBook.name;
+            var book = (from b in Entities where b.name == name select b).FirstOrDefault();
+            book.Archives.Add(archive);
+            return SaveChanges();
         }
     }
 }

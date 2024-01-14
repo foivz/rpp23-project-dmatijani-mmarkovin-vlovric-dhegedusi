@@ -41,6 +41,24 @@ namespace PresentationLayer
             }
 
             Book book = dgvBookNamesArchive.SelectedItem as Book;
+            BookServices bookServices = new BookServices();
+            EmployeeService employeeServices = new EmployeeService();
+            var archive = new Archive
+            {
+                Book_id = book.id,
+                Employee_id = employeeServices.GetEmployeeId(LoggedUser.Username),
+                arhive_date = DateTime.Now,
+            };
+
+            if(bookServices.ArchiveBook(book, archive))
+            {
+                MessageBox.Show("Uspješno!");
+                LoadDgv();
+            }
+            else
+            {
+                MessageBox.Show("Neuspješno!");
+            }
 
             
         }
@@ -53,7 +71,7 @@ namespace PresentationLayer
         private void LoadDgv()
         {
             BookServices services = new BookServices();
-            dgvBookNamesArchive.ItemsSource = services.GetAllBooks();
+            dgvBookNamesArchive.ItemsSource = services.GetNonArchivedBooks();
             foreach (var column in dgvBookNamesArchive.Columns)
             {
                 if (column.Header.ToString() != "name")

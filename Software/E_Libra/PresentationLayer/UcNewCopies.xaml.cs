@@ -41,7 +41,7 @@ namespace PresentationLayer
         private void LoadDataGrid()
         {
             BookServices services = new BookServices();
-            dgvBookNamesArchive.ItemsSource = services.GetAllBooks();
+            dgvBookNamesArchive.ItemsSource = services.GetNonArchivedBooks();
             foreach (var column in dgvBookNamesArchive.Columns)
             {
                 if (column.Header.ToString() != "name" && column.Header.ToString() != "total_copies")
