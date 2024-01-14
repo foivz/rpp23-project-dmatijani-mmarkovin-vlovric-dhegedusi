@@ -19,9 +19,13 @@ namespace PresentationLayer.AdminPanels {
     public partial class UcAllEmployees : UserControl {
         private EmployeeService service = new EmployeeService();
 
-        public UcAllEmployees() {
+        public UcAllEmployees(Library selectedLibrary = null) {
             InitializeComponent();
-            PopulateComboBox();
+            PopulateComboBox(selectedLibrary);
+
+            if (selectedLibrary != null) {
+                LoadEmployees(selectedLibrary);
+            }
         }
 
         private void btnAddNewEmployee_Click(object sender, RoutedEventArgs e) {
@@ -29,9 +33,14 @@ namespace PresentationLayer.AdminPanels {
             AdminGuiControl.LoadNewControl(ucNewEmployee);
         }
 
-        private void PopulateComboBox() {
+        private void PopulateComboBox(Library selectedLibrary) {
             var libraryService = new LibraryService();
-            cboLibrary.ItemsSource = libraryService.GetAllLibraries();
+            var allLibraries = libraryService.GetAllLibraries();
+            cboLibrary.ItemsSource = allLibraries;
+
+            if (selectedLibrary != null) {
+                cboLibrary.SelectedItem = allLibraries.FirstOrDefault(l => l.id == selectedLibrary.id);
+            }
         }
 
         private void cboLibrary_SelectionChanged(object sender, SelectionChangedEventArgs e) {

@@ -38,7 +38,16 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void btnLibraryEmployees_Click(object sender, RoutedEventArgs e) {
-            UcAllEmployees ucAllEmployees = new UcAllEmployees();
+            if (dgAllLibraries.SelectedItems.Count != 1) {
+                return;
+            }
+
+            Library selectedLibrary = dgAllLibraries.SelectedItem as Library;
+            if (selectedLibrary == null) {
+                return;
+            }
+
+            UcAllEmployees ucAllEmployees = new UcAllEmployees(selectedLibrary);
             AdminGuiControl.LoadNewControl(ucAllEmployees);
         }
 
