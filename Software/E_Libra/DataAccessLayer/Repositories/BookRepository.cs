@@ -82,6 +82,8 @@ namespace DataAccessLayer.Repositories
             return sql;
         }
 
+       
+
         public int InsertNewCopies(int number, Book passedBook, bool saveChanges = true)
         {
             string name = passedBook.name;

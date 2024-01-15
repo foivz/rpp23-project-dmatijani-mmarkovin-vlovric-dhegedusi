@@ -65,7 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-	  <Page Include="AdminPanels\AdminPanel.xaml">
+    <Page Include="AdminPanels\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -85,18 +85,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	  <Compile Include="UcAddNewBook.xaml.cs">
-		  <DependentUpon>UcAddNewBook.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Include="UcArchiveBook.xaml.cs">
-		  <DependentUpon>UcArchiveBook.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Include="UcCatalogueOptions.xaml.cs">
-		  <DependentUpon>UcCatalogueOptions.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Include="UcNewCopies.xaml.cs">
-		  <DependentUpon>UcNewCopies.xaml</DependentUpon>
-	  </Compile>
+    <Compile Include="UcAddNewBook.xaml.cs">
+      <DependentUpon>UcAddNewBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcArchiveBook.xaml.cs">
+      <DependentUpon>UcArchiveBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcArchiveList.xaml.cs">
+      <DependentUpon>UcArchiveList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcCatalogueOptions.xaml.cs">
+      <DependentUpon>UcCatalogueOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcNewCopies.xaml.cs">
+      <DependentUpon>UcNewCopies.xaml</DependentUpon>
+    </Compile>
     <Page Include="EmployeePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UcArchiveBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcArchiveList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -39,5 +39,10 @@ namespace PresentationLayer
         {
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcArchiveBook();
         }
+
+        private void btnArchiveList_Click(object sender, RoutedEventArgs e)
+        {
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcArchiveList();
+        }
     }
 }

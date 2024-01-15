@@ -11,5 +11,6 @@
         <Button Style="{StaticResource bigButton}" Content="Unos nove knjige" Width="300" FontSize="15" Margin="0,100,0,20" x:Name="btnNewBook" Click="btnNewBook_Click"></Button>
         <Button Style="{StaticResource bigButton}" Content="Dodavanje primjeraka knjige" Width="300" FontSize="15" Margin="0,20,0,20" x:Name="btnNewCopies" Click="btnNewCopies_Click"></Button>
         <Button Style="{StaticResource bigButton}" Content="Arhiviranje knjige" Width="300" FontSize="15" Margin="0,20,0,20" x:Name="btnArchive" Click="btnArchive_Click"></Button>
+        <Button Style="{StaticResource bigButton}" Content="Pregled arhive" Width="300" FontSize="15" Margin="0,20,0,20" x:Name="btnArchiveList" Click="btnArchiveList_Click"></Button>
     </StackPanel>
 </UserControl>
