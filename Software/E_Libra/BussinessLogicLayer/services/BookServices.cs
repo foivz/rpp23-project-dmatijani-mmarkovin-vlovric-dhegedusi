@@ -10,12 +10,12 @@ namespace BussinessLogicLayer.services
 {
     public class BookServices
     {
-        public bool AddBook(Book book)
+        public bool AddBook(Book book, Author author)
         {
             bool isSuccesful = false;
             using(var repo = new BookRepository())
             {
-                int affectedRows = repo.Add(book);
+                int affectedRows = repo.Add(book, author);
                 isSuccesful = affectedRows > 0;
             }
             return isSuccesful;

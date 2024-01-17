@@ -1,6 +1,7 @@
 ﻿using EntitiesLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace DataAccessLayer.Repositories
         {
             throw new NotImplementedException();
         }
-        public override int Add(Book entity, bool saveChanges = true)
+        public int Add(Book entity, Author selectedAuthor, bool saveChanges = true)
         {
             var genre = Context.Genres.FirstOrDefault(g => g.id == entity.Genre.id);
             var library = Context.Libraries.FirstOrDefault(l => l.id == entity.Library_id);
@@ -38,7 +39,13 @@ namespace DataAccessLayer.Repositories
                 Genre = genre,
                 Library = library,
             };
+            Context.Entry(book).State = EntityState.Added;
+
+            // Attach the selectedAuthor entity to the context
+            Context.Entry(selectedAuthor).State = EntityState.Unchanged;
+
             Entities.Add(book);
+            book.Authors.Add(selectedAuthor);
             if (saveChanges)
             {
                 return SaveChanges();

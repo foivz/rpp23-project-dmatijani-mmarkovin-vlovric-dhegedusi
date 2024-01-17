@@ -100,6 +100,9 @@
     <Compile Include="UcCatalogueOptions.xaml.cs">
       <DependentUpon>UcCatalogueOptions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UcNewAuthor.xaml.cs">
+      <DependentUpon>UcNewAuthor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcNewCopies.xaml.cs">
       <DependentUpon>UcNewCopies.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UcCatalogueOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcNewAuthor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
