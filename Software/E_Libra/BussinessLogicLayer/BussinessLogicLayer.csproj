@@ -51,6 +51,7 @@
     <Compile Include="Exceptions\LibraryWithSameOIBException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\ArchiveServices.cs" />
+    <Compile Include="services\BorrowService.cs" />
     <Compile Include="services\EmployeeService.cs" />
     <Compile Include="services\LibraryService.cs" />
     <Compile Include="Exceptions\BookException.cs" />

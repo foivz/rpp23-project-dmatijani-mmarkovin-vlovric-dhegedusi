@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EntitiesLayer {
-    public enum BorrowStatus {
+    public enum BorrowStatus : int {
         Waiting,
         Borrowed,
         Late,
