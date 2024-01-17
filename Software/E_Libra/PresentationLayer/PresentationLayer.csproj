@@ -94,6 +94,9 @@
     <Compile Include="UcArchiveList.xaml.cs">
       <DependentUpon>UcArchiveList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UcBookSearchFilter.xaml.cs">
+      <DependentUpon>UcBookSearchFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcCatalogueOptions.xaml.cs">
       <DependentUpon>UcCatalogueOptions.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UcArchiveList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcBookSearchFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

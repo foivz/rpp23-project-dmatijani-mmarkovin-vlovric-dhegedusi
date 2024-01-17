@@ -158,5 +158,10 @@ namespace PresentationLayer
                 throw new BookException("Polja u koja se upisuje broj moraju sadržavati samo brojeve!");
             }
         }
+
+        private void btnNewAuthor_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

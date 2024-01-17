@@ -31,5 +31,10 @@ namespace PresentationLayer {
             login.Show();
             Close();
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            contentPanel.Content = new UcBookSearchFilter();
+        }
     }
 }

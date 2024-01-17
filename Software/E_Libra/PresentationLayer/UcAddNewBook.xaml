@@ -23,6 +23,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition ></RowDefinition>
             <RowDefinition ></RowDefinition>
+            <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Fill="#637E60"></Rectangle>
@@ -36,6 +37,7 @@
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="7" Content="Poveznica na sliku:"></Label>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="8" Content="Broj primjeraka:*"></Label>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="9" Content="Odaberite žanr:"></Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="10" Content="Odaberite autora:"></Label>
 
         <TextBox Width="300" Height="30" Grid.Column="1" Grid.Row="1" x:Name="txtName"></TextBox>
         <TextBox Width="300" Height="30" Grid.Column="1" Grid.Row="2" x:Name="txtDescription"></TextBox>
@@ -49,7 +51,13 @@
         <TextBox Width="300" Height="30" Grid.Column="1" Grid.Row="7" x:Name="txtLinkPicture"></TextBox>
         <TextBox Width="300" Height="30" Grid.Column="1" Grid.Row="8" x:Name="txtNumberCopies"></TextBox>
         <ComboBox x:Name="cmbGenre" Grid.Column="1" Grid.Row="9" Width="300" Height="30"></ComboBox>
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Column="1" Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox x:Name="cmbAuthor"  Width="300" Height="30" Margin="70,0,0,0"></ComboBox>
+            <Button x:Name="btnNewAuthor" Content="Novi autor"  Width="auto" Height="30" Margin="10,0,0,0" 
+        Background="#637E60" Foreground="#FFEFE8" Click="btnNewAuthor_Click"></Button>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="btnCancel" Content="Odustani" Width="60" Height="30" Margin="0,0,10,0" 
                     Background="#637E60" Foreground="#FFEFE8" Click="btnCancel_Click"></Button>
             <Button x:Name="btnSave" Content="Unesi"  Width="60" Height="30" Margin="10,0,0,0" 

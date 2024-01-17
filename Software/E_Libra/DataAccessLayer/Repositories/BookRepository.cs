@@ -114,6 +114,19 @@ namespace DataAccessLayer.Repositories
 
             return nonArchivedBooks;
         }
+        public IQueryable<Book> SearchBooks(string searchTerm)
+        {
+            searchTerm = searchTerm.ToLower();
+
+            var matchingBooks = from book in GetNonArchivedBooks()
+                                where book.name.ToLower().Contains(searchTerm) ||
+                                      book.Authors.Any(author => author.name.ToLower().Contains(searchTerm) || author.surname.ToLower().Contains(searchTerm)) ||
+                                      book.Genre.name.ToLower().Contains(searchTerm) ||
+                                      (book.publish_date != null && book.publish_date.Value.Year.ToString().Contains(searchTerm))
+                                select book;
+
+            return matchingBooks;
+        }
 
     }
 }

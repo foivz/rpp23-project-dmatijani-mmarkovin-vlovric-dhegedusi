@@ -63,5 +63,12 @@ namespace BussinessLogicLayer.services
             }
         }
         
+        public List<Book> SearchBooks(string searchTerm)
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.SearchBooks(searchTerm).ToList();
+            }
+        }
     }
 }
