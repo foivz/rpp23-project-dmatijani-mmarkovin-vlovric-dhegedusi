@@ -12,6 +12,16 @@ namespace DataAccessLayer.Repositories {
 
         }
 
+        public IQueryable<Borrow> GetAllBorrowsForMember(Member member) {
+            UpdateBorrowStatus(member.Library.id);
+
+            var query = from b in Entities.Include("Member").Include("Book")
+                        where b.Member.id == member.id
+                        select b;
+
+            return query;
+        }
+
         public IQueryable<Borrow> GetAllBorrowsForLibrary(Library library) {
             UpdateBorrowStatus(library.id);
 
