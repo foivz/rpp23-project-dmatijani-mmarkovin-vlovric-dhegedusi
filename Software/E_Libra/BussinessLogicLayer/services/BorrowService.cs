@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
     public class BorrowService {
-        public List<Borrow> GetAllBorrowsForMember(Member member) {
+        public List<Borrow> GetAllBorrowsForMember(int member_id, int library_id) {
             using (var context = new BorrowRepository()) {
-                return context.GetAllBorrowsForMember(member).ToList();
+                return context.GetAllBorrowsForMember(member_id, library_id).ToList();
+            }
+        }
+
+        public List<Borrow> GetBorrowsForMemberByStatus(int member_id, int library_id, BorrowStatus status) {
+            using (var context = new BorrowRepository()) {
+                return context.GetBorrowsForMemberByStatus(member_id, library_id, status).ToList();
             }
         }
 

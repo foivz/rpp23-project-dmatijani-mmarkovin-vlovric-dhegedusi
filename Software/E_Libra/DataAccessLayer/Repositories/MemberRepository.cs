@@ -22,6 +22,23 @@ namespace DataAccessLayer.Repositories
                       select m;
             return sql;
         }
+
+        public IQueryable<int> GetMemberId(string username) {
+            var query = from m in Member
+                        where m.username == username
+                        select m.id;
+
+            return query;
+        }
+
+        public IQueryable<int> GetMemberLibraryId(string username) {
+            var query = from m in Member.Include("Library")
+                        where m.username == username
+                        select m.Library.id;
+
+            return query;
+        }
+
         public override int Update(Member entity, bool saveChanges = true)
         {
             throw new NotImplementedException();

@@ -23,5 +23,17 @@ namespace BussinessLogicLayer.services
                 }
             }
         }
+
+        public int GetMemberId(string username) {
+            using (var repository = new MemberRepository()) {
+                return repository.GetMemberId(username).FirstOrDefault();
+            }
+        }
+
+        public int GetMemberLibraryId(string username) {
+            using (var repository = new MemberRepository()) {
+                return repository.GetMemberLibraryId(username).FirstOrDefault();
+            }
+        }
     }
 }
