@@ -1,6 +1,7 @@
 ﻿using EntitiesLayer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace DataAccessLayer.Repositories {
         }
 
         public IQueryable<Borrow> GetAllBorrowsForLibrary(Library library) {
+            UpdateBorrowStatus(library.id);
+
             var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Book.Library_id == library.id
                         select b;
@@ -20,6 +23,8 @@ namespace DataAccessLayer.Repositories {
         }
 
         public IQueryable<Borrow> GetAllBorrowsForLibrary(int library_id) {
+            UpdateBorrowStatus(library_id);
+
             var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Book.Library_id == library_id
                         select b;
@@ -28,6 +33,8 @@ namespace DataAccessLayer.Repositories {
         }
 
         public IQueryable<Borrow> GetBorrowsForLibraryByStatus(Library library, BorrowStatus status) {
+            UpdateBorrowStatus(library.id);
+
             var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Book.Library_id == library.id && b.borrow_status == (int)status
                         select b;
@@ -36,6 +43,8 @@ namespace DataAccessLayer.Repositories {
         }
 
         public IQueryable<Borrow> GetBorrowsForLibraryByStatus(int library_id, BorrowStatus status) {
+            UpdateBorrowStatus(library_id);
+
             var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Book.Library_id == library_id && b.borrow_status == (int)status
                         select b;
@@ -43,8 +52,62 @@ namespace DataAccessLayer.Repositories {
             return query;
         }
 
-        public override int Update(Borrow entity, bool saveChanges = true) {
-            throw new NotImplementedException();
+        private void UpdateBorrowStatus(int library_id) {
+            var allBorrows = from b in Entities.Include("Book")
+                             where b.Book.Library_id == library_id
+                             select b;
+
+            List<Borrow> borrowsToRemove = new List<Borrow>();
+            List<Borrow> borrowsToUpdate = new List<Borrow>();
+
+            foreach (Borrow borrow in allBorrows) {
+                switch (borrow.borrow_status) {
+                    case ((int)BorrowStatus.Waiting):
+                        if (borrow.return_date < DateTime.Now) {
+                            borrowsToRemove.Add(borrow);
+                        }
+                        break;
+
+                    case ((int)BorrowStatus.Borrowed):
+                        if (borrow.return_date < DateTime.Now) {
+                            borrow.borrow_status = (int)BorrowStatus.Late;
+                            borrowsToUpdate.Add(borrow);
+                        }
+                        break;
+                }
+            }
+
+            foreach (Borrow borrow in borrowsToRemove) {
+                Remove(borrow);
+            }
+
+            foreach (Borrow borrow in borrowsToUpdate) {
+                Update(borrow);
+            }
+        }
+
+        public override int Update(Borrow borrow, bool saveChanges = true) {
+            var book = Context.Books.SingleOrDefault(b => b.id == borrow.Book.id);
+            var member = Context.Members.SingleOrDefault(m => m.id == borrow.Member.id);
+            var employee = Context.Employees.SingleOrDefault(e => e.id == borrow.Employee.id);
+
+            var existingBorrow = Context.Borrows.SingleOrDefault(b => b.idBorrow == borrow.idBorrow);
+            existingBorrow.borrow_date = borrow.borrow_date;
+            existingBorrow.return_date = borrow.return_date;
+            existingBorrow.borrow_status = borrow.borrow_status;
+            existingBorrow.Book = book;
+            existingBorrow.Member = member;
+            existingBorrow.Employee = employee;
+            if (borrow.Employee1 != null) {
+                var employeeReturn = Context.Employees.SingleOrDefault(e => e.id == borrow.Employee1.id);
+                existingBorrow.Employee1 = employeeReturn;
+            }
+
+            if (saveChanges) {
+                return SaveChanges();
+            } else {
+                return 0;
+            }
         }
     }
 }
