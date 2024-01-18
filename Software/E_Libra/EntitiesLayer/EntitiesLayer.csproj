@@ -51,7 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Author.code.cs" />
+    <Compile Include="Book.code.cs" />
     <Compile Include="Borrow.code.cs" />
+    <Compile Include="Employee.code.cs" />
     <Compile Include="Entities\Administrator.cs" />
     <Compile Include="Entities\Archive.cs" />
     <Compile Include="Entities\Author.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="Entities\Review.cs" />
     <Compile Include="Library.code.cs" />
     <Compile Include="LoggedUser.cs" />
+    <Compile Include="Member.code.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
