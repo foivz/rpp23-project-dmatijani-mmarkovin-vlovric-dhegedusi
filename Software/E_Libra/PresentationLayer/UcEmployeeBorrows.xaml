@@ -22,7 +22,16 @@
                         Prethodne posudbe
                     </TextBlock>
 
-                    <DataGrid x:Name="dgAllBorrows"/>
+                    <DataGrid x:Name="dgAllBorrows" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding idBorrow}"/>
+                            <DataGridTextColumn Header="Datum posudbe" Binding="{Binding borrow_date}"/>
+                            <DataGridTextColumn Header="Datum vraćanja/rok" Binding="{Binding return_date}"/>
+                            <DataGridTextColumn Header="Status posudbe" Binding="{Binding borrow_status}"/>
+                            <DataGridTextColumn Header="Posuđena knjiga" Binding="{Binding Book}"/>
+                            <DataGridTextColumn Header="Član" Binding="{Binding Member}"/>
+                        </DataGrid.Columns>                        
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
             
@@ -34,7 +43,15 @@
                         Sve posudbe
                     </TextBlock>
 
-                    <DataGrid x:Name="dgPendingBorrows"/>
+                    <DataGrid x:Name="dgPendingBorrows" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding idBorrow}"/>
+                            <DataGridTextColumn Header="Datum posudbe" Binding="{Binding borrow_date}"/>
+                            <DataGridTextColumn Header="Rok za dolazak po knjigu" Binding="{Binding return_date}"/>
+                            <DataGridTextColumn Header="Posuđena knjiga" Binding="{Binding Book}"/>
+                            <DataGridTextColumn Header="Član" Binding="{Binding Member}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
 
@@ -46,7 +63,16 @@
                         Trenutne posudbe
                     </TextBlock>
 
-                    <DataGrid x:Name="dgCurrentBorrows"/>
+                    <DataGrid x:Name="dgCurrentBorrows" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding idBorrow}"/>
+                            <DataGridTextColumn Header="Datum posudbe" Binding="{Binding borrow_date}"/>
+                            <DataGridTextColumn Header="Rok za vraćanje" Binding="{Binding return_date}"/>
+                            <DataGridTextColumn Header="Posuđena knjiga" Binding="{Binding Book}"/>
+                            <DataGridTextColumn Header="Član" Binding="{Binding Member}"/>
+                            <DataGridTextColumn Header="Zaposlenik kod kojeg je posuđena" Binding="{Binding Employee}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
 
@@ -58,7 +84,16 @@
                         Posudbe koje kasne
                     </TextBlock>
 
-                    <DataGrid x:Name="dgLateBorrows"/>
+                    <DataGrid x:Name="dgLateBorrows" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding idBorrow}"/>
+                            <DataGridTextColumn Header="Datum posudbe" Binding="{Binding borrow_date}"/>
+                            <DataGridTextColumn Header="Datum do kojega se trebalo vratiti" Binding="{Binding return_date}"/>
+                            <DataGridTextColumn Header="Posuđena knjiga" Binding="{Binding Book}"/>
+                            <DataGridTextColumn Header="Član" Binding="{Binding Member}"/>
+                            <DataGridTextColumn Header="Zaposlenik kod kojeg je posuđena" Binding="{Binding Employee}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
 
@@ -70,7 +105,17 @@
                         Prethodne posudbe
                     </TextBlock>
 
-                    <DataGrid x:Name="dgDoneBorrows"/>
+                    <DataGrid x:Name="dgDoneBorrows" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding idBorrow}"/>
+                            <DataGridTextColumn Header="Datum posudbe" Binding="{Binding borrow_date}"/>
+                            <DataGridTextColumn Header="Datum vraćanja" Binding="{Binding return_date}"/>
+                            <DataGridTextColumn Header="Posuđena knjiga" Binding="{Binding Book}"/>
+                            <DataGridTextColumn Header="Član" Binding="{Binding Member}"/>
+                            <DataGridTextColumn Header="Zaposlenik kod kojeg je posuđena" Binding="{Binding Employee}"/>
+                            <DataGridTextColumn Header="Zaposlenik kod kojeg je posuđena" Binding="{Binding Employee1}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
         </TabControl>

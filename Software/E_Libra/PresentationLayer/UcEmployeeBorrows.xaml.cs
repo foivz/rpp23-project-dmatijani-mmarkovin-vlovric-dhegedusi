@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +20,27 @@ namespace PresentationLayer {
     /// Interaction logic for UcEmployeeBorrows.xaml
     /// </summary>
     public partial class UcEmployeeBorrows : UserControl {
+        private BorrowService borrowService = new BorrowService();
+
         public UcEmployeeBorrows() {
             InitializeComponent();
+
+            var employeeService = new EmployeeService();
+            int libraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
+
+            GetAllBorrowsForLibrary(libraryId);
+            GetBorrowsForEachStatus(libraryId);
+        }
+
+        private void GetAllBorrowsForLibrary(int libraryId) {
+            dgAllBorrows.ItemsSource = borrowService.GetAllBorrowsForLibrary(libraryId);
+        }
+
+        private void GetBorrowsForEachStatus(int libraryId) {
+            dgPendingBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Waiting);
+            dgCurrentBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Borrowed);
+            dgLateBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Late);
+            dgDoneBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Returned);
         }
     }
 }
