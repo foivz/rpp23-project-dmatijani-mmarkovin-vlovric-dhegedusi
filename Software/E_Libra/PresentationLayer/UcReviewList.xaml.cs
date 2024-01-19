@@ -28,7 +28,15 @@ namespace PresentationLayer {
 
             int bookId = 1;
             var allreviews = services.GetReviewsForBook(bookId);
-            reviewListBox.ItemsSource = allreviews;
+            dgReviews.ItemsSource = allreviews;
+        }
+
+        private void btnRemoveReview_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void cboBook_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            Book selectedBook = cboBook.SelectedItem as Book;
         }
     }
 }
