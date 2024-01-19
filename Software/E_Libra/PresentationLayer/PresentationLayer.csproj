@@ -47,6 +47,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -85,6 +87,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="MemberPanels\UcMemberBorrows.xaml.cs">
+      <DependentUpon>UcMemberBorrows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcAddNewBook.xaml.cs">
       <DependentUpon>UcAddNewBook.xaml</DependentUpon>
     </Compile>
@@ -140,6 +145,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MemberPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MemberPanels\UcMemberBorrows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

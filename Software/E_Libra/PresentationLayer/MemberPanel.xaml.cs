@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using PresentationLayer.MemberPanels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,10 @@ namespace PresentationLayer {
             MainWindow login = new MainWindow();
             login.Show();
             Close();
+        }
+
+        private void btnBorrow_Click(object sender, RoutedEventArgs e) {
+            contentPanel.Content = new UcMemberBorrows();
         }
     }
 }
