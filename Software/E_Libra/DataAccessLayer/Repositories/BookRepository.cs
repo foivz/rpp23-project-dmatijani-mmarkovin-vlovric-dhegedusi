@@ -132,6 +132,7 @@ namespace DataAccessLayer.Repositories
                                       (book.publish_date != null && book.publish_date.Value.Year.ToString().Contains(searchTerm))
                                 select new BookViewModel
                                 {
+                                    Id = book.id,
                                     Name = book.name,
                                     PublishDate = book.publish_date,
                                     AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
@@ -149,6 +150,7 @@ namespace DataAccessLayer.Repositories
                                where book.Genre.name.ToLower().Contains(genreName)
                                select new BookViewModel
                                {
+                                   Id = book.id,
                                    Name = book.name,
                                    PublishDate = book.publish_date,
                                    AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
@@ -166,6 +168,7 @@ namespace DataAccessLayer.Repositories
                                 where book.Authors.Any(author => author.name.ToLower().Contains(authorName) || author.surname.ToLower().Contains(authorName))
                                 select new BookViewModel
                                 {
+                                    Id = book.id,
                                     Name = book.name,
                                     PublishDate = book.publish_date,
                                     AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
@@ -180,6 +183,7 @@ namespace DataAccessLayer.Repositories
                               where book.publish_date != null && book.publish_date.Value.Year == publicationYear
                               select new BookViewModel
                               {
+                                  Id = book.id,
                                   Name = book.name,
                                   PublishDate = book.publish_date,
                                   AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
@@ -188,8 +192,15 @@ namespace DataAccessLayer.Repositories
 
             return booksByYear;
         }
+        public Book GetBookById(int id)
+        {
+            var book = GetNonArchivedBooks().FirstOrDefault(b => b.id == id);
+            return book;
+        }
+
         public class BookViewModel
         {
+            public int Id { get; set; }
             public string Name { get; set; }
             public DateTime? PublishDate { get; set; }
             public string AuthorName { get; set; }

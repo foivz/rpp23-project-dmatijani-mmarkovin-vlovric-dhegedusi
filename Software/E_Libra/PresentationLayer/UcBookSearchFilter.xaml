@@ -29,15 +29,15 @@
             <TextBox x:Name="txtSearch" Width="200" Margin="15,0,0,0" TextChanged="txtSearch_TextChanged"/>
         </StackPanel>
 
-        
-        <DataGrid Grid.Row="2" Margin="10,5,10,10" x:Name="dgvBookSearch"/>
+
+        <DataGrid Grid.Row="2" Margin="10,5,10,10" x:Name="dgvBookSearch" SelectionMode="Single" SelectionUnit="FullRow"/>
 
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10,0,10,0">
             <Button Content="Očisti filtere" Margin="0,0,10,0" x:Name="btnClear"
                     Width="auto" Height="30" Background="#637E60" Foreground="#FFEFE8" HorizontalContentAlignment="Center" Click="btnClear_Click"/>
             <Button Content="Pogledaj detalje" x:Name="btnDetails"
-                    Width="auto" Height="30" Background="#637E60" Foreground="#FFEFE8" HorizontalContentAlignment="Center"/>
+                    Width="auto" Height="30" Background="#637E60" Foreground="#FFEFE8" HorizontalContentAlignment="Center" Click="btnDetails_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

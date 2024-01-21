@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer
 {
@@ -35,17 +36,21 @@ namespace PresentationLayer
             {
                 case 0:
                     dgvBookSearch.ItemsSource = bookServices.SearchBooks(txtSearch.Text);
+                    HideRenameColumns();
                     break;
                 case 1:
                     dgvBookSearch.ItemsSource = bookServices.GetBooksByGenre(txtSearch.Text);
+                    HideRenameColumns();
                     break;
                 case 2:
                     dgvBookSearch.ItemsSource = bookServices.GetBooksByAuthor(txtSearch.Text);
+                    HideRenameColumns();
                     break;
                 case 3:
                     if (int.TryParse(txtSearch.Text, out int year))
                     {
                         dgvBookSearch.ItemsSource = bookServices.GetBooksByYear(year);
+                        HideRenameColumns();
                     }
                     else
                     {
@@ -57,9 +62,43 @@ namespace PresentationLayer
             }
         }
 
+        private void HideRenameColumns()
+        {
+            var columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "Name");
+            columnName.Header = "Naziv";
+            columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "PublishDate");
+            columnName.Header = "Datum izdavanja";
+            columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "AuthorName");
+            columnName.Header = "Ime autora";
+            columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "GenreName");
+            columnName.Header = "Žanr";
+            foreach (var column in dgvBookSearch.Columns)
+            {
+                if (column.Header.ToString() == "Id")
+                {
+                    column.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             dgvBookSearch.ItemsSource = null;
+        }
+
+        private void btnDetails_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgvBookSearch.SelectedItem == null)
+            {
+                MessageBox.Show("Morate odabrati knjigu!");
+                return;
+            }
+            BookViewModel bookUI = dgvBookSearch.SelectedItem as BookViewModel;
+            UcBookDetails ucBookDetails = new UcBookDetails(bookUI)
+            {
+                PrevForm = this
+            };
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucBookDetails;
         }
     }
 }

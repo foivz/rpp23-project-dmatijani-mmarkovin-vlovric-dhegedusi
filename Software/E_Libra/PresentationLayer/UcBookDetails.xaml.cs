@@ -1,0 +1,91 @@
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using static DataAccessLayer.Repositories.BookRepository;
+
+namespace PresentationLayer
+{
+    /// <summary>
+    /// Interaction logic for UcBookDetails.xaml
+    /// </summary>
+    public partial class UcBookDetails : UserControl
+    {
+        private UcBookSearchFilter prevForm;
+        public UcBookSearchFilter PrevForm
+        {
+            set { prevForm = value; }
+        }
+        Book book;
+        BookViewModel bookUI;
+        public UcBookDetails(BookViewModel passedBook)
+        {
+            InitializeComponent();
+            BookServices bookServices = new BookServices();
+            book = bookServices.GetBookById(passedBook.Id);
+            bookUI = passedBook;
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = prevForm;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            MakeImage(book.url_photo);
+            tblName.Text = bookUI.Name;
+            tblAuthor.Text = bookUI.AuthorName;
+            tblDescription.Text = book.description;
+            tblGenre.Text = bookUI.GenreName;
+            tblDate.Text = bookUI.PublishDate.ToString();
+            tblPageNum.Text = book.pages_num.ToString();
+            
+            if (book.current_copies > 0)
+            {
+                tblAvailable.Text = "Da, broj raspoloživih primjeraka je: " + book.current_copies;
+            }
+            else
+            {
+                tblAvailable.Text = "Ne";
+            }
+            
+            
+
+        }
+
+        private void MakeImage(string url)
+        {
+            if(!string.IsNullOrEmpty(book.url_photo))
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(url, UriKind.Absolute);
+                bitmapImage.EndInit();
+                imgBook.Source = bitmapImage;
+            }
+            else
+            {
+                imgBook_ImageFailed(imgBook, null);
+            }
+            
+        }
+
+        private void imgBook_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            (sender as Image).Source = new BitmapImage(new Uri("https://www.svgrepo.com/show/508699/landscape-placeholder.svg"));
+        }
+    }
+}

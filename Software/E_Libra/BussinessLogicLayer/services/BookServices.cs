@@ -92,5 +92,12 @@ namespace BussinessLogicLayer.services
                 return repo.GetBooksByYear(year).ToList();
             }
         }
+        public Book GetBookById(int id)
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.GetBookById(id);
+            }
+        }
     }
 }
