@@ -127,7 +127,9 @@ namespace DataAccessLayer.Repositories
 
             var matchingBooks = from book in GetNonArchivedBooks()
                                 where book.name.ToLower().Contains(searchTerm) ||
-                                      book.Authors.Any(author => author.name.ToLower().Contains(searchTerm) || author.surname.ToLower().Contains(searchTerm)) ||
+                                      book.Authors.Any(author =>
+                                          (author.name + " " + author.surname).ToLower().Contains(searchTerm) ||
+                                          (author.surname + " " + author.name).ToLower().Contains(searchTerm)) ||
                                       book.Genre.name.ToLower().Contains(searchTerm) ||
                                       (book.publish_date != null && book.publish_date.Value.Year.ToString().Contains(searchTerm))
                                 select new BookViewModel
@@ -165,7 +167,9 @@ namespace DataAccessLayer.Repositories
             authorName = authorName.ToLower();
 
             var booksByAuthor = from book in GetNonArchivedBooks()
-                                where book.Authors.Any(author => author.name.ToLower().Contains(authorName) || author.surname.ToLower().Contains(authorName))
+                                where book.Authors.Any(author =>
+                                    (author.name + " " + author.surname).ToLower().Contains(authorName) ||
+                                    (author.surname + " " + author.name).ToLower().Contains(authorName))
                                 select new BookViewModel
                                 {
                                     Id = book.id,
@@ -180,7 +184,7 @@ namespace DataAccessLayer.Repositories
         public IQueryable<BookViewModel> GetBooksByYear(int publicationYear)
         {
             var booksByYear = from book in GetNonArchivedBooks()
-                              where book.publish_date != null && book.publish_date.Value.Year == publicationYear
+                              where book.publish_date != null && book.publish_date.Value.Year.ToString().Contains(publicationYear.ToString())
                               select new BookViewModel
                               {
                                   Id = book.id,
