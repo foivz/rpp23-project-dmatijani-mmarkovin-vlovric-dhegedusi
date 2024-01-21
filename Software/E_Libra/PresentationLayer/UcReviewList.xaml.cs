@@ -21,31 +21,12 @@ namespace PresentationLayer {
         private ReviewService services = new ReviewService();
 
 
-        public ucReviewsList() {
-            Book selectedBook = null;
+        public ucReviewsList(int book_id) {
             InitializeComponent();
-            PopulateComboBox(selectedBook);
-
-            if (selectedBook != null) {
-                LoadReviews_Click(selectedBook);
-            }
 
         }
 
-        public void PopulateComboBox(Book selectedBook = null) {
-            var bookServices = new BookServices();
-            Task.Run(() => {
-                var allBooks = bookServices.GetAllBooks();
-
-                Application.Current.Dispatcher.Invoke(() => {
-                    cboBook.ItemsSource = allBooks;
-
-                    if (selectedBook != null) {
-                        cboBook.SelectedItem = allBooks.FirstOrDefault(l => l.id == selectedBook.id);
-                    }
-                });
-            });
-        }
+      
         private void LoadReviews_Click(Book selectedBook) {
             if (selectedBook == null) {
                 dgReviews.ItemsSource = new List<Book>();

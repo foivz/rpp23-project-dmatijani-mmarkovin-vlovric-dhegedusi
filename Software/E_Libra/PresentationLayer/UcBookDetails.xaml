@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="#637E60"></Rectangle>
-        <Label Content="Unos nove knjige" FontSize="16" HorizontalAlignment="Center" VerticalContentAlignment="Center" 
+        <Label Content="Informacije o knjizi" FontSize="16" HorizontalAlignment="Center" VerticalContentAlignment="Center" 
                Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="#637E60" Foreground="#FFEFE8"></Label>
 
         <Image x:Name="imgBook" Grid.Row="1" Grid.Column="0" Width="150" Height="150" ImageFailed="imgBook_ImageFailed" Stretch="UniformToFill" />
@@ -75,6 +75,8 @@
                     "Želim pročitati"
                 </TextBlock>
             </Button>
+            <Button Width="120" Height="40" Margin="20,5,5,5" HorizontalAlignment="Right" x:Name="btnAddReview" Style="{StaticResource bigButton}" Background="#637E78" Click="btnAddReview_Click">Recenzije</Button>
+
         </StackPanel>
     </Grid>
 </UserControl>

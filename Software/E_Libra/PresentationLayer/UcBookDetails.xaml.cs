@@ -110,5 +110,11 @@ namespace PresentationLayer
                 return;
             }
         }
+
+        private void btnAddReview_Click(object sender, RoutedEventArgs e) {
+            ucReviewsList uvReviewList = new ucReviewList(book.id)
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = uvReviewList;
+
+        }
     }
 }
