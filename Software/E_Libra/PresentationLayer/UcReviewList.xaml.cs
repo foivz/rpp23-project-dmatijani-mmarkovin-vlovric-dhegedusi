@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BussinessLogicLayer.services;
+using PresentationLayer.AdminPanels;
 
 namespace PresentationLayer {
     public partial class ucReviewsList : UserControl {
@@ -21,14 +22,44 @@ namespace PresentationLayer {
 
 
         public ucReviewsList() {
+            Book selectedBook = null;
             InitializeComponent();
+            PopulateComboBox(selectedBook);
+
+            if (selectedBook != null) {
+                LoadReviews_Click(selectedBook);
+            }
+
         }
 
-        private void LoadReviews_Click(object sender, RoutedEventArgs e) {
+        public void PopulateComboBox(Book selectedBook = null) {
+            var bookServices = new BookServices();
+            Task.Run(() => {
+                var allBooks = bookServices.GetAllBooks();
 
-            int bookId = 1;
-            var allreviews = services.GetReviewsForBook(bookId);
-            dgReviews.ItemsSource = allreviews;
+                Application.Current.Dispatcher.Invoke(() => {
+                    cboBook.ItemsSource = allBooks;
+
+                    if (selectedBook != null) {
+                        cboBook.SelectedItem = allBooks.FirstOrDefault(l => l.id == selectedBook.id);
+                    }
+                });
+            });
+        }
+        private void LoadReviews_Click(Book selectedBook) {
+            if (selectedBook == null) {
+                dgReviews.ItemsSource = new List<Book>();
+                return;
+            }
+
+            Task.Run(() => {
+                List<Review> reviews = services.GetReviewsForBook(selectedBook);
+
+                Application.Current.Dispatcher.Invoke(() => {
+                    dgReviews.ItemsSource = reviews;
+                });
+            });
+
         }
 
         private void btnRemoveReview_Click(object sender, RoutedEventArgs e) {
@@ -37,6 +68,10 @@ namespace PresentationLayer {
 
         private void cboBook_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             Book selectedBook = cboBook.SelectedItem as Book;
+        }
+
+        private void btnAddReview_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }

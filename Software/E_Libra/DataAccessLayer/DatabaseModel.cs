@@ -8,6 +8,7 @@ namespace DataAccessLayer {
     public partial class DatabaseModel : DbContext {
         public DatabaseModel()
             : base("name=DatabaseModelConfig") {
+
         }
 
         public virtual DbSet<Administrator> Administrators { get; set; }
