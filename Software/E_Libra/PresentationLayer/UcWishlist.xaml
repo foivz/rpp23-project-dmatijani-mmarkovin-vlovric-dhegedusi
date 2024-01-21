@@ -10,9 +10,7 @@
         <Label Content="Arhivirajte knjige" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#637E60" Foreground="#FFEFE8" FontSize="16"></Label>
         <DataGrid x:Name="dgvWishlist" Margin="10,10,10,10" Height="300"></DataGrid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Natrag" x:Name="btnBack" Width="60" Height="30" 
-    Background="#637E60" Foreground="#FFEFE8" Click="btnBack_Click"></Button>
-            <Button x:Name="btnRemove" Margin="20,0,20,0" Width="auto" Height="auto"
+            <Button x:Name="btnRemove" Margin="20,0,20,0" Width="90" Height="45"
     Background="#637E60" Foreground="#FFEFE8" Click="btnRemove_Click">
                 <TextBlock>
                 Makni knjigu

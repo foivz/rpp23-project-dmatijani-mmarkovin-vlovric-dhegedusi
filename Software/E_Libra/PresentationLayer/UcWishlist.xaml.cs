@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer
 {
@@ -33,7 +34,24 @@ namespace PresentationLayer
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
+            if(dgvWishlist.SelectedItem == null)
+            {
+                MessageBox.Show("Morate odabrati knjigu!");
+                return;
+            }
 
+            var book = dgvWishlist.SelectedItem as BookViewModel;
+            BookServices bookServices = new BookServices();
+            if (bookServices.RemoveBookFromWishlist(book.Id)){
+                MessageBox.Show("Knjiga je uspješno maknuta!");
+                LoadDgv();
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Neuspješno!");
+                return;
+            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
