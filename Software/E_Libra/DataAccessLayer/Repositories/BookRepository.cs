@@ -84,12 +84,14 @@ namespace DataAccessLayer.Repositories
         public IQueryable<Book> GetNonArchivedBooks()
         {
             var sql = from b in Context.Books
-                      where !Context.Archives.Any(a => a.Book_id == b.id)
+                      where !Context.Archives.Any(a => a.Book_id == b.id) &&
+                            b.digital == 0
                       select b;
+
             return sql;
         }
 
-       
+
 
         public int InsertNewCopies(int number, Book passedBook, bool saveChanges = true)
         {
