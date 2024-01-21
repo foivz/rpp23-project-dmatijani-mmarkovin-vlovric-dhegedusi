@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DataAccessLayer.Repositories.BookRepository;
 
 namespace BussinessLogicLayer.services
 {
@@ -63,28 +64,28 @@ namespace BussinessLogicLayer.services
             }
         }
         
-        public List<Book> SearchBooks(string searchTerm)
+        public List<BookViewModel> SearchBooks(string searchTerm)
         {
             using (var repo = new BookRepository())
             {
                 return repo.SearchBooks(searchTerm).ToList();
             }
         }
-        public List<Book> GetBooksByGenre(string genreName)
+        public List<BookViewModel> GetBooksByGenre(string genreName)
         {
             using (var repo = new BookRepository())
             {
                 return repo.GetBooksByGenre(genreName).ToList();
             }
         }
-        public List<Book> GetBooksByAuthor(string authorName)
+        public List<BookViewModel> GetBooksByAuthor(string authorName)
         {
             using (var repo = new BookRepository())
             {
                 return repo.GetBooksByAuthor(authorName).ToList();
             }
         }
-        public List<Book> GetBooksByYear(int year)
+        public List<BookViewModel> GetBooksByYear(int year)
         {
             using (var repo = new BookRepository())
             {

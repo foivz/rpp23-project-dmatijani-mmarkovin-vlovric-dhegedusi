@@ -121,7 +121,7 @@ namespace DataAccessLayer.Repositories
 
             return nonArchivedBooks;
         }
-        public IQueryable<Book> SearchBooks(string searchTerm)
+        public IQueryable<BookViewModel> SearchBooks(string searchTerm)
         {
             searchTerm = searchTerm.ToLower();
 
@@ -130,38 +130,70 @@ namespace DataAccessLayer.Repositories
                                       book.Authors.Any(author => author.name.ToLower().Contains(searchTerm) || author.surname.ToLower().Contains(searchTerm)) ||
                                       book.Genre.name.ToLower().Contains(searchTerm) ||
                                       (book.publish_date != null && book.publish_date.Value.Year.ToString().Contains(searchTerm))
-                                select book;
+                                select new BookViewModel
+                                {
+                                    Name = book.name,
+                                    PublishDate = book.publish_date,
+                                    AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
+                                    GenreName = book.Genre.name
+                                };
 
             return matchingBooks;
         }
-        public IQueryable<Book> GetBooksByGenre(string genreName)
+
+        public IQueryable<BookViewModel> GetBooksByGenre(string genreName)
         {
             genreName = genreName.ToLower();
 
             var booksByGenre = from book in GetNonArchivedBooks()
                                where book.Genre.name.ToLower().Contains(genreName)
-                               select book;
+                               select new BookViewModel
+                               {
+                                   Name = book.name,
+                                   PublishDate = book.publish_date,
+                                   AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
+                                   GenreName = book.Genre.name
+                               };
 
             return booksByGenre;
         }
 
-        public IQueryable<Book> GetBooksByAuthor(string authorName)
+        public IQueryable<BookViewModel> GetBooksByAuthor(string authorName)
         {
             authorName = authorName.ToLower();
 
             var booksByAuthor = from book in GetNonArchivedBooks()
                                 where book.Authors.Any(author => author.name.ToLower().Contains(authorName) || author.surname.ToLower().Contains(authorName))
-                                select book;
+                                select new BookViewModel
+                                {
+                                    Name = book.name,
+                                    PublishDate = book.publish_date,
+                                    AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
+                                    GenreName = book.Genre.name
+                                };
 
             return booksByAuthor;
         }
-        public IQueryable<Book> GetBooksByYear(int publicationYear)
+        public IQueryable<BookViewModel> GetBooksByYear(int publicationYear)
         {
             var booksByYear = from book in GetNonArchivedBooks()
                               where book.publish_date != null && book.publish_date.Value.Year == publicationYear
-                              select book;
+                              select new BookViewModel
+                              {
+                                  Name = book.name,
+                                  PublishDate = book.publish_date,
+                                  AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
+                                  GenreName = book.Genre.name
+                              };
 
             return booksByYear;
+        }
+        public class BookViewModel
+        {
+            public string Name { get; set; }
+            public DateTime? PublishDate { get; set; }
+            public string AuthorName { get; set; }
+            public string GenreName { get; set; }
         }
 
 
