@@ -197,6 +197,55 @@ namespace DataAccessLayer.Repositories
             var book = GetNonArchivedBooks().FirstOrDefault(b => b.id == id);
             return book;
         }
+        public IQueryable<BookViewModel> GetWishlistBooksForMember(string username)
+        {
+            var wishlistBooks = from book in Context.Books
+                                from member in book.Members
+                                where member.username == username
+                                select new BookViewModel
+                                {
+                                    Id = book.id,
+                                    Name = book.name,
+                                    PublishDate = book.publish_date,
+                                    AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
+                                    GenreName = book.Genre.name
+                                };
+
+            return wishlistBooks;
+        }
+        public bool AddBookToWishlist(int memberId, int bookId)
+        {
+            var member = Context.Members.Find(memberId);
+            var book = Context.Books.Find(bookId);
+
+            if (!member.Books.Contains(book))
+            {
+                member.Books.Add(book);
+                Context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool RemoveBookFromWishlist(int memberId, int bookId)
+        {
+            var member = Context.Members.Find(memberId);
+            var book = Context.Books.Find(bookId);
+
+            if (member.Books.Contains(book))
+            {
+                member.Books.Remove(book);
+                Context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public class BookViewModel
         {

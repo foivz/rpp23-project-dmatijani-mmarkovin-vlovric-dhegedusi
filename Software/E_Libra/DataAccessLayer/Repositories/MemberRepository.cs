@@ -26,5 +26,10 @@ namespace DataAccessLayer.Repositories
         {
             throw new NotImplementedException();
         }
+        public int GetMemberId(string username)
+        {
+            var sql = from m in Member where m.username == username select m.id;
+            return sql.FirstOrDefault();
+        }
     }
 }

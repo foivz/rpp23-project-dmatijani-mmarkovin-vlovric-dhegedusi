@@ -99,5 +99,32 @@ namespace BussinessLogicLayer.services
                 return repo.GetBookById(id);
             }
         }
+        public List<BookViewModel> GetWishlistedBooks()
+        {
+            using(var repo = new BookRepository())
+            {
+                return repo.GetWishlistBooksForMember(LoggedUser.Username).ToList();
+            }
+        }
+        public bool AddBookToWishlist(int bookId)
+        {
+            MemberRepository memberRepository = new MemberRepository();
+            int userId = memberRepository.GetMemberId(LoggedUser.Username);
+
+            using(var repo = new BookRepository())
+            {
+                return repo.AddBookToWishlist(userId, bookId);
+            }
+        }
+        public bool RemoveBookFromWishlist(int bookId)
+        {
+            MemberRepository memberRepository = new MemberRepository();
+            int userId = memberRepository.GetMemberId(LoggedUser.Username);
+
+            using (var repo = new BookRepository())
+            {
+                return repo.RemoveBookFromWishlist(userId, bookId);
+            }
+        }
     }
 }

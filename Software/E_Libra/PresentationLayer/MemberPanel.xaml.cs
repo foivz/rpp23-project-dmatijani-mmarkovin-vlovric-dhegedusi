@@ -36,5 +36,10 @@ namespace PresentationLayer {
         {
             contentPanel.Content = new UcBookSearchFilter();
         }
+
+        private void btnWishlist_Click(object sender, RoutedEventArgs e)
+        {
+            contentPanel.Content = new UcWishlist();
+        }
     }
 }

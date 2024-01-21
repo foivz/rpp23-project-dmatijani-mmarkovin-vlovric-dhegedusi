@@ -1,4 +1,5 @@
 ﻿using BussinessLogicLayer.services;
+using DataAccessLayer.Repositories;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace PresentationLayer
     /// </summary>
     public partial class UcBookDetails : UserControl
     {
+        BookServices bookServices = new BookServices();
         private UcBookSearchFilter prevForm;
         public UcBookSearchFilter PrevForm
         {
@@ -33,7 +35,6 @@ namespace PresentationLayer
         public UcBookDetails(BookViewModel passedBook)
         {
             InitializeComponent();
-            BookServices bookServices = new BookServices();
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
         }
@@ -94,6 +95,20 @@ namespace PresentationLayer
         private void imgBook_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
             (sender as Image).Source = new BitmapImage(new Uri("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"));
+        }
+
+        private void btnSaveReadList_Click(object sender, RoutedEventArgs e)
+        {
+            if (bookServices.AddBookToWishlist(book.id))
+            {
+                MessageBox.Show("Uspješno dodana knjiga na popis Želim pročitati!");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Knjiga Vam je već na popisu Želim pročitati!");
+                return;
+            }
         }
     }
 }
