@@ -8,36 +8,67 @@
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="#637E60"></Rectangle>
-        <Label Content="Unos nove knjige" FontSize="16" HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="#637E60" Foreground="#FFEFE8"></Label>
+        <Label Content="Unos nove knjige" FontSize="16" HorizontalAlignment="Center" VerticalContentAlignment="Center" 
+               Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="#637E60" Foreground="#FFEFE8"></Label>
 
-        <Image x:Name="imgBook" Grid.Row="1" Grid.Column="0" Width="150" Height="150" ImageFailed="imgBook_ImageFailed"></Image>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <Label Content="Naziv:"></Label>
-            <Label Content="Autor:"></Label>
-            <Label Content="Opis:"></Label>
+        <Image x:Name="imgBook" Grid.Row="1" Grid.Column="0" Width="150" Height="150" ImageFailed="imgBook_ImageFailed" Stretch="UniformToFill" />
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,0">
+            <StackPanel>
+                <Label Content="Naziv:" FontWeight="Bold" />
+                <TextBlock x:Name="tblName" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <StackPanel Margin="0,10,0,0">
+                <Label Content="Autor:" FontWeight="Bold" />
+                <TextBlock x:Name="tblAuthor" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <StackPanel Margin="0,10,0,0">
+                <Label Content="Opis:" FontWeight="Bold" />
+                <TextBlock x:Name="tblDescription" TextWrapping="Wrap" />
+            </StackPanel>
         </StackPanel>
-        <Label Content="Žanr:" Grid.Column="0" Grid.Row="2"></Label>
-        <Label Content="Datum izdavanja:" Grid.Column="0" Grid.Row="3"></Label>
-        <Label Content="Broj stranica:" Grid.Column="0" Grid.Row="4"></Label>
-        <Label Content="Raspoloživost:" Grid.Column="0" Grid.Row="5"></Label>
-        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btnBack" Content="Natrag" Width="auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Margin="0,0,20,0" Click="btnBack_Click"></Button>
-            <Button x:Name="btnSaveReadList" Width="auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Click="btnSaveReadList_Click">
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Žanr:" FontWeight="Bold" />
+            <TextBlock x:Name="tblGenre" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Datum izdavanja:" FontWeight="Bold" />
+            <TextBlock x:Name="tblDate" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Broj stranica:" FontWeight="Bold" />
+            <TextBlock x:Name="tblPageNum" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Raspoloživost:" FontWeight="Bold" />
+            <TextBlock x:Name="tblAvailable" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button x:Name="btnBack" Content="Natrag" Width="Auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Margin="0,0,20,0" Click="btnBack_Click" />
+            <Button x:Name="btnSaveReadList" Width="Auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Click="btnSaveReadList_Click">
                 <TextBlock>
                     Spremi u popis
                     <LineBreak/>
@@ -45,14 +76,5 @@
                 </TextBlock>
             </Button>
         </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1">
-            <TextBlock x:Name="tblName"></TextBlock>
-            <TextBlock x:Name="tblAuthor"></TextBlock>
-            <TextBlock x:Name="tblDescription"></TextBlock>
-        </StackPanel>
-        <TextBlock Grid.Column="1" Grid.Row="2" x:Name="tblGenre"></TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="3" x:Name="tblDate"></TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="4" x:Name="tblPageNum"></TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="5" x:Name="tblAvailable"></TextBlock>
     </Grid>
 </UserControl>
