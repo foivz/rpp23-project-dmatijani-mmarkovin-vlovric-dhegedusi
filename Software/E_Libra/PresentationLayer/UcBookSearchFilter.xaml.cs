@@ -37,14 +37,29 @@ namespace PresentationLayer
                     dgvBookSearch.ItemsSource = bookServices.SearchBooks(txtSearch.Text);
                     break;
                 case 1:
+                    dgvBookSearch.ItemsSource = bookServices.GetBooksByGenre(txtSearch.Text);
                     break;
                 case 2:
+                    dgvBookSearch.ItemsSource = bookServices.GetBooksByAuthor(txtSearch.Text);
                     break;
                 case 3:
+                    if (int.TryParse(txtSearch.Text, out int year))
+                    {
+                        dgvBookSearch.ItemsSource = bookServices.GetBooksByYear(year);
+                    }
+                    else
+                    {
+                        txtSearch.Text = null;
+                    }
                     break;
                 default:
                     break;
             }
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            dgvBookSearch.ItemsSource = null;
         }
     }
 }

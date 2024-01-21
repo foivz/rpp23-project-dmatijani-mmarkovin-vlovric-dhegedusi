@@ -35,7 +35,7 @@
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10,0,10,0">
             <Button Content="Očisti filtere" Margin="0,0,10,0" x:Name="btnClear"
-                    Width="auto" Height="30" Background="#637E60" Foreground="#FFEFE8" HorizontalContentAlignment="Center"/>
+                    Width="auto" Height="30" Background="#637E60" Foreground="#FFEFE8" HorizontalContentAlignment="Center" Click="btnClear_Click"/>
             <Button Content="Pogledaj detalje" x:Name="btnDetails"
                     Width="auto" Height="30" Background="#637E60" Foreground="#FFEFE8" HorizontalContentAlignment="Center"/>
         </StackPanel>

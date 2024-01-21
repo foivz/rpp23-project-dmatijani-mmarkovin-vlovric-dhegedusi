@@ -134,6 +134,36 @@ namespace DataAccessLayer.Repositories
 
             return matchingBooks;
         }
+        public IQueryable<Book> GetBooksByGenre(string genreName)
+        {
+            genreName = genreName.ToLower();
+
+            var booksByGenre = from book in GetNonArchivedBooks()
+                               where book.Genre.name.ToLower().Contains(genreName)
+                               select book;
+
+            return booksByGenre;
+        }
+
+        public IQueryable<Book> GetBooksByAuthor(string authorName)
+        {
+            authorName = authorName.ToLower();
+
+            var booksByAuthor = from book in GetNonArchivedBooks()
+                                where book.Authors.Any(author => author.name.ToLower().Contains(authorName) || author.surname.ToLower().Contains(authorName))
+                                select book;
+
+            return booksByAuthor;
+        }
+        public IQueryable<Book> GetBooksByYear(int publicationYear)
+        {
+            var booksByYear = from book in GetNonArchivedBooks()
+                              where book.publish_date != null && book.publish_date.Value.Year == publicationYear
+                              select book;
+
+            return booksByYear;
+        }
+
 
     }
 }
