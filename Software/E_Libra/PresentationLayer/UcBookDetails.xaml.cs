@@ -72,9 +72,17 @@ namespace PresentationLayer
             {
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri(url, UriKind.Absolute);
-                bitmapImage.EndInit();
-                imgBook.Source = bitmapImage;
+                try
+                {
+                    bitmapImage.UriSource = new Uri(url, UriKind.Absolute);
+                    bitmapImage.EndInit();
+                    imgBook.Source = bitmapImage;
+                }
+                catch (Exception)
+                {
+                    imgBook_ImageFailed(imgBook, null);
+                }
+                
             }
             else
             {
@@ -85,7 +93,7 @@ namespace PresentationLayer
 
         private void imgBook_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            (sender as Image).Source = new BitmapImage(new Uri("https://www.svgrepo.com/show/508699/landscape-placeholder.svg"));
+            (sender as Image).Source = new BitmapImage(new Uri("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"));
         }
     }
 }
