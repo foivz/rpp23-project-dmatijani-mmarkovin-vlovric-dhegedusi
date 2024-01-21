@@ -5,9 +5,9 @@ using DataAccessLayer.Repositories;
 
 namespace BussinessLogicLayer.services {
     public class ReviewService {
-        public List<Review> GetReviewsForBook(Book selectedBook) {
+        public List<Review> GetReviewsForBook(int book_id) {
             using (var repo = new ReviewRepository()) {
-                return repo.GetAll().ToList();
+                return repo.GetReviewsForBook(book_id).ToList();
             }
         }
     }

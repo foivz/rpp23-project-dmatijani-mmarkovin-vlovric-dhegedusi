@@ -39,7 +39,7 @@
                           x:Name="cboBook" Margin="12.5" HorizontalAlignment="Left"
                           SelectionChanged="cboBook_SelectionChanged"/>
             </StackPanel>
-            <DataGrid x:Name="dgReviews" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid x:Name="dgReviews" Grid.Row="1" AutoGenerateColumns="False" SelectionChanged="dgReviews_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Book Name" Binding="{Binding BookName}"/>
                     <DataGridTextColumn Header="Member" Binding="{Binding Member}"/>

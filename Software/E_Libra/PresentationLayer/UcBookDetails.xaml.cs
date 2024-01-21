@@ -112,8 +112,9 @@ namespace PresentationLayer
         }
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
-            ucReviewsList uvReviewList = new ucReviewList(book.id)
-            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = uvReviewList;
+            var ida = 2;
+            ucReviewsList ucReviewList = new ucReviewsList(ida);
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucReviewList;
 
         }
     }

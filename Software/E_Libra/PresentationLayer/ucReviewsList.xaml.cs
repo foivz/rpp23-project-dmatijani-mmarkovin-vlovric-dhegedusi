@@ -19,28 +19,27 @@ using PresentationLayer.AdminPanels;
 namespace PresentationLayer {
     public partial class ucReviewsList : UserControl {
         private ReviewService services = new ReviewService();
-
+        private int bookId;
 
         public ucReviewsList(int book_id) {
             InitializeComponent();
-
+            bookId = book_id;
+            LoadReviews();
         }
 
-      
-        private void LoadReviews_Click(Book selectedBook) {
-            if (selectedBook == null) {
-                dgReviews.ItemsSource = new List<Book>();
+        private void LoadReviews() {
+            if (bookId <= 0) {
+                dgReviews.ItemsSource = new List<Review>();
                 return;
             }
 
             Task.Run(() => {
-                List<Review> reviews = services.GetReviewsForBook(selectedBook);
+                List<Review> reviews = services.GetReviewsForBook(bookId);
 
                 Application.Current.Dispatcher.Invoke(() => {
                     dgReviews.ItemsSource = reviews;
                 });
             });
-
         }
 
         private void btnRemoveReview_Click(object sender, RoutedEventArgs e) {
@@ -52,8 +51,11 @@ namespace PresentationLayer {
         }
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
+        }
+
+        private void dgReviews_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 
         }
     }
-}
 
+}
