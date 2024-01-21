@@ -5,17 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DataAccessLayer.Repositories.BookRepository;
 
 namespace BussinessLogicLayer.services
 {
     public class BookServices
     {
-        public bool AddBook(Book book)
+        public bool AddBook(Book book, Author author)
         {
             bool isSuccesful = false;
             using(var repo = new BookRepository())
             {
-                int affectedRows = repo.Add(book);
+                int affectedRows = repo.Add(book, author);
                 isSuccesful = affectedRows > 0;
             }
             return isSuccesful;
@@ -63,5 +64,67 @@ namespace BussinessLogicLayer.services
             }
         }
         
+        public List<BookViewModel> SearchBooks(string searchTerm)
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.SearchBooks(searchTerm).ToList();
+            }
+        }
+        public List<BookViewModel> GetBooksByGenre(string genreName)
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.GetBooksByGenre(genreName).ToList();
+            }
+        }
+        public List<BookViewModel> GetBooksByAuthor(string authorName)
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.GetBooksByAuthor(authorName).ToList();
+            }
+        }
+        public List<BookViewModel> GetBooksByYear(int year)
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.GetBooksByYear(year).ToList();
+            }
+        }
+        public Book GetBookById(int id)
+        {
+            using (var repo = new BookRepository())
+            {
+                return repo.GetBookById(id);
+            }
+        }
+        public List<BookViewModel> GetWishlistedBooks()
+        {
+            using(var repo = new BookRepository())
+            {
+                return repo.GetWishlistBooksForMember(LoggedUser.Username).ToList();
+            }
+        }
+        public bool AddBookToWishlist(int bookId)
+        {
+            MemberRepository memberRepository = new MemberRepository();
+            int userId = memberRepository.GetMemberId(LoggedUser.Username);
+
+            using(var repo = new BookRepository())
+            {
+                return repo.AddBookToWishlist(userId, bookId);
+            }
+        }
+        public bool RemoveBookFromWishlist(int bookId)
+        {
+            MemberRepository memberRepository = new MemberRepository();
+            int userId = memberRepository.GetMemberId(LoggedUser.Username);
+
+            using (var repo = new BookRepository())
+            {
+                return repo.RemoveBookFromWishlist(userId, bookId);
+            }
+        }
     }
 }

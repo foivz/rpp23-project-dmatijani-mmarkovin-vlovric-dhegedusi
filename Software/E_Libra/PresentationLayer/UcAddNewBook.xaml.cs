@@ -37,6 +37,13 @@ namespace PresentationLayer
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadGenres();
+            LoadAuthors();
+        }
+
+        private void LoadAuthors()
+        {
+            AuthorService authorService = new AuthorService();
+            cmbAuthor.ItemsSource = authorService.GetAllAuthors();
         }
 
         private void LoadGenres()
@@ -68,6 +75,11 @@ namespace PresentationLayer
                 MessageBox.Show("Morate odabrati je li knjiga digitalna!");
                 return;
             }
+            if(cmbAuthor.Text == "")
+            {
+                MessageBox.Show("Morate odabrati autora!");
+                return;
+            }
             EmployeeService service = new EmployeeService();
             
             try
@@ -75,7 +87,7 @@ namespace PresentationLayer
                 ConvertIntoDateTime(txtDate);
             }catch (Exception)
             {
-                MessageBox.Show("Neispravan format datum! Primjer formata je 05-09-2002");
+                MessageBox.Show("Neispravan format datuma! Primjer formata je 05-09-2002");
                 return;
             }
             try
@@ -110,8 +122,9 @@ namespace PresentationLayer
                 Genre = cmbGenre.SelectedItem as Genre,
                 Library_id = service.GetEmployeeLibraryId(LoggedUser.Username)
             };
+            var author = cmbAuthor.SelectedItem as Author;
             var bookService = new BookServices();
-            var rez = bookService.AddBook(book);
+            var rez = bookService.AddBook(book, author);
             MessageBox.Show(rez ? "Uspješno" : "Neuspješno");
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcAddNewBook();
         }
@@ -157,6 +170,19 @@ namespace PresentationLayer
             {
                 throw new BookException("Polja u koja se upisuje broj moraju sadržavati samo brojeve!");
             }
+        }
+
+        private void btnNewAuthor_Click(object sender, RoutedEventArgs e)
+        {
+            UcNewAuthor ucNewAuthor = new UcNewAuthor();
+            ucNewAuthor.PrevForm = this;
+            ucNewAuthor.CancelButtonClicked += UcNewAuthor_CancelButtonClicked;
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = ucNewAuthor;
+        }
+
+        private void UcNewAuthor_CancelButtonClicked(object sender, EventArgs e)
+        {
+            LoadAuthors();
         }
     }
 }

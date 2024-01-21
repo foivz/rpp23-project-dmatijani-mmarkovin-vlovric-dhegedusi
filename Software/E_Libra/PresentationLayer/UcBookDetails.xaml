@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="PresentationLayer.UcBookDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="#637E60"></Rectangle>
+        <Label Content="Unos nove knjige" FontSize="16" HorizontalAlignment="Center" VerticalContentAlignment="Center" 
+               Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="#637E60" Foreground="#FFEFE8"></Label>
+
+        <Image x:Name="imgBook" Grid.Row="1" Grid.Column="0" Width="150" Height="150" ImageFailed="imgBook_ImageFailed" Stretch="UniformToFill" />
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,0">
+            <StackPanel>
+                <Label Content="Naziv:" FontWeight="Bold" />
+                <TextBlock x:Name="tblName" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <StackPanel Margin="0,10,0,0">
+                <Label Content="Autor:" FontWeight="Bold" />
+                <TextBlock x:Name="tblAuthor" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <StackPanel Margin="0,10,0,0">
+                <Label Content="Opis:" FontWeight="Bold" />
+                <TextBlock x:Name="tblDescription" TextWrapping="Wrap" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Žanr:" FontWeight="Bold" />
+            <TextBlock x:Name="tblGenre" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Datum izdavanja:" FontWeight="Bold" />
+            <TextBlock x:Name="tblDate" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Broj stranica:" FontWeight="Bold" />
+            <TextBlock x:Name="tblPageNum" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Raspoloživost:" FontWeight="Bold" />
+            <TextBlock x:Name="tblAvailable" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button x:Name="btnBack" Content="Natrag" Width="Auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Margin="0,0,20,0" Click="btnBack_Click" />
+            <Button x:Name="btnSaveReadList" Width="Auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Click="btnSaveReadList_Click">
+                <TextBlock>
+                    Spremi u popis
+                    <LineBreak/>
+                    "Želim pročitati"
+                </TextBlock>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

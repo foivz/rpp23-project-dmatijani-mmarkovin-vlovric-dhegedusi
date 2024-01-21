@@ -54,6 +54,7 @@
     <Compile Include="Entities\Administrator.cs" />
     <Compile Include="Entities\Archive.cs" />
     <Compile Include="Entities\Author.cs" />
+    <Compile Include="Entities\Author.Ext.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Borrow.cs" />
     <Compile Include="Entities\Employee.cs" />
