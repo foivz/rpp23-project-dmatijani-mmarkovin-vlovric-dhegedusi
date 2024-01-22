@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +29,11 @@ namespace PresentationLayer {
         }
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
+            MemberService memberService = new MemberService();
+
+            int newRating = cboRating.SelectedIndex;
+            string newComment = txtComment.Text;
+            int member_id = memberService.GetMemberId(LoggedUser.Username);
 
         }
     }

@@ -10,5 +10,11 @@ namespace BussinessLogicLayer.services {
                 return repo.GetReviewsForBook(book_id).ToList();
             }
         }
+
+        public int AddReview(Review newReview) {
+            using (var repo = new ReviewRepository()) {
+                return repo.Add(newReview);
+            }
+        }
     }
 }

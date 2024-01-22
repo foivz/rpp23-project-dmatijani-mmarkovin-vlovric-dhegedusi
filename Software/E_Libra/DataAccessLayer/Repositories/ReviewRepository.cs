@@ -9,6 +9,7 @@ namespace DataAccessLayer.Repositories {
     public class ReviewRepository : Repository<Review> {
         public ReviewRepository() : base(new DatabaseModel()) {
         }
+
         public IQueryable<Review> GetReviewsForBook(int bookId) {
             var query = from r in Entities
                         where r.Book_id == bookId

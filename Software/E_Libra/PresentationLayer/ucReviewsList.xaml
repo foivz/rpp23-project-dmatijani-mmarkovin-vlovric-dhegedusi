@@ -34,18 +34,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Height="50" Grid.Row="0">
-                <ComboBox Width="200" Height="25"
-                          x:Name="cboBook" Margin="12.5" HorizontalAlignment="Left"
-                          SelectionChanged="cboBook_SelectionChanged"/>
-            </StackPanel>
+            <StackPanel Height="50" Grid.Row="0"/>
             <DataGrid x:Name="dgReviews" Grid.Row="1" AutoGenerateColumns="False" SelectionChanged="dgReviews_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Book Name" Binding="{Binding BookName}"/>
-                    <DataGridTextColumn Header="Member" Binding="{Binding Member}"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
-                    <DataGridTextColumn Header="Comment" Binding="{Binding Comment}"/>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                    <DataGridTextColumn Header="Member" Binding="{Binding name}"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding rating}"/>
+                    <DataGridTextColumn Header="Comment" Binding="{Binding comment}"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding date}"/>
+
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

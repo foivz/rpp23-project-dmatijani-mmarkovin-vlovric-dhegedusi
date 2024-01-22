@@ -46,11 +46,9 @@ namespace PresentationLayer {
 
         }
 
-        private void cboBook_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            Book selectedBook = cboBook.SelectedItem as Book;
-        }
-
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
+            UcNewReview ucNewReview = new UcNewReview();
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucNewReview;
         }
 
         private void dgReviews_SelectionChanged(object sender, SelectionChangedEventArgs e) {

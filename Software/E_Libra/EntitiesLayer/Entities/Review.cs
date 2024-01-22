@@ -29,5 +29,7 @@ namespace EntitiesLayer
         public virtual Book Book { get; set; }
 
         public virtual Member Member { get; set; }
+
+
     }
 }
