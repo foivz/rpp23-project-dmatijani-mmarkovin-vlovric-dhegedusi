@@ -17,6 +17,24 @@ namespace DataAccessLayer.Repositories {
 
             return query;
         }
+
+        public override int Add(Review review, bool saveChanges = true) {
+
+            var newReview = new Review() {
+                Member_id = review.Member_id,
+                Book_id = review.Book_id,
+                comment = review.comment,
+                rating = review.rating,
+                date = review.date
+            };
+
+            Entities.Add(newReview);
+            if (saveChanges) {
+                return SaveChanges();
+            } else {
+                return 0;
+            }
+        }
         public override int Update(Review review, bool saveChanges = true) {
             var existingReview = Entities.SingleOrDefault(r => r.Member_id == review.Member_id && r.Book_id == review.Book_id);
 

@@ -47,7 +47,7 @@ namespace PresentationLayer {
         }
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
-            UcNewReview ucNewReview = new UcNewReview();
+            UcNewReview ucNewReview = new UcNewReview(bookId);
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucNewReview;
         }
 

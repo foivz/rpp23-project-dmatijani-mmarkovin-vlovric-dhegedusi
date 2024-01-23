@@ -20,21 +20,42 @@ namespace PresentationLayer {
     /// Interaction logic for UcNewReview.xaml
     /// </summary>
     public partial class UcNewReview : UserControl {
-        public UcNewReview() {
+        private int bookId;
+
+        public UcNewReview(int book_id) {
             InitializeComponent();
+            bookId = book_id;
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e) {
 
+        private void btnCancel_Click(object sender, RoutedEventArgs e) {
+            ucReviewsList ucReviews = new ucReviewsList(bookId);
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucReviews;
         }
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
             MemberService memberService = new MemberService();
+            ReviewService reviewService = new ReviewService();
 
             int newRating = cboRating.SelectedIndex;
             string newComment = txtComment.Text;
-            int member_id = memberService.GetMemberId(LoggedUser.Username);
+            int rwMember_id = memberService.GetMemberId(LoggedUser.Username);
+            int rwBook_id = bookId;
 
+
+
+            Review newReview = new Review {
+                Member_id = rwMember_id,
+                Book_id = rwBook_id,
+                comment = newComment,
+                rating = newRating,
+                date = DateTime.Today
+            };
+
+            int result = reviewService.AddReview(newReview);
+
+            ucReviewsList ucReviews = new ucReviewsList(bookId);
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucReviews;
         }
     }
 }
