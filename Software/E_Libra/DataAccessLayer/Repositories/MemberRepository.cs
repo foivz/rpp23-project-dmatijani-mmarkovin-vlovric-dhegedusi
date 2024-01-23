@@ -31,5 +31,12 @@ namespace DataAccessLayer.Repositories
             var sql = from m in Member where m.username == username select m.id;
             return sql.FirstOrDefault();
         }
+
+        public IQueryable<string> GetMemberNameSurname(int memberId) {
+            var sql = from m in Member
+                      where m.id == memberId
+                      select $"{m.name} {m.surname}";
+            return sql;
+        }
     }
 }

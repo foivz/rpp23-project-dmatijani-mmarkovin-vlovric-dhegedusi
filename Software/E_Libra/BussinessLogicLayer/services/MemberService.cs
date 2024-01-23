@@ -25,6 +25,11 @@ namespace BussinessLogicLayer.services {
             }
         }
 
+        public IQueryable<string> GetMemberNameSurname(int memberId) {
+            using (var memberRepo = new MemberRepository()) {
+                return memberRepo.GetMemberNameSurname(memberId);
+            }
+        }
     }
 }
 

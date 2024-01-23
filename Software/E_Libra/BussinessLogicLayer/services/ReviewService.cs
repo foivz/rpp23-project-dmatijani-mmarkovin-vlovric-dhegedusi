@@ -18,9 +18,9 @@ namespace BussinessLogicLayer.services {
             }
         }
 
-        public int DeleteReview(Review review) {
+        public int DeleteReview(int reviewId, int bookId) {
             using (var repo = new ReviewRepository()) {
-                return repo.Remove(review);
+                return repo.Remove(reviewId, bookId);
             }
         }
 

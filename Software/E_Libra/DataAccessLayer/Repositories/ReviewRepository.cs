@@ -35,6 +35,22 @@ namespace DataAccessLayer.Repositories {
                 return 0;
             }
         }
+
+        public int Remove(int memberId, int bookId, bool saveChanges = true) {
+            var reviewToRemove = Entities.SingleOrDefault(r => r.Member_id == memberId && r.Book_id == bookId);
+
+            if (reviewToRemove != null) {
+                Entities.Remove(reviewToRemove);
+
+                if (saveChanges) {
+                    return SaveChanges();
+                } else {
+                    return 0;
+                }
+            }
+
+            return 0;
+        }
         public override int Update(Review review, bool saveChanges = true) {
             var existingReview = Entities.SingleOrDefault(r => r.Member_id == review.Member_id && r.Book_id == review.Book_id);
 

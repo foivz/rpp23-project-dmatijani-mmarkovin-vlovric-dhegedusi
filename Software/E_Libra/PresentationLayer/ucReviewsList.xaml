@@ -35,7 +35,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Height="50" Grid.Row="0"/>
-            <DataGrid x:Name="dgReviews" Grid.Row="1" AutoGenerateColumns="False" SelectionChanged="dgReviews_SelectionChanged">
+            <DataGrid x:Name="dgReviews" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Member" Binding="{Binding name}"/>
                     <DataGridTextColumn Header="Rating" Binding="{Binding rating}"/>

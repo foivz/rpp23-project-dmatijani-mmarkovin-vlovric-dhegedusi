@@ -19,6 +19,7 @@ using PresentationLayer.AdminPanels;
 namespace PresentationLayer {
     public partial class ucReviewsList : UserControl {
         private ReviewService services = new ReviewService();
+        MemberService memberService = new MemberService();
         private int bookId;
 
         public ucReviewsList(int book_id) {
@@ -43,16 +44,19 @@ namespace PresentationLayer {
         }
 
         private void btnRemoveReview_Click(object sender, RoutedEventArgs e) {
+            int memberId = memberService.GetMemberId(LoggedUser.Username);
 
+            services.DeleteReview(memberId, bookId);
+            LoadReviews();
+            MessageBox.Show("Vaša recenzija je uspješno obrisana.");
         }
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
-            ReviewService reviewService = new ReviewService();
-            MemberService memberService = new MemberService();
+
 
             int memberId = memberService.GetMemberId(LoggedUser.Username);
 
-            if (reviewService.HasUserReviewedBook(memberId, bookId)) {
+            if (services.HasUserReviewedBook(memberId, bookId)) {
                 MessageBox.Show("Već si napisao recenziju za ovu knjigu!");
             } 
             else {
@@ -61,9 +65,6 @@ namespace PresentationLayer {
             }
         }
 
-        private void dgReviews_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
-        }
     }
 
 }

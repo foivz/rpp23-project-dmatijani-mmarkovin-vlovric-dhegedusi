@@ -16,7 +16,7 @@
         <TextBlock Background="#637E78" Height="40"
                    Style="{StaticResource titleText}" FontSize="20" Padding="5"
                    Foreground="#FFFFFF">
-            Add New Review
+            Nova recenzija
         </TextBlock>
 
         <StackPanel Grid.Row="1" Margin="25">
