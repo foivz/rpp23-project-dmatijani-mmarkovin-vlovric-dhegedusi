@@ -24,5 +24,21 @@ namespace DataAccessLayer.Repositories
             var query = from g in Entities select g;
             return query;
         }
+        public override int Add(Genre entity, bool saveChanges = true)
+        {
+            var genre = new Genre
+            {
+                name = entity.name,
+            };
+            Entities.Add(genre);
+            if (saveChanges)
+            {
+                return SaveChanges();
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

@@ -184,5 +184,18 @@ namespace PresentationLayer
         {
             LoadAuthors();
         }
+
+        private void btnNewGenre_Click(object sender, RoutedEventArgs e)
+        {
+            UcNewGenre ucNewGenre = new UcNewGenre();
+            ucNewGenre.PrevForm = this;
+            ucNewGenre.ButtonClicked += UcNewGenre_ButtonClicked;
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = ucNewGenre;
+        }
+
+        private void UcNewGenre_ButtonClicked(object sender, EventArgs e)
+        {
+            LoadGenres();
+        }
     }
 }

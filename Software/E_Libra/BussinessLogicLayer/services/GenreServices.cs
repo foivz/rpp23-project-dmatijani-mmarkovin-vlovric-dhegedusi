@@ -17,5 +17,15 @@ namespace BussinessLogicLayer.services
                 return repo.GetAll().ToList();
             }
         }
+        public bool Add(Genre entity)
+        {
+            bool isSuccesful = false;
+            using (var repo = new GenreRepository())
+            {
+                int affectedRows = repo.Add(entity);
+                isSuccesful |= affectedRows > 0;
+            }
+            return isSuccesful;
+        }
     }
 }

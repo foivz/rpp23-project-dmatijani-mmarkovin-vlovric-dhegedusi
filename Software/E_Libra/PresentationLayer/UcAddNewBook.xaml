@@ -50,7 +50,12 @@
         <TextBox Width="300" Height="30" Grid.Column="1" Grid.Row="6" x:Name="txtLinkDigital"></TextBox>
         <TextBox Width="300" Height="30" Grid.Column="1" Grid.Row="7" x:Name="txtLinkPicture"></TextBox>
         <TextBox Width="300" Height="30" Grid.Column="1" Grid.Row="8" x:Name="txtNumberCopies"></TextBox>
-        <ComboBox x:Name="cmbGenre" Grid.Column="1" Grid.Row="9" Width="300" Height="30"></ComboBox>
+        <StackPanel Grid.Column="1" Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox x:Name="cmbGenre" Width="300" Height="30" Margin="70,0,0,0"></ComboBox>
+            <Button x:Name="btnNewGenre" Content="Novi žanr"  Width="auto" Height="30" Margin="10,0,0,0" 
+        Background="#637E60" Foreground="#FFEFE8" Click="btnNewGenre_Click"></Button>
+        </StackPanel>
+        
         <StackPanel Grid.Column="1" Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center">
             <ComboBox x:Name="cmbAuthor"  Width="300" Height="30" Margin="70,0,0,0"></ComboBox>
             <Button x:Name="btnNewAuthor" Content="Novi autor"  Width="auto" Height="30" Margin="10,0,0,0" 
