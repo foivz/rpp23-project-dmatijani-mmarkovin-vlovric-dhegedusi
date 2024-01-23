@@ -47,8 +47,18 @@ namespace PresentationLayer {
         }
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
-            UcNewReview ucNewReview = new UcNewReview(bookId);
-            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucNewReview;
+            ReviewService reviewService = new ReviewService();
+            MemberService memberService = new MemberService();
+
+            int memberId = memberService.GetMemberId(LoggedUser.Username);
+
+            if (reviewService.HasUserReviewedBook(memberId, bookId)) {
+                MessageBox.Show("Već si napisao recenziju za ovu knjigu!");
+            } 
+            else {
+                UcNewReview ucNewReview = new UcNewReview(bookId);
+                (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucNewReview;
+            }
         }
 
         private void dgReviews_SelectionChanged(object sender, SelectionChangedEventArgs e) {

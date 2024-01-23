@@ -50,5 +50,13 @@ namespace DataAccessLayer.Repositories {
 
             return 0;
         }
+
+        public List<Review> GetReviewsForMemberAndBook(int memberId, int bookId) {
+            var query = from r in Entities
+                        where r.Member_id == memberId && r.Book_id == bookId
+                        select r;
+
+            return query.ToList();
+        }
     }
 }

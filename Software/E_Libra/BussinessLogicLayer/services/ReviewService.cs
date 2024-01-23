@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer.Repositories;
+using System;
 
 namespace BussinessLogicLayer.services {
     public class ReviewService {
@@ -22,5 +23,18 @@ namespace BussinessLogicLayer.services {
                 return repo.Remove(review);
             }
         }
+
+        public bool HasUserReviewedBook(int memberId, int bookId) {
+                List<Review> userReviews = GetReviewsForMemberAndBook(memberId, bookId);
+                return userReviews.Any();
+            }
+
+            private List<Review> GetReviewsForMemberAndBook(int memberId, int bookId) {
+                using (var repo = new ReviewRepository()) {
+                    return repo.GetReviewsForMemberAndBook(memberId, bookId);
+                }
+            }
+        }
+
     }
-}
+
