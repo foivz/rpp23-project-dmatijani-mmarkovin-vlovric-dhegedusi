@@ -71,6 +71,12 @@
     <Compile Include="UcWishlist.xaml.cs">
       <DependentUpon>UcWishlist.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UcNewReview.xaml.cs">
+      <DependentUpon>UcNewReview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucReviewsList.xaml.cs">
+      <DependentUpon>ucReviewsList.xaml</DependentUpon>
+    </Compile>
     <Page Include="AdminPanels\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +198,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UcWishlist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcNewReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucReviewsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
