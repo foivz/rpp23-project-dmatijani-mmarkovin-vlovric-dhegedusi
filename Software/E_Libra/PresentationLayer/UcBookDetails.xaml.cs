@@ -38,7 +38,7 @@ namespace PresentationLayer
             InitializeComponent();
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
-
+            CheckIfDigital();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -110,6 +110,7 @@ namespace PresentationLayer
             {
                 MessageBox.Show("Knjiga Vam je već na popisu Želim pročitati!");
                 return;
+               
             }
         }
 
@@ -119,5 +120,9 @@ namespace PresentationLayer
 
         }
 
+        private void DigitalButton_Click(object sender, RoutedEventArgs e) {
+            UcDigitalBook ucDigitalBook = new UcDigitalBook();
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucDigitalBook;
+        }
     }
 }

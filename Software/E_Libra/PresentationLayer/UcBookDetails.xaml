@@ -65,7 +65,7 @@
             <Label Content="Raspoloživost:" FontWeight="Bold" />
             <TextBlock x:Name="tblAvailable" TextWrapping="Wrap" />
         </StackPanel>
-
+        <StackPanel x:Name="ButtonStackPanel" Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0"/>
         <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
             <Button x:Name="btnBack" Content="Natrag" Width="Auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Margin="0,0,10,0" Click="btnBack_Click" />
             <Button x:Name="btnSaveReadList" Width="Auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Margin="0,0,10,0" Click="btnSaveReadList_Click">
