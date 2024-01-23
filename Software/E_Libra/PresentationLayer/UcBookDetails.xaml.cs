@@ -26,6 +26,7 @@ namespace PresentationLayer
     {
         BookServices bookServices = new BookServices();
         private UcBookSearchFilter prevForm;
+
         public UcBookSearchFilter PrevForm
         {
             set { prevForm = value; }
@@ -37,6 +38,7 @@ namespace PresentationLayer
             InitializeComponent();
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
+
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -116,5 +118,6 @@ namespace PresentationLayer
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucReviewList;
 
         }
+
     }
 }
