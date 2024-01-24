@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,23 @@ namespace PresentationLayer.MemberPanels
     /// </summary>
     public partial class UcAllNotificationsMember : UserControl
     {
+        NotificationService notificationService;
+        MemberService memberService;
         public UcAllNotificationsMember()
         {
             InitializeComponent();
+            notificationService = new NotificationService();
+            memberService = new MemberService();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var id = memberService.GetMemberLibraryId(LoggedUser.Username);
+            dgvNotifications.ItemsSource = notificationService.GetAllNotificationByLibrary(id);
+            dgvNotifications.Columns[0].Visibility = Visibility.Hidden;
+            dgvNotifications.Columns[3].Visibility = Visibility.Hidden;
+            dgvNotifications.Columns[4].Visibility = Visibility.Hidden;
+            dgvNotifications.Columns[5].Visibility = Visibility.Hidden;
         }
     }
 }
