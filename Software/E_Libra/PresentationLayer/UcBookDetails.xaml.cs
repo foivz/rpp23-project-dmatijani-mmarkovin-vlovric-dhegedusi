@@ -125,10 +125,18 @@ namespace PresentationLayer
             Console.WriteLine(book.id);
             if (book.digital == 1) {
                 CreateDigitalButton();
+                HideAvailable();
             } else {
                 return;
             }
         }
+
+        private void HideAvailable()
+        {
+            tblAvailable.Visibility = Visibility.Collapsed;
+            lblAvailable.Visibility = Visibility.Collapsed;
+        }
+
         private void CreateDigitalButton() {
 
             Button dynamicButton = new Button();
