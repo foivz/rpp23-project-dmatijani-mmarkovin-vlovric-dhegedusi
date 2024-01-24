@@ -30,6 +30,13 @@ namespace BussinessLogicLayer.services {
                 return memberRepo.GetMemberNameSurname(memberId);
             }
         }
+        public int GetMemberLibraryId(string username)
+        {
+            using (var memberRepo = new MemberRepository())
+            {
+                return memberRepo.GetMemberLibraryId(username);
+            }
+        }
     }
 }
 

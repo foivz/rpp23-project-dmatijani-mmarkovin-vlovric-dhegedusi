@@ -22,6 +22,19 @@ namespace DataAccessLayer.Repositories
                       select m;
             return sql;
         }
+        public IQueryable<Member> GetMembersByLibrary(int libraryID)
+        {
+            var query = from e in Entities
+                        where e.Library_id == libraryID
+                        select e;
+
+            return query;
+        }
+        public int GetMemberLibraryId(string username)
+        {
+            var sql = (from m in Entities.Include("Library") where m.username == username select m.Library_id).FirstOrDefault();
+            return sql;
+        }
         public override int Update(Member entity, bool saveChanges = true)
         {
             throw new NotImplementedException();
