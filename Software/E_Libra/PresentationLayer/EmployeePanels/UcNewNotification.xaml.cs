@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,35 @@ namespace PresentationLayer.EmployeePanels
     /// </summary>
     public partial class UcNewNotification : UserControl
     {
+        NotificationService notificationService;
+        EmployeeService employeService;
         public UcNewNotification()
         {
             InitializeComponent();
+            notificationService = new NotificationService();
+            employeService = new EmployeeService();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcAllNotifications();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            int id = employeService.GetEmployeeLibraryId(LoggedUser.Username);
+            Notification newNotification = new Notification()
+            {
+                title = txtTitle.Text,
+                description = txtDescription.Text,
+                Library_id = id
+            };
+            var added = notificationService.AddNewNotification(newNotification);
+            if (added)
+            {
+                MessageBox.Show("Obavjest", "Obavjest dodana", MessageBoxButton.OK, MessageBoxImage.Information);
+                (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcAllNotifications();
+            }
         }
     }
 }

@@ -1,0 +1,38 @@
+﻿using EntitiesLayer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataAccessLayer.Repositories
+{
+    public class NotificationsRepository : Repository<Notification>
+    {
+        public NotificationsRepository(): base(new DatabaseModel())
+        {
+            
+        }
+        public override int Add(Notification notification, bool saveChanges = true)
+        {
+            var newNotification = new Notification
+            {
+                title = notification.title,
+                description = notification.description,
+                Library_id = notification.Library_id
+            };
+            Entities.Add(newNotification);
+            if (saveChanges)
+            {
+                return SaveChanges();
+            } else
+            {
+                return 0;
+            }
+        }
+        public override int Update(Notification entity, bool saveChanges = true)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
