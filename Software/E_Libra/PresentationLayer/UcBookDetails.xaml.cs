@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xaml;
 using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer
@@ -25,6 +26,7 @@ namespace PresentationLayer
     public partial class UcBookDetails : UserControl
     {
         BookServices bookServices = new BookServices();
+        
         private UcBookSearchFilter prevForm;
 
         public UcBookSearchFilter PrevForm
@@ -39,14 +41,26 @@ namespace PresentationLayer
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
             CheckIfDigital();
-            ShowReserve();
+            HideReserve();
         }
 
-        private void ShowReserve()
+        private void HideReserve()
         {
-            if(book.current_copies > 0)
+            ReservationService reservationService = new ReservationService();
+            MemberService memberService = new MemberService();
+            int memberId = memberService.GetMemberId(LoggedUser.Username);
+            //0 je, ja rezerviram
+            //ak opet dodem bit ce sakriveno rezerviraj i pisat tekst
+            if (book.current_copies > 0 || reservationService.CheckExistingReservation(book.id, memberId)) //ovo provjerit sa davidom
             {
                 btnReserve.Visibility = Visibility.Collapsed;
+            }
+
+            if (reservationService.CheckExistingReservation(book.id, memberId))
+            {
+                tblPosition.Visibility = Visibility.Visible;
+                int position = reservationService.CheckPosition(book.id)-1;
+                tblPosition.Text = tblPosition.Text + " " + position;
             }
         }
 
@@ -135,15 +149,16 @@ namespace PresentationLayer
             if (book.digital == 1) {
                 CreateDigitalButton();
                 HideAvailable();
-                HideReserve();
+                HideReserveDigital();
             } else {
                 return;
             }
         }
 
-        private void HideReserve()
+        private void HideReserveDigital()
         {
             btnReserve.Visibility = Visibility.Collapsed;
+            tblPosition.Visibility = Visibility.Collapsed;
         }
 
         private void HideAvailable()
@@ -175,17 +190,30 @@ namespace PresentationLayer
 
         private void btnReserve_Click(object sender, RoutedEventArgs e)
         {
-            int position = 0;
+            ReservationService reservationService = new ReservationService();
+            int position = reservationService.CheckPosition(book.id);
             string text = "Vi ste " + position + ". na redu čekanja. Potvrdite ili odbijte rezervaciju.";
+
             WinAcceptDecline winAcceptDecline = new WinAcceptDecline(text);
-            winAcceptDecline.Show();
+            winAcceptDecline.ShowDialog();
+
             if (winAcceptDecline.UserClickedAccept)
             {
-                //kod
-            }
-            else
-            {
-                //kod
+                MemberService memberService = new MemberService();
+                var reservation = new Reservation
+                {
+                    reservation_date = DateTime.Now,
+                    Member_id = memberService.GetMemberId(LoggedUser.Username),
+                    Book_id = book.id,
+                };
+                int res = reservationService.Add(reservation);
+                bool result = false;
+                if(res == 1)
+                {
+                    result = true;
+                }
+                MessageBox.Show(result ? "Uspješna rezervacija!" : "Neuspješna rezervacija!");
+                HideReserve();
             }
         }
     }
