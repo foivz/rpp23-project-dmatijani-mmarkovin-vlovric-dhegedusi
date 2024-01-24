@@ -18,7 +18,6 @@
                 <Button x:Name="btnSearch" Content="Pretraži knjige" Style="{StaticResource navButton}" Click="btnSearch_Click"/>
                 <Button x:Name="btnReservations" Content="Rezervacije" Style="{StaticResource navButton}" />
                 <Button x:Name="btnNotifications" Content="Obavijesti" Style="{StaticResource navButton}" />
-                <Button x:Name="btnDigitalBooks" Content="Digitalne knjige" Style="{StaticResource navButton}" />
                 <Button x:Name="btnBorrow" Content="Posudbe" Style="{StaticResource navButton}" />
                 <Button x:Name="btnWishlist" Content="Želim pročitati" Style="{StaticResource navButton}" Click="btnWishlist_Click"/>
             </StackPanel>

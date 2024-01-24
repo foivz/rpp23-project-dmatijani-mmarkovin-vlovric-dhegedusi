@@ -41,7 +41,7 @@ namespace DataAccessLayer.Repositories
             };
             Context.Entry(book).State = EntityState.Added;
 
-            // Attach the selectedAuthor entity to the context
+            
             Context.Entry(selectedAuthor).State = EntityState.Unchanged;
 
             Entities.Add(book);
@@ -81,12 +81,22 @@ namespace DataAccessLayer.Repositories
             return sql;
         }
 
-        public IQueryable<Book> GetNonArchivedBooks()
+        public IQueryable<Book> GetNonArchivedBooks(bool digital)
         {
-            var sql = from b in Context.Books
-                      where !Context.Archives.Any(a => a.Book_id == b.id) &&
-                            b.digital == 0
-                      select b;
+            IQueryable<Book> sql;
+            if (digital)
+            {
+                sql = from b in Context.Books
+                          where !Context.Archives.Any(a => a.Book_id == b.id)
+                          select b;
+            }
+            else
+            {
+                sql = from b in Context.Books
+                          where !Context.Archives.Any(a => a.Book_id == b.id) && b.digital == 0
+                          select b;
+            }
+            
 
             return sql;
         }
@@ -117,17 +127,17 @@ namespace DataAccessLayer.Repositories
 
         public IQueryable<Book> GetNonArchivedBooksByName(string searchTerm)
         {
-            var nonArchivedBooks = from book in GetNonArchivedBooks()
+            var nonArchivedBooks = from book in GetNonArchivedBooks(false)
                                    where book.name.Contains(searchTerm)
                                    select book;
 
             return nonArchivedBooks;
         }
-        public IQueryable<BookViewModel> SearchBooks(string searchTerm)
+        public IQueryable<BookViewModel> SearchBooks(string searchTerm, bool digital)
         {
             searchTerm = searchTerm.ToLower();
 
-            var matchingBooks = from book in GetNonArchivedBooks()
+            var matchingBooks = from book in GetNonArchivedBooks(digital)
                                 where book.name.ToLower().Contains(searchTerm) ||
                                       book.Authors.Any(author =>
                                           (author.name + " " + author.surname).ToLower().Contains(searchTerm) ||
@@ -140,17 +150,34 @@ namespace DataAccessLayer.Repositories
                                     Name = book.name,
                                     PublishDate = book.publish_date,
                                     AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
-                                    GenreName = book.Genre.name
+                                    GenreName = book.Genre.name,
+                                    Digital = book.digital.ToString(),
                                 };
 
-            return matchingBooks;
+            var transformedBooks = matchingBooks.AsEnumerable().Select(book => new BookViewModel
+            {
+                Id = book.Id,
+                Name = book.Name,
+                PublishDate = book.PublishDate,
+                AuthorName = book.AuthorName,
+                GenreName = book.GenreName,
+                Digital = TransformDigital(book.Digital)
+            });
+
+            return transformedBooks.AsQueryable();
         }
 
-        public IQueryable<BookViewModel> GetBooksByGenre(string genreName)
+        private string TransformDigital(string digital)
+        {
+            if (digital == "1") return "Da";
+            return "Ne";
+        }
+
+        public IQueryable<BookViewModel> GetBooksByGenre(string genreName, bool digital)
         {
             genreName = genreName.ToLower();
 
-            var booksByGenre = from book in GetNonArchivedBooks()
+            var booksByGenre = from book in GetNonArchivedBooks(digital)
                                where book.Genre.name.ToLower().Contains(genreName)
                                select new BookViewModel
                                {
@@ -158,17 +185,28 @@ namespace DataAccessLayer.Repositories
                                    Name = book.name,
                                    PublishDate = book.publish_date,
                                    AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
-                                   GenreName = book.Genre.name
+                                   GenreName = book.Genre.name,
+                                   Digital = book.digital.ToString(),
                                };
 
-            return booksByGenre;
+            var transformedBooks = booksByGenre.AsEnumerable().Select(book => new BookViewModel
+            {
+                Id = book.Id,
+                Name = book.Name,
+                PublishDate = book.PublishDate,
+                AuthorName = book.AuthorName,
+                GenreName = book.GenreName,
+                Digital = TransformDigital(book.Digital)
+            });
+
+            return transformedBooks.AsQueryable();
         }
 
-        public IQueryable<BookViewModel> GetBooksByAuthor(string authorName)
+        public IQueryable<BookViewModel> GetBooksByAuthor(string authorName, bool digital)
         {
             authorName = authorName.ToLower();
 
-            var booksByAuthor = from book in GetNonArchivedBooks()
+            var booksByAuthor = from book in GetNonArchivedBooks(digital)
                                 where book.Authors.Any(author =>
                                     (author.name + " " + author.surname).ToLower().Contains(authorName) ||
                                     (author.surname + " " + author.name).ToLower().Contains(authorName))
@@ -178,14 +216,25 @@ namespace DataAccessLayer.Repositories
                                     Name = book.name,
                                     PublishDate = book.publish_date,
                                     AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
-                                    GenreName = book.Genre.name
+                                    GenreName = book.Genre.name,
+                                    Digital = book.digital.ToString(),
                                 };
 
-            return booksByAuthor;
+            var transformedBooks = booksByAuthor.AsEnumerable().Select(book => new BookViewModel
+            {
+                Id = book.Id,
+                Name = book.Name,
+                PublishDate = book.PublishDate,
+                AuthorName = book.AuthorName,
+                GenreName = book.GenreName,
+                Digital = TransformDigital(book.Digital)
+            });
+
+            return transformedBooks.AsQueryable();
         }
-        public IQueryable<BookViewModel> GetBooksByYear(int publicationYear)
+        public IQueryable<BookViewModel> GetBooksByYear(int publicationYear, bool digital)
         {
-            var booksByYear = from book in GetNonArchivedBooks()
+            var booksByYear = from book in GetNonArchivedBooks(digital)
                               where book.publish_date != null && book.publish_date.Value.Year.ToString().Contains(publicationYear.ToString())
                               select new BookViewModel
                               {
@@ -193,14 +242,15 @@ namespace DataAccessLayer.Repositories
                                   Name = book.name,
                                   PublishDate = book.publish_date,
                                   AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
-                                  GenreName = book.Genre.name
+                                  GenreName = book.Genre.name,
+                                  Digital = book.digital.ToString(),
                               };
 
             return booksByYear;
         }
-        public Book GetBookById(int id)
+        public Book GetBookById(int id, bool digital = true)
         {
-            var book = GetNonArchivedBooks().FirstOrDefault(b => b.id == id);
+            var book = GetNonArchivedBooks(digital).FirstOrDefault(b => b.id == id);
             return book;
         }
         public IQueryable<BookViewModel> GetWishlistBooksForMember(string username)
@@ -214,10 +264,21 @@ namespace DataAccessLayer.Repositories
                                     Name = book.name,
                                     PublishDate = book.publish_date,
                                     AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
-                                    GenreName = book.Genre.name
+                                    GenreName = book.Genre.name,
+                                    Digital = book.digital.ToString(),
                                 };
 
-            return wishlistBooks;
+            var transformedBooks = wishlistBooks.AsEnumerable().Select(book => new BookViewModel
+            {
+                Id = book.Id,
+                Name = book.Name,
+                PublishDate = book.PublishDate,
+                AuthorName = book.AuthorName,
+                GenreName = book.GenreName,
+                Digital = TransformDigital(book.Digital)
+            });
+
+            return transformedBooks.AsQueryable();
         }
         public bool AddBookToWishlist(int memberId, int bookId)
         {
@@ -259,6 +320,7 @@ namespace DataAccessLayer.Repositories
             public DateTime? PublishDate { get; set; }
             public string AuthorName { get; set; }
             public string GenreName { get; set; }
+            public string Digital {  get; set; }
         }
 
 

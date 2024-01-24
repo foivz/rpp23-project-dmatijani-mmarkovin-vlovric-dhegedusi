@@ -53,7 +53,8 @@ namespace PresentationLayer
             tblAuthor.Text = bookUI.AuthorName;
             tblDescription.Text = book.description;
             tblGenre.Text = bookUI.GenreName;
-            tblDate.Text = bookUI.PublishDate.ToString();
+            tblDate.Text = bookUI.PublishDate.HasValue ? bookUI.PublishDate.Value.Date.ToString() : "Nepoznato";
+
             tblPageNum.Text = book.pages_num.ToString();
             
             if (book.current_copies > 0)

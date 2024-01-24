@@ -29,11 +29,11 @@ namespace BussinessLogicLayer.services
             }
         }
 
-        public List<Book> GetNonArchivedBooks()
+        public List<Book> GetNonArchivedBooks(bool digital)
         {
             using(var repo = new BookRepository())
             {
-                return repo.GetNonArchivedBooks().ToList();
+                return repo.GetNonArchivedBooks(digital).ToList();
             }
         }
         public bool InsertNewCopies(int number, Book book)
@@ -64,32 +64,32 @@ namespace BussinessLogicLayer.services
             }
         }
         
-        public List<BookViewModel> SearchBooks(string searchTerm)
+        public List<BookViewModel> SearchBooks(string searchTerm, bool digital)
         {
             using (var repo = new BookRepository())
             {
-                return repo.SearchBooks(searchTerm).ToList();
+                return repo.SearchBooks(searchTerm, digital).ToList();
             }
         }
-        public List<BookViewModel> GetBooksByGenre(string genreName)
+        public List<BookViewModel> GetBooksByGenre(string genreName, bool digital)
         {
             using (var repo = new BookRepository())
             {
-                return repo.GetBooksByGenre(genreName).ToList();
+                return repo.GetBooksByGenre(genreName, digital).ToList();
             }
         }
-        public List<BookViewModel> GetBooksByAuthor(string authorName)
+        public List<BookViewModel> GetBooksByAuthor(string authorName, bool digital)
         {
             using (var repo = new BookRepository())
             {
-                return repo.GetBooksByAuthor(authorName).ToList();
+                return repo.GetBooksByAuthor(authorName, digital).ToList();
             }
         }
-        public List<BookViewModel> GetBooksByYear(int year)
+        public List<BookViewModel> GetBooksByYear(int year, bool digital)
         {
             using (var repo = new BookRepository())
             {
-                return repo.GetBooksByYear(year).ToList();
+                return repo.GetBooksByYear(year, digital).ToList();
             }
         }
         public Book GetBookById(int id)
