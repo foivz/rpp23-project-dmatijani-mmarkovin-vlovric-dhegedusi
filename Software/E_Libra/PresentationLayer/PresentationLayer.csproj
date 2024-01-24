@@ -65,12 +65,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UcDigitalBook.xaml.cs">
-      <DependentUpon>UcDigitalBook.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UcDigitalBookReader.xaml.cs">
-      <DependentUpon>UcDigitalBookReader.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UcWishlist.xaml.cs">
       <DependentUpon>UcWishlist.xaml</DependentUpon>
     </Compile>
@@ -185,14 +179,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UcCatalogueOptions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UcDigitalBook.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UcDigitalBookReader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
