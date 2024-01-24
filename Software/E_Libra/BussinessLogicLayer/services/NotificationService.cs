@@ -10,6 +10,13 @@ namespace BussinessLogicLayer.services
 {
     public class NotificationService
     {
+        public List<Notification> GetAllNotificationByLibrary(int id)
+        {
+            using (var notificationsRepo = new NotificationsRepository())
+            {
+                return notificationsRepo.GetAllNotificationsForLibrary(id).ToList();
+            }
+        }
         public bool AddNewNotification(Notification notification)
         {
             using (var notificationsRepo = new NotificationsRepository())

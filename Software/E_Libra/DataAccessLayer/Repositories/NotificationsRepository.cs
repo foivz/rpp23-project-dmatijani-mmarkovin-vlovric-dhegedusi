@@ -13,6 +13,13 @@ namespace DataAccessLayer.Repositories
         {
             
         }
+        public IQueryable<Notification> GetAllNotificationsForLibrary(int libraryID)
+        {
+            var query = from n in Entities
+                        where n.Library_id == libraryID
+                        select n;
+            return query;
+        }
         public override int Add(Notification notification, bool saveChanges = true)
         {
             var newNotification = new Notification
