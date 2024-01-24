@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace PresentationLayer.MemberPanels
     /// </summary>
     public partial class UcDetailsNotification : UserControl
     {
-        public UcDetailsNotification()
+        Notification selectedNotification;
+        public UcDetailsNotification(Notification notification)
         {
             InitializeComponent();
+            selectedNotification = notification;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            lblTitle.Text = selectedNotification.title;
+            lblDescription.Content = selectedNotification.description;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = new UcAllNotificationsMember();
         }
     }
 }

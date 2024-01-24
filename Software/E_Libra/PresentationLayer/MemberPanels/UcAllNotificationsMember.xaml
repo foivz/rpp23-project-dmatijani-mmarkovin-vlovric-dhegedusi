@@ -9,7 +9,7 @@
     <DockPanel>
         <TextBlock Text="Sve obavijesti" Style="{StaticResource titleText}" Background="#637E60" Foreground="#FFEFE8" DockPanel.Dock="Top"/>
         <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <Button x:Name="btnNotificationDelete" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Detalji"/>
+            <Button x:Name="btnNotificationDetails" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Detalji" Click="btnNotificationDetails_Click"/>
         </StackPanel>
         <DataGrid x:Name="dgvNotifications" Margin="10"/>
         

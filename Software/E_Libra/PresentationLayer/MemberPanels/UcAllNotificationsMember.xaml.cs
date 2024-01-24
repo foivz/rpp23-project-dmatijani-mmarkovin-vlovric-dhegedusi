@@ -40,5 +40,11 @@ namespace PresentationLayer.MemberPanels
             dgvNotifications.Columns[4].Visibility = Visibility.Hidden;
             dgvNotifications.Columns[5].Visibility = Visibility.Hidden;
         }
+
+        private void btnNotificationDetails_Click(object sender, RoutedEventArgs e)
+        {
+            Notification selectedNotification = dgvNotifications.SelectedItem as Notification;
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = new UcDetailsNotification(selectedNotification);
+        }
     }
 }
