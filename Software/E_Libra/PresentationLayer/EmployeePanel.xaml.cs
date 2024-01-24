@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using PresentationLayer.EmployeePanels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,12 @@ namespace PresentationLayer {
         private void btnBookCatalog_Click(object sender, RoutedEventArgs e)
         {
             contentPanel.Content = new UcCatalogueOptions();
+        }
+
+        private void btnNotifications_Click(object sender, RoutedEventArgs e)
+        {
+            UcAllNotifications ucAllNotifications = new UcAllNotifications();
+            contentPanel.Content = ucAllNotifications;
         }
     }
 }
