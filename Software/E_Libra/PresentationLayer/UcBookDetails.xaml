@@ -76,7 +76,8 @@
             "Želim pročitati"
                 </TextBlock>
             </Button>
-            <Button Width="120" Height="40" Margin="0,0,10,0" x:Name="btnAddReview" Background="#637E60" Foreground="#FFEFE8" Click="btnAddReview_Click">Recenzije</Button>
+            <Button Width="auto" Height="40" Margin="0,0,10,0" x:Name="btnAddReview" Background="#637E60" Foreground="#FFEFE8" Click="btnAddReview_Click">Recenzije</Button>
+            <Button Content="Rezerviraj" x:Name="btnReserve" Background="#637E60" Foreground="#FFEFE8" Visibility="Collapsed" Click="btnReserve_Click"></Button>
         </StackPanel>
 
     </Grid>

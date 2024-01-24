@@ -80,6 +80,9 @@
     <Compile Include="ucReviewsList.xaml.cs">
       <DependentUpon>ucReviewsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinAcceptDecline.xaml.cs">
+      <DependentUpon>WinAcceptDecline.xaml</DependentUpon>
+    </Compile>
     <Page Include="AdminPanels\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ucReviewsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinAcceptDecline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

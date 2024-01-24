@@ -39,6 +39,15 @@ namespace PresentationLayer
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
             CheckIfDigital();
+            ShowReserve();
+        }
+
+        private void ShowReserve()
+        {
+            if(book.current_copies > 0)
+            {
+                btnReserve.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -126,9 +135,15 @@ namespace PresentationLayer
             if (book.digital == 1) {
                 CreateDigitalButton();
                 HideAvailable();
+                HideReserve();
             } else {
                 return;
             }
+        }
+
+        private void HideReserve()
+        {
+            btnReserve.Visibility = Visibility.Collapsed;
         }
 
         private void HideAvailable()
@@ -158,5 +173,20 @@ namespace PresentationLayer
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucDigitalBook;
         }
 
+        private void btnReserve_Click(object sender, RoutedEventArgs e)
+        {
+            int position = 0;
+            string text = "Vi ste " + position + ". na redu čekanja. Potvrdite ili odbijte rezervaciju.";
+            WinAcceptDecline winAcceptDecline = new WinAcceptDecline(text);
+            winAcceptDecline.Show();
+            if (winAcceptDecline.UserClickedAccept)
+            {
+                //kod
+            }
+            else
+            {
+                //kod
+            }
+        }
     }
 }
