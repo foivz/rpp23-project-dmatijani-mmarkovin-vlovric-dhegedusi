@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace PresentationLayer.EmployeePanels
 {
     /// <summary>
-    /// Interaction logic for UcAllNotifications.xaml
+    /// Interaction logic for UcNewNotification.xaml
     /// </summary>
-    public partial class UcAllNotifications : UserControl
+    public partial class UcNewNotification : UserControl
     {
-        public UcAllNotifications()
+        public UcNewNotification()
         {
             InitializeComponent();
-        }
-
-        private void btnNewNotification_Click(object sender, RoutedEventArgs e)
-        {
-            UcNewNotification newNotification = new UcNewNotification();
-            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = newNotification;
         }
     }
 }
