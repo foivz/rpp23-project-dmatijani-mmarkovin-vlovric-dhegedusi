@@ -19,7 +19,7 @@
                 <Button x:Name="btnBookCatalog" Content="Katalog knjiga" Style="{StaticResource navButton}" Click="btnBookCatalog_Click"/>
                 <Button x:Name="btnBorrow" Content="Posudbe" Style="{StaticResource navButton}" />
                 <Button x:Name="btnNotifications" Content="Pisanje obavijesti" Style="{StaticResource navButton}" />
-                <Button x:Name="btnStatistics" Content="Statistika poslovanja" Style="{StaticResource navButton}" />
+                <Button x:Name="btnStatistics" Content="Statistika poslovanja" Style="{StaticResource navButton}" Click="btnStatistics_Click" />
             </StackPanel>
             <StackPanel Grid.Row="1"/>
             <Button x:Name="btnLogout" Grid.Row="2" Content="Odjava" Style="{StaticResource navButton}" Click="btnLogout_Click"/>
