@@ -12,16 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer {
     /// <summary>
     /// Interaction logic for UcDigitalBook.xaml
     /// </summary>
     public partial class UcDigitalBook : UserControl {
-        public UcDigitalBook() {
+        public UcDigitalBook(string online_path) {
             InitializeComponent();
-            string pdfFilePath = "https://www.gutenberg.org/cache/epub/2265/pg2265-images.html";
-            LoadPDF(pdfFilePath);
+            LoadPDF(online_path);
         }
 
 

@@ -122,13 +122,11 @@ namespace PresentationLayer
         private void CheckIfDigital() {
             Console.WriteLine(book.digital);
             Console.WriteLine(book.id);
-
-            /*            if (book.digital == 1) {
-                            CreateDigitalButton();
-                        } else {
-                            return;
-                        }*/
-            CreateDigitalButton();
+            if (book.digital == 1) {
+                CreateDigitalButton();
+            } else {
+                return;
+            }
         }
         private void CreateDigitalButton() {
 
@@ -140,15 +138,14 @@ namespace PresentationLayer
             dynamicButton.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#637E60");
             dynamicButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFEFE8");
 
-
             dynamicButton.Click += DigitalButton_Click;
-
             ButtonStackPanel.Children.Add(dynamicButton);
 
         }
 
         private void DigitalButton_Click(object sender, RoutedEventArgs e) {
-            UcDigitalBook ucDigitalBook = new UcDigitalBook();
+            string online_path = book.url_digital;
+            UcDigitalBook ucDigitalBook = new UcDigitalBook(online_path);
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucDigitalBook;
         }
 
