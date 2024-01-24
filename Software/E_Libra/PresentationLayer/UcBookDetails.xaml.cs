@@ -38,7 +38,7 @@ namespace PresentationLayer
             InitializeComponent();
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
-
+            CheckIfDigital();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -117,6 +117,39 @@ namespace PresentationLayer
             ucReviewsList ucReviewList = new ucReviewsList(book.id);
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucReviewList;
 
+        }
+
+        private void CheckIfDigital() {
+            Console.WriteLine(book.digital);
+            Console.WriteLine(book.id);
+
+            /*            if (book.digital == 1) {
+                            CreateDigitalButton();
+                        } else {
+                            return;
+                        }*/
+            CreateDigitalButton();
+        }
+        private void CreateDigitalButton() {
+
+            Button dynamicButton = new Button();
+            dynamicButton.Content = "Otvori digitalnu verziju";
+            dynamicButton.Width = 150;
+            dynamicButton.Height = 40;
+            dynamicButton.Margin = new Thickness(0, 0, 10, 0);
+            dynamicButton.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#637E60");
+            dynamicButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFEFE8");
+
+
+            dynamicButton.Click += DigitalButton_Click;
+
+            ButtonStackPanel.Children.Add(dynamicButton);
+
+        }
+
+        private void DigitalButton_Click(object sender, RoutedEventArgs e) {
+            UcDigitalBook ucDigitalBook = new UcDigitalBook();
+            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucDigitalBook;
         }
 
     }
