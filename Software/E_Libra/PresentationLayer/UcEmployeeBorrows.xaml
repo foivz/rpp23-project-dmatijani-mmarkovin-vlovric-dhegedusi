@@ -12,7 +12,17 @@
                Foreground="#FFEFE8">
             Sve posudbe
         </TextBlock>
-        
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    Height="50" HorizontalAlignment="Right">
+            <Button Margin="0,0,5,0" FontSize="16" Height="40" Width="140"
+                    Style="{StaticResource bigButton}"
+                    x:Name="btnBorrowBook" Click="btnBorrowBook_Click">Posudi knjigu</Button>
+            <Button Margin="0,0,5,0" FontSize="16" Height="40" Width="140"
+                    Style="{StaticResource bigButton}"
+                    x:Name="btnReturnBook" Click="btnReturnBook_Click">Vrati knjigu</Button>
+        </StackPanel>
+
         <TabControl>
             <TabItem Header="Sve posudbe">
                 <DockPanel>
@@ -30,11 +40,11 @@
                             <DataGridTextColumn Header="Status posudbe" Binding="{Binding borrow_status}"/>
                             <DataGridTextColumn Header="Posuđena knjiga" Binding="{Binding Book}"/>
                             <DataGridTextColumn Header="Član" Binding="{Binding Member}"/>
-                        </DataGrid.Columns>                        
+                        </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
             </TabItem>
-            
+
             <TabItem Header="Na čekanju">
                 <DockPanel>
                     <TextBlock Background="#637E60" DockPanel.Dock="Top" Height="30"

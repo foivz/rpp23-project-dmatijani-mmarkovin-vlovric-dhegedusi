@@ -42,5 +42,13 @@ namespace PresentationLayer {
             dgLateBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Late);
             dgDoneBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Returned);
         }
+
+        private void btnReturnBook_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show("Pritisnut gumb za vraćanje knjige!");
+        }
+
+        private void btnBorrowBook_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show("Pritisnut gumb za posuđivanje knjige!");
+        }
     }
 }
