@@ -4,6 +4,7 @@ namespace EntitiesLayer
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
     using System.Xml.Linq;
 
     [Table("Book")]
@@ -78,6 +79,9 @@ namespace EntitiesLayer
 
         public override string ToString() {
             return name;
+        }
+        public string AuthorsString {
+            get { return string.Join(", ", Authors.Select(a => a.name + " " + a.surname)); }
         }
     }
 }

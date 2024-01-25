@@ -60,6 +60,7 @@
     <Compile Include="services\MemberService.cs" />
     <Compile Include="services\GenreServices.cs" />
     <Compile Include="services\ReviewService.cs" />
+    <Compile Include="services\StatisticsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">

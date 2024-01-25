@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BussinessLogicLayer.services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -20,6 +21,7 @@ namespace PresentationLayer {
     /// Interaction logic for UcStatistics.xaml
     /// </summary>
     public partial class UcStatistics : UserControl {
+        StatisticsService statisticsService = new StatisticsService();
         public UcStatistics() {
             InitializeComponent();
             cmbStats.SelectionChanged += StatsComboBoxControl_SelectionChanged;
@@ -34,6 +36,7 @@ namespace PresentationLayer {
                 switch (selectedOption) {
                     case 0: // Najposuđenije knjige
 
+                        dgMostPopularBooks.ItemsSource = statisticsService.GetMostPopularBooks();
                         dgMostPopularBooks.Visibility = System.Windows.Visibility.Visible;
                         break;
 

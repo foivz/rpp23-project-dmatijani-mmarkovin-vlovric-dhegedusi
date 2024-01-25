@@ -18,10 +18,9 @@
         <DataGrid x:Name="dgMostPopularBooks" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="300"
                   AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Pozicija"/>
-                <DataGridTextColumn Header="Ime knjige" Binding="{Binding rating}"/>
-                <DataGridTextColumn Header="Autor" Binding="{Binding comment}"/>
-                <DataGridTextColumn Header="Broj posudbi" Binding="{Binding date}"/>
+                <DataGridTextColumn Header="Ime knjige" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Autor" Binding="{Binding AuthorsString}"/>
+                <DataGridTextColumn Header="Broj posudbi" Binding="{Binding borrownumber}"/>
             </DataGrid.Columns>
             </DataGrid>
     </Grid>

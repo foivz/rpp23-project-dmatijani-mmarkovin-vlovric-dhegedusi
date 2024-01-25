@@ -29,12 +29,12 @@ namespace BussinessLogicLayer.services {
                 return userReviews.Any();
             }
 
-            private List<Review> GetReviewsForMemberAndBook(int memberId, int bookId) {
-                using (var repo = new ReviewRepository()) {
-                    return repo.GetReviewsForMemberAndBook(memberId, bookId);
-                }
+        public List<Review> GetReviewsForMemberAndBook(int memberId, int bookId) {
+            using (var repo = new ReviewRepository()) {
+                return repo.GetReviewsForMemberAndBook(memberId, bookId);
             }
         }
-
     }
+
+}
 
