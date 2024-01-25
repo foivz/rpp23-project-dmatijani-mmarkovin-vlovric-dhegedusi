@@ -21,9 +21,12 @@ namespace PresentationLayer {
     /// </summary>
     public partial class UcEmployeeBorrows : UserControl {
         private BorrowService borrowService = new BorrowService();
+        private EmployeePanel mainWindow { get; set; }
 
-        public UcEmployeeBorrows() {
+        public UcEmployeeBorrows(EmployeePanel _mainWindow) {
             InitializeComponent();
+
+            this.mainWindow = _mainWindow;
 
             var employeeService = new EmployeeService();
             int libraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
@@ -48,7 +51,7 @@ namespace PresentationLayer {
         }
 
         private void btnBorrowBook_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("Pritisnut gumb za posuđivanje knjige!");
+            mainWindow.contentPanel.Content = new UcBorrowNewBook(mainWindow, this);
         }
     }
 }

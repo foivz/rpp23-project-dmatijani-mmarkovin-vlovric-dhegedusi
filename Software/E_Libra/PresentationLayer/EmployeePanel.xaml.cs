@@ -38,7 +38,7 @@ namespace PresentationLayer {
         }
 
         private void btnBorrow_Click(object sender, RoutedEventArgs e) {
-            contentPanel.Content = new UcEmployeeBorrows();
+            contentPanel.Content = new UcEmployeeBorrows(this);
         }
     }
 }
