@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
     public class StatisticsRepository : IDisposable {
+        protected DatabaseModel Context { get; set; }
         public StatisticsRepository() {
             
         }
-
-        public void Dispose() {
-            throw new NotImplementedException();
-        }
-
         public IQueryable<MostPopularBooks> GetMostPopularBooks() {
             using (var repo = new BookRepository()) {
                 return repo.GetMostPopularBooks();
             }
+        }
+
+        public void Dispose() {
+            Context.Dispose();
         }
 
     }
