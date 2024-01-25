@@ -44,17 +44,17 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Šifra knjige:"
+            <Label Grid.Row="0" Grid.Column="0" Content="Barkod knjige:"
                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Šifra zaposlenika:"
+            <Label Grid.Row="1" Grid.Column="0" Content="Barkod člana:"
                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Trajanje posudbe:"
+            <Label Grid.Row="2" Grid.Column="0" Content="Trajanje posudbe (dani):"
                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
             <TextBox Width="200" Height="25" Grid.Row="0" Grid.Column="2"
                      HorizontalAlignment="Left" x:Name="tbBookBarcode"/>
             <TextBox Width="200" Height="25" Grid.Row="1" Grid.Column="2"
-                     HorizontalAlignment="Left" x:Name="tbEmployeeBarcode"/>
+                     HorizontalAlignment="Left" x:Name="tbMemberBarcode"/>
             <TextBox Width="200" Height="25" Grid.Row="2" Grid.Column="2"
                      HorizontalAlignment="Left" x:Name="tbBorrowDuration"/>
         </Grid>

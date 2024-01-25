@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\BookNotFoundException.cs" />
     <Compile Include="Exceptions\EmployeeException.cs" />
     <Compile Include="Exceptions\EmployeeWithSameIDException.cs" />
     <Compile Include="Exceptions\EmployeeWithSameOIBException.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Exceptions\LibraryHasEmployeesException.cs" />
     <Compile Include="Exceptions\LibraryWithSameIDException.cs" />
     <Compile Include="Exceptions\LibraryWithSameOIBException.cs" />
+    <Compile Include="Exceptions\MemberNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\ArchiveServices.cs" />
     <Compile Include="services\BorrowService.cs" />

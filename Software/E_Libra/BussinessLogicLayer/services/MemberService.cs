@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Repositories;
+﻿using BussinessLogicLayer.Exceptions;
+using DataAccessLayer.Repositories;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,18 @@ namespace BussinessLogicLayer.services
         public int GetMemberLibraryId(string username) {
             using (var repository = new MemberRepository()) {
                 return repository.GetMemberLibraryId(username).FirstOrDefault();
+            }
+        }
+
+        public Member GetMemberByBarcodeId(string barcodeId) {
+            using (var repository = new MemberRepository()) {
+                List<Member> returned = repository.GetMemberByBarcodeId(barcodeId).ToList();
+
+                if (returned.Count == 0) {
+                    throw new MemberNotFoundException("Član knjižnice sa tim barkodom ne postoji!");
+                }
+
+                return returned.FirstOrDefault();
             }
         }
     }

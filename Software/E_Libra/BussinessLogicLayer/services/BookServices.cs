@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Repositories;
+﻿using BussinessLogicLayer.Exceptions;
+using DataAccessLayer.Repositories;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -63,5 +64,16 @@ namespace BussinessLogicLayer.services
             }
         }
         
+        public Book GetBookByBarcodeId(string barcodeId) {
+            using (var repository = new BookRepository()) {
+                List<Book> returned = repository.GetBookByBarcodeId(barcodeId).ToList();
+
+                if (returned.Count == 0) {
+                    throw new BookNotFoundException("Knjiga s tim barkodom ne postoji!");
+                }
+
+                return returned.FirstOrDefault();
+            }
+        }
     }
 }

@@ -39,6 +39,14 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        public IQueryable<Member> GetMemberByBarcodeId(string barcodeId) {
+            var query = from m in Member
+                        where m.barcode_id == barcodeId
+                        select m;
+
+            return query;
+        }
+
         public override int Update(Member entity, bool saveChanges = true)
         {
             throw new NotImplementedException();

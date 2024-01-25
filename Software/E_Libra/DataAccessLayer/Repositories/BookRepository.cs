@@ -115,5 +115,12 @@ namespace DataAccessLayer.Repositories
             return nonArchivedBooks;
         }
 
+        public IQueryable<Book> GetBookByBarcodeId(string barcodeId) {
+            var query = from b in Entities
+                        where b.barcode_id == barcodeId
+                        select b;
+
+            return query;
+        }
     }
 }
