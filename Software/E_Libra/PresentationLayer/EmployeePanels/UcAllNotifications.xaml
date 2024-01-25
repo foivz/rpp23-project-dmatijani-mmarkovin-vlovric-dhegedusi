@@ -13,6 +13,8 @@
             <Button x:Name="btnNotificationUpdate" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Izmjeni"/>
             <Button x:Name="btnNotificationDelete" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Obriši"/>
         </StackPanel>
-        <DataGrid x:Name="dgvAllNotifications" Margin="10"/>
+        <DataGrid x:Name="dgvAllNotifications" Margin="10" Grid.Row="5">
+
+        </DataGrid>
     </DockPanel>
 </UserControl>
