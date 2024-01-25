@@ -120,8 +120,6 @@ namespace PresentationLayer
         }
 
         private void CheckIfDigital() {
-            Console.WriteLine(book.digital);
-            Console.WriteLine(book.id);
             if (book.digital == 1) {
                 CreateDigitalButton();
             } else {

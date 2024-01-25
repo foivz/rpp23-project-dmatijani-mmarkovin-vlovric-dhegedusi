@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BussinessLogicLayer.services;
 using PresentationLayer.AdminPanels;
+using EntitiesLayer.Entities;
 
 namespace PresentationLayer {
     public partial class ucReviewsList : UserControl {
@@ -30,12 +31,12 @@ namespace PresentationLayer {
 
         private void LoadReviews() {
             if (bookId <= 0) {
-                dgReviews.ItemsSource = new List<Review>();
+                dgReviews.ItemsSource = new List<ReviewInfo>();
                 return;
             }
 
             Task.Run(() => {
-                List<Review> reviews = services.GetReviewsForBook(bookId);
+                List<ReviewInfo> reviews = services.GetReviewsForBook(bookId);
 
                 Application.Current.Dispatcher.Invoke(() => {
                     dgReviews.ItemsSource = reviews;

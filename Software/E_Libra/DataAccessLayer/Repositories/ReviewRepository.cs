@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,25 @@ namespace DataAccessLayer.Repositories {
         public ReviewRepository() : base(new DatabaseModel()) {
         }
 
-        public IQueryable<Review> GetReviewsForBook(int bookId) {
-            var query = from r in Entities
-                        where r.Book_id == bookId
-                        select r;
+        public IQueryable<ReviewInfo> GetReviewsForBook(int bookId) {
+            var query = from review in Entities
+                        where review.Book_id == bookId
+                        select new ReviewInfo {
+                            Member_Name = review.Member.name + " " + review.Member.surname,
+                            Rating = review.rating,
+                            Comment = review.comment,
+                            Date = review.date
+                        };
 
             return query;
         }
+
+
+
+
+
+
+
 
         public override int Add(Review review, bool saveChanges = true) {
 

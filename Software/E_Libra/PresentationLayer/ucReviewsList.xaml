@@ -37,10 +37,10 @@
             <StackPanel Height="50" Grid.Row="0"/>
             <DataGrid x:Name="dgReviews" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Member" Binding="{Binding Member.name}"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding rating}"/>
-                    <DataGridTextColumn Header="Comment" Binding="{Binding comment}"/>
-                    <DataGridTextColumn Header="Date" Binding="{Binding date}"/>
+                    <DataGridTextColumn Header="Member" Binding="{Binding Member_Name}"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+                    <DataGridTextColumn Header="Comment" Binding="{Binding Comment}"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
 
                 </DataGrid.Columns>
             </DataGrid>
