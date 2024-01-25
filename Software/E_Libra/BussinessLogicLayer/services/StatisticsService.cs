@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Repositories;
 using EntitiesLayer;
+using EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
     public class StatisticsService {
-         public List<Book> GetMostPopularBooks() {
+         public List<MostPopularBooks> GetMostPopularBooks() {
             using (var repo = new StatisticsRepository()) {
-                return repo.GetMostPopularBooks();
+                return repo.GetMostPopularBooks().ToList();
             }
         }
     }

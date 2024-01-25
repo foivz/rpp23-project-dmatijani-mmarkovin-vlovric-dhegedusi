@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -219,6 +220,7 @@ namespace DataAccessLayer.Repositories
 
             return wishlistBooks;
         }
+
         public bool AddBookToWishlist(int memberId, int bookId)
         {
             var member = Context.Members.Find(memberId);
@@ -261,6 +263,17 @@ namespace DataAccessLayer.Repositories
             public string GenreName { get; set; }
         }
 
+        public IQueryable<MostPopularBooks> GetMostPopularBooks() {
+            var query = from book in Entities
+                        from author in book.Authors
+                        join borrow in Context.Borrows on book.id equals borrow.Book_id into bookBorrows
+                        select new MostPopularBooks {
+                            Book_Name = book.name,
+                            Author_Name = author.name + " " + author.surname,
+                            Times_Borrowed = bookBorrows.Count()
+                        };
+            return query;
+        }
 
     }
 }

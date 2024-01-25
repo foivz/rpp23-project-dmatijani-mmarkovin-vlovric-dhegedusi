@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,21 +7,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
-    public class StatisticsRepository: Repository<Book> {
-        public StatisticsRepository() : base(new DatabaseModel()) {
+    public class StatisticsRepository : IDisposable {
+        public StatisticsRepository() {
+            
         }
-        public override int Update(Book entity, bool saveChanges = true) {
+
+        public void Dispose() {
             throw new NotImplementedException();
         }
 
-        public List<Book> GetMostPopularBooks() {
-            var books = from b in Entities
-                        orderby b.Borrows.Count descending
-                        select b;
-
-            return books.ToList();
+        public IQueryable<MostPopularBooks> GetMostPopularBooks() {
+            using (var repo = new BookRepository()) {
+                return repo.GetMostPopularBooks();
+            }
         }
-
 
     }
 }

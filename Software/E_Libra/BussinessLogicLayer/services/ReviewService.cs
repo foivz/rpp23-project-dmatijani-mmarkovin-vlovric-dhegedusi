@@ -31,7 +31,7 @@ namespace BussinessLogicLayer.services {
 
         public List<Review> GetReviewsForMemberAndBook(int memberId, int bookId) {
             using (var repo = new ReviewRepository()) {
-                return repo.GetReviewsForMemberAndBook(memberId, bookId);
+                return repo.GetReviewsForMemberAndBook(memberId, bookId).ToList();
             }
         }
     }

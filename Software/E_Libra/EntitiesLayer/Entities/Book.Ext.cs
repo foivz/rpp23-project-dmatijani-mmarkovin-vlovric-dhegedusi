@@ -10,8 +10,5 @@ namespace EntitiesLayer {
         public override string ToString() {
             return name;
         }
-        public string AuthorsString {
-            get { return string.Join(", ", Authors.Select(a => a.name + " " + a.surname)); }
-        }
     }
 }
