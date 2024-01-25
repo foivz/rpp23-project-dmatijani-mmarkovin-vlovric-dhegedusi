@@ -1,4 +1,5 @@
-﻿using BussinessLogicLayer.services;
+﻿using BussinessLogicLayer.Exceptions;
+using BussinessLogicLayer.services;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -33,18 +34,33 @@ namespace PresentationLayer.MemberPanels
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var id = memberService.GetMemberLibraryId(LoggedUser.Username);
-            dgvNotifications.ItemsSource = notificationService.GetAllNotificationByLibrary(id);
+            ShowNotifications();
             dgvNotifications.Columns[0].Visibility = Visibility.Hidden;
             dgvNotifications.Columns[3].Visibility = Visibility.Hidden;
             dgvNotifications.Columns[4].Visibility = Visibility.Hidden;
             dgvNotifications.Columns[5].Visibility = Visibility.Hidden;
         }
+        private void ShowNotifications()
+        {
+            var id = memberService.GetMemberLibraryId(LoggedUser.Username);
+            Member loggedMember = memberService.GetMemberByUsername(LoggedUser.Username);
+            List<Notification> readNotifications = notificationService.GetReadNotificationsForMember(loggedMember);
+            List<Notification> allNotificationsFotLibrary = notificationService.GetAllNotificationByLibrary(id);
+            List<Notification> sortedNotifications = allNotificationsFotLibrary.OrderBy(notification => readNotifications.Contains(notification)).ToList();
+
+            dgvNotifications.ItemsSource = allNotificationsFotLibrary;
+        }
 
         private void btnNotificationDetails_Click(object sender, RoutedEventArgs e)
         {
             Notification selectedNotification = dgvNotifications.SelectedItem as Notification;
-            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = new UcDetailsNotification(selectedNotification);
+            if (selectedNotification != null) { 
+                (Window.GetWindow(this) as MemberPanel).contentPanel.Content = new UcDetailsNotification(selectedNotification);
+            notificationService.AddNotificationRead(selectedNotification);
+            } else
+            {
+                MessageBox.Show("Odaberite obavijest!", "Greška!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Repositories;
+﻿using BussinessLogicLayer.Exceptions;
+using DataAccessLayer.Repositories;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace BussinessLogicLayer.services
 {
     public class NotificationService
     {
+        MemberService memberService = new MemberService();
         public List<Notification> GetAllNotificationByLibrary(int id)
         {
             using (var notificationsRepo = new NotificationsRepository())
@@ -25,6 +27,23 @@ namespace BussinessLogicLayer.services
                 if (added != 0) return true;
             }
             return false;
+        }
+        public bool AddNotificationRead(Notification notification)
+        {
+            Member member = memberService.GetMemberByUsername(LoggedUser.Username);
+            using (var notificationsRepo = new NotificationsRepository())
+            {
+                notificationsRepo.AddReadNotification(notification, member);
+                return true;
+
+            }
+        }
+        public List<Notification> GetReadNotificationsForMember(Member member)
+        {
+            using (var notificationsRepo = new NotificationsRepository())
+            {
+                return notificationsRepo.GetReadNotificationsForMember(member).ToList();
+            }
         }
     }
 }

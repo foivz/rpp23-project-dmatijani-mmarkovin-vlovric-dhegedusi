@@ -22,6 +22,15 @@ namespace DataAccessLayer.Repositories
                       select m;
             return sql;
         }
+        public IQueryable<Member> GetMembersByUsername(string username)
+        {
+            var query = from e in Entities
+                        where e.username == username
+                        select e;
+
+            return query;
+        }
+
         public IQueryable<Member> GetMembersByLibrary(int libraryID)
         {
             var query = from e in Entities

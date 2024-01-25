@@ -49,6 +49,7 @@
     <Compile Include="Exceptions\LibraryHasEmployeesException.cs" />
     <Compile Include="Exceptions\LibraryWithSameIDException.cs" />
     <Compile Include="Exceptions\LibraryWithSameOIBException.cs" />
+    <Compile Include="Exceptions\NotificationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\ArchiveServices.cs" />
     <Compile Include="services\AuthorService.cs" />

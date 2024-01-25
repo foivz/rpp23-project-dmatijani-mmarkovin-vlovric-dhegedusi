@@ -20,6 +20,27 @@ namespace DataAccessLayer.Repositories
                         select n;
             return query;
         }
+        public int AddReadNotification(Notification notification, Member member, bool saveChanges = true)
+        {
+            Entities.Attach(notification);
+            Context.Members.Attach(member);
+            notification.Members.Add(member);
+            if (saveChanges)
+            {
+                return SaveChanges();
+            } else
+            {
+                return 0;
+            }
+        }
+        public IQueryable<Notification> GetReadNotificationsForMember(Member member)
+        {
+            Context.Members.Attach(member);
+            var query = from n in Entities
+                        where n.Members.Any(m => m.id == member.id)
+                        select n;
+            return query;
+        }
         public override int Add(Notification notification, bool saveChanges = true)
         {
             var newNotification = new Notification
