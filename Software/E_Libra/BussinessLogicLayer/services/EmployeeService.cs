@@ -61,6 +61,7 @@ namespace BussinessLogicLayer.services {
                 if (returned.Count() == 1) {
                     LoggedUser.Username = username;
                     LoggedUser.UserType = Role.Employee;
+                    LoggedUser.LibraryId = returned[0].Library_id;
                 }
             }
         }

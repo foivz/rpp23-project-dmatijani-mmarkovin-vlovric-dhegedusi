@@ -16,5 +16,6 @@ namespace EntitiesLayer
     {
         public static string Username { get; set; }
         public static Role? UserType { get; set; }
+        public static int LibraryId { get; set; }
     }
 }

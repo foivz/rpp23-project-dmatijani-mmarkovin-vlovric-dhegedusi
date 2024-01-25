@@ -87,14 +87,14 @@ namespace DataAccessLayer.Repositories
             if (digital)
             {
                 sql = from b in Context.Books
-                          where !Context.Archives.Any(a => a.Book_id == b.id)
+                          where !Context.Archives.Any(a => a.Book_id == b.id) && b.Library_id == LoggedUser.LibraryId
                           select b;
             }
             else
             {
                 sql = from b in Context.Books
-                          where !Context.Archives.Any(a => a.Book_id == b.id) && b.digital == 0
-                          select b;
+                          where !Context.Archives.Any(a => a.Book_id == b.id) && b.digital == 0 && b.Library_id == LoggedUser.LibraryId
+                      select b;
             }
             
 
