@@ -7,6 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <ComboBox x:Name="cmbStats" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Width="300">
+            <ComboBoxItem Content="Najposuđenije knjige"/>
+            <ComboBoxItem Content="Broj ukupnih posudbi po žanru"/>
+            <ComboBoxItem Content="Broj registriranih članova"/>
+            <ComboBoxItem Content="Broj napisanih recenzija"/>
+            <ComboBoxItem Content="Prihodi"/>
+        </ComboBox>
+
+        <DataGrid x:Name="dgMostPopularBooks" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="300"
+                  AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Pozicija"/>
+                <DataGridTextColumn Header="Ime knjige" Binding="{Binding rating}"/>
+                <DataGridTextColumn Header="Autor" Binding="{Binding comment}"/>
+                <DataGridTextColumn Header="Broj posudbi" Binding="{Binding date}"/>
+            </DataGrid.Columns>
+            </DataGrid>
     </Grid>
 </UserControl>
