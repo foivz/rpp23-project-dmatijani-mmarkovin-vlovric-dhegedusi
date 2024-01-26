@@ -22,5 +22,12 @@ namespace BussinessLogicLayer.services {
                 return result;
             }
         }
+
+        public List<ReviewStatistics> GetReviewCount(int Library_id) {
+            using (var repo = new StatisticsRepository()) {
+                var result = repo.GetReviewCount(Library_id);
+                return result;
+            }
+        }
     }
 }

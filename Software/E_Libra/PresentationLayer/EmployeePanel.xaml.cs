@@ -38,7 +38,7 @@ namespace PresentationLayer {
         }
 
         private void btnStatistics_Click(object sender, RoutedEventArgs e) {
-            contentPanel.Content = new UcMostPopularBook();
+            contentPanel.Content = new UcStatistics();
         }
     }
 }

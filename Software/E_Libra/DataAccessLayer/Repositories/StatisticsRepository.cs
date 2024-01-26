@@ -24,11 +24,18 @@ namespace DataAccessLayer.Repositories {
             }
         }
 
+        public List<ReviewStatistics> GetReviewCount(int Library_id) {
+            using (var repo = new ReviewRepository()) {
+                return repo.GetReviewCount(Library_id).ToList();
+            }
+        }
+
         public void Dispose() {
             if (Context != null) {
                 Context.Dispose();
             }
         }
 
+        
     }
 }

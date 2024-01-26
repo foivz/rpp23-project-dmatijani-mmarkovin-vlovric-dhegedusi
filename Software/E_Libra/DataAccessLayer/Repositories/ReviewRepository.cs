@@ -87,5 +87,17 @@ namespace DataAccessLayer.Repositories {
 
             return query;
         }
+
+        public List<ReviewStatistics> GetReviewCount(int library_id) {
+            var query = from r in Entities
+                        where r.Book.Library_id == library_id
+                        group r by r.rating into g
+                        select new ReviewStatistics {
+                            Grade = g.Key.ToString(),
+                            Number_Count = g.Count()
+                        };
+
+            return query.ToList();
+        }
     }
 }

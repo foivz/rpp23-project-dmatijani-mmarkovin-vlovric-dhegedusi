@@ -69,6 +69,7 @@
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\Review.cs" />
     <Compile Include="Entities\ReviewInfo.cs" />
+    <Compile Include="Entities\ReviewStatistics.cs" />
     <Compile Include="Library.code.cs" />
     <Compile Include="LoggedUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
