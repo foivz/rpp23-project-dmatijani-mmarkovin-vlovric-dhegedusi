@@ -12,8 +12,11 @@
             <Button x:Name="btnNewNotification" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Nova obavijest" Click="btnNewNotification_Click"/>
             <Button x:Name="btnNotificationUpdate" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Izmjeni" Click="btnNotificationUpdate_Click"/>
         </StackPanel>
-        <DataGrid x:Name="dgvAllNotifications" Margin="10" Grid.Row="5">
-
+        <DataGrid x:Name="dgvAllNotifications" Margin="10" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naslov" Binding="{Binding title}" Width="Auto"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding description}" Width="*"/>
+            </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
 </UserControl>

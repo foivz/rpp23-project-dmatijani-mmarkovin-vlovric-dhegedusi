@@ -47,10 +47,6 @@ namespace PresentationLayer.EmployeePanels
         {
             var id = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
             dgvAllNotifications.ItemsSource = notificationService.GetAllNotificationByLibrary(id);
-            dgvAllNotifications.Columns[0].Visibility = Visibility.Hidden;
-            dgvAllNotifications.Columns[3].Visibility = Visibility.Hidden;
-            dgvAllNotifications.Columns[4].Visibility = Visibility.Hidden;
-            dgvAllNotifications.Columns[5].Visibility = Visibility.Hidden;
         }
 
         private void btnNotificationUpdate_Click(object sender, RoutedEventArgs e)
