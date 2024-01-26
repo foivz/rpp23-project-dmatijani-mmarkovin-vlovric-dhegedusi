@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
     public class StatisticsService {
-         public List<MostPopularBooks> GetMostPopularBooks(int Library_id) {
-            using (var repo = new BookRepository()) {
-                return repo.GetMostPopularBooks(Library_id).ToList();
+        public List<MostPopularBooks> GetMostPopularBooks(int Library_id) {
+            using (var repo = new StatisticsRepository()) {
+                var result = repo.GetMostPopularBooks(Library_id);
+                return result;
             }
         }
     }

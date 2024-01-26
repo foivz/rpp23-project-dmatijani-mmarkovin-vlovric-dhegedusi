@@ -273,6 +273,8 @@ namespace DataAccessLayer.Repositories
                             Author_Name = author.name + " " + author.surname,
                             Times_Borrowed = bookBorrows.Count()
                         };
+
+            query = query.OrderByDescending(book => book.Times_Borrowed);
             return query;
         }
 

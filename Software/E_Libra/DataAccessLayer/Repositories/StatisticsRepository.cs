@@ -10,16 +10,18 @@ namespace DataAccessLayer.Repositories {
     public class StatisticsRepository : IDisposable {
         protected DatabaseModel Context { get; set; }
         public StatisticsRepository() {
-            
+            Context = new DatabaseModel();
         }
-        public IQueryable<MostPopularBooks> GetMostPopularBooks() {
+        public List<MostPopularBooks> GetMostPopularBooks(int Library_id) {
             using (var repo = new BookRepository()) {
-                return repo.GetMostPopularBooks();
+                return repo.GetMostPopularBooks(Library_id).ToList();
             }
         }
 
         public void Dispose() {
-            Context.Dispose();
+            if (Context != null) {
+                Context.Dispose();
+            }
         }
 
     }
