@@ -87,9 +87,15 @@ namespace PresentationLayer {
                 UpdateParentBorrows();
                 returnParentUserControl();
             } else {
-                MessageBox.Show("An existing borrow will be updated.");
+                waitingBorrow.borrow_status = (int)BorrowStatus.Borrowed;
+                waitingBorrow.borrow_date = DateTime.Now;
+                waitingBorrow.return_date = DateTime.Now.AddDays(int.Parse(tbBorrowDuration.Text));
+                waitingBorrow.Employee = thisEmployee;
 
+                borrowService.UpdateBorrow(waitingBorrow);
 
+                UpdateParentBorrows();
+                returnParentUserControl();
             }
         }
 
