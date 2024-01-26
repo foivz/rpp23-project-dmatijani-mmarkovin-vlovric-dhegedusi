@@ -57,10 +57,19 @@ namespace DataAccessLayer.Repositories
             {
                 return 0;
             }
-        }
+        } 
         public override int Update(Notification entity, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            var existingNotif = Entities.SingleOrDefault(n => n.id == entity.id);
+            existingNotif.title = entity.title;
+            existingNotif.description = entity.description;
+            if (saveChanges)
+            {
+                return SaveChanges();
+            } else
+            {
+                return 0;
+            }
         }
     }
 }

@@ -38,6 +38,15 @@ namespace BussinessLogicLayer.services
 
             }
         }
+        public bool EditNotification(Notification notification)
+        {
+            using (var notificationsRepo = new NotificationsRepository())
+            {
+                notificationsRepo.Update(notification);
+                return true;
+            }
+        }
+
         public List<Notification> GetReadNotificationsForMember(Member member)
         {
             using (var notificationsRepo = new NotificationsRepository())

@@ -1,5 +1,6 @@
 ﻿using BussinessLogicLayer.services;
 using EntitiesLayer;
+using PresentationLayer.MemberPanels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,12 +40,30 @@ namespace PresentationLayer.EmployeePanels
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+
+            ShowNotifications();
+        }
+        private void ShowNotifications()
+        {
             var id = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
             dgvAllNotifications.ItemsSource = notificationService.GetAllNotificationByLibrary(id);
             dgvAllNotifications.Columns[0].Visibility = Visibility.Hidden;
             dgvAllNotifications.Columns[3].Visibility = Visibility.Hidden;
             dgvAllNotifications.Columns[4].Visibility = Visibility.Hidden;
             dgvAllNotifications.Columns[5].Visibility = Visibility.Hidden;
+        }
+
+        private void btnNotificationUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Notification selectedNotification = dgvAllNotifications.SelectedItem as Notification;
+            if (selectedNotification != null)
+            {
+                UcEditNotification ucEditNotification = new UcEditNotification(selectedNotification);
+                (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = ucEditNotification;
+            } else
+            {
+                MessageBox.Show("Odaberite obavijest!", "Greška!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
