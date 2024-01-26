@@ -1,4 +1,5 @@
 ﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,9 +36,12 @@ namespace PresentationLayer {
 
                 switch (selectedOption) {
                     case 0: // Najposuđenije knjige
+                        EmployeeService employeeService = new EmployeeService();
+                        var Library_id = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
 
-                        dgMostPopularBooks.ItemsSource = statisticsService.GetMostPopularBooks();
+                        dgMostPopularBooks.ItemsSource = statisticsService.GetMostPopularBooks(Library_id);
                         dgMostPopularBooks.Visibility = System.Windows.Visibility.Visible;
+
                         break;
 
                     case 1: // Broj ukupnih posudbi po žanru

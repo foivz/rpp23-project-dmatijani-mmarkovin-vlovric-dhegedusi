@@ -263,10 +263,11 @@ namespace DataAccessLayer.Repositories
             public string GenreName { get; set; }
         }
 
-        public IQueryable<MostPopularBooks> GetMostPopularBooks() {
+        public IQueryable<MostPopularBooks> GetMostPopularBooks(int Library_id) {
             var query = from book in Entities
                         from author in book.Authors
                         join borrow in Context.Borrows on book.id equals borrow.Book_id into bookBorrows
+                        where book.Library_id == Library_id
                         select new MostPopularBooks {
                             Book_Name = book.name,
                             Author_Name = author.name + " " + author.surname,
