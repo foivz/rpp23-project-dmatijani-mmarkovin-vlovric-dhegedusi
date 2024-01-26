@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
     public class MemberService {
+        EmployeeService employeeService = new EmployeeService();
         public void CheckLoginCredentials(string username, string password) {
             using (var memberRepo = new MemberRepository()) {
                 var returned = memberRepo.GetMemberLogin(username, password).ToList();
@@ -42,6 +43,14 @@ namespace BussinessLogicLayer.services {
             using (var memberRepo = new MemberRepository())
             { 
                 return memberRepo.GetMembersByUsername(username).First();
+            }
+        }
+        public List<Member> GetAllMembersByLybrary()
+        {
+            int LibraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
+            using (var memberRepo = new MemberRepository())
+            {
+                return memberRepo.GetMembersByLibrary(LibraryId).ToList();
             }
         }
     }

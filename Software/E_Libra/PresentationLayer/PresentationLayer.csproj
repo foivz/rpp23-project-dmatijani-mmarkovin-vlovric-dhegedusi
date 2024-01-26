@@ -72,6 +72,9 @@
     <Compile Include="EmployeePanels\UcEditNotification.xaml.cs">
       <DependentUpon>UcEditNotification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePanels\UcMemberManagment.xaml.cs">
+      <DependentUpon>UcMemberManagment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePanels\UcNewNotification.xaml.cs">
       <DependentUpon>UcNewNotification.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeePanels\UcEditNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeePanels\UcMemberManagment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

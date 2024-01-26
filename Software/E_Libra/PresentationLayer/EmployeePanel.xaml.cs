@@ -43,5 +43,11 @@ namespace PresentationLayer {
             UcAllNotifications ucAllNotifications = new UcAllNotifications();
             contentPanel.Content = ucAllNotifications;
         }
+
+        private void btnMembership_Click(object sender, RoutedEventArgs e)
+        {
+            UcMemberManagment ucMemberMannagment = new UcMemberManagment();
+            contentPanel.Content = ucMemberMannagment;
+        }
     }
 }
