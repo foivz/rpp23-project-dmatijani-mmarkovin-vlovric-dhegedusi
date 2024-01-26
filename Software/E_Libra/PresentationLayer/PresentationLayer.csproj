@@ -65,13 +65,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Statistics\UcMostPopularBook.xaml.cs">
+      <DependentUpon>UcMostPopularBook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcDigitalBook.xaml.cs">
       <DependentUpon>UcDigitalBook.xaml</DependentUpon>
     </Compile>
     <Compile Include="UcNewGenre.xaml.cs">
       <DependentUpon>UcNewGenre.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UcStatistics.xaml.cs">
+    <Compile Include="Statistics\UcStatistics.xaml.cs">
       <DependentUpon>UcStatistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="UcWishlist.xaml.cs">
@@ -167,6 +170,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Statistics\UcMostPopularBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UcAddNewBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,7 +214,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UcStatistics.xaml">
+    <Page Include="Statistics\UcStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

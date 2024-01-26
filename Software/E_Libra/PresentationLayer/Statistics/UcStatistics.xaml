@@ -22,6 +22,6 @@
                 <DataGridTextColumn Header="Autor" Binding="{Binding Author_Name}"/>
                 <DataGridTextColumn Header="Broj posudbi" Binding="{Binding Times_Borrowed}"/>
             </DataGrid.Columns>
-            </DataGrid>
+            </DataGrid>                                                                                            
     </Grid>
 </UserControl>

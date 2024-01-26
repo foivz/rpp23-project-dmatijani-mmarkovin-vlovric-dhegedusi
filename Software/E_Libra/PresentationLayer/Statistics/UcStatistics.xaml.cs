@@ -31,13 +31,14 @@ namespace PresentationLayer {
 
         private void StatsComboBoxControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (cmbStats.SelectedItem != null) {
+
                 int selectedOption = cmbStats.SelectedIndex;
 
+                EmployeeService employeeService = new EmployeeService();
+                var Library_id = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
 
                 switch (selectedOption) {
                     case 0: // Najposuđenije knjige
-                        EmployeeService employeeService = new EmployeeService();
-                        var Library_id = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
 
                         dgMostPopularBooks.ItemsSource = statisticsService.GetMostPopularBooks(Library_id);
                         dgMostPopularBooks.Visibility = System.Windows.Visibility.Visible;
@@ -46,7 +47,6 @@ namespace PresentationLayer {
 
                     case 1: // Broj ukupnih posudbi po žanru
 
-                        MessageBox.Show("Showing total borrowings per genre");
                         break;
 
                     case 2: // Broj registriranih članova
