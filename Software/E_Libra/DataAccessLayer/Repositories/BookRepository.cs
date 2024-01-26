@@ -14,10 +14,6 @@ namespace DataAccessLayer.Repositories
             
         }
 
-        public override int Update(Book entity, bool saveChanges = true)
-        {
-            throw new NotImplementedException();
-        }
         public override int Add(Book entity, bool saveChanges = true)
         {
             var genre = Context.Genres.FirstOrDefault(g => g.id == entity.Genre.id);
@@ -121,6 +117,30 @@ namespace DataAccessLayer.Repositories
                         select b;
 
             return query;
+        }
+
+        public override int Update(Book book, bool saveChanges = true) {
+            var library = Context.Libraries.SingleOrDefault(l => l.id == book.Library.id);
+            var genre = Context.Genres.SingleOrDefault(g => g.id == book.Genre.id);
+
+            Book existingBook = Context.Books.SingleOrDefault(b => b.id == book.id);
+            existingBook.name = book.name;
+            existingBook.description = book.description;
+            existingBook.publish_date = book.publish_date;
+            existingBook.pages_num = book.pages_num;
+            existingBook.digital = book.digital;
+            existingBook.url_photo = book.url_photo;
+            existingBook.url_digital = book.url_digital;
+            existingBook.barcode_id = book.barcode_id;
+            existingBook.total_copies = book.total_copies;
+            existingBook.Genre = genre;
+            existingBook.Library = library;
+
+            if (saveChanges) {
+                return SaveChanges();
+            } else {
+                return 0;
+            }
         }
     }
 }

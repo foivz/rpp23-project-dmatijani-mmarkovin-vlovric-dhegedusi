@@ -81,5 +81,11 @@ namespace BussinessLogicLayer.services
                 return book;
             }
         }
+
+        public int UpdateBook(Book book) {
+            using (var context = new BookRepository()) {
+                return context.Update(book);
+            }
+        }
     }
 }
