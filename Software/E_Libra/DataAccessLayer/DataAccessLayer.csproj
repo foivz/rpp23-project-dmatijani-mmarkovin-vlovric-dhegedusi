@@ -60,6 +60,7 @@
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\GenreRepository.cs" />
     <Compile Include="Repositories\LibraryRepository.cs" />
+    <Compile Include="Repositories\NotificationsRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\ReviewRepository.cs" />
   </ItemGroup>

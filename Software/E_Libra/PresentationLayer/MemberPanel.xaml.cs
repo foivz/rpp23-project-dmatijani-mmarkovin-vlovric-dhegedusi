@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using PresentationLayer.MemberPanels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,12 @@ namespace PresentationLayer {
         private void btnWishlist_Click(object sender, RoutedEventArgs e)
         {
             contentPanel.Content = new UcWishlist();
+        }
+
+        private void btnNotifications_Click(object sender, RoutedEventArgs e)
+        {
+            UcAllNotificationsMember memberNotifications = new UcAllNotificationsMember();
+            contentPanel.Content = memberNotifications;
         }
     }
 }
