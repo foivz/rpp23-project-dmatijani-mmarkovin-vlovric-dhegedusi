@@ -191,19 +191,26 @@ namespace PresentationLayer
         private void btnReserve_Click(object sender, RoutedEventArgs e)
         {
             ReservationService reservationService = new ReservationService();
+            MemberService memberService = new MemberService();
+            int memberId = memberService.GetMemberId(LoggedUser.Username);
+            if (reservationService.CountExistingReservations(memberId) == 3){
+                MessageBox.Show("Već imate maksimalan broj rezervacija koji je 3!");
+                return;
+            }
+
             int position = reservationService.CheckPosition(book.id);
-            string text = "Vi ste " + position + ". na redu čekanja. Potvrdite ili odbijte rezervaciju.";
+            string text = "Biti ćete " + position + ". na redu čekanja. Potvrdite ili odbijte rezervaciju.";
 
             WinAcceptDecline winAcceptDecline = new WinAcceptDecline(text);
             winAcceptDecline.ShowDialog();
 
             if (winAcceptDecline.UserClickedAccept)
             {
-                MemberService memberService = new MemberService();
+                
                 var reservation = new Reservation
                 {
                     reservation_date = DateTime.Now,
-                    Member_id = memberService.GetMemberId(LoggedUser.Username),
+                    Member_id = memberId,
                     Book_id = book.id,
                 };
                 int res = reservationService.Add(reservation);

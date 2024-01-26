@@ -71,6 +71,9 @@
     <Compile Include="UcNewGenre.xaml.cs">
       <DependentUpon>UcNewGenre.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UcReservations.xaml.cs">
+      <DependentUpon>UcReservations.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcWishlist.xaml.cs">
       <DependentUpon>UcWishlist.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UcNewGenre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcReservations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

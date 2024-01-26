@@ -41,5 +41,10 @@ namespace PresentationLayer {
         {
             contentPanel.Content = new UcWishlist();
         }
+
+        private void btnReservations_Click(object sender, RoutedEventArgs e)
+        {
+            contentPanel.Content = new UcReservations();
+        }
     }
 }

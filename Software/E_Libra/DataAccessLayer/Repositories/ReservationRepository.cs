@@ -33,7 +33,7 @@ namespace DataAccessLayer.Repositories
         {
             var reservation = new Reservation
             {
-                reservation_date = DateTime.Now,
+                //reservation_date = DateTime.Now, //ovo vjv promijenit da bude kad ističe
                 Member_id = entity.Member_id,
                 Book_id = entity.Book_id,
             };
@@ -46,6 +46,31 @@ namespace DataAccessLayer.Repositories
             {
                 return 0;
             }
+        }
+        public List<ReservationViewModel> GetReservationsForMember(int memberId)
+        {
+            var reservations = from r in Entities
+                               where r.Member_id == memberId
+                               join b in Context.Books on r.Book_id equals b.id
+                               select new ReservationViewModel
+                               {
+                                   ReservationId = r.idReservation,
+                                   BookName = b.name,
+                                   Date = r.reservation_date
+                               };
+
+            return reservations.ToList();
+        }
+        public int RemoveReservation(int reservationId)
+        {
+            var reservation = Entities.FirstOrDefault(r => r.idReservation == reservationId);
+            Entities.Remove(reservation);
+            return SaveChanges();
+        }
+        public int CountExistingReservations(int memberId)
+        {
+            var count = Entities.Count(r => r.Member_id == memberId);
+            return count;
         }
     }
 }

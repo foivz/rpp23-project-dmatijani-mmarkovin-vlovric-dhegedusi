@@ -31,5 +31,31 @@ namespace BussinessLogicLayer.services
                 return repo.Add(reservation);
             }
         }
+        public List<ReservationViewModel> GetReservationForMember(int memberId)
+        {
+            using (var repo = new ReservationRepository())
+            {
+                return repo.GetReservationsForMember(memberId).ToList();
+            }
+        }
+        public bool RemoveReservation(int reservationId)
+        {
+            using (var repo = new ReservationRepository())
+            {
+                int res = repo.RemoveReservation(reservationId);
+                if (res == 1)
+                {
+                    return true;
+                }
+                else return false;
+            }
+        }
+        public int CountExistingReservations(int memberId)
+        {
+            using(var repo = new ReservationRepository())
+            {
+                return repo.CountExistingReservations(memberId);
+            }
+        }
     }
 }
