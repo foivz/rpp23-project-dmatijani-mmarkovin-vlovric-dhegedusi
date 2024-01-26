@@ -3,6 +3,7 @@ using EntitiesLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,22 +29,23 @@ namespace PresentationLayer {
 
             this.mainWindow = _mainWindow;
 
-            var employeeService = new EmployeeService();
-            int libraryId = LoggedUser.LibraryId;
-
-            GetAllBorrowsForLibrary(libraryId);
-            GetBorrowsForEachStatus(libraryId);
+            LoadAllBorrows();
         }
 
-        public void GetAllBorrowsForLibrary(int libraryId) {
-            dgAllBorrows.ItemsSource = borrowService.GetAllBorrowsForLibrary(libraryId);
+        public async void LoadAllBorrows() {
+            await GetAllBorrowsForLibrary(LoggedUser.LibraryId);
+            await GetBorrowsForEachStatus(LoggedUser.LibraryId);
         }
 
-        public void GetBorrowsForEachStatus(int libraryId) {
-            dgPendingBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Waiting);
-            dgCurrentBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Borrowed);
-            dgLateBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Late);
-            dgDoneBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Returned);
+        private async Task GetAllBorrowsForLibrary(int libraryId) {
+            dgAllBorrows.ItemsSource = await borrowService.GetAllBorrowsForLibraryAsync(libraryId);
+        }
+
+        private async Task GetBorrowsForEachStatus(int libraryId) {
+            dgPendingBorrows.ItemsSource = await borrowService.GetBorrowsForLibraryByStatusAsync(libraryId, BorrowStatus.Waiting);
+            dgCurrentBorrows.ItemsSource = await borrowService.GetBorrowsForLibraryByStatusAsync(libraryId, BorrowStatus.Borrowed);
+            dgLateBorrows.ItemsSource = await borrowService.GetBorrowsForLibraryByStatusAsync(libraryId, BorrowStatus.Late);
+            dgDoneBorrows.ItemsSource = await  borrowService.GetBorrowsForLibraryByStatusAsync(libraryId, BorrowStatus.Returned);
         }
 
         private void btnReturnBook_Click(object sender, RoutedEventArgs e) {

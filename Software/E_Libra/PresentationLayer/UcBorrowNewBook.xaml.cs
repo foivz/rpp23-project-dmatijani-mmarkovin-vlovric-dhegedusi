@@ -165,8 +165,7 @@ namespace PresentationLayer {
         }
 
         private void UpdateParentBorrows() {
-            parentUserControl.GetAllBorrowsForLibrary(LoggedUser.LibraryId);
-            parentUserControl.GetBorrowsForEachStatus(LoggedUser.LibraryId);
+            parentUserControl.LoadAllBorrows();
             parentUserControl.tbcTabs.SelectedIndex = 2;
         }
     }

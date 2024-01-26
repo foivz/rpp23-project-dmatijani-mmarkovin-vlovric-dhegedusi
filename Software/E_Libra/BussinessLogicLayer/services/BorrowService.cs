@@ -27,27 +27,27 @@ namespace BussinessLogicLayer.services {
             }
         }
 
-        public List<Borrow> GetAllBorrowsForLibrary(Library library) {
+        public async Task<List<Borrow>> GetAllBorrowsForLibraryAsync(Library library) {
             using (var context = new BorrowRepository()) {
-                return context.GetAllBorrowsForLibrary(library).ToList();
+                return await context.GetAllBorrowsForLibraryAsync(library);
             }
         }
 
-        public List<Borrow> GetAllBorrowsForLibrary(int library_id) {
+        public async Task<List<Borrow>> GetAllBorrowsForLibraryAsync(int library_id) {
             using (var context = new BorrowRepository()) {
-                return context.GetAllBorrowsForLibrary(library_id).ToList();
+                return await context.GetAllBorrowsForLibraryAsync(library_id);
             }
         }
 
-        public List<Borrow> GetBorrowsForLibraryByStatus(Library library, BorrowStatus status) {
+        public async Task<List<Borrow>> GetBorrowsForLibraryByStatusAsync(Library library, BorrowStatus status) {
             using (var context = new BorrowRepository()) {
-                return context.GetBorrowsForLibraryByStatus(library, status).ToList();
+                return await context.GetBorrowsForLibraryByStatusAsync(library, status);
             }
         }
 
-        public List<Borrow> GetBorrowsForLibraryByStatus(int library_id, BorrowStatus status) {
+        public async Task<List<Borrow>> GetBorrowsForLibraryByStatusAsync(int library_id, BorrowStatus status) {
             using (var context = new BorrowRepository()) {
-                return context.GetBorrowsForLibraryByStatus(library_id, status).ToList();
+                return await context.GetBorrowsForLibraryByStatusAsync(library_id, status);
             }
         }
 

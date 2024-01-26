@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,44 +43,80 @@ namespace DataAccessLayer.Repositories {
             return query;
         }
 
-        public IQueryable<Borrow> GetAllBorrowsForLibrary(Library library) {
-            UpdateBorrowStatus(library.id);
+        public async Task<List<Borrow>> GetAllBorrowsForLibraryAsync(Library library) {
+            await UpdateBorrowStatusAsync(library.id);
 
             var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Book.Library_id == library.id
                         select b;
 
-            return query;
+            return await query.ToListAsync();
         }
 
-        public IQueryable<Borrow> GetAllBorrowsForLibrary(int library_id) {
-            UpdateBorrowStatus(library_id);
+        public async Task<List<Borrow>> GetAllBorrowsForLibraryAsync(int library_id) {
+            await UpdateBorrowStatusAsync(library_id);
 
             var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Book.Library_id == library_id
                         select b;
 
-            return query;
+            return await query.ToListAsync();
         }
 
-        public IQueryable<Borrow> GetBorrowsForLibraryByStatus(Library library, BorrowStatus status) {
-            UpdateBorrowStatus(library.id);
+        public async Task<List<Borrow>> GetBorrowsForLibraryByStatusAsync(Library library, BorrowStatus status) {
+            await UpdateBorrowStatusAsync(library.id);
 
             var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Book.Library_id == library.id && b.borrow_status == (int)status
                         select b;
 
-            return query;
+            return await query.ToListAsync();
         }
 
-        public IQueryable<Borrow> GetBorrowsForLibraryByStatus(int library_id, BorrowStatus status) {
-            UpdateBorrowStatus(library_id);
+        public async Task<List<Borrow>> GetBorrowsForLibraryByStatusAsync(int library_id, BorrowStatus status) {
+            await UpdateBorrowStatusAsync(library_id);
 
             var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Book.Library_id == library_id && b.borrow_status == (int)status
                         select b;
 
-            return query;
+            return await query.ToListAsync();
+        }
+
+        private async Task UpdateBorrowStatusAsync(int library_id) {
+            var allBorrows = from b in Entities.Include("Book")
+                             where b.Book.Library_id == library_id
+                             select b;
+
+            List<Borrow> borrowsToRemove = new List<Borrow>();
+            List<Borrow> borrowsToUpdate = new List<Borrow>();
+
+            foreach (Borrow borrow in allBorrows) {
+                switch (borrow.borrow_status) {
+                    case ((int)BorrowStatus.Waiting):
+                        if (borrow.return_date < DateTime.Now) {
+                            borrowsToRemove.Add(borrow);
+                        }
+                        break;
+
+                    case ((int)BorrowStatus.Borrowed):
+                        if (borrow.return_date < DateTime.Now) {
+                            borrow.borrow_status = (int)BorrowStatus.Late;
+                            borrowsToUpdate.Add(borrow);
+                        }
+                        break;
+                }
+            }
+
+            foreach (Borrow borrow in borrowsToRemove) {
+                Remove(borrow);
+            }
+
+            foreach (Borrow borrow in borrowsToUpdate) {
+                Update(borrow);
+            }
+
+            await Task.CompletedTask;
         }
 
         private void UpdateBorrowStatus(int library_id) {
