@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Background="#637E78" Height="40"
+        <TextBlock Background="#637E60" Height="40"
                    Style="{StaticResource titleText}" FontSize="20" Padding="5"
                    Foreground="#FFFFFF">
             Nova recenzija
