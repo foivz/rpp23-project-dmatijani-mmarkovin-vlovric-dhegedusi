@@ -64,7 +64,7 @@ namespace BussinessLogicLayer.services
             }
         }
         
-        public Book GetBookByBarcodeId(string barcodeId) {
+        public Book GetBookByBarcodeId(int libraryId, string barcodeId) {
             using (var repository = new BookRepository()) {
                 List<Book> returned = repository.GetBookByBarcodeId(barcodeId).ToList();
 
@@ -72,7 +72,13 @@ namespace BussinessLogicLayer.services
                     throw new BookNotFoundException("Knjiga s tim barkodom ne postoji!");
                 }
 
-                return returned.FirstOrDefault();
+                Book book = returned.FirstOrDefault();
+
+                if (book.Library.id != libraryId) {
+                    throw new WrongLibraryException("Knjiga s tim barkodom ovdje ne postoji!");
+                }
+
+                return book;
             }
         }
     }

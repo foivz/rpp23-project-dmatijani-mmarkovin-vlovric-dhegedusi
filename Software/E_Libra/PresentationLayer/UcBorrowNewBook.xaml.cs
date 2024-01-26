@@ -88,7 +88,7 @@ namespace PresentationLayer {
         private Member GetEnteredMember() {
             MemberService memberService = new MemberService();
             try {
-                Member enteredMember = memberService.GetMemberByBarcodeId(tbMemberBarcode.Text);
+                Member enteredMember = memberService.GetMemberByBarcodeId(LoggedUser.LibraryId, tbMemberBarcode.Text);
                 return enteredMember;
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -99,7 +99,7 @@ namespace PresentationLayer {
         private Book GetEnteredBook() {
             BookServices bookService = new BookServices();
             try {
-                Book enteredBook = bookService.GetBookByBarcodeId(tbBookBarcode.Text);
+                Book enteredBook = bookService.GetBookByBarcodeId(LoggedUser.LibraryId, tbBookBarcode.Text);
                 return enteredBook;
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);

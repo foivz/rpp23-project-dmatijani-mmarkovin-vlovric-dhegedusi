@@ -21,6 +21,7 @@ namespace BussinessLogicLayer.services
                 {
                     LoggedUser.Username = username;
                     LoggedUser.UserType = Role.Member;
+                    LoggedUser.LibraryId = returned[0].Library_id;
                 }
             }
         }
@@ -37,7 +38,7 @@ namespace BussinessLogicLayer.services
             }
         }
 
-        public Member GetMemberByBarcodeId(string barcodeId) {
+        public Member GetMemberByBarcodeId(int libraryId, string barcodeId) {
             using (var repository = new MemberRepository()) {
                 List<Member> returned = repository.GetMemberByBarcodeId(barcodeId).ToList();
 
@@ -45,7 +46,13 @@ namespace BussinessLogicLayer.services
                     throw new MemberNotFoundException("Član knjižnice sa tim barkodom ne postoji!");
                 }
 
-                return returned.FirstOrDefault();
+                Member member = returned.FirstOrDefault();
+
+                if (member.Library.id != libraryId) {
+                    throw new WrongLibraryException("Član ove knjižnice s tim barkodom ne postoji!");
+                }
+
+                return member;
             }
         }
     }

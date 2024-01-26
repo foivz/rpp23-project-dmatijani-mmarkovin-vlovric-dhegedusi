@@ -116,7 +116,7 @@ namespace DataAccessLayer.Repositories
         }
 
         public IQueryable<Book> GetBookByBarcodeId(string barcodeId) {
-            var query = from b in Entities
+            var query = from b in Entities.Include("Library")
                         where b.barcode_id == barcodeId
                         select b;
 

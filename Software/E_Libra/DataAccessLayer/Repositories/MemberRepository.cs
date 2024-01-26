@@ -40,7 +40,7 @@ namespace DataAccessLayer.Repositories
         }
 
         public IQueryable<Member> GetMemberByBarcodeId(string barcodeId) {
-            var query = from m in Member
+            var query = from m in Member.Include("Library")
                         where m.barcode_id == barcodeId
                         select m;
 
