@@ -23,7 +23,7 @@
                     x:Name="btnReturnBook" Click="btnReturnBook_Click">Vrati knjigu</Button>
         </StackPanel>
 
-        <TabControl>
+        <TabControl x:Name="tbcTabs">
             <TabItem Header="Sve posudbe">
                 <DockPanel>
                     <TextBlock Background="#637E60" DockPanel.Dock="Top" Height="30"

@@ -29,17 +29,17 @@ namespace PresentationLayer {
             this.mainWindow = _mainWindow;
 
             var employeeService = new EmployeeService();
-            int libraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
+            int libraryId = LoggedUser.LibraryId;
 
             GetAllBorrowsForLibrary(libraryId);
             GetBorrowsForEachStatus(libraryId);
         }
 
-        private void GetAllBorrowsForLibrary(int libraryId) {
+        public void GetAllBorrowsForLibrary(int libraryId) {
             dgAllBorrows.ItemsSource = borrowService.GetAllBorrowsForLibrary(libraryId);
         }
 
-        private void GetBorrowsForEachStatus(int libraryId) {
+        public void GetBorrowsForEachStatus(int libraryId) {
             dgPendingBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Waiting);
             dgCurrentBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Borrowed);
             dgLateBorrows.ItemsSource = borrowService.GetBorrowsForLibraryByStatus(libraryId, BorrowStatus.Late);

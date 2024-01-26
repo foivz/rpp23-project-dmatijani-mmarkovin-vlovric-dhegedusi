@@ -3,6 +3,7 @@ using BussinessLogicLayer.services;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +23,9 @@ namespace PresentationLayer {
     /// </summary>
     public partial class UcBorrowNewBook : UserControl {
         private EmployeePanel mainWindow { get; set; }
-        private UserControl parentUserControl { get; set; }
+        private UcEmployeeBorrows parentUserControl { get; set; }
 
-        public UcBorrowNewBook(EmployeePanel _mainWindow, UserControl _parentUserControl) {
+        public UcBorrowNewBook(EmployeePanel _mainWindow, UcEmployeeBorrows _parentUserControl) {
             InitializeComponent();
 
             this.mainWindow = _mainWindow;
@@ -36,6 +37,10 @@ namespace PresentationLayer {
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
+            returnParentUserControl();
+        }
+
+        private void returnParentUserControl() {
             mainWindow.contentPanel.Content = parentUserControl;
         }
 
@@ -64,7 +69,28 @@ namespace PresentationLayer {
                 return;
             }
 
-            
+            Employee thisEmployee = GetEmployee();
+
+            Borrow waitingBorrow = existingBorrows.Find(b => b.borrow_status == (int)BorrowStatus.Waiting);
+            if (waitingBorrow == null) {
+                Borrow newBorrow = new Borrow {
+                    Book = enteredBook,
+                    Member = enteredMember,
+                    borrow_status = (int)BorrowStatus.Borrowed,
+                    borrow_date = DateTime.Now,
+                    return_date = DateTime.Now.AddDays(int.Parse(tbBorrowDuration.Text)),
+                    Employee = thisEmployee
+                };
+
+                borrowService.AddNewBorrow(newBorrow);
+
+                UpdateParentBorrows();
+                returnParentUserControl();
+            } else {
+                MessageBox.Show("An existing borrow will be updated.");
+
+
+            }
         }
 
         private bool CheckInputFields() {
@@ -117,6 +143,17 @@ namespace PresentationLayer {
                 MessageBox.Show(ex.Message);
                 return null;
             }
+        }
+
+        private Employee GetEmployee() {
+            EmployeeService employeeService = new EmployeeService();
+            return employeeService.GetEmployeeByUsername(LoggedUser.Username);
+        }
+
+        private void UpdateParentBorrows() {
+            parentUserControl.GetAllBorrowsForLibrary(LoggedUser.LibraryId);
+            parentUserControl.GetBorrowsForEachStatus(LoggedUser.LibraryId);
+            parentUserControl.tbcTabs.SelectedIndex = 2;
         }
     }
 }

@@ -116,6 +116,32 @@ namespace DataAccessLayer.Repositories {
             }
         }
 
+        public override int Add(Borrow borrow, bool saveChanges = true) {
+            var book = Context.Books.SingleOrDefault(b => b.id == borrow.Book.id);
+            var member = Context.Members.SingleOrDefault(m => m.id == borrow.Member.id);
+            var employee = Context.Employees.SingleOrDefault(e => e.id == borrow.Employee.id);
+
+            var newBorrow = new Borrow {
+                Book = book,
+                Member = member,
+                Employee = employee,
+                borrow_date = borrow.borrow_date,
+                return_date = borrow.return_date,
+                borrow_status = borrow.borrow_status
+            };
+            if (borrow.Employee1 != null) {
+                var employeeReturn = Context.Employees.SingleOrDefault(e => e.id == borrow.Employee1.id);
+                newBorrow.Employee1 = employeeReturn;
+            }
+
+            Entities.Add(newBorrow);
+            if (saveChanges) {
+                return SaveChanges();
+            } else {
+                return 0;
+            }
+        }
+
         public override int Update(Borrow borrow, bool saveChanges = true) {
             var book = Context.Books.SingleOrDefault(b => b.id == borrow.Book.id);
             var member = Context.Members.SingleOrDefault(m => m.id == borrow.Member.id);

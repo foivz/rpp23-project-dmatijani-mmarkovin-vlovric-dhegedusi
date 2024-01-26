@@ -49,5 +49,17 @@ namespace BussinessLogicLayer.services {
                 return context.GetBorrowsForLibraryByStatus(library_id, status).ToList();
             }
         }
+
+        public int AddNewBorrow(Borrow borrow) {
+            using (var context = new BorrowRepository()) {
+                return context.Add(borrow);
+            }
+        }
+
+        public int UpdateBorrow(Borrow borrow) {
+            using (var context = new BorrowRepository()) {
+                return context.Update(borrow);
+            }
+        }
     }
 }
