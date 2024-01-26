@@ -15,5 +15,12 @@ namespace BussinessLogicLayer.services {
                 return result;
             }
         }
+
+        public List<MostPopularGenres> GetMostPopularGenres(int Library_id) {
+            using (var repo = new StatisticsRepository()) {
+                var result = repo.GetMostPopularGenres(Library_id);
+                return result;
+            }
+        }
     }
 }

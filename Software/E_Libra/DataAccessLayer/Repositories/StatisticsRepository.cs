@@ -18,6 +18,12 @@ namespace DataAccessLayer.Repositories {
             }
         }
 
+        public List<MostPopularGenres> GetMostPopularGenres(int Library_id) {
+            using (var repo = new GenreRepository()) {
+                return repo.GetMostPopularGenres(Library_id).ToList();
+            }
+        }
+
         public void Dispose() {
             if (Context != null) {
                 Context.Dispose();
