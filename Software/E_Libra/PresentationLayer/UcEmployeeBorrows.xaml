@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:PresentationLayer"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:BorrowStatusConverter x:Key="BorrowStatusConverter"/>
+    </UserControl.Resources>
     <DockPanel Background="White">
         <TextBlock Background="#637E60" DockPanel.Dock="Top" Height="40"
                Style="{StaticResource titleText}" FontSize="20" Padding="5"
@@ -37,7 +40,7 @@
                             <DataGridTextColumn Header="ID" Binding="{Binding idBorrow}"/>
                             <DataGridTextColumn Header="Datum posudbe" Binding="{Binding borrow_date}"/>
                             <DataGridTextColumn Header="Datum vraćanja/rok" Binding="{Binding return_date}"/>
-                            <DataGridTextColumn Header="Status posudbe" Binding="{Binding borrow_status}"/>
+                            <DataGridTextColumn Header="Status posudbe" Binding="{Binding borrow_status, Converter={StaticResource BorrowStatusConverter}}"/>
                             <DataGridTextColumn Header="Posuđena knjiga" Binding="{Binding Book}"/>
                             <DataGridTextColumn Header="Član" Binding="{Binding Member}"/>
                         </DataGrid.Columns>

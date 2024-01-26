@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="BorrowStatusConverter.cs" />
     <Compile Include="MemberPanels\UcMemberBorrows.xaml.cs">
       <DependentUpon>UcMemberBorrows.xaml</DependentUpon>
     </Compile>
