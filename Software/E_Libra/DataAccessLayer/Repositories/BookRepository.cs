@@ -120,8 +120,8 @@ namespace DataAccessLayer.Repositories
         }
 
         public override int Update(Book book, bool saveChanges = true) {
-            var library = Context.Libraries.SingleOrDefault(l => l.id == book.Library.id);
-            var genre = Context.Genres.SingleOrDefault(g => g.id == book.Genre.id);
+            var library = Context.Libraries.SingleOrDefault(l => l.id == book.Library_id);
+            var genre = Context.Genres.SingleOrDefault(g => g.id == book.Genre_id);
 
             Book existingBook = Context.Books.SingleOrDefault(b => b.id == book.id);
             existingBook.name = book.name;
@@ -133,6 +133,7 @@ namespace DataAccessLayer.Repositories
             existingBook.url_digital = book.url_digital;
             existingBook.barcode_id = book.barcode_id;
             existingBook.total_copies = book.total_copies;
+            existingBook.current_copies = book.current_copies;
             existingBook.Genre = genre;
             existingBook.Library = library;
 

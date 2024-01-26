@@ -82,9 +82,9 @@ namespace BussinessLogicLayer.services
             }
         }
 
-        public int UpdateBook(Book book) {
+        public int UpdateBook(Book book, bool saveChanges = true) {
             using (var context = new BookRepository()) {
-                return context.Update(book);
+                return context.Update(book, saveChanges);
             }
         }
     }

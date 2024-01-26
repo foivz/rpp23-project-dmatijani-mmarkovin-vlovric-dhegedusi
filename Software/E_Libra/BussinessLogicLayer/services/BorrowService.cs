@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Repositories;
+﻿using BussinessLogicLayer.Exceptions;
+using DataAccessLayer.Repositories;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -51,12 +52,36 @@ namespace BussinessLogicLayer.services {
         }
 
         public int AddNewBorrow(Borrow borrow) {
+            Book book = borrow.Book;
+            if (borrow.borrow_status == (int)BorrowStatus.Borrowed) {
+                if (book.current_copies < 1) {
+                    throw new NoMoreBookCopiesException("Odabrane knjige trenutno nema na stanju!");
+                }
+                BookServices bookService = new BookServices();
+                book.current_copies--;
+                bookService.UpdateBook(book);
+            }
+
             using (var context = new BorrowRepository()) {
                 return context.Add(borrow);
             }
         }
 
         public int UpdateBorrow(Borrow borrow) {
+            Book book = borrow.Book;
+            if (borrow.borrow_status == (int)BorrowStatus.Borrowed) {
+                if (book.current_copies < 1) {
+                    throw new NoMoreBookCopiesException("Odabrane knjige trenutno nema na stanju!");
+                }
+                BookServices bookService = new BookServices();
+                book.current_copies--;
+                bookService.UpdateBook(book);
+            } else if (borrow.borrow_status == (int)BorrowStatus.Returned) {
+                BookServices bookService = new BookServices();
+                book.current_copies++;
+                bookService.UpdateBook(book);
+            }
+
             using (var context = new BorrowRepository()) {
                 return context.Update(borrow);
             }

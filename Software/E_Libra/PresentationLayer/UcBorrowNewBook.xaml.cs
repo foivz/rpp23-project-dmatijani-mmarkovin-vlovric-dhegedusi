@@ -82,7 +82,11 @@ namespace PresentationLayer {
                     Employee = thisEmployee
                 };
 
-                borrowService.AddNewBorrow(newBorrow);
+                try {
+                    borrowService.AddNewBorrow(newBorrow);
+                } catch (BookException ex) {
+                    MessageBox.Show(ex.Message);
+                }
 
                 UpdateParentBorrows();
                 returnParentUserControl();
@@ -92,7 +96,11 @@ namespace PresentationLayer {
                 waitingBorrow.return_date = DateTime.Now.AddDays(int.Parse(tbBorrowDuration.Text));
                 waitingBorrow.Employee = thisEmployee;
 
-                borrowService.UpdateBorrow(waitingBorrow);
+                try {
+                    borrowService.UpdateBorrow(waitingBorrow);
+                } catch (BookException ex) {
+                    MessageBox.Show(ex.Message);
+                }
 
                 UpdateParentBorrows();
                 returnParentUserControl();
