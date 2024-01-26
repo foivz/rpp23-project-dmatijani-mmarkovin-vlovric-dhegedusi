@@ -53,6 +53,18 @@ namespace PresentationLayer {
             if (enteredMember == null) {
                 return;
             }
+
+            var borrowService = new BorrowService();
+
+            List<Borrow> existingBorrows = borrowService.GetBorrowsForMemberAndBook(enteredMember.id, enteredBook.id, LoggedUser.LibraryId);
+
+            Borrow alreadyExistingBorrow = existingBorrows.FindAll(b => (b.borrow_status == (int)BorrowStatus.Borrowed || b.borrow_status == (int)BorrowStatus.Late)).FirstOrDefault();
+            if (alreadyExistingBorrow != null) {
+                MessageBox.Show("Član je već posudio tu knjigu!");
+                return;
+            }
+
+            
         }
 
         private bool CheckInputFields() {

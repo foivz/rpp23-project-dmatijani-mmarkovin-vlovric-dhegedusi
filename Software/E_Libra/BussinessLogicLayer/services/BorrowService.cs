@@ -20,6 +20,12 @@ namespace BussinessLogicLayer.services {
             }
         }
 
+        public List<Borrow> GetBorrowsForMemberAndBook(int member_id, int book_id, int library_id) {
+            using (var context = new BorrowRepository()) {
+                return context.GetBorrowsForMemberAndBook(member_id, book_id, library_id).ToList();
+            }
+        }
+
         public List<Borrow> GetAllBorrowsForLibrary(Library library) {
             using (var context = new BorrowRepository()) {
                 return context.GetAllBorrowsForLibrary(library).ToList();
