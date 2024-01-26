@@ -1,4 +1,5 @@
-﻿using EntitiesLayer;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace PresentationLayer {
     public partial class MemberPanel : Window {
         public MemberPanel() {
             InitializeComponent();
+            ReservationService reservationService = new ReservationService();
+            reservationService.CheckReservationDates();
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)

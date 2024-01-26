@@ -1,6 +1,7 @@
 ﻿using EntitiesLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.Model;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -33,7 +34,6 @@ namespace DataAccessLayer.Repositories
         {
             var reservation = new Reservation
             {
-                //reservation_date = DateTime.Now, //ovo vjv promijenit da bude kad ističe
                 Member_id = entity.Member_id,
                 Book_id = entity.Book_id,
             };
@@ -64,6 +64,13 @@ namespace DataAccessLayer.Repositories
         public int RemoveReservation(int reservationId)
         {
             var reservation = Entities.FirstOrDefault(r => r.idReservation == reservationId);
+            BookRepository bookRepository = new BookRepository();
+            Book book = bookRepository.GetBookById(reservation.Book_id);
+
+            if (reservation.reservation_date != null)
+            {
+                SetReservationEndDateAndAddCopies(book, (int)book.current_copies, 1);
+            }
             Entities.Remove(reservation);
             return SaveChanges();
         }
@@ -72,5 +79,66 @@ namespace DataAccessLayer.Repositories
             var count = Entities.Count(r => r.Member_id == memberId);
             return count;
         }
+        public void SetReservationEndDateAndAddCopies(Book book, int current, int received)
+        {
+            //current je -nesto
+            //received je novi broj
+            int absCurrent = Math.Abs(current);
+            if(absCurrent > received || absCurrent == received)
+            {
+                //received puta napravim upis datuma
+                var reservationsToUpdate = Entities
+                .Where(r => r.Book_id == book.id && r.reservation_date == null)
+                .OrderBy(r => r.idReservation)
+                .Take(received);
+
+                DateTime endDate = DateTime.Now.AddDays(3);
+
+                foreach (var reservation in reservationsToUpdate)
+                {
+                    reservation.reservation_date = endDate;
+                }
+
+                SaveChanges();
+            }
+            else //absCurrent < received
+            {
+                //absCurrent puta napravim upis datuma
+                var reservationsToUpdate = Entities
+                .Where(r => r.Book_id == book.id && r.reservation_date == null)
+                .OrderBy(r => r.idReservation)
+                .Take(absCurrent);
+
+                DateTime endDate = DateTime.Now.AddDays(3);
+
+                foreach (var reservation in reservationsToUpdate)
+                {
+                    reservation.reservation_date = endDate;
+                }
+
+                SaveChanges();
+            }
+            book.current_copies += received;
+        }
+        public void CheckReservationDates()
+        {
+            var now = DateTime.Now;
+
+            var overdueReservations = from r in Entities
+                                      where r.reservation_date.HasValue && r.reservation_date.Value < now
+                                      select r;
+
+            foreach (var reservation in overdueReservations)
+            {
+                BookRepository bookRepository = new BookRepository();
+                Book book = bookRepository.GetBookById(reservation.Book_id);
+
+                SetReservationEndDateAndAddCopies(book, (int)reservation.Book.current_copies, 1); //ovo neće promijenit current_copies
+                Entities.Remove(reservation);
+            }
+
+            SaveChanges();
+        }
+        
     }
 }

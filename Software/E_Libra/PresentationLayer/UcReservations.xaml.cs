@@ -42,7 +42,7 @@ namespace PresentationLayer
             {
                 MessageBox.Show("Neuspješno!");
             }
-            //if brisanje prozor itd
+            
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

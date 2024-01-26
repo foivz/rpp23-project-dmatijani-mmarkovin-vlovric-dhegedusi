@@ -213,6 +213,7 @@ namespace PresentationLayer
                     Member_id = memberId,
                     Book_id = book.id,
                 };
+                bookServices.InsertNewCopies(-1, book);
                 int res = reservationService.Add(reservation);
                 bool result = false;
                 if(res == 1)

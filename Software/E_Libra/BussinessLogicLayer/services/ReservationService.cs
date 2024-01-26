@@ -57,5 +57,19 @@ namespace BussinessLogicLayer.services
                 return repo.CountExistingReservations(memberId);
             }
         }
+        public void SetReservationEndDateAndAddCopies(Book book, int current, int received)
+        {
+            using (var repo = new ReservationRepository())
+            {
+                repo.SetReservationEndDateAndAddCopies(book, current, received);
+            }
+        }
+        public void CheckReservationDates()
+        {
+            using (var repo = new ReservationRepository())
+            {
+                repo.CheckReservationDates();
+            }
+        }
     }
 }

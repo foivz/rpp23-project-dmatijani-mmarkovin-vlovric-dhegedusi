@@ -105,9 +105,29 @@ namespace DataAccessLayer.Repositories
 
         public int InsertNewCopies(int number, Book passedBook, bool saveChanges = true)
         {
+            ReservationRepository reservationRepository = new ReservationRepository();
             string name = passedBook.name;
             var book = (from b in Entities where b.name == name select b).FirstOrDefault();
-            book.total_copies += number;
+            
+            if(book.current_copies < 0)
+            {
+                book.total_copies += number;
+                reservationRepository.SetReservationEndDateAndAddCopies(book, (int)book.current_copies, number);
+            }
+            else
+            {
+                if (number != -1)
+                {
+                    book.total_copies += number;
+                    book.current_copies += number;
+                }
+                else
+                {
+                    book.current_copies += number;
+                }
+            }
+
+            
             if (saveChanges)
             {
                 return SaveChanges();
