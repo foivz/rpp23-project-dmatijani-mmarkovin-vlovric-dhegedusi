@@ -32,5 +32,11 @@ namespace PresentationLayer.EmployeePanels
         {
             dgvMembers.ItemsSource = memberService.GetAllMembersByLybrary();
         }
+
+        private void btnMemberRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            UcRegisterMember ucRegisterMember = new UcRegisterMember();
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = ucRegisterMember;
+        }
     }
 }
