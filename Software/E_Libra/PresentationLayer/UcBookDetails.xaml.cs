@@ -39,6 +39,8 @@ namespace PresentationLayer
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
             CheckIfDigital();
+
+            CheckBookBorrowStatus();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -65,9 +67,6 @@ namespace PresentationLayer
             {
                 tblAvailable.Text = "Ne";
             }
-            
-            
-
         }
 
         private void MakeImage(string url)
@@ -158,5 +157,97 @@ namespace PresentationLayer
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucDigitalBook;
         }
 
+        private void CheckBookBorrowStatus() {
+            btnBorrow.IsEnabled = true;
+            btnBorrow.Visibility = Visibility.Visible;
+
+            BorrowService borrowService = new BorrowService();
+            MemberService memberService = new MemberService();
+            Member loggedMember = memberService.GetMemberByUsername(LoggedUser.Username);
+
+            List<Borrow> borrows = borrowService.GetBorrowsForMemberAndBook(loggedMember.id, book.id, LoggedUser.LibraryId);
+            if (borrows.Count == 0) {
+                if (book.current_copies == 0) {
+                    tbBorrowStatus.Text = "Knjiga trenutno nema na zalihi te se ne može posuditi.\nMožete rezervirati knjigu.";
+                    btnBorrow.IsEnabled = false;
+                    btnBorrow.Visibility = Visibility.Collapsed;
+                    return;
+                }
+
+                tbBorrowStatus.Text = "Ovu knjigu još niste čitali!\nMožete ju označiti za posudbu.";
+                return;
+            }
+
+            Borrow borrow = borrows.FirstOrDefault();
+
+            if (borrow.borrow_status != (int)BorrowStatus.Returned) {
+                btnBorrow.IsEnabled = false;
+                btnBorrow.Visibility = Visibility.Collapsed;
+            }
+
+            string dateFormat = "dd.MM.yyyy";
+
+            TimeSpan difference;
+            switch (borrow.borrow_status) {
+                case (int)BorrowStatus.Waiting:
+                    difference = (TimeSpan)(borrow.return_date - DateTime.Now);
+                    int daysLeft = Convert.ToInt16(Math.Ceiling(difference.TotalDays));
+                    tbBorrowStatus.Text = $"Knjiga čeka vašu posudbu u knjižnici.\nImate još {daysLeft} dana za posuditi.";
+                    break;
+                case (int)BorrowStatus.Borrowed:
+                    tbBorrowStatus.Text = $"Knjigu ste posudili {borrow.borrow_date.ToString(dateFormat)}.\nTreba ju vratiti do {((DateTime)borrow.return_date).ToString(dateFormat)}.";
+                    break;
+                case (int)BorrowStatus.Late:
+                    difference = (TimeSpan)(DateTime.Now - borrow.return_date);
+                    int daysLate = Convert.ToInt16(Math.Ceiling(difference.TotalDays));
+                    tbBorrowStatus.Text = $"Knjigu ste posudili {borrow.borrow_date.ToString(dateFormat)}.\nKnjigu ste trebali vratiti do {((DateTime)borrow.return_date).ToString(dateFormat)}.\nKasnite već {daysLate} dana.";
+                    break;
+                case (int)BorrowStatus.Returned:
+                    tbBorrowStatus.Text = "Knjigu ste već čitali!\nSvejedno ju možete označiti za posudbu.";
+                    break;
+            }
+        }
+
+        private void btnBorrow_Click(object sender, RoutedEventArgs e) {
+            BorrowBook();
+        }
+
+        private void BorrowBook() {
+            if (LoggedUser.LibraryId != book.Library_id) {
+                MessageBox.Show("Knjiga ne pripada ovoj knjižnici!");
+                return;
+            }
+
+            MemberService memberService = new MemberService();
+            Member thisMember = memberService.GetMemberByUsername(LoggedUser.Username);
+            if (thisMember == null) {
+                return;
+            }
+
+            int daysToPickUpBook = 5;
+
+            Borrow borrow = new Borrow {
+                borrow_date = DateTime.Now,
+                return_date = DateTime.Now.AddDays(daysToPickUpBook),
+                borrow_status = (int)BorrowStatus.Waiting,
+                Book = book,
+                Member = thisMember
+            };
+
+            BorrowService borrowService = new BorrowService();
+
+            try {
+                int returned = borrowService.AddNewBorrow(borrow);
+
+                if (returned > 0) {
+                    MessageBox.Show($"Uspješno ste označili knjigu za posudbu. Imate {daysToPickUpBook} dana za doći u knjižnicu i posuditi ju.");
+                    CheckBookBorrowStatus();
+                } else {
+                    return;
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
