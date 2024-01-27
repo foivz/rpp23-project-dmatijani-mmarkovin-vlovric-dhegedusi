@@ -52,5 +52,26 @@ namespace PresentationLayer.EmployeePanels
                 MessageBox.Show("Odaberite člana!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void btnDeleteMember_Click(object sender, RoutedEventArgs e)
+        {
+            Member selectedMember = dgvMembers.SelectedItem as Member;
+            if (selectedMember != null)
+            {
+                bool deleted = false;
+                MessageBoxResult reuslt =  MessageBox.Show("Jeste li sigurni da želite izbrisati", "Upozorenje", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if(reuslt == MessageBoxResult.OK)
+                {
+                    deleted = memberService.DeleteMember(selectedMember);
+                }
+                if (deleted)
+                {
+                    dgvMembers.ItemsSource = memberService.GetAllMembersByLybrary();
+                }
+            } else
+            {
+                MessageBox.Show("Odaberite člana!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

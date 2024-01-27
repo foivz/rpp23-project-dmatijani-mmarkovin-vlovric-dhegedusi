@@ -32,7 +32,19 @@ namespace BussinessLogicLayer.services {
             using (var memberRepo = new MemberRepository())
             {
                 int edited = memberRepo.Update(member);
-                if(edited != 0)
+                if (edited != 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        public bool DeleteMember(Member member)
+        {
+            using (var memberRepo = new MemberRepository())
+            {
+                int deleted = memberRepo.Remove(member);
+                if(deleted != 0)
                 {
                     return true;
                 }

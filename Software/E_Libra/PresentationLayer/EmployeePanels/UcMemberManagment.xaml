@@ -11,7 +11,7 @@
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="54" HorizontalAlignment="Right">
             <Button x:Name="btnMemberRegistration" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Registracija člana" Click="btnMemberRegistration_Click"/>
             <Button x:Name="btnEditMember" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Uredi člana" Click="btnEditMember_Click"/>
-            <Button x:Name="btnDeleteMember" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Izbriši člana"/>
+            <Button x:Name="btnDeleteMember" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Izbriši člana" Click="btnDeleteMember_Click"/>
             <Button x:Name="btnMembership" Width="170" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Produljenje članstva"/>
         </StackPanel>
         <DataGrid x:Name="dgvMembers" Margin="10" AutoGenerateColumns="False">
