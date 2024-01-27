@@ -59,5 +59,17 @@ namespace BussinessLogicLayer.services {
                 return repository.Update(library);
             }
         }
+
+        public decimal GetLibraryPriceDayLate(Library library) {
+            using (var repository = new LibraryRepository()) {
+                return repository.GetLibraryPriceDayLate(library.id);
+            } 
+        }
+
+        public decimal GetLibraryPriceDayLate(int libraryId) {
+            using (var repository = new LibraryRepository()) {
+                return repository.GetLibraryPriceDayLate(libraryId);
+            }
+        }
     }
 }

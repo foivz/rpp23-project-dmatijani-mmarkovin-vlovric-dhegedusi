@@ -53,5 +53,17 @@ namespace DataAccessLayer.Repositories {
                 return 0;
             }
         }
+
+        public decimal GetLibraryPriceDayLate(int libraryId) {
+            var query = from l in Entities
+                        where l.id == libraryId
+                        select l;
+
+            if (query.Count() == 0) {
+                return 0;
+            }
+
+            return query.FirstOrDefault().price_day_late;
+        }
     }
 }

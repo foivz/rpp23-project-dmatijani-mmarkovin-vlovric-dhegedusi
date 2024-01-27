@@ -1,4 +1,5 @@
 ﻿using BussinessLogicLayer.services;
+using DataAccessLayer.Repositories;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace PresentationLayer {
     public partial class UcReturnBook : UserControl {
         private EmployeePanel mainWindow { get; set; }
         private UcEmployeeBorrows parentUserControl { get; set; }
+        private Borrow borrow = null;
 
         public UcReturnBook(EmployeePanel _mainWindow, UcEmployeeBorrows _parentUserControl) {
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace PresentationLayer {
         private void CheckForBorrows() {
             string borrowInformation = "";
             tbBorrowInfo.Text = "";
+            borrow = null;
 
             if (!CheckInputFields()) {
                 return;
@@ -70,6 +73,8 @@ namespace PresentationLayer {
                 tbBorrowInfo.Text = borrowInformation;
                 return;
             }
+
+            borrow = existingBorrow;
 
             string dateFormat = "dd.MM.yyyy";
             bool late = existingBorrow.borrow_status == (int)BorrowStatus.Late;
@@ -96,7 +101,46 @@ namespace PresentationLayer {
         }
 
         private void btnReturnBorrow_Click(object sender, RoutedEventArgs e) {
+            if (borrow == null) {
+                MessageBox.Show("Ne postoji posudba!");
+                return;
+            }
 
+            if (borrow.borrow_status == (int)BorrowStatus.Late) {
+                LibraryService libraryService = new LibraryService();
+                decimal priceDayLate = libraryService.GetLibraryPriceDayLate(LoggedUser.LibraryId);
+                TimeSpan difference = DateTime.Now - (DateTime)borrow.return_date;
+                int daysLate = Convert.ToInt16(Math.Ceiling(difference.TotalDays));
+
+                decimal priceToPay = priceDayLate * daysLate;
+
+                MessageBoxResult result = MessageBox.Show($"Potreban iznos za platiti kašnjenje: {priceToPay}." + Environment.NewLine + "Je li član platio iznos?", "Kašnjenje", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.No) {
+                    MessageBox.Show("Knjiga neće biti vraćena.");
+                    return;
+                }
+            }
+
+            EmployeeService employeeService = new EmployeeService();
+            Employee thisEmployee = employeeService.GetEmployeeByUsername(LoggedUser.Username);
+            if (thisEmployee == null) {
+                return;
+            }
+
+            BorrowService borrowService = new BorrowService();
+            Borrow updatedBorrow = new Borrow {
+                idBorrow = borrow.idBorrow,
+                borrow_date = borrow.borrow_date,
+                return_date = DateTime.Now,
+                borrow_status = (int)BorrowStatus.Returned,
+                Book = borrow.Book,
+                Member = borrow.Member,
+                Employee = borrow.Employee,
+                Employee1 = thisEmployee
+            };
+
+            // Ovdje ažurirati posudbu !!!
         }
 
         private bool CheckInputFields() {
