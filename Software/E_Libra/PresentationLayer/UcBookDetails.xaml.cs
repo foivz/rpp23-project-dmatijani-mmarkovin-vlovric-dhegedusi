@@ -59,7 +59,8 @@ namespace PresentationLayer
             if (reservationService.CheckExistingReservation(book.id, memberId))
             {
                 tblPosition.Visibility = Visibility.Visible;
-                int position = reservationService.CheckPosition(book.id)-1;
+                int reservationId = reservationService.GetReservationId(memberId, book.id);
+                int position = reservationService.GetReservationPosition(reservationId, book.id);
                 tblPosition.Text = tblPosition.Text + " " + position;
             }
         }
@@ -86,7 +87,7 @@ namespace PresentationLayer
             }
             else
             {
-                tblAvailable.Text = "Ne";
+                tblAvailable.Text = "Ne " + book.current_copies;
             }
             
             
@@ -198,7 +199,7 @@ namespace PresentationLayer
                 return;
             }
 
-            int position = reservationService.CheckPosition(book.id);
+            int position = reservationService.CheckNumberOfReservations(book.id)+1;
             string text = "Biti ćete " + position + ". na redu čekanja. Potvrdite ili odbijte rezervaciju.";
 
             WinAcceptDecline winAcceptDecline = new WinAcceptDecline(text);

@@ -1,9 +1,11 @@
 ﻿using EntitiesLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations.Model;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,10 +22,15 @@ namespace DataAccessLayer.Repositories
         {
             throw new NotImplementedException();
         }
-        public int CheckPosition(int id)
+        public int CheckNumberOfReservations(int id)
         {
             var count = Entities.Count(r => r.Book_id == id);
             return count;
+        }
+        public int GetReservationPosition(int reservationId, int bookId)
+        {
+            var query = Entities.Count(r => r.idReservation <= reservationId && r.Book_id == bookId);
+            return query;
         }
         public bool CheckExistingReservation(int bookId, int memberId)
         {
@@ -83,12 +90,13 @@ namespace DataAccessLayer.Repositories
         {
             //current je -nesto
             //received je novi broj
+            Book thisBook = Context.Books.Find(book.id);
             int absCurrent = Math.Abs(current);
             if(absCurrent > received || absCurrent == received)
             {
                 //received puta napravim upis datuma
                 var reservationsToUpdate = Entities
-                .Where(r => r.Book_id == book.id && r.reservation_date == null)
+                .Where(r => r.Book_id == thisBook.id && r.reservation_date == null)
                 .OrderBy(r => r.idReservation)
                 .Take(received);
 
@@ -105,7 +113,7 @@ namespace DataAccessLayer.Repositories
             {
                 //absCurrent puta napravim upis datuma
                 var reservationsToUpdate = Entities
-                .Where(r => r.Book_id == book.id && r.reservation_date == null)
+                .Where(r => r.Book_id == thisBook.id && r.reservation_date == null)
                 .OrderBy(r => r.idReservation)
                 .Take(absCurrent);
 
@@ -117,7 +125,7 @@ namespace DataAccessLayer.Repositories
                 }
 
             }
-            book.current_copies += received;
+            thisBook.current_copies += received;
             SaveChanges();
         }
         public void CheckReservationDates()
@@ -138,6 +146,11 @@ namespace DataAccessLayer.Repositories
             }
 
             SaveChanges();
+        }
+        public int GetReservationId(int memberId, int bookId)
+        {
+            var query = (from r in Entities where r.Member_id == memberId && r.Book_id == bookId select r.idReservation).FirstOrDefault();
+            return query;
         }
         
     }

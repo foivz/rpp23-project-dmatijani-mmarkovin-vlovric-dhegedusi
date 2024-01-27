@@ -10,11 +10,11 @@ namespace BussinessLogicLayer.services
 {
     public class ReservationService
     {
-        public int CheckPosition(int id)
+        public int CheckNumberOfReservations(int id)
         {
             using(var repo = new ReservationRepository())
             {
-                return repo.CheckPosition(id)+1;
+                return repo.CheckNumberOfReservations(id);
             }
         }
         public bool CheckExistingReservation(int bookId, int memberId)
@@ -69,6 +69,20 @@ namespace BussinessLogicLayer.services
             using (var repo = new ReservationRepository())
             {
                 repo.CheckReservationDates();
+            }
+        }
+        public int GetReservationId(int memberId, int bookId)
+        {
+            using (var repo = new ReservationRepository())
+            {
+                return repo.GetReservationId(memberId, bookId);
+            }
+        }
+        public int GetReservationPosition(int reservationId, int bookId)
+        {
+            using (var repo = new ReservationRepository())
+            {
+                return repo.GetReservationPosition(reservationId, bookId);
             }
         }
     }
