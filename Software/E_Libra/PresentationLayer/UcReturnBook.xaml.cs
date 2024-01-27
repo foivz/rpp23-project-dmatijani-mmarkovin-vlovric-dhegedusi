@@ -71,10 +71,23 @@ namespace PresentationLayer {
                 return;
             }
 
-            borrowInformation += "Postoji posudba:" + Environment.NewLine;
+            string dateFormat = "dd.MM.yyyy";
+            bool late = existingBorrow.borrow_status == (int)BorrowStatus.Late;
+
+            borrowInformation += "Postoji posudba!" + Environment.NewLine;
             borrowInformation += "Član: " + existingBorrow.Member.ToString() + Environment.NewLine;
             borrowInformation += "Knjiga: " + existingBorrow.Book.ToString() + Environment.NewLine;
-            borrowInformation += "Kasni? " + (existingBorrow.borrow_status == (int)BorrowStatus.Late ? "DA" : "NE") + Environment.NewLine;
+            borrowInformation += "Kasni? " + (late ? "DA" : "NE") + Environment.NewLine;
+            borrowInformation += "Datum posudbe: " + existingBorrow.borrow_date.ToString(dateFormat) + Environment.NewLine;
+            if (existingBorrow.return_date != null) {
+                borrowInformation += "Rok za vraćanje: " + ((DateTime)existingBorrow.return_date).ToString(dateFormat);
+                if (late) {
+                    TimeSpan difference = DateTime.Now - (DateTime)existingBorrow.return_date;
+                    int daysLate = Convert.ToInt16(Math.Ceiling(difference.TotalDays));
+                    borrowInformation += $" - kasni {daysLate} dana.";
+                }
+                borrowInformation += Environment.NewLine;
+            }
 
             tbBorrowInfo.Text = borrowInformation;
 
