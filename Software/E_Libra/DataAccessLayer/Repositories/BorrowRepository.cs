@@ -36,7 +36,7 @@ namespace DataAccessLayer.Repositories {
         public IQueryable<Borrow> GetBorrowsForMemberAndBook(int member_id, int book_id, int library_id) {
             UpdateBorrowStatus(library_id);
 
-            var query = from b in Entities.Include("Member").Include("Book")
+            var query = from b in Entities.Include("Member").Include("Book").Include("Employee")
                         where b.Member.id == member_id && b.Book.id == book_id
                         select b;
 

@@ -37,10 +37,10 @@ namespace PresentationLayer {
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
-            returnParentUserControl();
+            ReturnParentUserControl();
         }
 
-        private void returnParentUserControl() {
+        private void ReturnParentUserControl() {
             mainWindow.contentPanel.Content = parentUserControl;
         }
 
@@ -89,7 +89,7 @@ namespace PresentationLayer {
                 }
 
                 UpdateParentBorrows();
-                returnParentUserControl();
+                ReturnParentUserControl();
             } else {
                 waitingBorrow.borrow_status = (int)BorrowStatus.Borrowed;
                 waitingBorrow.borrow_date = DateTime.Now;
@@ -103,7 +103,7 @@ namespace PresentationLayer {
                 }
 
                 UpdateParentBorrows();
-                returnParentUserControl();
+                ReturnParentUserControl();
             }
         }
 

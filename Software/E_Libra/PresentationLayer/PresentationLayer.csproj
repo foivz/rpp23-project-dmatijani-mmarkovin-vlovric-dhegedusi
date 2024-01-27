@@ -104,12 +104,15 @@
     <Compile Include="UcNewGenre.xaml.cs">
       <DependentUpon>UcNewGenre.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UcReservations.xaml.cs">
-      <DependentUpon>UcReservations.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UcStatistics.xaml.cs">
-      <DependentUpon>UcStatistics.xaml</DependentUpon>
-    </Compile>
+	  <Compile Include="UcReservations.xaml.cs">
+		  <DependentUpon>UcReservations.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="UcStatistics.xaml.cs">
+		  <DependentUpon>UcStatistics.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="UcReturnBook.xaml.cs">
+		  <DependentUpon>UcReturnBook.xaml</DependentUpon>
+	  </Compile>
     <Compile Include="UcWishlist.xaml.cs">
       <DependentUpon>UcWishlist.xaml</DependentUpon>
     </Compile>
@@ -288,14 +291,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UcStatistics.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UcReservations.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+	  <Page Include="UcStatistics.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Include="UcReservations.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Include="UcReturnBook.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
     <Page Include="UcWishlist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
