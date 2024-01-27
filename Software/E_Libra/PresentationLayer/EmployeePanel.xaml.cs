@@ -38,8 +38,11 @@ namespace PresentationLayer {
             contentPanel.Content = new UcCatalogueOptions();
         }
 
-        private void btnNotifications_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnBorrow_Click(object sender, RoutedEventArgs e) {
+            contentPanel.Content = new UcEmployeeBorrows(this);
+        }
+
+        private void btnNotifications_Click(object sender, RoutedEventArgs e) {
             UcAllNotifications ucAllNotifications = new UcAllNotifications();
             contentPanel.Content = ucAllNotifications;
         }

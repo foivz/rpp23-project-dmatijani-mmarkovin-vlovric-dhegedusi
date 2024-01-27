@@ -22,28 +22,6 @@ namespace DataAccessLayer.Repositories
                       select m;
             return sql;
         }
-        public IQueryable<Member> GetMembersByUsername(string username)
-        {
-            var query = from e in Entities
-                        where e.username == username
-                        select e;
-
-            return query;
-        }
-
-        public IQueryable<Member> GetMembersByLibrary(int libraryID)
-        {
-            var query = from e in Entities
-                        where e.Library_id == libraryID
-                        select e;
-
-            return query;
-        }
-        public int GetMemberLibraryId(string username)
-        {
-            var sql = (from m in Entities.Include("Library") where m.username == username select m.Library_id).FirstOrDefault();
-            return sql;
-        }
         public override int Update(Member entity, bool saveChanges = true)
         {
             throw new NotImplementedException();
@@ -59,6 +37,34 @@ namespace DataAccessLayer.Repositories
                       where m.id == memberId
                       select $"{m.name} {m.surname}";
             return sql;
+        }
+
+        public IQueryable<Member> GetMembersByUsername(string username) {
+            var query = from e in Entities
+                        where e.username == username
+                        select e;
+
+            return query;
+        }
+
+        public IQueryable<Member> GetMembersByLibrary(int libraryID) {
+            var query = from e in Entities
+                        where e.Library_id == libraryID
+                        select e;
+
+            return query;
+        }
+        public int GetMemberLibraryId(string username) {
+            var sql = (from m in Entities.Include("Library") where m.username == username select m.Library_id).FirstOrDefault();
+            return sql;
+        }
+
+        public IQueryable<Member> GetMemberByBarcodeId(string barcodeId) {
+            var query = from m in Member.Include("Library")
+                        where m.barcode_id == barcodeId
+                        select m;
+
+            return query;
         }
     }
 }

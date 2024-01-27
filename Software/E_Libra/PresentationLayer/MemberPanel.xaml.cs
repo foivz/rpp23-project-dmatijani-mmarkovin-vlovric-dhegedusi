@@ -23,6 +23,10 @@ namespace PresentationLayer {
             InitializeComponent();
         }
 
+        private void btnBorrow_Click(object sender, RoutedEventArgs e) {
+            contentPanel.Content = new UcMemberBorrows();
+        }
+
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             LoggedUser.Username = null;
@@ -33,18 +37,15 @@ namespace PresentationLayer {
             Close();
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnSearch_Click(object sender, RoutedEventArgs e) {
             contentPanel.Content = new UcBookSearchFilter();
         }
 
-        private void btnWishlist_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnWishlist_Click(object sender, RoutedEventArgs e) {
             contentPanel.Content = new UcWishlist();
         }
 
-        private void btnNotifications_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnNotifications_Click(object sender, RoutedEventArgs e) {
             UcAllNotificationsMember memberNotifications = new UcAllNotificationsMember();
             contentPanel.Content = memberNotifications;
         }

@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Repositories;
+﻿using BussinessLogicLayer.Exceptions;
+using DataAccessLayer.Repositories;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace BussinessLogicLayer.services
             }
             return isSuccesful;
         }
+
         public List<Book> GetAllBooks()
         {
             using (var repo = new BookRepository())
@@ -63,69 +65,76 @@ namespace BussinessLogicLayer.services
                 return repo.GetNonArchivedBooksByName(searchTerm).ToList();
             }
         }
-        
-        public List<BookViewModel> SearchBooks(string searchTerm, bool digital)
-        {
-            using (var repo = new BookRepository())
-            {
+
+        public List<BookViewModel> SearchBooks(string searchTerm, bool digital) {
+            using (var repo = new BookRepository()) {
                 return repo.SearchBooks(searchTerm, digital).ToList();
             }
         }
-        public List<BookViewModel> GetBooksByGenre(string genreName, bool digital)
-        {
-            using (var repo = new BookRepository())
-            {
+        public List<BookViewModel> GetBooksByGenre(string genreName, bool digital) {
+            using (var repo = new BookRepository()) {
                 return repo.GetBooksByGenre(genreName, digital).ToList();
             }
         }
-        public List<BookViewModel> GetBooksByAuthor(string authorName, bool digital)
-        {
-            using (var repo = new BookRepository())
-            {
+        public List<BookViewModel> GetBooksByAuthor(string authorName, bool digital) {
+            using (var repo = new BookRepository()) {
                 return repo.GetBooksByAuthor(authorName, digital).ToList();
             }
         }
-        public List<BookViewModel> GetBooksByYear(int year, bool digital)
-        {
-            using (var repo = new BookRepository())
-            {
+        public List<BookViewModel> GetBooksByYear(int year, bool digital) {
+            using (var repo = new BookRepository()) {
                 return repo.GetBooksByYear(year, digital).ToList();
             }
         }
-        public Book GetBookById(int id)
-        {
-            using (var repo = new BookRepository())
-            {
+        public Book GetBookById(int id) {
+            using (var repo = new BookRepository()) {
                 return repo.GetBookById(id);
             }
         }
-        public List<BookViewModel> GetWishlistedBooks()
-        {
-            using(var repo = new BookRepository())
-            {
+        public List<BookViewModel> GetWishlistedBooks() {
+            using (var repo = new BookRepository()) {
                 return repo.GetWishlistBooksForMember(LoggedUser.Username).ToList();
             }
         }
-        public bool AddBookToWishlist(int bookId)
-        {
+        public bool AddBookToWishlist(int bookId) {
             MemberRepository memberRepository = new MemberRepository();
             int userId = memberRepository.GetMemberId(LoggedUser.Username);
 
-            using(var repo = new BookRepository())
-            {
+            using (var repo = new BookRepository()) {
                 return repo.AddBookToWishlist(userId, bookId);
             }
         }
-        public bool RemoveBookFromWishlist(int bookId)
-        {
+        public bool RemoveBookFromWishlist(int bookId) {
             MemberRepository memberRepository = new MemberRepository();
             int userId = memberRepository.GetMemberId(LoggedUser.Username);
 
-            using (var repo = new BookRepository())
-            {
+            using (var repo = new BookRepository()) {
                 return repo.RemoveBookFromWishlist(userId, bookId);
             }
         }
 
+        public Book GetBookByBarcodeId(int libraryId, string barcodeId) {
+            using (var repository = new BookRepository()) {
+                List<Book> returned = repository.GetBookByBarcodeId(barcodeId).ToList();
+
+                if (returned.Count == 0) {
+                    throw new BookNotFoundException("Knjiga s tim barkodom ne postoji!");
+                }
+
+                Book book = returned.FirstOrDefault();
+
+                if (book.Library.id != libraryId) {
+                    throw new WrongLibraryException("Knjiga s tim barkodom ovdje ne postoji!");
+                }
+
+                return book;
+            }
+        }
+
+        public int UpdateBook(Book book, bool saveChanges = true) {
+            using (var context = new BookRepository()) {
+                return context.Update(book, saveChanges);
+            }
+        }
     }
 }

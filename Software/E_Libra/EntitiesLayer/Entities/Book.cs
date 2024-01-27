@@ -75,9 +75,5 @@ namespace EntitiesLayer
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Member> Members { get; set; }
-
-        public override string ToString() {
-            return name;
-        }
     }
 }
