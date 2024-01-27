@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace BussinessLogicLayer.services {
     public class MemberService {
         EmployeeService employeeService = new EmployeeService();
+        
         public void CheckLoginCredentials(string username, string password) {
             using (var memberRepo = new MemberRepository()) {
                 var returned = memberRepo.GetMemberLogin(username, password).ToList();
@@ -41,6 +42,7 @@ namespace BussinessLogicLayer.services {
         }
         public bool DeleteMember(Member member)
         {
+
             using (var memberRepo = new MemberRepository())
             {
                 int deleted = memberRepo.Remove(member);

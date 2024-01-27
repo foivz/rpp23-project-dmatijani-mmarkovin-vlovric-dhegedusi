@@ -62,7 +62,7 @@ namespace PresentationLayer.EmployeePanels
                 MessageBoxResult reuslt =  MessageBox.Show("Jeste li sigurni da želite izbrisati", "Upozorenje", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 if(reuslt == MessageBoxResult.OK)
                 {
-                    deleted = memberService.DeleteMember(selectedMember);
+                    //deleted = memberService.DeleteMember(selectedMember);
                 }
                 if (deleted)
                 {
