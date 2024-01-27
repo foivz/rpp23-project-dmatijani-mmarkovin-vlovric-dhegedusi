@@ -47,9 +47,13 @@ namespace PresentationLayer {
         private void btnRemoveReview_Click(object sender, RoutedEventArgs e) {
             int memberId = memberService.GetMemberId(LoggedUser.Username);
 
-            services.DeleteReview(memberId, bookId);
-            LoadReviews();
-            MessageBox.Show("Vaša recenzija je uspješno obrisana.");
+            if (services.HasUserReviewedBook(memberId, bookId)) {
+                services.DeleteReview(memberId, bookId);
+                LoadReviews();
+                MessageBox.Show("Vaša recenzija je uspješno obrisana.");
+            } else {
+                MessageBox.Show("Niste napisali recenziju za ovu knjigu!");
+            }
         }
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {

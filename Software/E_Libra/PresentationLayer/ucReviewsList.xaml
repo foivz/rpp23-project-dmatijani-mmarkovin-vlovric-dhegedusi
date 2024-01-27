@@ -35,12 +35,12 @@
             </Grid.RowDefinitions>
 
             <StackPanel Height="50" Grid.Row="0"/>
-            <DataGrid x:Name="dgReviews" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid x:Name="dgReviews" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" Width="600">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Member" Binding="{Binding Member_Name}"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
-                    <DataGridTextColumn Header="Comment" Binding="{Binding Comment}"/>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                    <DataGridTextColumn Header="Member" Binding="{Binding Member_Name}" Width="*"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="*"/>
+                    <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*"/>
 
                 </DataGrid.Columns>
             </DataGrid>
