@@ -46,7 +46,18 @@ namespace DataAccessLayer.Repositories
         }
         public override int Update(Member entity, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            var existingMembeer = Entities.SingleOrDefault(m => m.id == entity.id);
+                existingMembeer.name = entity.name;
+                existingMembeer.surname = entity.surname;
+                existingMembeer.OIB = entity.OIB;
+                existingMembeer.password = entity.password;
+                if (saveChanges)
+                {
+                    return SaveChanges();
+                } else
+                {
+                    return 0;
+                }
         }
         public int GetMemberId(string username)
         {

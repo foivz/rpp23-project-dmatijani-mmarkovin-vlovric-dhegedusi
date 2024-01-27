@@ -27,6 +27,18 @@ namespace BussinessLogicLayer.services {
                 return true;
             }
         }
+        public bool UpdateMember(Member member)
+        {
+            using (var memberRepo = new MemberRepository())
+            {
+                int edited = memberRepo.Update(member);
+                if(edited != 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
         public int GetMemberId(string username) {
             using (var memberRepo = new MemberRepository()) {

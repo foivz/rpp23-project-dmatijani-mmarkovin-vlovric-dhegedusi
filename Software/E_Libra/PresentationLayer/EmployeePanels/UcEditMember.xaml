@@ -9,7 +9,7 @@
     <DockPanel Background="#FFEFE8">
         <TextBlock Text="Uredi člana" Style="{StaticResource titleText}" Background="#637E60" Foreground="#FFEFE8" DockPanel.Dock="Top"/>
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" DockPanel.Dock="Bottom">
-            <Button x:Name="btnSave" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Spremi"/>
+            <Button x:Name="btnSave" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Spremi" Click="btnSave_Click"/>
             <Button x:Name="btnCancel" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Odustani" Click="btnCancel_Click"/>
         </StackPanel>
         <Grid>
@@ -50,8 +50,8 @@
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center"
              Margin="20 0 0 10"/>
-                <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0">
-                    <TextBox x:Name="txtUsername" Style="{StaticResource textBox}"/>
+                <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0" Background="#acb0af">
+                    <TextBox x:Name="txtUsername" Style="{StaticResource textBox}" Background="#acb0af" IsReadOnly="True"/>
                 </Border>
             </StackPanel>
 
@@ -70,8 +70,8 @@
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center"
              Margin="20 0 0 10"/>
-                <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0">
-                    <DatePicker x:Name="txtDate" Style="{StaticResource textBox}"/>
+                <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0" Background="#acb0af">
+                    <TextBox x:Name="txtDate" Style="{StaticResource textBox}" IsReadOnly="True" Background="#acb0af"/>
                 </Border>
 
                 <Label 
@@ -79,8 +79,8 @@
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center"
              Margin="20 0 0 10"/>
-                <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0">
-                    <TextBox x:Name="txtBarcode" Style="{StaticResource textBox}"/>
+                <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0" Background="#acb0af">
+                    <TextBox x:Name="txtBarcode" Style="{StaticResource textBox}" IsReadOnly="True" Background="#acb0af"/>
                 </Border>
             </StackPanel>
         </Grid>

@@ -1,4 +1,5 @@
-﻿using EntitiesLayer;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,12 @@ namespace PresentationLayer.EmployeePanels
     public partial class UcEditMember : UserControl
     {
         Member editMember;
+        MemberService memberService;
         public UcEditMember(Member member)
         {
             InitializeComponent();
             editMember = member;
+            memberService = new MemberService();
 
             txtName.Text = member.name;
             txtSurname.Text = member.surname;
@@ -39,6 +42,19 @@ namespace PresentationLayer.EmployeePanels
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            editMember.name = txtName.Text;
+            editMember.surname = txtSurname.Text;
+            editMember.OIB = txtOIB.Text;
+            editMember.password = txtPassword.Text;
+            bool edited = memberService.UpdateMember(editMember);
+            if (edited)
+            {
+                (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
+            }
         }
     }
 }
