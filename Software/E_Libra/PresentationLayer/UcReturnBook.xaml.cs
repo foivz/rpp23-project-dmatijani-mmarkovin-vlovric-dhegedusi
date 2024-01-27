@@ -140,7 +140,13 @@ namespace PresentationLayer {
                 Employee1 = thisEmployee
             };
 
-            // Ovdje ažurirati posudbu !!!
+            int updateResult = borrowService.UpdateBorrow(updatedBorrow);
+            if (updateResult == 0) {
+                MessageBox.Show("Knjiga nije vraćena.");
+            }
+
+            UpdateParentBorrows();
+            ReturnParentUserControl();
         }
 
         private bool CheckInputFields() {
@@ -191,6 +197,11 @@ namespace PresentationLayer {
             BorrowService borrowService = new BorrowService();
             return borrowService.GetBorrowsForMemberAndBook(member.id, book.id, LoggedUser.LibraryId).Where(b => b.borrow_status != (int)BorrowStatus.Returned
             && b.borrow_status != (int)BorrowStatus.Waiting).FirstOrDefault();
+        }
+
+        private void UpdateParentBorrows() {
+            parentUserControl.LoadAllBorrows();
+            parentUserControl.tbcTabs.SelectedIndex = 3;
         }
     }
 }
