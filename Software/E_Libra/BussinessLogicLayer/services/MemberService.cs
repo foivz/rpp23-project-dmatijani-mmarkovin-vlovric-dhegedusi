@@ -19,6 +19,14 @@ namespace BussinessLogicLayer.services {
                 }
             }
         }
+        public bool AddNewMember(Member member)
+        {
+            using (var memberRepo = new MemberRepository())
+            {
+                memberRepo.Add(member);
+                return true;
+            }
+        }
 
         public int GetMemberId(string username) {
             using (var memberRepo = new MemberRepository()) {

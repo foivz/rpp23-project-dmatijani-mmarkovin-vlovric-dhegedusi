@@ -1,4 +1,5 @@
 ﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,33 @@ namespace PresentationLayer.EmployeePanels
     public partial class UcRegisterMember : UserControl
     {
         MemberService memberService;
+        EmployeeService employeeService;
         public UcRegisterMember()
         {
             InitializeComponent();
             memberService = new MemberService();
+            employeeService = new EmployeeService();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
+        }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            int LibraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
+            Member newMember = new Member()
+            {
+                name = txtName.Text,
+                surname = txtSurname.Text,
+                OIB = txtOIB.Text,
+                username = txtUsername.Text, 
+                password = txtPassword.Text,
+                membership_date = txtDate.SelectedDate,
+                barcode_id = txtBarcode.Text,
+                Library_id = LibraryId
+            };
+            memberService.AddNewMember(newMember);
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
         }
         private void btnGenerateBarcode_Click(object sender, RoutedEventArgs e)
