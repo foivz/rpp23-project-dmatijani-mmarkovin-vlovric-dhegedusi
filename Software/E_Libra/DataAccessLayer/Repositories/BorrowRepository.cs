@@ -156,16 +156,23 @@ namespace DataAccessLayer.Repositories {
         public override int Add(Borrow borrow, bool saveChanges = true) {
             var book = Context.Books.SingleOrDefault(b => b.id == borrow.Book.id);
             var member = Context.Members.SingleOrDefault(m => m.id == borrow.Member.id);
-            var employee = Context.Employees.SingleOrDefault(e => e.id == borrow.Employee.id);
-
+            
             var newBorrow = new Borrow {
                 Book = book,
                 Member = member,
-                Employee = employee,
                 borrow_date = borrow.borrow_date,
                 return_date = borrow.return_date,
                 borrow_status = borrow.borrow_status
             };
+            
+            if (borrow.Employee != null) {
+                var employee = Context.Employees.SingleOrDefault(e => e.id == borrow.Employee.id);
+                newBorrow.Employee = employee;
+            } else {
+                Employee employee = Context.Employees.Where(e => e.Library_id == member.Library_id).First();
+                newBorrow.Employee = employee;
+            }
+
             if (borrow.Employee1 != null) {
                 var employeeReturn = Context.Employees.SingleOrDefault(e => e.id == borrow.Employee1.id);
                 newBorrow.Employee1 = employeeReturn;
