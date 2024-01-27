@@ -41,7 +41,7 @@ namespace PresentationLayer
         private void LoadDataGrid()
         {
             BookServices services = new BookServices();
-            dgvBookNamesArchive.ItemsSource = services.GetNonArchivedBooks();
+            dgvBookNamesArchive.ItemsSource = services.GetNonArchivedBooks(false);
             HideColumns();
         }
 

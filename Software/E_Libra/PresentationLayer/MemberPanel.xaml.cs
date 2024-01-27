@@ -1,4 +1,6 @@
-﻿using EntitiesLayer;
+﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
+using PresentationLayer.MemberPanels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,10 @@ namespace PresentationLayer {
             InitializeComponent();
         }
 
+        private void btnBorrow_Click(object sender, RoutedEventArgs e) {
+            contentPanel.Content = new UcMemberBorrows();
+        }
+
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             LoggedUser.Username = null;
@@ -32,14 +38,33 @@ namespace PresentationLayer {
             Close();
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnSearch_Click(object sender, RoutedEventArgs e) {
             contentPanel.Content = new UcBookSearchFilter();
         }
 
-        private void btnWishlist_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnWishlist_Click(object sender, RoutedEventArgs e) {
             contentPanel.Content = new UcWishlist();
+        }
+
+        private void btnReservations_Click(object sender, RoutedEventArgs e)
+        {
+            contentPanel.Content = new UcReservations();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ReservationService reservationService = new ReservationService();
+            reservationService.CheckReservationDates();
+            var res = reservationService.ShowExistingReservations();
+            if (!string.IsNullOrEmpty(res))
+            {
+                MessageBox.Show(res);
+            }
+        }
+
+        private void btnNotifications_Click(object sender, RoutedEventArgs e) {
+            UcAllNotificationsMember memberNotifications = new UcAllNotificationsMember();
+            contentPanel.Content = memberNotifications;
         }
     }
 }

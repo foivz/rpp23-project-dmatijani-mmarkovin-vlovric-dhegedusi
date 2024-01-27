@@ -26,6 +26,8 @@
                 <ComboBoxItem Content="Pisac"/>
                 <ComboBoxItem Content="Godina"/>
             </ComboBox>
+            <CheckBox Margin="15,0,0,0" VerticalContentAlignment="Center" x:Name="cbCheck" Checked="cbCheck_Checked" Unchecked="cbCheck_Unchecked"></CheckBox>
+            <Label Content="Uključene digitalne knjige?"></Label>
             <TextBox x:Name="txtSearch" Width="200" Margin="15,0,0,0" TextChanged="txtSearch_TextChanged"/>
         </StackPanel>
 

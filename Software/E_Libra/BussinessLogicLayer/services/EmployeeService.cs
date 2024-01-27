@@ -61,6 +61,7 @@ namespace BussinessLogicLayer.services {
                 if (returned.Count() == 1) {
                     LoggedUser.Username = username;
                     LoggedUser.UserType = Role.Employee;
+                    LoggedUser.LibraryId = returned[0].Library_id;
                 }
             }
         }
@@ -74,6 +75,12 @@ namespace BussinessLogicLayer.services {
         public int GetEmployeeId(string username) {
             using (var employeeRepo = new EmployeeRepository()) {
                 return employeeRepo.GetEmployeeId(username);
+            }
+        }
+
+        public Employee GetEmployeeByUsername(string username) {
+            using (var repository = new EmployeeRepository()) {
+                return repository.GetEmployeesById(GetEmployeeId(username)).FirstOrDefault();
             }
         }
     }

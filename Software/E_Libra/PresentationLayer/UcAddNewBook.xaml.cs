@@ -62,7 +62,7 @@ namespace PresentationLayer
             }
             if (txtNumberCopies.Text == "")
             {
-                MessageBox.Show("Morate unijeti broj primjeraka knjige!");
+                MessageBox.Show("Morate unijeti broj primjeraka knjige! Ako je knjiga digitalna unesite 0");
                 return;
             }
             if (cmbGenre.Text == "")

@@ -31,25 +31,32 @@ namespace PresentationLayer
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            bool ch = (bool)cbCheck.IsChecked;
+            ApplyFilter(ch);
+
+        }
+
+        private void ApplyFilter(bool ch)
+        {
             //0-sve, 1-žanr, 2-pisac, 3-godina
-            switch(cmbFilter.SelectedIndex)
+            switch (cmbFilter.SelectedIndex)
             {
                 case 0:
-                    dgvBookSearch.ItemsSource = bookServices.SearchBooks(txtSearch.Text);
+                    dgvBookSearch.ItemsSource = bookServices.SearchBooks(txtSearch.Text, ch);
                     HideRenameColumns();
                     break;
                 case 1:
-                    dgvBookSearch.ItemsSource = bookServices.GetBooksByGenre(txtSearch.Text);
+                    dgvBookSearch.ItemsSource = bookServices.GetBooksByGenre(txtSearch.Text, ch);
                     HideRenameColumns();
                     break;
                 case 2:
-                    dgvBookSearch.ItemsSource = bookServices.GetBooksByAuthor(txtSearch.Text);
+                    dgvBookSearch.ItemsSource = bookServices.GetBooksByAuthor(txtSearch.Text, ch);
                     HideRenameColumns();
                     break;
                 case 3:
                     if (int.TryParse(txtSearch.Text, out int year))
                     {
-                        dgvBookSearch.ItemsSource = bookServices.GetBooksByYear(year);
+                        dgvBookSearch.ItemsSource = bookServices.GetBooksByYear(year, ch);
                         HideRenameColumns();
                     }
                     else
@@ -72,6 +79,8 @@ namespace PresentationLayer
             columnName.Header = "Ime autora";
             columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "GenreName");
             columnName.Header = "Žanr";
+            columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "Digital");
+            columnName.Header = "Digitalna";
             foreach (var column in dgvBookSearch.Columns)
             {
                 if (column.Header.ToString() == "Id")
@@ -99,6 +108,16 @@ namespace PresentationLayer
                 PrevForm = this
             };
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucBookDetails;
+        }
+
+        private void cbCheck_Checked(object sender, RoutedEventArgs e)
+        {
+            ApplyFilter(true);
+        }
+
+        private void cbCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ApplyFilter(false);
         }
     }
 }

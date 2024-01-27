@@ -39,11 +39,37 @@ namespace DataAccessLayer.Repositories
                       select $"{m.name} {m.surname}";
             return sql;
         }
-
         public int GetMemberCount(int Library_id) {
             var sql = Member.Count(m => m.Library_id == Library_id);
             return sql;
         }
 
+        public IQueryable<Member> GetMembersByUsername(string username) {
+            var query = from e in Entities
+                        where e.username == username
+                        select e;
+
+            return query;
+        }
+
+        public IQueryable<Member> GetMembersByLibrary(int libraryID) {
+            var query = from e in Entities
+                        where e.Library_id == libraryID
+                        select e;
+
+            return query;
+        }
+        public int GetMemberLibraryId(string username) {
+            var sql = (from m in Entities.Include("Library") where m.username == username select m.Library_id).FirstOrDefault();
+            return sql;
+        }
+
+        public IQueryable<Member> GetMemberByBarcodeId(string barcodeId) {
+            var query = from m in Member.Include("Library")
+                        where m.barcode_id == barcodeId
+                        select m;
+
+            return query;
+        }
     }
 }
