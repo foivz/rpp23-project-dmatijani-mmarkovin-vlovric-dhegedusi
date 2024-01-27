@@ -82,6 +82,8 @@
                 <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0">
                     <TextBox x:Name="txtBarcode" Style="{StaticResource textBox}"/>
                 </Border>
+                <Button x:Name="btnGenerateBarcode" Width="150" Height="40" Margin="10" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Generiraj Barkod" Click="btnGenerateBarcode_Click"/>
+                <Image x:Name="imgBarcode" Width="200" Height="100"/>
             </StackPanel>
         </Grid>
     </DockPanel>
