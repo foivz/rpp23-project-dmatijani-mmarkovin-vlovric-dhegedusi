@@ -31,6 +31,11 @@ namespace PresentationLayer
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
+            if(dgvReservations.SelectedItem == null)
+            {
+                MessageBox.Show("Morate odabrati rezervaciju!");
+                return;
+            }
             var selectedReservation = dgvReservations.SelectedItem as ReservationViewModel;
             ReservationService reservationService = new ReservationService();
             if (reservationService.RemoveReservation(selectedReservation.ReservationId))
