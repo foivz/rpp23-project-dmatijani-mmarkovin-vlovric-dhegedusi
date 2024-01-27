@@ -93,13 +93,13 @@ namespace DataAccessLayer.Repositories
                 .Take(received);
 
                 DateTime endDate = DateTime.Now.AddDays(3);
+                //DateTime endDate = DateTime.Now.AddMinutes(3);
 
                 foreach (var reservation in reservationsToUpdate)
                 {
                     reservation.reservation_date = endDate;
                 }
 
-                SaveChanges();
             }
             else //absCurrent < received
             {
@@ -116,9 +116,9 @@ namespace DataAccessLayer.Repositories
                     reservation.reservation_date = endDate;
                 }
 
-                SaveChanges();
             }
             book.current_copies += received;
+            SaveChanges();
         }
         public void CheckReservationDates()
         {
@@ -133,7 +133,7 @@ namespace DataAccessLayer.Repositories
                 BookRepository bookRepository = new BookRepository();
                 Book book = bookRepository.GetBookById(reservation.Book_id);
 
-                SetReservationEndDateAndAddCopies(book, (int)reservation.Book.current_copies, 1); //ovo neće promijenit current_copies
+                SetReservationEndDateAndAddCopies(book, (int)reservation.Book.current_copies, 1);
                 Entities.Remove(reservation);
             }
 

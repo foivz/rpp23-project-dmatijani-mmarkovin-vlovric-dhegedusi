@@ -108,23 +108,19 @@ namespace DataAccessLayer.Repositories
             ReservationRepository reservationRepository = new ReservationRepository();
             string name = passedBook.name;
             var book = (from b in Entities where b.name == name select b).FirstOrDefault();
-            
-            if(book.current_copies < 0)
+            if(number == -1)
+            {
+                book.current_copies += number;
+            }
+            else if(book.current_copies < 0)
             {
                 book.total_copies += number;
                 reservationRepository.SetReservationEndDateAndAddCopies(book, (int)book.current_copies, number);
             }
             else
             {
-                if (number != -1)
-                {
-                    book.total_copies += number;
-                    book.current_copies += number;
-                }
-                else
-                {
-                    book.current_copies += number;
-                }
+                book.total_copies += number;
+                book.current_copies += number;
             }
 
             
