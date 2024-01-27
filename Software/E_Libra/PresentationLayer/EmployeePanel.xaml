@@ -15,7 +15,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
                 <TextBlock x:Name="menu" Text="Izbornik" Style="{StaticResource titleText}" FontSize="30" Foreground="#F8DFD4" Margin="0 20"/>
-                <Button x:Name="btnMembership" Content="Upravljanje članstvom" Style="{StaticResource navButton}"/>
+                <Button x:Name="btnMembership" Content="Upravljanje članstvom" Style="{StaticResource navButton}" Click="btnMembership_Click"/>
                 <Button x:Name="btnBookCatalog" Content="Katalog knjiga" Style="{StaticResource navButton}" Click="btnBookCatalog_Click"/>
                 <Button x:Name="btnBorrow" Content="Posudbe" Style="{StaticResource navButton}" Click="btnBorrow_Click" />
                 <Button x:Name="btnNotifications" Content="Pisanje obavijesti" Style="{StaticResource navButton}" Click="btnNotifications_Click" />

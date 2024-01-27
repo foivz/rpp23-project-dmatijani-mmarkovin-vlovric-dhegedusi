@@ -12,9 +12,9 @@ namespace DataAccessLayer.Repositories
     public class MemberRepository : Repository<Member>
     {
         public DbSet<Member> Member { get; set; }
-        public MemberRepository(): base(new DatabaseModel())
+        public MemberRepository() : base(new DatabaseModel())
         {
-                Member = Context.Set<Member>();
+            Member = Context.Set<Member>();
         }
         public IQueryable<Member> GetMemberLogin(string username, string password)
         {
@@ -23,9 +23,62 @@ namespace DataAccessLayer.Repositories
                       select m;
             return sql;
         }
+        public IQueryable<Member> GetMembersByUsername(string username)
+        {
+            var query = from m in Entities
+                        where m.username == username
+                        select m;
+
+            return query;
+        }
+        public IQueryable<Member> GetAllMembersByFilter(string name, string surname)
+        {
+            var query = from m in Entities
+                        where m.name == name || m.surname == surname
+                        select m;
+
+            return query;
+        }
+        public int UpdateMembershipDate(Member member, DateTime dateNow, bool saveChanges = true)
+        {
+            var existingMembeer = Entities.SingleOrDefault(m => m.id == member.id);
+            existingMembeer.membership_date = dateNow;
+            if (saveChanges)
+            {
+                return SaveChanges();
+            } else
+            {
+                return 0;
+            }
+        }
+
+        public IQueryable<Member> GetMembersByLibrary(int libraryID)
+        {
+            var query = from m in Entities
+                        where m.Library_id == libraryID
+                        select m;
+
+            return query;
+        }
+        public int GetMemberLibraryId(string username)
+        {
+            var sql = (from m in Entities.Include("Library") where m.username == username select m.Library_id).FirstOrDefault();
+            return sql;
+        }
         public override int Update(Member entity, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            var existingMembeer = Entities.SingleOrDefault(m => m.id == entity.id);
+            existingMembeer.name = entity.name;
+            existingMembeer.surname = entity.surname;
+            existingMembeer.OIB = entity.OIB;
+            existingMembeer.password = entity.password;
+            if (saveChanges)
+            {
+                return SaveChanges();
+            } else
+            {
+                return 0;
+            }
         }
         public int GetMemberId(string username)
         {
@@ -33,38 +86,22 @@ namespace DataAccessLayer.Repositories
             return sql.FirstOrDefault();
         }
 
-        public IQueryable<string> GetMemberNameSurname(int memberId) {
+        public IQueryable<string> GetMemberNameSurname(int memberId)
+        {
             var sql = from m in Member
                       where m.id == memberId
                       select $"{m.name} {m.surname}";
             return sql;
         }
-        public int GetMemberCount(int Library_id) {
+
+        public int GetMemberCount(int Library_id)
+        {
             var sql = Member.Count(m => m.Library_id == Library_id);
             return sql;
         }
 
-        public IQueryable<Member> GetMembersByUsername(string username) {
-            var query = from e in Entities
-                        where e.username == username
-                        select e;
-
-            return query;
-        }
-
-        public IQueryable<Member> GetMembersByLibrary(int libraryID) {
-            var query = from e in Entities
-                        where e.Library_id == libraryID
-                        select e;
-
-            return query;
-        }
-        public int GetMemberLibraryId(string username) {
-            var sql = (from m in Entities.Include("Library") where m.username == username select m.Library_id).FirstOrDefault();
-            return sql;
-        }
-
-        public IQueryable<Member> GetMemberByBarcodeId(string barcodeId) {
+        public IQueryable<Member> GetMemberByBarcodeId(string barcodeId)
+        {
             var query = from m in Member.Include("Library")
                         where m.barcode_id == barcodeId
                         select m;

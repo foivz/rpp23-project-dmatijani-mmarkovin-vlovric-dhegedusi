@@ -14,12 +14,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PresentationLayer {
+namespace PresentationLayer
+{
     /// <summary>
     /// Interaction logic for EmployeePanel.xaml
     /// </summary>
-    public partial class EmployeePanel : Window {
-        public EmployeePanel() {
+    public partial class EmployeePanel : Window
+    {
+        public EmployeePanel()
+        {
             InitializeComponent();
         }
 
@@ -38,17 +41,26 @@ namespace PresentationLayer {
             contentPanel.Content = new UcCatalogueOptions();
         }
 
-        private void btnBorrow_Click(object sender, RoutedEventArgs e) {
+        private void btnBorrow_Click(object sender, RoutedEventArgs e)
+        {
             contentPanel.Content = new UcEmployeeBorrows(this);
         }
 
-        private void btnNotifications_Click(object sender, RoutedEventArgs e) {
+        private void btnNotifications_Click(object sender, RoutedEventArgs e)
+        {
             UcAllNotifications ucAllNotifications = new UcAllNotifications();
             contentPanel.Content = ucAllNotifications;
         }
 
-        private void btnStatistics_Click(object sender, RoutedEventArgs e) {
+        private void btnStatistics_Click(object sender, RoutedEventArgs e)
+        {
             contentPanel.Content = new UcStatistics();
+        }
+
+        private void btnMembership_Click(object sender, RoutedEventArgs e)
+        {
+            UcMemberManagment ucMemberMannagment = new UcMemberManagment();
+            contentPanel.Content = ucMemberMannagment;
         }
     }
 }
