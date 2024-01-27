@@ -49,7 +49,7 @@ namespace PresentationLayer {
         }
 
         private void btnReturnBook_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("Pritisnut gumb za vraćanje knjige!");
+            mainWindow.contentPanel.Content = new UcReturnBook(mainWindow, this);
         }
 
         private void btnBorrowBook_Click(object sender, RoutedEventArgs e) {
