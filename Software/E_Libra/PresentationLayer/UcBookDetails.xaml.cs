@@ -39,6 +39,8 @@ namespace PresentationLayer
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
             CheckIfDigital();
+
+            CheckBookBorrowStatus();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -65,9 +67,6 @@ namespace PresentationLayer
             {
                 tblAvailable.Text = "Ne";
             }
-            
-            
-
         }
 
         private void MakeImage(string url)
@@ -158,5 +157,54 @@ namespace PresentationLayer
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucDigitalBook;
         }
 
+        private void CheckBookBorrowStatus() {
+            BorrowService borrowService = new BorrowService();
+            MemberService memberService = new MemberService();
+            Member loggedMember = memberService.GetMemberByUsername(LoggedUser.Username);
+
+            List<Borrow> borrows = borrowService.GetBorrowsForMemberAndBook(loggedMember.id, book.id, LoggedUser.LibraryId);
+            if (borrows.Count == 0) {
+                if (book.current_copies == 0) {
+                    tbBorrowStatus.Text = "Knjiga trenutno nema na zalihi te se ne može posuditi.\nMožete rezervirati knjigu.";
+                    btnBorrow.IsEnabled = false;
+                    btnBorrow.Visibility = Visibility.Collapsed;
+                    return;
+                }
+
+                tbBorrowStatus.Text = "Ovu knjigu još niste čitali!\nMožete ju označiti za posudbu.";
+                return;
+            }
+
+            Borrow borrow = borrows.FirstOrDefault();
+
+            if (borrow.borrow_status != (int)BorrowStatus.Returned) {
+                btnBorrow.IsEnabled = false;
+                btnBorrow.Visibility = Visibility.Collapsed;
+            }
+
+            TimeSpan difference;
+            switch (borrow.borrow_status) {
+                case (int)BorrowStatus.Waiting:
+                    difference = (TimeSpan)(borrow.return_date - DateTime.Now);
+                    int daysLeft = Convert.ToInt16(Math.Round(difference.TotalDays));
+                    tbBorrowStatus.Text = $"Knjiga čeka vašu posudbu u knjižnici.\nImate još {daysLeft} dana za posuditi.";
+                    break;
+                case (int)BorrowStatus.Borrowed:
+                    tbBorrowStatus.Text = $"Knjigu ste posudili {borrow.borrow_date}.\nTreba ju vratiti do {borrow.return_date}.";
+                    break;
+                case (int)BorrowStatus.Late:
+                    difference = (TimeSpan)(DateTime.Now - borrow.return_date);
+                    int daysLate = Convert.ToInt16(Math.Round(difference.TotalDays));
+                    tbBorrowStatus.Text = $"Knjigu ste posudili {borrow.borrow_date}.\nKnjigu ste trebali vratiti do {borrow.return_date}.\nKasnite već {daysLate} dana.";
+                    break;
+                case (int)BorrowStatus.Returned:
+                    tbBorrowStatus.Text = "Knjigu ste već čitali!\nSvejedno ju možete označiti za posudbu.";
+                    break;
+            }
+        }
+
+        private void btnBorrow_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

@@ -22,6 +22,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="#637E60"></Rectangle>
@@ -65,9 +66,15 @@
             <Label Content="Raspoloživost:" FontWeight="Bold" x:Name="lblAvailable"/>
             <TextBlock x:Name="tblAvailable" TextWrapping="Wrap" />
         </StackPanel>
-        <StackPanel x:Name="ButtonStackPanel" Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0"/>
 
-        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+        <StackPanel Grid.Row="6" Grid.Column="1" Margin="10,0,0,0">
+            <Label Content="Status o posudbi:" FontWeight="Bold" x:Name="lblBorrowStatus"/>
+            <TextBlock x:Name="tbBorrowStatus" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel x:Name="ButtonStackPanel" Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+
+        <StackPanel Grid.Row="7" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
             <Button x:Name="btnBack" Content="Natrag" Width="Auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Margin="0,0,10,0" Click="btnBack_Click" />
             <Button x:Name="btnSaveReadList" Width="Auto" Height="40" Background="#637E60" Foreground="#FFEFE8" Margin="0,0,10,0" Click="btnSaveReadList_Click">
                 <TextBlock>
@@ -77,6 +84,7 @@
                 </TextBlock>
             </Button>
             <Button Width="120" Height="40" Margin="0,0,10,0" x:Name="btnAddReview" Background="#637E60" Foreground="#FFEFE8" Click="btnAddReview_Click">Recenzije</Button>
+            <Button Width="120" Height="40" Margin="0,0,10,0" x:Name="btnBorrow" Background="#637E60" Foreground="#FFEFE8" Click="btnBorrow_Click">Posudi</Button>
         </StackPanel>
 
     </Grid>
