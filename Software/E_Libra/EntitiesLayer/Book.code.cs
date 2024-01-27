@@ -9,5 +9,6 @@ namespace EntitiesLayer {
         public override string ToString() {
             return barcode_id + " - " + name;
         }
+
     }
 }

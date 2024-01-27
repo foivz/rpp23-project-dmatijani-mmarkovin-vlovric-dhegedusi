@@ -145,7 +145,7 @@ namespace PresentationLayer {
             // Add TextBlock to Border
             border1Factory.AppendChild(textBlock1Factory);
 
-            // Create Border and TextBlock for Total Income
+            // Create Border and StackPanel for Total Income
             FrameworkElementFactory border2Factory = new FrameworkElementFactory(typeof(Border));
             border2Factory.SetValue(Border.BorderBrushProperty, Brushes.Black);
             border2Factory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
@@ -153,14 +153,27 @@ namespace PresentationLayer {
             border2Factory.SetValue(Border.PaddingProperty, new Thickness(5));
             border2Factory.SetValue(Border.MarginProperty, new Thickness(5, 0, 5, 2));
 
+            FrameworkElementFactory stackPanel2Factory = new FrameworkElementFactory(typeof(StackPanel));
+            stackPanel2Factory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+
+            // Create TextBlock for Total Income
             FrameworkElementFactory textBlock2Factory = new FrameworkElementFactory(typeof(TextBlock));
             textBlock2Factory.SetBinding(TextBlock.TextProperty, new Binding("TotalIncome") {
                 StringFormat = "Ukupni prihod od članarine: {0}"
             });
             textBlock2Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
 
-            // Add TextBlock to Border
-            border2Factory.AppendChild(textBlock2Factory);
+            // Create TextBlock for "Eur" label
+            FrameworkElementFactory textBlockEuroFactory = new FrameworkElementFactory(typeof(TextBlock));
+            textBlockEuroFactory.SetValue(TextBlock.TextProperty, " €");
+            textBlockEuroFactory.SetValue(TextBlock.FontSizeProperty, 18.0);
+
+            // Add TextBlocks to StackPanel
+            stackPanel2Factory.AppendChild(textBlock2Factory);
+            stackPanel2Factory.AppendChild(textBlockEuroFactory);
+
+            // Add StackPanel to Border
+            border2Factory.AppendChild(stackPanel2Factory);
 
             // Add Borders to StackPanel
             stackPanelFactory.AppendChild(border1Factory);
@@ -175,6 +188,7 @@ namespace PresentationLayer {
             Grid.SetColumn(icIncomeStatistics, 0);
             grid.Children.Add(icIncomeStatistics);
         }
+
 
 
 
