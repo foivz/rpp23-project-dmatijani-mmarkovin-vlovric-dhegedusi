@@ -1,4 +1,5 @@
 ﻿using BussinessLogicLayer.services;
+using EntitiesLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,19 @@ namespace PresentationLayer.EmployeePanels
         {
             UcRegisterMember ucRegisterMember = new UcRegisterMember();
             (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = ucRegisterMember;
+        }
+
+        private void btnEditMember_Click(object sender, RoutedEventArgs e)
+        {
+            Member selectedMember = dgvMembers.SelectedItem as Member;
+            if (selectedMember != null)
+            {
+            UcEditMember ucEditMember = new UcEditMember(selectedMember);
+            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = ucEditMember;
+            } else
+            {
+                MessageBox.Show("Odaberite člana!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

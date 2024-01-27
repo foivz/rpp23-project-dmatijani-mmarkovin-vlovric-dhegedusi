@@ -10,7 +10,7 @@
         <TextBlock Text="Članovi knjižnice" Style="{StaticResource titleText}" Background="#637E60" Foreground="#FFEFE8" DockPanel.Dock="Top"/>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="54" HorizontalAlignment="Right">
             <Button x:Name="btnMemberRegistration" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Registracija člana" Click="btnMemberRegistration_Click"/>
-            <Button x:Name="btnEditMember" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Uredi člana"/>
+            <Button x:Name="btnEditMember" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Uredi člana" Click="btnEditMember_Click"/>
             <Button x:Name="btnDeleteMember" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Izbriši člana"/>
             <Button x:Name="btnMembership" Width="170" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Produljenje članstva"/>
         </StackPanel>
