@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="#FFEFE8"
-        Title="MemberPanel" Height="500" Width="900">
+        Title="MemberPanel" Height="500" Width="900" Loaded="Window_Loaded">
     <DockPanel>
         <Grid x:Name="navPanel" DockPanel.Dock="Left" Width="200" Background="#637E60">
             <Grid.RowDefinitions>
@@ -16,10 +16,9 @@
             <StackPanel Grid.Row="0">
                 <TextBlock x:Name="menu" Text="Izbornik" Style="{StaticResource titleText}" FontSize="30" Foreground="#F8DFD4" Margin="0 20"/>
                 <Button x:Name="btnSearch" Content="Pretraži knjige" Style="{StaticResource navButton}" Click="btnSearch_Click"/>
-                <Button x:Name="btnReservations" Content="Rezervacije" Style="{StaticResource navButton}" />
-                <Button x:Name="btnNotifications" Content="Obavijesti" Style="{StaticResource navButton}" Click="btnNotifications_Click" />
-                <Button x:Name="btnDigitalBooks" Content="Digitalne kjige" Style="{StaticResource navButton}" />
-                <Button x:Name="btnBorrow" Content="Posudbe" Style="{StaticResource navButton}" Click="btnBorrow_Click" />
+                <Button x:Name="btnReservations" Content="Rezervacije" Style="{StaticResource navButton}" Click="btnReservations_Click"/>
+                <Button x:Name="btnNotifications" Content="Obavijesti" Style="{StaticResource navButton}" Click="btnNotifications_Click"/>
+                <Button x:Name="btnBorrow" Content="Posudbe" Style="{StaticResource navButton}" />
                 <Button x:Name="btnWishlist" Content="Želim pročitati" Style="{StaticResource navButton}" Click="btnWishlist_Click"/>
             </StackPanel>
             <StackPanel Grid.Row="1"/>

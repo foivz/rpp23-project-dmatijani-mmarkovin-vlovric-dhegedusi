@@ -65,6 +65,7 @@
     <Compile Include="services\MemberService.cs" />
     <Compile Include="services\GenreServices.cs" />
     <Compile Include="services\NotificationService.cs" />
+    <Compile Include="services\ReservationService.cs" />
     <Compile Include="services\ReviewService.cs" />
   </ItemGroup>
   <ItemGroup>

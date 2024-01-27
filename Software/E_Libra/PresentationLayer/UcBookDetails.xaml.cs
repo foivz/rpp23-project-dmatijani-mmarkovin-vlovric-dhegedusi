@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xaml;
 using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer
@@ -25,6 +26,7 @@ namespace PresentationLayer
     public partial class UcBookDetails : UserControl
     {
         BookServices bookServices = new BookServices();
+        
         private UcBookSearchFilter prevForm;
 
         public UcBookSearchFilter PrevForm
@@ -39,8 +41,29 @@ namespace PresentationLayer
             book = bookServices.GetBookById(passedBook.Id);
             bookUI = passedBook;
             CheckIfDigital();
-
+            HideReserve();
             CheckBookBorrowStatus();
+        }
+
+        private void HideReserve()
+        {
+            ReservationService reservationService = new ReservationService();
+            MemberService memberService = new MemberService();
+            int memberId = memberService.GetMemberId(LoggedUser.Username);
+            //0 je, ja rezerviram
+            //ak opet dodem bit ce sakriveno rezerviraj i pisat tekst
+            if (book.current_copies > 0 || reservationService.CheckExistingReservation(book.id, memberId)) //ovo provjerit sa davidom
+            {
+                btnReserve.Visibility = Visibility.Collapsed;
+            }
+
+            if (reservationService.CheckExistingReservation(book.id, memberId))
+            {
+                tblPosition.Visibility = Visibility.Visible;
+                int reservationId = reservationService.GetReservationId(memberId, book.id);
+                int position = reservationService.GetReservationPosition(reservationId, book.id);
+                tblPosition.Text = tblPosition.Text + " " + position;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -65,7 +88,7 @@ namespace PresentationLayer
             }
             else
             {
-                tblAvailable.Text = "Ne";
+                tblAvailable.Text = "Ne " + book.current_copies;
             }
         }
 
@@ -125,9 +148,16 @@ namespace PresentationLayer
             if (book.digital == 1) {
                 CreateDigitalButton();
                 HideAvailable();
+                HideReserveDigital();
             } else {
                 return;
             }
+        }
+
+        private void HideReserveDigital()
+        {
+            btnReserve.Visibility = Visibility.Collapsed;
+            tblPosition.Visibility = Visibility.Collapsed;
         }
 
         private void HideAvailable()
@@ -156,8 +186,45 @@ namespace PresentationLayer
             UcDigitalBook ucDigitalBook = new UcDigitalBook(online_path);
             (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucDigitalBook;
         }
+        private void btnReserve_Click(object sender, RoutedEventArgs e)
+        {
+            ReservationService reservationService = new ReservationService();
+            MemberService memberService = new MemberService();
+            int memberId = memberService.GetMemberId(LoggedUser.Username);
+            if (reservationService.CountExistingReservations(memberId) == 3)
+            {
+                MessageBox.Show("Već imate maksimalan broj rezervacija koji je 3!");
+                return;
+            }
 
-        private void CheckBookBorrowStatus() {
+            int position = reservationService.CheckNumberOfReservations(book.id) + 1;
+            string text = "Biti ćete " + position + ". na redu čekanja. Potvrdite ili odbijte rezervaciju.";
+
+            WinAcceptDecline winAcceptDecline = new WinAcceptDecline(text);
+            winAcceptDecline.ShowDialog();
+
+            if (winAcceptDecline.UserClickedAccept)
+            {
+
+                var reservation = new Reservation
+                {
+                    reservation_date = DateTime.Now,
+                    Member_id = memberId,
+                    Book_id = book.id,
+                };
+                bookServices.InsertNewCopies(-1, book);
+                int res = reservationService.Add(reservation);
+                bool result = false;
+                if (res == 1)
+                {
+                    result = true;
+                }
+                MessageBox.Show(result ? "Uspješna rezervacija!" : "Neuspješna rezervacija!");
+                HideReserve();
+            }
+        }
+        private void CheckBookBorrowStatus()
+        {
             btnBorrow.IsEnabled = true;
             btnBorrow.Visibility = Visibility.Visible;
 
@@ -166,8 +233,10 @@ namespace PresentationLayer
             Member loggedMember = memberService.GetMemberByUsername(LoggedUser.Username);
 
             List<Borrow> borrows = borrowService.GetBorrowsForMemberAndBook(loggedMember.id, book.id, LoggedUser.LibraryId);
-            if (borrows.Count == 0) {
-                if (book.current_copies == 0) {
+            if (borrows.Count == 0)
+            {
+                if (book.current_copies == 0)
+                {
                     tbBorrowStatus.Text = "Knjiga trenutno nema na zalihi te se ne može posuditi.\nMožete rezervirati knjigu.";
                     btnBorrow.IsEnabled = false;
                     btnBorrow.Visibility = Visibility.Collapsed;
@@ -180,7 +249,8 @@ namespace PresentationLayer
 
             Borrow borrow = borrows.FirstOrDefault();
 
-            if (borrow.borrow_status != (int)BorrowStatus.Returned) {
+            if (borrow.borrow_status != (int)BorrowStatus.Returned)
+            {
                 btnBorrow.IsEnabled = false;
                 btnBorrow.Visibility = Visibility.Collapsed;
             }
@@ -188,7 +258,8 @@ namespace PresentationLayer
             string dateFormat = "dd.MM.yyyy";
 
             TimeSpan difference;
-            switch (borrow.borrow_status) {
+            switch (borrow.borrow_status)
+            {
                 case (int)BorrowStatus.Waiting:
                     difference = (TimeSpan)(borrow.return_date - DateTime.Now);
                     int daysLeft = Convert.ToInt16(Math.Ceiling(difference.TotalDays));
@@ -208,25 +279,30 @@ namespace PresentationLayer
             }
         }
 
-        private void btnBorrow_Click(object sender, RoutedEventArgs e) {
+        private void btnBorrow_Click(object sender, RoutedEventArgs e)
+        {
             BorrowBook();
         }
 
-        private void BorrowBook() {
-            if (LoggedUser.LibraryId != book.Library_id) {
+        private void BorrowBook()
+        {
+            if (LoggedUser.LibraryId != book.Library_id)
+            {
                 MessageBox.Show("Knjiga ne pripada ovoj knjižnici!");
                 return;
             }
 
             MemberService memberService = new MemberService();
             Member thisMember = memberService.GetMemberByUsername(LoggedUser.Username);
-            if (thisMember == null) {
+            if (thisMember == null)
+            {
                 return;
             }
 
             int daysToPickUpBook = 5;
 
-            Borrow borrow = new Borrow {
+            Borrow borrow = new Borrow
+            {
                 borrow_date = DateTime.Now,
                 return_date = DateTime.Now.AddDays(daysToPickUpBook),
                 borrow_status = (int)BorrowStatus.Waiting,
@@ -236,16 +312,22 @@ namespace PresentationLayer
 
             BorrowService borrowService = new BorrowService();
 
-            try {
+            try
+            {
                 int returned = borrowService.AddNewBorrow(borrow);
 
-                if (returned > 0) {
+                if (returned > 0)
+                {
                     MessageBox.Show($"Uspješno ste označili knjigu za posudbu. Imate {daysToPickUpBook} dana za doći u knjižnicu i posuditi ju.");
                     CheckBookBorrowStatus();
-                } else {
+                }
+                else
+                {
                     return;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }

@@ -85,6 +85,9 @@
             </Button>
             <Button Width="120" Height="40" Margin="0,0,10,0" x:Name="btnAddReview" Background="#637E60" Foreground="#FFEFE8" Click="btnAddReview_Click">Recenzije</Button>
             <Button Width="120" Height="40" Margin="0,0,10,0" x:Name="btnBorrow" Background="#637E60" Foreground="#FFEFE8" Click="btnBorrow_Click">Posudi</Button>
+            <Button Content="Rezerviraj" x:Name="btnReserve" Background="#637E60" Foreground="#FFEFE8" Click="btnReserve_Click"></Button>
+<TextBlock Foreground="#637E60" Text="Pozicija rezervacije:" VerticalAlignment="Center" Margin="15,0,0,0" FontWeight="Bold"
+           FontSize="16" x:Name="tblPosition" Visibility="Collapsed"></TextBlock>
         </StackPanel>
 
     </Grid>
