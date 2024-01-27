@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,5 +41,22 @@ namespace DataAccessLayer.Repositories
                 return 0;
             }
         }
+
+        public IQueryable<MostPopularGenres> GetMostPopularGenres(int Library_id) {
+            var query = from borrow in Context.Borrows
+                        join book in Context.Books on borrow.Book_id equals book.id
+                        join genre in Context.Genres on book.Genre_id equals genre.id
+                        where book.Library_id == Library_id
+                        group genre.name by genre into genreGroup
+                        select new MostPopularGenres {
+                            Genre_name = genreGroup.Key.name,
+                            Times_Borrowed = genreGroup.Count()
+                        };
+
+            query = query.OrderByDescending(genre => genre.Times_Borrowed);
+            return query;
+        }
+
+
     }
 }

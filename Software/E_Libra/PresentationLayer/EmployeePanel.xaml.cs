@@ -46,5 +46,9 @@ namespace PresentationLayer {
             UcAllNotifications ucAllNotifications = new UcAllNotifications();
             contentPanel.Content = ucAllNotifications;
         }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e) {
+            contentPanel.Content = new UcStatistics();
+        }
     }
 }

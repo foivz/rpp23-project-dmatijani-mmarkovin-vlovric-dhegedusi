@@ -55,8 +55,8 @@
     <Compile Include="Exceptions\WrongLibraryException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\ArchiveServices.cs" />
-	  <Compile Include="services\BorrowService.cs" />
-	  <Compile Include="services\AuthorService.cs" />
+    <Compile Include="services\BorrowService.cs" />
+    <Compile Include="services\AuthorService.cs" />
     <Compile Include="services\EmployeeService.cs" />
     <Compile Include="services\LibraryService.cs" />
     <Compile Include="Exceptions\BookException.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="services\NotificationService.cs" />
     <Compile Include="services\ReservationService.cs" />
     <Compile Include="services\ReviewService.cs" />
+    <Compile Include="services\StatisticsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
@@ -74,7 +75,7 @@
       <Name>DataAccessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntitiesLayer\EntitiesLayer.csproj">
-      <Project>{334b2ef2-cc21-4264-86b0-5177e914e1e2}</Project>
+      <Project>{334B2EF2-CC21-4264-86B0-5177E914E1E2}</Project>
       <Name>EntitiesLayer</Name>
     </ProjectReference>
   </ItemGroup>

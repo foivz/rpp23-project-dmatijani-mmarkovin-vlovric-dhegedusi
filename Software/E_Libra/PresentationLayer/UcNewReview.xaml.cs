@@ -43,19 +43,23 @@ namespace PresentationLayer {
             int rwBook_id = bookId;
 
 
+            if (cboRating.SelectedItem != null) {
 
-            Review newReview = new Review {
-                Member_id = rwMember_id,
-                Book_id = rwBook_id,
-                comment = newComment,
-                rating = newRating,
-                date = DateTime.Today
-            };
+                Review newReview = new Review {
+                    Member_id = rwMember_id,
+                    Book_id = rwBook_id,
+                    comment = newComment,
+                    rating = newRating,
+                    date = DateTime.Today
+                };
 
-            int result = reviewService.AddReview(newReview);
+                int result = reviewService.AddReview(newReview);
 
-            ucReviewsList ucReviews = new ucReviewsList(bookId);
-            (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucReviews;
+                ucReviewsList ucReviews = new ucReviewsList(bookId);
+                (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucReviews;
+            } else {
+                MessageBox.Show("Niste odabrali ocjenu!");
+            }
         }
     }
 }

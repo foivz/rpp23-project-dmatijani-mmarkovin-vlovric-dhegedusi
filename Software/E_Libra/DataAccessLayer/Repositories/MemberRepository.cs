@@ -1,5 +1,6 @@
 ﻿using EntitiesLayer;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -36,6 +37,10 @@ namespace DataAccessLayer.Repositories
             var sql = from m in Member
                       where m.id == memberId
                       select $"{m.name} {m.surname}";
+            return sql;
+        }
+        public int GetMemberCount(int Library_id) {
+            var sql = Member.Count(m => m.Library_id == Library_id);
             return sql;
         }
 

@@ -63,12 +63,17 @@
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\Genre.Ext.cs" />
+    <Compile Include="Entities\IncomeStatistics.cs" />
     <Compile Include="Entities\Library.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\MostPopularBooks.cs" />
+    <Compile Include="Entities\MostPopularGenres.cs" />
     <Compile Include="Member.code.cs" />
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\Review.cs" />
+    <Compile Include="Entities\ReviewInfo.cs" />
+    <Compile Include="Entities\ReviewStatistics.cs" />
     <Compile Include="Library.code.cs" />
     <Compile Include="LoggedUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

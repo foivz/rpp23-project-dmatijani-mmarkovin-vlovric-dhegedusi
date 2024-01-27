@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -343,5 +344,19 @@ namespace DataAccessLayer.Repositories
             public string GenreName { get; set; }
             public string Digital { get; set; }
         }
+
+        public IEnumerable<MostPopularBooks> GetMostPopularBooks(int Library_id) {
+            var query = from book in Entities
+                        where book.Library_id == Library_id
+                        let bookBorrows = book.Borrows
+                        select new MostPopularBooks {
+                            Book_Name = book.name,
+                            Author_Name = book.Authors.Select(author => author.name + " " + author.surname).FirstOrDefault(),
+                            Times_Borrowed = bookBorrows.Count()
+                        };
+
+            return query.OrderByDescending(book => book.Times_Borrowed).AsEnumerable();
+        }
+
     }
 }
