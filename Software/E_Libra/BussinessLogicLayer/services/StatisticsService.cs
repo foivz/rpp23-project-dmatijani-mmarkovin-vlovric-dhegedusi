@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
     public class StatisticsService {
+        public int GetMemberCount(int Library_id) {
+            using (var repo = new StatisticsRepository()) {
+                var result = repo.GetMemberCount(Library_id);
+                    return result;
+            }
+        }
+
         public List<MostPopularBooks> GetMostPopularBooks(int Library_id) {
             using (var repo = new StatisticsRepository()) {
                 var result = repo.GetMostPopularBooks(Library_id);
@@ -28,6 +35,25 @@ namespace BussinessLogicLayer.services {
                 var result = repo.GetReviewCount(Library_id);
                 return result;
             }
+        }
+
+        public int CalculateTotalIncome(int Library_id) {
+            using (var repo = new StatisticsRepository()) {
+                var result = repo.GetMemberCount(Library_id);
+                return result*12;
+            }
+        }
+
+        public IncomeStatistics GetIncomeStatistics(int Library_id) {
+            int memberCount = GetMemberCount(Library_id);
+            int totalIncome = CalculateTotalIncome(Library_id);
+
+            IncomeStatistics statistics = new IncomeStatistics {
+                MemberCount = memberCount,
+                TotalIncome = totalIncome
+            };
+
+            return statistics;
         }
     }
 }

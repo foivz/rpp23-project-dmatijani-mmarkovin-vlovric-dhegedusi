@@ -30,12 +30,17 @@ namespace DataAccessLayer.Repositories {
             }
         }
 
+
+        public int GetMemberCount(int Library_id) {
+            using (var repo = new MemberRepository()) {
+                return repo.GetMemberCount(Library_id);
+            }
+        }
+
         public void Dispose() {
             if (Context != null) {
                 Context.Dispose();
             }
         }
-
-        
     }
 }

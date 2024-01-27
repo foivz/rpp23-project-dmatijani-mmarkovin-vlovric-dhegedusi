@@ -28,6 +28,7 @@ namespace PresentationLayer {
         private DataGrid dgMostPopularBooks;
         private ItemsControl icMostPopularGenres;
         private ItemsControl icReviewCount;
+        private ItemsControl icIncomeStatistics;
         public UcStatistics() {
             InitializeComponent();
             cmbStats.SelectionChanged += StatsComboBoxControl_SelectionChanged;
@@ -47,6 +48,12 @@ namespace PresentationLayer {
                         if (icMostPopularGenres != null && grid.Children.Contains(icMostPopularGenres)) {
                             grid.Children.Remove(icMostPopularGenres);
                         }
+                        if (icReviewCount != null && grid.Children.Contains(icReviewCount)) {
+                            grid.Children.Remove(icReviewCount);
+                        }
+                        if (icIncomeStatistics != null && grid.Children.Contains(icIncomeStatistics)) {
+                            grid.Children.Remove(icIncomeStatistics);
+                        }
 
                         CreateLayoutMostPopularBooks(Library_id);
                        
@@ -57,38 +64,44 @@ namespace PresentationLayer {
                         if (dgMostPopularBooks != null && grid.Children.Contains(dgMostPopularBooks)) {
                             grid.Children.Remove(dgMostPopularBooks);
                         }
+                        if (icReviewCount != null && grid.Children.Contains(icReviewCount)) {
+                            grid.Children.Remove(icReviewCount);
+                        }
+                        if (icIncomeStatistics != null && grid.Children.Contains(icIncomeStatistics)) {
+                            grid.Children.Remove(icIncomeStatistics);
+                        }
 
                         CreateLayoutMostPopularGenres(Library_id);
                         break;
 
-                    case 2: // Broj registriranih članova
-                        if (dgMostPopularBooks != null && grid.Children.Contains(dgMostPopularBooks)) {
-                            grid.Children.Remove(dgMostPopularBooks);
-                        }
-                        if (icMostPopularGenres != null && grid.Children.Contains(icMostPopularGenres)) {
-                            grid.Children.Remove(icMostPopularGenres);
-                        }
-                        break;
 
-                    case 3: // Broj napisanih recenzija
+                    case 2: // Broj napisanih recenzija
                         if (dgMostPopularBooks != null && grid.Children.Contains(dgMostPopularBooks)) {
                             grid.Children.Remove(dgMostPopularBooks);
                         }
                         if (icMostPopularGenres != null && grid.Children.Contains(icMostPopularGenres)) {
                             grid.Children.Remove(icMostPopularGenres);
+                        }
+                        if (icIncomeStatistics != null && grid.Children.Contains(icIncomeStatistics)) {
+                            grid.Children.Remove(icIncomeStatistics);
                         }
 
                         CreateLayoutReviewCount(Library_id);
 
                         break;
 
-                    case 4: // Prihodi
+                    case 3: // Prihodi
                         if (dgMostPopularBooks != null && grid.Children.Contains(dgMostPopularBooks)) {
                             grid.Children.Remove(dgMostPopularBooks);
                         }
                         if (icMostPopularGenres != null && grid.Children.Contains(icMostPopularGenres)) {
                             grid.Children.Remove(icMostPopularGenres);
                         }
+                        if (icReviewCount != null && grid.Children.Contains(icReviewCount)) {
+                            grid.Children.Remove(icReviewCount);
+                        }
+
+                        CreateLayoutIncome(Library_id);
                         break;
 
                     default:
@@ -96,6 +109,75 @@ namespace PresentationLayer {
                 }
             }
         }
+
+        private void CreateLayoutIncome(int Library_id) {
+            var incomeStatistics = statisticsService.GetIncomeStatistics(Library_id);
+
+            icIncomeStatistics = new ItemsControl {
+                Name = "icIncomeStatistics",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Width = 500,
+                Height = 300,
+                ItemsSource = new List<IncomeStatistics> { incomeStatistics }
+            };
+
+            DataTemplate dataTemplate = new DataTemplate(typeof(IncomeStatistics));
+
+            // Create a StackPanel within the DataTemplate
+            FrameworkElementFactory stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
+            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
+
+            // Create Border and TextBlock for Member Count
+            FrameworkElementFactory border1Factory = new FrameworkElementFactory(typeof(Border));
+            border1Factory.SetValue(Border.BorderBrushProperty, Brushes.Black);
+            border1Factory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
+            border1Factory.SetValue(Border.CornerRadiusProperty, new CornerRadius(5));
+            border1Factory.SetValue(Border.PaddingProperty, new Thickness(5));
+            border1Factory.SetValue(Border.MarginProperty, new Thickness(5, 0, 5, 2));
+
+            FrameworkElementFactory textBlock1Factory = new FrameworkElementFactory(typeof(TextBlock));
+            textBlock1Factory.SetBinding(TextBlock.TextProperty, new Binding("MemberCount") {
+                StringFormat = "Broj registriranih članova: {0}"
+            });
+            textBlock1Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
+
+            // Add TextBlock to Border
+            border1Factory.AppendChild(textBlock1Factory);
+
+            // Create Border and TextBlock for Total Income
+            FrameworkElementFactory border2Factory = new FrameworkElementFactory(typeof(Border));
+            border2Factory.SetValue(Border.BorderBrushProperty, Brushes.Black);
+            border2Factory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
+            border2Factory.SetValue(Border.CornerRadiusProperty, new CornerRadius(5));
+            border2Factory.SetValue(Border.PaddingProperty, new Thickness(5));
+            border2Factory.SetValue(Border.MarginProperty, new Thickness(5, 0, 5, 2));
+
+            FrameworkElementFactory textBlock2Factory = new FrameworkElementFactory(typeof(TextBlock));
+            textBlock2Factory.SetBinding(TextBlock.TextProperty, new Binding("TotalIncome") {
+                StringFormat = "Ukupni prihod od članarine: {0}"
+            });
+            textBlock2Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
+
+            // Add TextBlock to Border
+            border2Factory.AppendChild(textBlock2Factory);
+
+            // Add Borders to StackPanel
+            stackPanelFactory.AppendChild(border1Factory);
+            stackPanelFactory.AppendChild(border2Factory);
+
+            // Set StackPanel as the VisualTree for the DataTemplate
+            dataTemplate.VisualTree = stackPanelFactory;
+
+            icIncomeStatistics.ItemTemplate = dataTemplate;
+
+            Grid.SetRow(icIncomeStatistics, 1);
+            Grid.SetColumn(icIncomeStatistics, 0);
+            grid.Children.Add(icIncomeStatistics);
+        }
+
+
+
 
         private void CreateLayoutReviewCount(int Library_id) {
             var ReviewStatistics = statisticsService.GetReviewCount(Library_id);
@@ -187,13 +269,13 @@ namespace PresentationLayer {
             // Create TextBlock for Genre_name
             FrameworkElementFactory textBlock1Factory = new FrameworkElementFactory(typeof(TextBlock));
             textBlock1Factory.SetBinding(TextBlock.TextProperty, new Binding("Genre_name"));
-            textBlock1Factory.SetValue(TextBlock.MarginProperty, new Thickness(5, 0, 5, 0));
+            textBlock1Factory.SetValue(TextBlock.MarginProperty, new Thickness(5, 0, 60, 0));
             textBlock1Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
 
             // Create TextBlock for Times_Borrowed
             FrameworkElementFactory textBlock2Factory = new FrameworkElementFactory(typeof(TextBlock));
             textBlock2Factory.SetBinding(TextBlock.TextProperty, new Binding("Times_Borrowed"));
-            textBlock2Factory.SetValue(TextBlock.MarginProperty, new Thickness(5, 0, 0, 0));
+            textBlock2Factory.SetValue(TextBlock.MarginProperty, new Thickness(60, 0, 0, 0));
             textBlock2Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
             textBlock2Factory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Right);
 

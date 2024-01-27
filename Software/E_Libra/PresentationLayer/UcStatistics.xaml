@@ -9,9 +9,8 @@
     <Grid x:Name="grid">
         <ComboBox x:Name="cmbStats" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Width="300">
             <ComboBoxItem Content="Najposuđenije knjige"/>
-            <ComboBoxItem Content="Broj ukupnih posudbi po žanru"/>
-            <ComboBoxItem Content="Broj registriranih članova"/>
-            <ComboBoxItem Content="Broj napisanih recenzija"/>
+            <ComboBoxItem Content="Posudbe po žanrovima"/>
+            <ComboBoxItem Content="Statistika recenzija"/>
             <ComboBoxItem Content="Prihodi"/>
         </ComboBox>
     </Grid>

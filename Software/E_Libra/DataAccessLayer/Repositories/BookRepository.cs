@@ -263,19 +263,17 @@ namespace DataAccessLayer.Repositories
             public string GenreName { get; set; }
         }
 
-        public IQueryable<MostPopularBooks> GetMostPopularBooks(int Library_id) {
+        public IEnumerable<MostPopularBooks> GetMostPopularBooks(int Library_id) {
             var query = from book in Entities
-                        from author in book.Authors
-                        join borrow in Context.Borrows on book.id equals borrow.Book_id into bookBorrows
                         where book.Library_id == Library_id
+                        let bookBorrows = book.Borrows
                         select new MostPopularBooks {
                             Book_Name = book.name,
-                            Author_Name = author.name + " " + author.surname,
+                            Author_Name = book.Authors.Select(author => author.name + " " + author.surname).FirstOrDefault(),
                             Times_Borrowed = bookBorrows.Count()
                         };
 
-            query = query.OrderByDescending(book => book.Times_Borrowed);
-            return query;
+            return query.OrderByDescending(book => book.Times_Borrowed).AsEnumerable();
         }
 
     }
