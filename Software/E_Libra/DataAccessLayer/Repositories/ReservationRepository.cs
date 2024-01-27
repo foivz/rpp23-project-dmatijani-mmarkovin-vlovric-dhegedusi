@@ -152,6 +152,27 @@ namespace DataAccessLayer.Repositories
             var query = (from r in Entities where r.Member_id == memberId && r.Book_id == bookId select r.idReservation).FirstOrDefault();
             return query;
         }
-        
+        public string ShowExistingReservations()
+        {
+            MemberRepository memberRepository = new MemberRepository();
+            int memberId = memberRepository.GetMemberId(LoggedUser.Username);
+            BookRepository bookRepository = new BookRepository();
+
+            var userReservations = Entities
+                .Where(r => r.Member_id == memberId && r.reservation_date != null)
+                .ToList();
+
+            if (userReservations.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder("Podignite sljedeće rezervacije do prikazanog datuma:\n");
+
+                foreach (var reservation in userReservations)
+                {
+                    sb.AppendLine($"Knjiga: {reservation.Book.name}, Datum: {reservation.reservation_date}");
+                }
+                return sb.ToString();
+            }
+            else return null;
+        }
     }
 }

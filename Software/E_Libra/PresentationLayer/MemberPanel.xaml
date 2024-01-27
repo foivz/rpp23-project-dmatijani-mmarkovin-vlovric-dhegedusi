@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="#FFEFE8"
-        Title="MemberPanel" Height="500" Width="900">
+        Title="MemberPanel" Height="500" Width="900" Loaded="Window_Loaded">
     <DockPanel>
         <Grid x:Name="navPanel" DockPanel.Dock="Left" Width="200" Background="#637E60">
             <Grid.RowDefinitions>

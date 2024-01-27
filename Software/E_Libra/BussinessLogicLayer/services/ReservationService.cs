@@ -85,5 +85,12 @@ namespace BussinessLogicLayer.services
                 return repo.GetReservationPosition(reservationId, bookId);
             }
         }
+        public string ShowExistingReservations()
+        {
+            using (var repo = new ReservationRepository())
+            {
+                return repo.ShowExistingReservations();
+            }
+        }
     }
 }

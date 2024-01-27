@@ -21,8 +21,6 @@ namespace PresentationLayer {
     public partial class MemberPanel : Window {
         public MemberPanel() {
             InitializeComponent();
-            ReservationService reservationService = new ReservationService();
-            reservationService.CheckReservationDates();
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -48,6 +46,17 @@ namespace PresentationLayer {
         private void btnReservations_Click(object sender, RoutedEventArgs e)
         {
             contentPanel.Content = new UcReservations();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ReservationService reservationService = new ReservationService();
+            reservationService.CheckReservationDates();
+            var res = reservationService.ShowExistingReservations();
+            if (!string.IsNullOrEmpty(res))
+            {
+                MessageBox.Show(res);
+            }
         }
     }
 }
