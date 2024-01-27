@@ -24,18 +24,26 @@ namespace DataAccessLayer.Repositories
         }
         public IQueryable<Member> GetMembersByUsername(string username)
         {
-            var query = from e in Entities
-                        where e.username == username
-                        select e;
+            var query = from m in Entities
+                        where m.username == username
+                        select m;
+
+            return query;
+        }
+        public IQueryable<Member> GetAllMembersByFilter(string name, string surname)
+        {
+            var query = from m in Entities
+                        where m.name == name || m.surname == surname
+                        select m;
 
             return query;
         }
 
         public IQueryable<Member> GetMembersByLibrary(int libraryID)
         {
-            var query = from e in Entities
-                        where e.Library_id == libraryID
-                        select e;
+            var query = from m in Entities
+                        where m.Library_id == libraryID
+                        select m;
 
             return query;
         }

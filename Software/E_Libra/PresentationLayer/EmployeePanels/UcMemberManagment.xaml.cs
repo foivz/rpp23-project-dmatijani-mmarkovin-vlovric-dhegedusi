@@ -73,5 +73,25 @@ namespace PresentationLayer.EmployeePanels
                 MessageBox.Show("Odaberite člana!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void btnFilter_Click(object sender, RoutedEventArgs e)
+        {
+            string name = "", surname = "";
+            string input = txtFilter.Text;
+            string[] words = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (words.Length >= 2)
+            {
+                name = words[0];
+                surname = words[1];
+            }
+            List<Member> filteredMembers = memberService.GetAllMembersByFilter(name,surname);
+            dgvMembers.ItemsSource = filteredMembers;
+        }
+
+        private void btnClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            txtFilter.Text = "";
+            dgvMembers.ItemsSource = memberService.GetAllMembersByLybrary();
+        }
     }
 }

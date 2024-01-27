@@ -51,6 +51,13 @@ namespace BussinessLogicLayer.services {
                 return false;
             }
         }
+        public List<Member> GetAllMembersByFilter(string name, string surname)
+        {
+            using (var memberRepo = new MemberRepository())
+            {
+                return memberRepo.GetAllMembersByFilter(name, surname).ToList();
+            }
+        }
 
         public int GetMemberId(string username) {
             using (var memberRepo = new MemberRepository()) {

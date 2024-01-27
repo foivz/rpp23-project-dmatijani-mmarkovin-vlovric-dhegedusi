@@ -8,6 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <DockPanel>
         <TextBlock Text="Članovi knjižnice" Style="{StaticResource titleText}" Background="#637E60" Foreground="#FFEFE8" DockPanel.Dock="Top"/>
+        <StackPanel Margin="5" HorizontalAlignment="Right" Orientation="Horizontal" DockPanel.Dock="Top">
+            <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" Width="300" Margin="10">
+                <TextBox x:Name="txtFilter" Style="{StaticResource textBox}"/>
+            </Border>
+            <Button x:Name="btnFilter" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Filtriraj" Click="btnFilter_Click"/>
+            <Button x:Name="btnClearFilter" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Očisti filter" Click="btnClearFilter_Click"/>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="54" HorizontalAlignment="Right">
             <Button x:Name="btnMemberRegistration" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Registracija člana" Click="btnMemberRegistration_Click"/>
             <Button x:Name="btnEditMember" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Uredi člana" Click="btnEditMember_Click"/>
