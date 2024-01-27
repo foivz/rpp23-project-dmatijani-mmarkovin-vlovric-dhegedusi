@@ -9,7 +9,7 @@ namespace BussinessLogicLayer.Exceptions
     public class BookException: Exception
     {
         public string Poruka;
-        public BookException(string poruka) { 
+        public BookException(string poruka) : base(poruka) { 
 
             Poruka = poruka;
 

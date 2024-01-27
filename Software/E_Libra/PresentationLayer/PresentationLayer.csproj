@@ -44,9 +44,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,6 +68,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EmployeePanels\UcAllNotifications.xaml.cs">
+      <DependentUpon>UcAllNotifications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePanels\UcEditNotification.xaml.cs">
+      <DependentUpon>UcEditNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePanels\UcNewNotification.xaml.cs">
+      <DependentUpon>UcNewNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MemberPanels\UcAllNotificationsMember.xaml.cs">
+      <DependentUpon>UcAllNotificationsMember.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MemberPanels\UcDetailsNotification.xaml.cs">
+      <DependentUpon>UcDetailsNotification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcDigitalBook.xaml.cs">
       <DependentUpon>UcDigitalBook.xaml</DependentUpon>
     </Compile>
@@ -106,6 +124,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="BorrowStatusConverter.cs" />
+    <Compile Include="MemberPanels\UcMemberBorrows.xaml.cs">
+      <DependentUpon>UcMemberBorrows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcAddNewBook.xaml.cs">
       <DependentUpon>UcAddNewBook.xaml</DependentUpon>
     </Compile>
@@ -115,22 +137,40 @@
     <Compile Include="UcArchiveList.xaml.cs">
       <DependentUpon>UcArchiveList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UcBookDetails.xaml.cs">
-      <DependentUpon>UcBookDetails.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UcBookSearchFilter.xaml.cs">
-      <DependentUpon>UcBookSearchFilter.xaml</DependentUpon>
-    </Compile>
+	  <Compile Include="UcBorrowNewBook.xaml.cs">
+		  <DependentUpon>UcBorrowNewBook.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="UcBookDetails.xaml.cs">
+		  <DependentUpon>UcBookDetails.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="UcBookSearchFilter.xaml.cs">
+		  <DependentUpon>UcBookSearchFilter.xaml</DependentUpon>
+	  </Compile>
     <Compile Include="UcCatalogueOptions.xaml.cs">
       <DependentUpon>UcCatalogueOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UcNewAuthor.xaml.cs">
-      <DependentUpon>UcNewAuthor.xaml</DependentUpon>
-    </Compile>
+	  <Compile Include="UcNewAuthor.xaml.cs">
+		  <DependentUpon>UcNewAuthor.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="UcEmployeeBorrows.xaml.cs">
+		  <DependentUpon>UcEmployeeBorrows.xaml</DependentUpon>
+	  </Compile>
     <Compile Include="UcNewCopies.xaml.cs">
       <DependentUpon>UcNewCopies.xaml</DependentUpon>
     </Compile>
     <Page Include="EmployeePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeePanels\UcAllNotifications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeePanels\UcEditNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeePanels\UcNewNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +210,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+	  <Page Include="MemberPanels\UcAllNotificationsMember.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Include="MemberPanels\UcDetailsNotification.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Include="MemberPanels\UcMemberBorrows.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
     <Page Include="UcAddNewBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,26 +234,34 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UcBookDetails.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UcBookSearchFilter.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+	  <Page Include="UcBookDetails.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Include="UcBookSearchFilter.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Include="UcBorrowNewBook.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
     <Page Include="UcCatalogueOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UcDigitalBook.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UcNewAuthor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+	  <Page Include="UcDigitalBook.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Include="UcNewAuthor.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Include="UcEmployeeBorrows.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
     <Page Include="UcNewCopies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

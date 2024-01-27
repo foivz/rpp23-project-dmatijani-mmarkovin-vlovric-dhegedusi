@@ -77,5 +77,11 @@ namespace BussinessLogicLayer.services {
                 return employeeRepo.GetEmployeeId(username);
             }
         }
+
+        public Employee GetEmployeeByUsername(string username) {
+            using (var repository = new EmployeeRepository()) {
+                return repository.GetEmployeesById(GetEmployeeId(username)).FirstOrDefault();
+            }
+        }
     }
 }
