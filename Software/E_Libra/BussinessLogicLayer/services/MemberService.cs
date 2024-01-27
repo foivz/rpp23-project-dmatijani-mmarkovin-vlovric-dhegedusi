@@ -92,6 +92,24 @@ namespace BussinessLogicLayer.services {
                 return memberRepo.GetMembersByLibrary(LibraryId).ToList();
             }
         }
+        public bool RestoreMembership(Member member)
+        {
+            DateTime? membershipRunOutDate = member.membership_date.HasValue? member.membership_date.Value.AddYears(1): (DateTime?)null;
+            DateTime dateNow = DateTime.Now;
+            if(dateNow > membershipRunOutDate)
+            {
+                using (var memberRepo = new MemberRepository())
+                {
+                    int restored = memberRepo.UpdateMembershipDate(member,dateNow);
+                    if(restored > 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+
+        }
         public string RandomCodeGenerator()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

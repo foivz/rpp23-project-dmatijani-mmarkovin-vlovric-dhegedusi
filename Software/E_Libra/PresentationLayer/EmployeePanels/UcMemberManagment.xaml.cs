@@ -93,5 +93,25 @@ namespace PresentationLayer.EmployeePanels
             txtFilter.Text = "";
             dgvMembers.ItemsSource = memberService.GetAllMembersByLybrary();
         }
+
+        private void btnMembership_Click(object sender, RoutedEventArgs e)
+        {
+            Member selectedMember = dgvMembers.SelectedItem as Member;
+            if (selectedMember != null)
+            {
+                bool restored = memberService.RestoreMembership(selectedMember);
+                if (restored)
+                {
+                    MessageBox.Show("Članstvo produljeno!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+                    dgvMembers.ItemsSource = memberService.GetAllMembersByLybrary();
+                } else
+                {
+                    MessageBox.Show("Članstvo još nije isteklo!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            } else
+            {
+                MessageBox.Show("Odaberite člana!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

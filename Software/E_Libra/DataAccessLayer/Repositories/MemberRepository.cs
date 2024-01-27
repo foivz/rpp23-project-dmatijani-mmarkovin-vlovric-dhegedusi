@@ -38,6 +38,18 @@ namespace DataAccessLayer.Repositories
 
             return query;
         }
+        public int UpdateMembershipDate(Member member, DateTime dateNow, bool saveChanges = true)
+        {
+            var existingMembeer = Entities.SingleOrDefault(m => m.id == member.id);
+            existingMembeer.membership_date = dateNow;
+            if (saveChanges)
+            {
+                return SaveChanges();
+            } else
+            {
+                return 0;
+            }
+        }
 
         public IQueryable<Member> GetMembersByLibrary(int libraryID)
         {
