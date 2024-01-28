@@ -128,7 +128,10 @@ namespace BussinessLogicLayer.services {
         }
         public bool RestoreMembership(Member member)
         {
-            DateTime? membershipRunOutDate = member.membership_date.HasValue? member.membership_date.Value.AddYears(1): (DateTime?)null;
+            LibraryService libraryService = new LibraryService();
+            decimal membershipDuration = libraryService.GetLibraryMembershipDuration(member.Library_id);
+
+            DateTime? membershipRunOutDate = member.membership_date.HasValue? member.membership_date.Value.AddDays(Convert.ToInt16(membershipDuration)): (DateTime?)null;
             DateTime dateNow = DateTime.Now;
             if(dateNow > membershipRunOutDate)
             {

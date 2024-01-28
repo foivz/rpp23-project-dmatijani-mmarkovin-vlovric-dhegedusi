@@ -65,5 +65,13 @@ namespace DataAccessLayer.Repositories {
 
             return query.FirstOrDefault().price_day_late;
         }
+
+        public DateTime GetLibraryMembershipDuration(int libraryId) {
+            var query = from l in Entities
+                        where l.id == libraryId
+                        select l.membership_duration;
+
+            return query.FirstOrDefault();
+        }
     }
 }
