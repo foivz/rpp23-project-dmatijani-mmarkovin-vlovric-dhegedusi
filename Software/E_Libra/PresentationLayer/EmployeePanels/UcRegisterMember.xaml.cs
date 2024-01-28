@@ -56,8 +56,16 @@ namespace PresentationLayer.EmployeePanels
                     barcode_id = (txtBarcode.Text).Length <= 45 ? txtBarcode.Text : (txtBarcode.Text).Substring(0, 45),
                     Library_id = LibraryId
                 };
-                memberService.AddNewMember(newMember);
-                (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
+                bool exsists = memberService.CheckExistingUsername(newMember);
+                if (!exsists) {
+                    txtUsername.Text = "";
+                    memberService.AddNewMember(newMember);
+                    (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
+                } else
+                {
+                    MessageBox.Show("Korisničko ime već postoji!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             } else
             {
                 MessageBox.Show("Obavezni podaci čnana nisu uneseni ili su krivo unešeni!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
