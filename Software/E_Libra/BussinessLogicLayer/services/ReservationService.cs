@@ -99,5 +99,12 @@ namespace BussinessLogicLayer.services
                 return repo.ShowExistingReservations();
             }
         }
+        public Reservation CheckValidReservationFroMember(int memberId, int bookId)
+        {
+            using(var repo = new ReservationRepository())
+            {
+                return repo.CheckValidReservationFroMember(memberId, bookId);
+            }
+        }
     }
 }

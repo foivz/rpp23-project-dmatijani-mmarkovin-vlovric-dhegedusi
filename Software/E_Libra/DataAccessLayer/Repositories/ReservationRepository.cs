@@ -181,5 +181,10 @@ namespace DataAccessLayer.Repositories
             }
             else return null;
         }
+        public Reservation CheckValidReservationFroMember(int memberId, int bookId)
+        {
+            var query = (from r in Entities where (r.Member_id == memberId && r.Book_id == bookId && r.reservation_date != null) select r).FirstOrDefault();
+            return query;
+        }
     }
 }
