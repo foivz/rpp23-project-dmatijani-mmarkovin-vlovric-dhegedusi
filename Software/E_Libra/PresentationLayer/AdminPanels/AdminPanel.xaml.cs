@@ -18,6 +18,8 @@ namespace PresentationLayer.AdminPanels {
         public AdminPanel() {
             InitializeComponent();
             AdminGuiControl.AdminPanel = this;
+
+            KeyDown += MainWindow_KeyDown;
         }
 
         private void btnAllLibraries_Click(object sender, RoutedEventArgs e) {
@@ -47,6 +49,16 @@ namespace PresentationLayer.AdminPanels {
             MainWindow login = new MainWindow();
             login.Show();
             Close();
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.F1) {
+                ShowHelp();
+            }
+        }
+
+        private void ShowHelp() {
+            AdminGuiControl.LoadNewControl(new UcHelpAdmin());
         }
     }
 }

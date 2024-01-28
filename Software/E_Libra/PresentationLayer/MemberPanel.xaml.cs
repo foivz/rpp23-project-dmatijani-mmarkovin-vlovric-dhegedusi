@@ -1,5 +1,6 @@
 ﻿using BussinessLogicLayer.services;
 using EntitiesLayer;
+using PresentationLayer.AdminPanels;
 using PresentationLayer.MemberPanels;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace PresentationLayer {
     public partial class MemberPanel : Window {
         public MemberPanel() {
             InitializeComponent();
+
+            KeyDown += MainWindow_KeyDown;
         }
 
         private void btnBorrow_Click(object sender, RoutedEventArgs e) {
@@ -63,6 +66,16 @@ namespace PresentationLayer {
         private void btnNotifications_Click(object sender, RoutedEventArgs e) {
             UcAllNotificationsMember memberNotifications = new UcAllNotificationsMember();
             contentPanel.Content = memberNotifications;
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.F1) {
+                ShowHelp();
+            }
+        }
+
+        private void ShowHelp() {
+            contentPanel.Content = new UcHelpMember();
         }
     }
 }

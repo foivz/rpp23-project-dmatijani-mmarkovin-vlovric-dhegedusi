@@ -1,4 +1,5 @@
 ﻿using EntitiesLayer;
+using PresentationLayer.AdminPanels;
 using PresentationLayer.EmployeePanels;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace PresentationLayer
         public EmployeePanel()
         {
             InitializeComponent();
+
+            KeyDown += MainWindow_KeyDown;
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -61,6 +64,16 @@ namespace PresentationLayer
         {
             UcMemberManagment ucMemberMannagment = new UcMemberManagment();
             contentPanel.Content = ucMemberMannagment;
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.F1) {
+                ShowHelp();
+            }
+        }
+
+        private void ShowHelp() {
+            contentPanel.Content = new UcHelpEmployee();
         }
     }
 }

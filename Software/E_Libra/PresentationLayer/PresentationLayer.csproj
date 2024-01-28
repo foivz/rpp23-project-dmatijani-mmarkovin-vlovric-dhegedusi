@@ -59,11 +59,20 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Patagames.Pdf, Version=11.80.45.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pdfium.Net.SDK.4.88.2704\lib\net48\Patagames.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Patagames.Pdf.WinForms, Version=4.26.18.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pdfium.Net.SDK.4.88.2704\lib\net48\Patagames.Pdf.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Patagames.Pdf.Wpf, Version=4.26.20.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pdfium.Net.SDK.4.88.2704\lib\net48\Patagames.Pdf.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-	  <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -89,6 +98,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminPanels\UcHelpAdmin.xaml.cs">
+      <DependentUpon>UcHelpAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePanels\UcAllNotifications.xaml.cs">
       <DependentUpon>UcAllNotifications.xaml</DependentUpon>
     </Compile>
@@ -97,6 +109,9 @@
     </Compile>
     <Compile Include="EmployeePanels\UcEditNotification.xaml.cs">
       <DependentUpon>UcEditNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePanels\UcHelpEmployee.xaml.cs">
+      <DependentUpon>UcHelpEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeePanels\UcMemberManagment.xaml.cs">
       <DependentUpon>UcMemberManagment.xaml</DependentUpon>
@@ -113,21 +128,24 @@
     <Compile Include="MemberPanels\UcDetailsNotification.xaml.cs">
       <DependentUpon>UcDetailsNotification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MemberPanels\UcHelpMember.xaml.cs">
+      <DependentUpon>UcHelpMember.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcDigitalBook.xaml.cs">
       <DependentUpon>UcDigitalBook.xaml</DependentUpon>
     </Compile>
     <Compile Include="UcNewGenre.xaml.cs">
       <DependentUpon>UcNewGenre.xaml</DependentUpon>
     </Compile>
-	  <Compile Include="UcReservations.xaml.cs">
-		  <DependentUpon>UcReservations.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Include="UcStatistics.xaml.cs">
-		  <DependentUpon>UcStatistics.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Include="UcReturnBook.xaml.cs">
-		  <DependentUpon>UcReturnBook.xaml</DependentUpon>
-	  </Compile>
+    <Compile Include="UcReservations.xaml.cs">
+      <DependentUpon>UcReservations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcStatistics.xaml.cs">
+      <DependentUpon>UcStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UcReturnBook.xaml.cs">
+      <DependentUpon>UcReturnBook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcWishlist.xaml.cs">
       <DependentUpon>UcWishlist.xaml</DependentUpon>
     </Compile>
@@ -149,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminPanels\UcAllLibraries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanels\UcHelpAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,6 +232,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EmployeePanels\UcHelpEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EmployeePanels\UcMemberManagment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,6 +292,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MemberPanels\UcHelpMember.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MemberPanels\UcMemberBorrows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -318,18 +348,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	  <Page Include="UcStatistics.xaml">
-		  <SubType>Designer</SubType>
-		  <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	  <Page Include="UcReservations.xaml">
-		  <SubType>Designer</SubType>
-		  <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	  <Page Include="UcReturnBook.xaml">
-		  <SubType>Designer</SubType>
-		  <Generator>MSBuild:Compile</Generator>
-	  </Page>
+    <Page Include="UcStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcReservations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UcReturnBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UcWishlist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -364,15 +394,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Pdf.Net.SDK.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="libpdfium.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="UserDocumentation\User_documentation_admin.pdf" />
+    <None Include="UserDocumentation\User_documentation_employee.pdf" />
+    <None Include="UserDocumentation\User_documentation_member.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -406,6 +443,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="icudt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -413,6 +455,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Pdfium.Net.SDK.4.88.2704\build\Pdfium.Net.SDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Pdfium.Net.SDK.4.88.2704\build\Pdfium.Net.SDK.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Pdfium.Net.SDK.4.88.2704\build\Pdfium.Net.SDK.targets" Condition="Exists('..\packages\Pdfium.Net.SDK.4.88.2704\build\Pdfium.Net.SDK.targets')" />
 </Project>
