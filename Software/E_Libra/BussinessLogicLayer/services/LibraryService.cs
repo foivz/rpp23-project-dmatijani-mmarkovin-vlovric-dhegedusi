@@ -71,5 +71,12 @@ namespace BussinessLogicLayer.services {
                 return repository.GetLibraryPriceDayLate(libraryId);
             }
         }
+
+        public decimal GetLibraryMembershipDuration(int libraryId) {
+            using (var repository = new LibraryRepository()) {
+                DateTime returnedValue = repository.GetLibraryMembershipDuration(libraryId);
+                return ((returnedValue - new DateTime(2024, 1, 1)).Days + 1);
+            }
+        }
     }
 }
