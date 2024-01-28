@@ -209,5 +209,13 @@ namespace DataAccessLayer.Repositories {
                 return 0;
             }
         }
+
+        public bool HasUserBorrowedBook(int userId, int bookId) {
+            var result = Entities
+                .Where(b => b.Member_id == userId && b.Book_id == bookId && b.borrow_status != 0)
+                .FirstOrDefault();
+
+            return result != null;
+        }
     }
 }

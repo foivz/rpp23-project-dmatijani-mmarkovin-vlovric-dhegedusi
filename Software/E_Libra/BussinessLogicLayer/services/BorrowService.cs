@@ -96,5 +96,11 @@ namespace BussinessLogicLayer.services {
                 return context.Update(borrow);
             }
         }
+
+        public bool HasUserBorrowedBook(int userId, int bookId) {
+            using (var context = new BorrowRepository()) {
+                return context.HasUserBorrowedBook(userId, bookId);
+            }
+        }
     }
 }
