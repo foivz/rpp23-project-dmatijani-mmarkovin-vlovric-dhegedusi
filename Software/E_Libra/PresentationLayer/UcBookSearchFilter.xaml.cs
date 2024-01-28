@@ -97,6 +97,7 @@ namespace PresentationLayer
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             dgvBookSearch.ItemsSource = null;
+            txtSearch.Text = string.Empty;
         }
 
         private void btnDetails_Click(object sender, RoutedEventArgs e)
