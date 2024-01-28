@@ -18,9 +18,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcAddNewBook.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class UcAddNewBook : UserControl
     {
         string checkboxValue;

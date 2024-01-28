@@ -16,9 +16,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcArchiveList.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class UcArchiveList : UserControl
     {
         public UcArchiveList()

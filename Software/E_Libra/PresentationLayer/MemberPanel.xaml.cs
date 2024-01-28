@@ -16,9 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace PresentationLayer {
-    /// <summary>
-    /// Interaction logic for MemberPanel.xaml
-    /// </summary>
+    //Viktor Lovrić, metode: Window_Loaded
     public partial class MemberPanel : Window {
         public MemberPanel() {
             InitializeComponent();

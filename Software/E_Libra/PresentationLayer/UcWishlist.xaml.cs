@@ -17,9 +17,7 @@ using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcWishlist.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class UcWishlist : UserControl
     {
         public UcWishlist()

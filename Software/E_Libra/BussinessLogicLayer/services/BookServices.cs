@@ -10,6 +10,7 @@ using static DataAccessLayer.Repositories.BookRepository;
 
 namespace BussinessLogicLayer.services
 {
+    //Viktor Lovrić
     public class BookServices
     {
         public bool AddBook(Book book, Author author)

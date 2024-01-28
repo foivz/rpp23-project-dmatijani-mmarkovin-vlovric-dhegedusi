@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
+    /*Viktor Lovrić, metode: Add, GenerateBarcodeId, BarcodeExists, GetAll, GetNonArchivedBooks, InsertNewCopies, ArhiveBook, GetNonArchivedBooksByName,
+     * SearchBooks, TransformDigital, GetBooksByGenre, GetBooksByAuthor, GetBooksByYear, GetWishlistBooksForMember, AddBookToWishlist, RemoveBookFromWishlist
+     */
     public class BookRepository : Repository<Book>
     {
         public BookRepository(): base(new DatabaseModel())

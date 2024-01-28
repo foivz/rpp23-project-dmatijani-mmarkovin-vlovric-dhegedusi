@@ -14,9 +14,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for WinAcceptDecline.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class WinAcceptDecline : Window
     {
         public bool UserClickedAccept { get; private set; }

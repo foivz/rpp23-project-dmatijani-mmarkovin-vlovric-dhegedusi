@@ -18,9 +18,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcNewCopies.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class UcNewCopies : UserControl
     {
         public UcNewCopies()
