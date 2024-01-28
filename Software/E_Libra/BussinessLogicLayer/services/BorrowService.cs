@@ -77,9 +77,8 @@ namespace BussinessLogicLayer.services {
                 book.current_copies--;
                 bookService.UpdateBook(book);
             } else if (borrow.borrow_status == (int)BorrowStatus.Returned) {
-                BookServices bookService = new BookServices();
-                book.current_copies++;
-                bookService.UpdateBook(book);
+                ReservationService reservationService = new ReservationService();
+                reservationService.SetReservationEndDateAndAddCopies(book, (int)book.current_copies, 1);
             }
 
             using (var context = new BorrowRepository()) {
