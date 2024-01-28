@@ -16,17 +16,21 @@ using System.Windows.Shapes;
 using BussinessLogicLayer.services;
 using PresentationLayer.AdminPanels;
 using EntitiesLayer.Entities;
+using DataAccessLayer.Repositories;
 
 namespace PresentationLayer {
     public partial class ucReviewsList : UserControl {
-        private ReviewService services = new ReviewService();
+        ReviewService services = new ReviewService();
         MemberService memberService = new MemberService();
+        BorrowService borrowService = new BorrowService();
         private int bookId;
-
+        private int memberId;
         public ucReviewsList(int book_id) {
             InitializeComponent();
             bookId = book_id;
+            memberId = memberService.GetMemberId(LoggedUser.Username);
             LoadReviews();
+
         }
 
         private void LoadReviews() {
@@ -45,7 +49,6 @@ namespace PresentationLayer {
         }
 
         private void btnRemoveReview_Click(object sender, RoutedEventArgs e) {
-            int memberId = memberService.GetMemberId(LoggedUser.Username);
 
             if (services.HasUserReviewedBook(memberId, bookId)) {
                 services.DeleteReview(memberId, bookId);
@@ -58,15 +61,17 @@ namespace PresentationLayer {
 
         private void btnAddReview_Click(object sender, RoutedEventArgs e) {
 
+            bool hasUserBorrowedBook = borrowService.HasUserBorrowedBook(memberId, bookId);
 
-            int memberId = memberService.GetMemberId(LoggedUser.Username);
-
-            if (services.HasUserReviewedBook(memberId, bookId)) {
-                MessageBox.Show("Već si napisao recenziju za ovu knjigu!");
-            } 
-            else {
-                UcNewReview ucNewReview = new UcNewReview(bookId);
-                (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucNewReview;
+            if (hasUserBorrowedBook == true) {
+                if (services.HasUserReviewedBook(memberId, bookId)) {
+                    MessageBox.Show("Već si napisao recenziju za ovu knjigu!");
+                } else {
+                    UcNewReview ucNewReview = new UcNewReview(bookId);
+                    (Window.GetWindow(this) as MemberPanel).contentPanel.Content = ucNewReview;
+                }
+            } else {
+                MessageBox.Show("Moraš posuditi knjigu prije pisanja recenzije!");
             }
         }
 
