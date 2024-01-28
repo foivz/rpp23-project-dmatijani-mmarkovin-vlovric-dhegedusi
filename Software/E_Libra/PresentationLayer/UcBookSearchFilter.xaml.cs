@@ -25,6 +25,7 @@ namespace PresentationLayer
         {
             InitializeComponent();
             bookServices = new BookServices();
+            cbCheck.IsChecked = true;
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -36,6 +37,11 @@ namespace PresentationLayer
 
         private void ApplyFilter(bool ch)
         {
+            if (string.IsNullOrEmpty(txtSearch.Text))
+            {
+                dgvBookSearch.ItemsSource = null;
+                return;
+            }
             //0-sve, 1-žanr, 2-pisac, 3-godina
             switch (cmbFilter.SelectedIndex)
             {
