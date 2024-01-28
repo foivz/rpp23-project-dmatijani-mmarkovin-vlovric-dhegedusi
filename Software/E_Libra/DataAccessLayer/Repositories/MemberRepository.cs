@@ -52,6 +52,25 @@ namespace DataAccessLayer.Repositories
             }
         }
 
+        public int DeleteMember(int memberId, bool saveChanges = true)
+        {
+            var m = Entities.Find(memberId);
+            Context.Members.Attach(m);
+            m.Notifications.Clear();
+            m.Reviews.Clear();
+            m.Books.Clear();
+            m.Borrows.Clear();
+            m.Reservations.Clear();
+            Context.Members.Remove(m);
+            if (saveChanges)
+            {
+                return SaveChanges();
+            } else
+            {
+                return 0;
+            }
+        }
+
         public IQueryable<Member> GetMembersByLibrary(int libraryID)
         {
             var query = from m in Entities

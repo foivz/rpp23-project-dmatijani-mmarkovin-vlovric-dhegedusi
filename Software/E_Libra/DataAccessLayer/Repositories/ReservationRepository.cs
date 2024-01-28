@@ -68,6 +68,13 @@ namespace DataAccessLayer.Repositories
 
             return reservations.ToList();
         }
+        public IQueryable<Reservation> GetReservationsForMemberNormal(int memberId)
+        {
+            var query = from r in Entities
+                        where r.Member_id == memberId
+                        select r;
+            return query;
+        }
         public int RemoveReservation(int reservationId)
         {
             var reservation = Entities.FirstOrDefault(r => r.idReservation == reservationId);

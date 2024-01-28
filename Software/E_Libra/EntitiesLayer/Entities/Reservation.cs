@@ -14,7 +14,7 @@ namespace EntitiesLayer
         [Column(TypeName = "date")]
         public DateTime? reservation_date { get; set; }
 
-        public int Member_id { get; set; }
+        public int? Member_id { get; set; }
 
         public int Book_id { get; set; }
 

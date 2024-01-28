@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 namespace BussinessLogicLayer.services {
     public class MemberService {
         EmployeeService employeeService = new EmployeeService();
+        BorrowService borrowService = new BorrowService();
+        ReservationService reservationService = new ReservationService();
         
         public void CheckLoginCredentials(string username, string password) {
             using (var memberRepo = new MemberRepository()) {
@@ -44,16 +46,45 @@ namespace BussinessLogicLayer.services {
         }
         public bool DeleteMember(Member member)
         {
-
-            using (var memberRepo = new MemberRepository())
+            bool borrowsClear = CheckBorrowsForMember(member);
+            bool resrevationsClear = CheckReservationsForMember(member);
+            if(borrowsClear && resrevationsClear)
             {
-                int deleted = memberRepo.Remove(member);
-                if(deleted != 0)
+                using (var memberRepo = new MemberRepository())
                 {
-                    return true;
+                    int deleted = memberRepo.DeleteMember(member.id);
+                    if(deleted != 0)
+                    {
+                        return true;
+                    }
                 }
-                return false;
             }
+            return false;
+        }
+        private bool CheckBorrowsForMember(Member member)
+        {
+            List<Borrow> borrowsForMember = borrowService.GetAllBorrowsForMember(member.id, member.Library_id);
+            foreach (var borrow in borrowsForMember)
+            {
+                if(borrow.borrow_status == (int)BorrowStatus.Late
+                    || borrow.borrow_status == (int)BorrowStatus.Borrowed)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool CheckReservationsForMember(Member member)
+        {
+            List<Reservation> resrevationsForMember = reservationService.GetReservationsForMemberNormal(member.id);
+            foreach (var reservation in resrevationsForMember)
+            {
+                if (reservation.reservation_date != null)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         public List<Member> GetAllMembersByFilter(string name, string surname)
         {

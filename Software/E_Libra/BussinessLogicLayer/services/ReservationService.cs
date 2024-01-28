@@ -38,6 +38,13 @@ namespace BussinessLogicLayer.services
                 return repo.GetReservationsForMember(memberId).ToList();
             }
         }
+        public List<Reservation> GetReservationsForMemberNormal(int memberId)
+        {
+            using (var repo = new ReservationRepository())
+            {
+                return repo.GetReservationsForMemberNormal(memberId).ToList();
+            }
+        }
         public bool RemoveReservation(int reservationId)
         {
             using (var repo = new ReservationRepository())

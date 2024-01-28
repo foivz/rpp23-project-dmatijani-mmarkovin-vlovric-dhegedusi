@@ -21,7 +21,7 @@ namespace EntitiesLayer
 
         public int Book_id { get; set; }
 
-        public int Member_id { get; set; }
+        public int? Member_id { get; set; }
 
         public int Employee_borrow_id { get; set; }
 
