@@ -137,5 +137,11 @@ namespace BussinessLogicLayer.services
                 return context.Update(book, saveChanges);
             }
         }
+
+        public string GetBookBarcode(int id) {
+            using (var repository = new BookRepository()) {
+                return repository.GetBookBarcode(id).FirstOrDefault();
+            }
+        }
     }
 }

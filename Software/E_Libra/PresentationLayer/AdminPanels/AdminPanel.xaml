@@ -7,7 +7,7 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="#FFEFE8"
         Title="MyLibra" Height="450" Width="800">
     <DockPanel>
-        <Grid x:Name="navPanel" DockPanel.Dock="Left" Width="200" Background="#637E60">
+        <Grid x:Name="navPanel" DockPanel.Dock="Left" Width="200" Background="#637E78">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -16,16 +16,17 @@
             <StackPanel Grid.Row="0">
                 <TextBlock x:Name="tbAdmin" Text="Administratorske&#x0a;kontrole" Style="{StaticResource titleText}" FontSize="20" Foreground="#F8DFD4" Margin="0 20"/>
                 <Button x:Name="btnAllLibraries" Content="Sve knjižnice" Style="{StaticResource navButton}"
-                        Click="btnAllLibraries_Click"/>
+                        Click="btnAllLibraries_Click" Background="#637E78"/>
                 <Button x:Name="btnNewLibrary" Content="Nova knjižnica" Style="{StaticResource navButton}" 
-                        Click="btnNewLibrary_Click"/>
+                        Click="btnNewLibrary_Click" Background="#637E78"/>
                 <Button x:Name="btnAllEmployees" Content="Svi zaposlenici" Style="{StaticResource navButton}" 
-                        Click="btnAllEmployees_Click"/>
+                        Click="btnAllEmployees_Click" Background="#637E78"/>
                 <Button x:Name="btnNewEmployee" Content="Novi zaposlenik" Style="{StaticResource navButton}"
-                        Click="btnNewEmployee_Click"/>
+                        Click="btnNewEmployee_Click" Background="#637E78"/>
             </StackPanel>
             <StackPanel Grid.Row="1"/>
-            <Button x:Name="btnLogout" Grid.Row="2" Content="Odjava" Style="{StaticResource navButton}" Click="btnLogout_Click" />
+            <Button x:Name="btnLogout" Grid.Row="2" Content="Odjava" Style="{StaticResource navButton}" Click="btnLogout_Click"
+                    Background="#637E78"/>
         </Grid>
 
         <ContentControl x:Name="contentPanel" DockPanel.Dock="Right">

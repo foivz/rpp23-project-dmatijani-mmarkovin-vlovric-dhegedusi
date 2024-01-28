@@ -28,6 +28,14 @@ namespace DataAccessLayer.Repositories {
             return query;
         }
 
+        public IQueryable<Employee> GetEmployeesByUsername(string employeeUsername) {
+            var query = from e in Entities.Include("Library")
+                        where e.username == employeeUsername
+                        select e;
+
+            return query;
+        }
+
         public IQueryable<Employee> GetEmployeesByOIB(string employeeOIB) {
             var query = from e in Entities.Include("Library")
                         where e.OIB == employeeOIB

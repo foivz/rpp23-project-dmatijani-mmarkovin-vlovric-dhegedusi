@@ -175,6 +175,12 @@ namespace BussinessLogicLayer.services {
                 return member;
             }
         }
+
+        public string GetMemberBarcode(int id) {
+            using (var repository = new MemberRepository()) {
+                return repository.GetMemberBarcode(id).FirstOrDefault();
+            }
+        }
     }
 }
 

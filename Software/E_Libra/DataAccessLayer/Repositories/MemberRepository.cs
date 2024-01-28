@@ -128,5 +128,13 @@ namespace DataAccessLayer.Repositories
 
             return query;
         }
+
+        public IQueryable<string> GetMemberBarcode(int id) {
+            var query = from m in Member
+                        where m.id == id
+                        select m.barcode_id;
+
+            return query;
+        }
     }
 }

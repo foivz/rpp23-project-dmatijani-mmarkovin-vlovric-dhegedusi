@@ -371,5 +371,12 @@ namespace DataAccessLayer.Repositories
             return query.OrderByDescending(book => book.Times_Borrowed).AsEnumerable();
         }
 
+        public IQueryable<string> GetBookBarcode(int id) {
+            var query = from b in Entities
+                        where b.id == id
+                        select b.barcode_id;
+
+            return query;
+        }
     }
 }

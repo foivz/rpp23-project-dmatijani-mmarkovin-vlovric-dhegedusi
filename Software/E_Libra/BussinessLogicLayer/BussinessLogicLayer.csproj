@@ -46,6 +46,7 @@
     <Compile Include="Exceptions\EmployeeException.cs" />
     <Compile Include="Exceptions\EmployeeWithSameIDException.cs" />
     <Compile Include="Exceptions\EmployeeWithSameOIBException.cs" />
+    <Compile Include="Exceptions\EmployeeWithSameUsernameException.cs" />
     <Compile Include="Exceptions\LibraryException.cs" />
     <Compile Include="Exceptions\LibraryHasEmployeesException.cs" />
     <Compile Include="Exceptions\LibraryWithSameIDException.cs" />
