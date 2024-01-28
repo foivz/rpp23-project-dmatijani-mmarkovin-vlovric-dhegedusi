@@ -41,8 +41,8 @@
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center"
              Margin="20 0 0 10"/>
-                <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0">
-                    <TextBox x:Name="txtOIB" Style="{StaticResource textBox}"/>
+                <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0" Background="#acb0af">
+                    <TextBox x:Name="txtOIB" Style="{StaticResource textBox}" IsEnabled="False" Background="#acb0af"/>
                 </Border>
 
                 <Label 
@@ -62,7 +62,7 @@
             VerticalAlignment="Center" 
              Margin="20 0 0 10"/>
                 <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0">
-                    <TextBox x:Name="txtPassword" Style="{StaticResource textBox}"/>
+                    <PasswordBox x:Name="txtPassword" Style="{StaticResource textBox}"/>
                 </Border>
 
                 <Label 

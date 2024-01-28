@@ -24,6 +24,45 @@ namespace BussinessLogicLayer.services {
                 }
             }
         }
+        public bool CheckExistingUsername(Member member)
+        {
+            using (var memberRepo = new MemberRepository())
+            {
+                List<Member> existingMembers = memberRepo.GetAll().ToList();
+                foreach (var m in existingMembers)
+                {
+                    if(m.username == member.username)
+                        return true;
+                }
+            }
+            return false;
+        }
+        public bool CheckBarcodeUnoque(Member member)
+        {
+            using (var memberRepo = new MemberRepository())
+            {
+                List<Member> existingMembers = memberRepo.GetAll().ToList();
+                foreach (var m in existingMembers)
+                {
+                    if (m.barcode_id == member.barcode_id)
+                        return true;
+                }
+            }
+            return false;
+        }
+        public bool CheckOibUnoque(Member member)
+        {
+            using (var memberRepo = new MemberRepository())
+            {
+                List<Member> existingMembers = memberRepo.GetAll().ToList();
+                foreach (var m in existingMembers)
+                {
+                    if (m.OIB == member.OIB)
+                        return true;
+                }
+            }
+            return false;
+        }
         public bool AddNewMember(Member member)
         {
             using (var memberRepo = new MemberRepository())

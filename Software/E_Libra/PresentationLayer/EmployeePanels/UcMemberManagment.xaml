@@ -30,7 +30,6 @@
                 <DataGridTextColumn Header="Datum učlanjenja" Binding="{Binding membership_date}" Width="*"/>
                 <DataGridTextColumn Header="Barkod" Binding="{Binding barcode_id}" Width="*"/>
                 <DataGridTextColumn Header="Korisničko ime" Binding="{Binding username}" Width="*"/>
-                <DataGridTextColumn Header="Lozinka" Binding="{Binding password}" Width="*"/>
                 <DataGridTextColumn Header="ID Knjižnice" Binding="{Binding Library_id}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
