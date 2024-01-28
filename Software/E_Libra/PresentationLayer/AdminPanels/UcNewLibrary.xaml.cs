@@ -21,6 +21,7 @@ namespace PresentationLayer.AdminPanels {
     /// Interaction logic for UcNewLibrary.xaml
     /// </summary>
     public partial class UcNewLibrary : UserControl {
+        private LibraryService service = new LibraryService();
         private bool editing { get; set; }
 
         public UcNewLibrary() {
@@ -90,8 +91,6 @@ namespace PresentationLayer.AdminPanels {
             };
 
             try {
-                LibraryService service = new LibraryService();
-
                 if (!editing) {
                     int result = service.AddLibrary(newLibrary);
 
@@ -124,7 +123,7 @@ namespace PresentationLayer.AdminPanels {
             tbLibraryEmail.Text = library.email;
             tbLibraryPriceDayLate.Text = library.price_day_late.ToString();
             tbLibraryAddress.Text = library.address;
-            tbLibraryMembershipDuration.Text = ((library.membership_duration - new DateTime(2024, 1, 1)).Days + 1).ToString();
+            tbLibraryMembershipDuration.Text = service.GetLibraryMembershipDuration(library.id).ToString();
         }
     }
 }
