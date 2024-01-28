@@ -102,5 +102,11 @@ namespace BussinessLogicLayer.services {
                 return context.HasUserBorrowedBook(userId, bookId);
             }
         }
+
+        public List<Borrow> GetBorrowsForEmployee(int employeeId) {
+            using (var context = new BorrowRepository()) {
+                return context.GetBorrowsForEmployee(employeeId).ToList();
+            }
+        }
     }
 }

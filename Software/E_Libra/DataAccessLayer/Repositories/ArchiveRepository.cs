@@ -33,6 +33,14 @@ namespace DataAccessLayer.Repositories
                         };
             return query;
         }
+
+        public IQueryable<Archive> GetArchivesForEmployee(int employeeId) {
+            var query = from a in Entities.Include("Employee")
+                        where a.Employee_id == employeeId
+                        select a;
+
+            return query;
+        }
     }
     public class ArchivedBookInfo
     {

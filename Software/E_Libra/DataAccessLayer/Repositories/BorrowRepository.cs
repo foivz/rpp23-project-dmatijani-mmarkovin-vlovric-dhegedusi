@@ -217,5 +217,13 @@ namespace DataAccessLayer.Repositories {
 
             return result != null;
         }
+
+        public IQueryable<Borrow> GetBorrowsForEmployee(int employeeId) {
+            var query = from b in Entities.Include("Employee")
+                        where b.Employee_borrow_id == employeeId || b.Employee_return_id == employeeId
+                        select b;
+
+            return query;
+        }
     }
 }
