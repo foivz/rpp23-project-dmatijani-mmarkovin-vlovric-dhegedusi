@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services
 {
+    //Viktor Lovrić
     public class AuthorService
     {
         public List<Author> GetAllAuthors()

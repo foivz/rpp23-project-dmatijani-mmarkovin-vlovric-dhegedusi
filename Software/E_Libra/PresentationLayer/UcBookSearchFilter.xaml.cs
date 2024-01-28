@@ -17,9 +17,7 @@ using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcBookSearchFilter.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class UcBookSearchFilter : UserControl
     {
         BookServices bookServices;
@@ -27,6 +25,7 @@ namespace PresentationLayer
         {
             InitializeComponent();
             bookServices = new BookServices();
+            cbCheck.IsChecked = true;
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -38,6 +37,11 @@ namespace PresentationLayer
 
         private void ApplyFilter(bool ch)
         {
+            if (string.IsNullOrEmpty(txtSearch.Text))
+            {
+                dgvBookSearch.ItemsSource = null;
+                return;
+            }
             //0-sve, 1-žanr, 2-pisac, 3-godina
             switch (cmbFilter.SelectedIndex)
             {
@@ -73,7 +77,7 @@ namespace PresentationLayer
         {
             var columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "Name");
             columnName.Header = "Naziv";
-            columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "PublishDate");
+            columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "PublishDateDisplay");
             columnName.Header = "Datum izdavanja";
             columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "AuthorName");
             columnName.Header = "Ime autora";
@@ -83,7 +87,7 @@ namespace PresentationLayer
             columnName.Header = "Digitalna";
             foreach (var column in dgvBookSearch.Columns)
             {
-                if (column.Header.ToString() == "Id")
+                if (column.Header.ToString() == "Id" || column.Header.ToString() == "PublishDate")
                 {
                     column.Visibility = Visibility.Collapsed;
                 }
@@ -93,6 +97,7 @@ namespace PresentationLayer
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             dgvBookSearch.ItemsSource = null;
+            txtSearch.Text = string.Empty;
         }
 
         private void btnDetails_Click(object sender, RoutedEventArgs e)

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
+    //Viktor Lovrić
     public class ArchiveRepository : Repository<Archive>
     {
         public ArchiveRepository(): base(new DatabaseModel())

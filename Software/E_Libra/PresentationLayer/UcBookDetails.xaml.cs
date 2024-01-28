@@ -20,9 +20,7 @@ using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcBookDetails.xaml
-    /// </summary>
+    //Viktor Lovrić, metode: HideReserve, UserControl_Loaded, MakeImage, imgBook_ImageFailed, btnSaveReadList_Click, HideReserveDigital, HideAvailable, btnReserve_Click
     public partial class UcBookDetails : UserControl
     {
         BookServices bookServices = new BookServices();
@@ -78,7 +76,7 @@ namespace PresentationLayer
             tblAuthor.Text = bookUI.AuthorName;
             tblDescription.Text = book.description;
             tblGenre.Text = bookUI.GenreName;
-            tblDate.Text = bookUI.PublishDate.HasValue ? bookUI.PublishDate.Value.Date.ToString() : "Nepoznato";
+            tblDate.Text = !string.IsNullOrEmpty(bookUI.PublishDateDisplay) ? bookUI.PublishDateDisplay : "Nepoznato";
 
             tblPageNum.Text = book.pages_num.ToString();
             
@@ -88,7 +86,7 @@ namespace PresentationLayer
             }
             else
             {
-                tblAvailable.Text = "Ne " + book.current_copies;
+                tblAvailable.Text = "Ne";
             }
         }
 
@@ -151,7 +149,7 @@ namespace PresentationLayer
                 return;
             }
         }
-
+        
         private void HideReserveDigital()
         {
             btnReserve.Visibility = Visibility.Collapsed;
