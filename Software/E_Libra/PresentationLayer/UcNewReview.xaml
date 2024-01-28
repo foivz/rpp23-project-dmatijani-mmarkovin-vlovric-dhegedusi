@@ -26,7 +26,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Ocjena:" VerticalAlignment="Center"/>
+                <TextBlock Text="Ocjena *:" VerticalAlignment="Center"/>
                 <ComboBox x:Name="cboRating" Width="120" VerticalAlignment="Center" Grid.Column="1" Margin="20,0,0,0">
                     <ComboBoxItem Content="1"/>
                     <ComboBoxItem Content="2"/>
