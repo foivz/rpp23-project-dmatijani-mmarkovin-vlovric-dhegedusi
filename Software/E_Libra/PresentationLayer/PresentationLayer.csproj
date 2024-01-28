@@ -110,6 +110,9 @@
     <Compile Include="EmployeePanels\UcEditNotification.xaml.cs">
       <DependentUpon>UcEditNotification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePanels\UcHelpEmployee.xaml.cs">
+      <DependentUpon>UcHelpEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePanels\UcMemberManagment.xaml.cs">
       <DependentUpon>UcMemberManagment.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeePanels\UcEditNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeePanels\UcHelpEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -394,6 +401,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="UserDocumentation\User_documentation_admin.pdf" />
+    <None Include="UserDocumentation\User_documentation_employee.pdf" />
+    <None Include="UserDocumentation\User_documentation_member.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
