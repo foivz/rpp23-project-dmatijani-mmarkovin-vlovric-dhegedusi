@@ -22,6 +22,11 @@ namespace BussinessLogicLayer.services {
                     throw new EmployeeWithSameIDException("Zaposlenik sa istim ID već postoji!");
                 }
 
+                var employeesWithUsername = repository.GetEmployeesByUsername(newEmployee.username);
+                if (employeesWithUsername.ToList().Count > 0) {
+                    throw new EmployeeWithSameUsernameException("Zaposlenik sa istim korisničkim imenom već postoji!");
+                }
+
                 var employeesWithOIB = repository.GetEmployeesByOIB(newEmployee.OIB);
                 if (employeesWithOIB.ToList().Count > 0) {
                     throw new EmployeeWithSameOIBException("Zaposlenik sa istim OIB već postoji!");
