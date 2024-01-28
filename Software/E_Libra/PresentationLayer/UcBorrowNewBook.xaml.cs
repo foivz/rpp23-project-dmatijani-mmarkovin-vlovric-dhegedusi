@@ -32,6 +32,16 @@ namespace PresentationLayer {
             this.parentUserControl = _parentUserControl;
         }
 
+        public UcBorrowNewBook(EmployeePanel _mainWindow, UcEmployeeBorrows _parentUserControl, string memberBarcode, string bookBarcode) {
+            InitializeComponent();
+
+            this.mainWindow = _mainWindow;
+            this.parentUserControl = _parentUserControl;
+
+            tbMemberBarcode.Text = memberBarcode;
+            tbBookBarcode.Text = bookBarcode;
+        }
+
         private void btnAddNewBorrow_Click(object sender, RoutedEventArgs e) {
             BorrowBook();
         }

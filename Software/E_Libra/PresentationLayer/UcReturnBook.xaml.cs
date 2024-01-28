@@ -36,6 +36,19 @@ namespace PresentationLayer {
             btnReturnBorrow.Visibility = Visibility.Collapsed;
         }
 
+        public UcReturnBook(EmployeePanel _mainWindow, UcEmployeeBorrows _parentUserControl, string memberBarcode, string bookBarcode) {
+            InitializeComponent();
+
+            this.mainWindow = _mainWindow;
+            this.parentUserControl = _parentUserControl;
+
+            btnReturnBorrow.IsEnabled = false;
+            btnReturnBorrow.Visibility = Visibility.Collapsed;
+
+            tbMemberBarcode.Text = memberBarcode;
+            tbBookBarcode.Text = bookBarcode;
+        }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
             ReturnParentUserControl();
         }
