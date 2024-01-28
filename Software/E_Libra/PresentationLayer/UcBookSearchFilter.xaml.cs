@@ -77,7 +77,7 @@ namespace PresentationLayer
         {
             var columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "Name");
             columnName.Header = "Naziv";
-            columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "PublishDate");
+            columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "PublishDateDisplay");
             columnName.Header = "Datum izdavanja";
             columnName = dgvBookSearch.Columns.FirstOrDefault(c => c.Header.ToString() == "AuthorName");
             columnName.Header = "Ime autora";
@@ -87,7 +87,7 @@ namespace PresentationLayer
             columnName.Header = "Digitalna";
             foreach (var column in dgvBookSearch.Columns)
             {
-                if (column.Header.ToString() == "Id")
+                if (column.Header.ToString() == "Id" || column.Header.ToString() == "PublishDate")
                 {
                     column.Visibility = Visibility.Collapsed;
                 }

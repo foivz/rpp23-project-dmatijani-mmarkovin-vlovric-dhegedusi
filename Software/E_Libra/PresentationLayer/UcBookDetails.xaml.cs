@@ -76,7 +76,7 @@ namespace PresentationLayer
             tblAuthor.Text = bookUI.AuthorName;
             tblDescription.Text = book.description;
             tblGenre.Text = bookUI.GenreName;
-            tblDate.Text = bookUI.PublishDate.HasValue ? bookUI.PublishDate.Value.Date.ToString() : "Nepoznato";
+            tblDate.Text = !string.IsNullOrEmpty(bookUI.PublishDateDisplay) ? bookUI.PublishDateDisplay : "Nepoznato";
 
             tblPageNum.Text = book.pages_num.ToString();
             
