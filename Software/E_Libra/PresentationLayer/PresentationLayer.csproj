@@ -128,6 +128,9 @@
     <Compile Include="MemberPanels\UcDetailsNotification.xaml.cs">
       <DependentUpon>UcDetailsNotification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MemberPanels\UcHelpMember.xaml.cs">
+      <DependentUpon>UcHelpMember.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UcDigitalBook.xaml.cs">
       <DependentUpon>UcDigitalBook.xaml</DependentUpon>
     </Compile>
@@ -286,6 +289,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MemberPanels\UcDetailsNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MemberPanels\UcHelpMember.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
