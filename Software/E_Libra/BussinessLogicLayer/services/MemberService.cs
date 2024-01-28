@@ -223,6 +223,12 @@ namespace BussinessLogicLayer.services {
                 return repository.GetMemberBarcode(id).FirstOrDefault();
             }
         }
+
+        public List<Member> GetMembersByLibrary(int libraryId) {
+            using (var repository = new MemberRepository()) {
+                return repository.GetMembersByLibrary(libraryId).ToList();
+            }
+        }
     }
 }
 

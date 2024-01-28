@@ -54,5 +54,11 @@ namespace BussinessLogicLayer.services
                 return notificationsRepo.GetReadNotificationsForMember(member).ToList();
             }
         }
+
+        public int Remove(Notification notification, bool saveChanges = true) {
+            using (var context = new NotificationsRepository()) {
+                return context.Remove(notification, saveChanges);
+            }
+        }
     }
 }

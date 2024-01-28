@@ -13,6 +13,13 @@ namespace DataAccessLayer.Repositories {
 
         }
 
+        public override IQueryable<Library> GetAll() {
+            var query = from e in Entities
+                        select e;
+
+            return query;
+        }
+
         public IQueryable<Library> GetLibrariesById(int libraryId) {
             var query = from l in Entities
                         where l.id == libraryId

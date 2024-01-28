@@ -33,10 +33,24 @@ namespace BussinessLogicLayer.services {
 
         public int DeleteLibrary(Library library) {
             using (var repository = new LibraryRepository()) {
-                var employeeRepository = new EmployeeRepository();
-                List<Employee> libraryEmployees = employeeRepository.GetEmployeesByLibrary(library).ToList();
-                if (libraryEmployees.Count > 0) {
+                EmployeeService employeeService = new EmployeeService();
+                if (employeeService.GetEmployeesByLibrary(library).Count > 0) {
                     throw new LibraryHasEmployeesException("Odabrana knjižnica ima zaposlenike!");
+                }
+
+                MemberService memberService = new MemberService();
+                if (memberService.GetMembersByLibrary(library.id).Count > 0) {
+                    throw new LibraryHasMembersException("Odabrana knjižnica ima članove!");
+                }
+
+                BookServices bookService = new BookServices();
+                if (bookService.GetBooksByLibrary(library.id).Count > 0) {
+                    throw new LibraryHasBooksException("Odabrana knjižnica ima knjige!");
+                }
+
+                NotificationService notificationService = new NotificationService();
+                if (notificationService.GetAllNotificationByLibrary(library.id).Count > 0) {
+                    throw new LibraryException("Odabrana knjižnica ima notifikacije!");
                 }
 
                 return repository.Remove(library);

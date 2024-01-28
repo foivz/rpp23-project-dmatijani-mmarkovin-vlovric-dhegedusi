@@ -378,5 +378,13 @@ namespace DataAccessLayer.Repositories
 
             return query;
         }
+
+        public IQueryable<Book> GetBooksByLibrary(int libraryId) {
+            var query = from e in Entities
+                        where e.Library_id == libraryId
+                        select e;
+
+            return query;
+        }
     }
 }

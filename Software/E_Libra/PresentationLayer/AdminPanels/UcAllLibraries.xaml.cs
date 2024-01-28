@@ -38,7 +38,7 @@ namespace PresentationLayer.AdminPanels {
                 }
 
                 ShowAllLibraries();
-            } catch (LibraryHasEmployeesException ex) {
+            } catch (LibraryException ex) {
                 MessageBox.Show(ex.Message);
             }
         }

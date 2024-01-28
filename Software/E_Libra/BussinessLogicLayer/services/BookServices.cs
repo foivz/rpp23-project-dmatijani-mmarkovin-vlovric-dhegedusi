@@ -143,5 +143,11 @@ namespace BussinessLogicLayer.services
                 return repository.GetBookBarcode(id).FirstOrDefault();
             }
         }
+
+        public List<Book> GetBooksByLibrary(int libraryId) {
+            using (var repository = new BookRepository()) {
+                return repository.GetBooksByLibrary(libraryId).ToList();
+            }
+        }
     }
 }
