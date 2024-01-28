@@ -1,4 +1,5 @@
-﻿using BussinessLogicLayer.services;
+﻿using BussinessLogicLayer.Exceptions;
+using BussinessLogicLayer.services;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -98,7 +99,13 @@ namespace PresentationLayer.AdminPanels {
             Employee selectedEmployee = GetSelectedEmployee();
             if (selectedEmployee == null) return;
 
-            service.DeleteEmployee(selectedEmployee);
+            try {
+                service.DeleteEmployee(selectedEmployee);
+            } catch (EmployeeException ex) {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            
             Library selectedLibrary = cboLibrary.SelectedItem as Library;
             if (selectedLibrary != null) {
                 LoadEmployees(selectedLibrary);

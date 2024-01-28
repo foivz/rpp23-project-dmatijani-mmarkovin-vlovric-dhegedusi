@@ -54,6 +54,16 @@ namespace BussinessLogicLayer.services {
         }
 
         public int DeleteEmployee(Employee employee) {
+            BorrowService borrowService = new BorrowService();
+            if (borrowService.GetBorrowsForEmployee(employee.id).Count > 0) {
+                throw new EmployeeException("Zaposlenik ima pohranjenih posudbi!");
+            }
+
+            ArchiveServices archiveService = new ArchiveServices();
+            if (archiveService.GetArchivesForEmployee(employee.id).Count > 0) {
+                throw new EmployeeException("Zaposlenik je arhivirao neke knjige!");
+            }
+
             using (var repository = new EmployeeRepository()) {
                 return repository.Remove(employee);
             }
