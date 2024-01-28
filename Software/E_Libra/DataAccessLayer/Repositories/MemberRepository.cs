@@ -89,7 +89,6 @@ namespace DataAccessLayer.Repositories
             var existingMembeer = Entities.SingleOrDefault(m => m.id == entity.id);
             existingMembeer.name = entity.name;
             existingMembeer.surname = entity.surname;
-            existingMembeer.OIB = entity.OIB;
             existingMembeer.password = entity.password;
             if (saveChanges)
             {

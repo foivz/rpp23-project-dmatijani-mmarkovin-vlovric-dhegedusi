@@ -38,7 +38,7 @@ namespace PresentationLayer.EmployeePanels
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            CheckOIB();
+            CheckOIBIsNumber();
             if (txtOIB.Text != "" && txtPassword.Password != "" && txtUsername.Text != "" && txtBarcode.Text != "")
             {
                 int LibraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
@@ -65,7 +65,7 @@ namespace PresentationLayer.EmployeePanels
                 MessageBox.Show("Obavezni podaci čnana nisu uneseni ili su krivo unešeni!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private void CheckOIB()
+        private void CheckOIBIsNumber()
         {
             if (double.TryParse(txtOIB.Text, out _))
             {

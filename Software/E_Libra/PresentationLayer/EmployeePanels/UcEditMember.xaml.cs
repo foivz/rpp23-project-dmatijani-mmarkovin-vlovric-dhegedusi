@@ -34,7 +34,7 @@ namespace PresentationLayer.EmployeePanels
             txtSurname.Text = member.surname;
             txtOIB.Text = member.OIB;
             txtUsername.Text = member.username;
-            txtPassword.Text = member.password;
+            txtPassword.Password = member.password;
             txtBarcode.Text = member.barcode_id;
             txtDate.Text = (member.membership_date).ToString();
         }
@@ -46,10 +46,10 @@ namespace PresentationLayer.EmployeePanels
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            editMember.name = txtName.Text;
-            editMember.surname = txtSurname.Text;
-            editMember.OIB = txtOIB.Text;
-            editMember.password = txtPassword.Text;
+            editMember.name = (txtName.Text).Length <= 45 ? txtName.Text : (txtName.Text).Substring(0, 45);
+            editMember.surname = (txtSurname.Text).Length <= 45 ? txtSurname.Text : (txtSurname.Text).Substring(0, 45);
+            editMember.password = (txtPassword.Password).Length <= 45 ? txtPassword.Password : (txtPassword.Password).Substring(0, 45);
+
             bool edited = memberService.UpdateMember(editMember);
             if (edited)
             {
