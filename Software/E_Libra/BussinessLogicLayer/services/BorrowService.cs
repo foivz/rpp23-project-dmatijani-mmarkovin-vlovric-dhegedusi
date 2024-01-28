@@ -53,13 +53,24 @@ namespace BussinessLogicLayer.services {
 
         public int AddNewBorrow(Borrow borrow) {
             Book book = borrow.Book;
+            bool reserved = false;
             if (borrow.borrow_status == (int)BorrowStatus.Borrowed) {
                 if (book.current_copies < 1) {
-                    throw new NoMoreBookCopiesException("Odabrane knjige trenutno nema na stanju!");
+                    ReservationService reservationService = new ReservationService();
+                    Reservation existingReservation = reservationService.CheckValidReservationFroMember((int)borrow.Member.id, book.id);
+                    if (existingReservation == null) {
+                        throw new NoMoreBookCopiesException("Odabrane knjige trenutno nema na stanju!");
+                    } else {
+                        reserved = true;
+                        reservationService.RemoveReservation(existingReservation);
+                    }
                 }
-                BookServices bookService = new BookServices();
-                book.current_copies--;
-                bookService.UpdateBook(book);
+
+                if (!reserved) {
+                    BookServices bookService = new BookServices();
+                    book.current_copies--;
+                    bookService.UpdateBook(book);
+                }
             }
 
             using (var context = new BorrowRepository()) {

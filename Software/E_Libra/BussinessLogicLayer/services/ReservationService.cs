@@ -106,5 +106,11 @@ namespace BussinessLogicLayer.services
                 return repo.CheckValidReservationFroMember(memberId, bookId);
             }
         }
+
+        public int RemoveReservation(Reservation reservation, bool saveChanges = true) {
+            using (var repo = new ReservationRepository()) {
+                return repo.Remove(reservation, saveChanges);
+            }
+        }
     }
 }
