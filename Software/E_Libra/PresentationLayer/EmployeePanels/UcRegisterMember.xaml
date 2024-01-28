@@ -37,7 +37,7 @@
                 </Border>
 
                 <Label 
-            Content="OIB:"
+            Content="OIB:*"
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center" x:Name="lblOIB"
              Margin="20 0 0 10"/>
@@ -46,7 +46,7 @@
                 </Border>
 
                 <Label 
-            Content="Korisničko ime:"
+            Content="Korisničko ime:*"
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center" x:Name="lblUsername"
              Margin="20 0 0 10"/>
@@ -54,15 +54,15 @@
                     <TextBox x:Name="txtUsername" Style="{StaticResource textBox}"/>
                 </Border>
             </StackPanel>
-            
+
             <StackPanel Grid.Column="1" Margin="30">
                 <Label 
-            Content="Password:"
+            Content="Password:*"
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center" x:Name="lblPassword"
              Margin="20 0 0 10"/>
                 <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0">
-                    <TextBox x:Name="txtPassword" Style="{StaticResource textBox}"/>
+                    <PasswordBox x:Name="txtPassword" Style="{StaticResource textBox}"/>
                 </Border>
 
                 <Label 
@@ -75,12 +75,12 @@
                 </Border>
 
                 <Label 
-            Content="Barkod:"
+            Content="Barkod:*"
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center" x:Name="lblBarcode"
              Margin="20 0 0 10"/>
                 <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Padding="5" HorizontalAlignment="Stretch" Margin="20 0 20 0">
-                    <TextBox x:Name="txtBarcode" Style="{StaticResource textBox}"/>
+                    <TextBox x:Name="txtBarcode" Style="{StaticResource textBox}" IsEnabled="False"/>
                 </Border>
                 <Button x:Name="btnGenerateBarcode" Width="150" Height="40" Margin="10" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Generiraj Barkod" Click="btnGenerateBarcode_Click"/>
                 <Image x:Name="imgBarcode" Width="200" Height="100"/>

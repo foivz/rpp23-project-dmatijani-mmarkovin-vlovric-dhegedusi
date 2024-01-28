@@ -38,20 +38,30 @@ namespace PresentationLayer.EmployeePanels
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            int LibraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
-            Member newMember = new Member()
+            if (double.TryParse(txtOIB.Text, out _))
             {
-                name = txtName.Text,
-                surname = txtSurname.Text,
-                OIB = txtOIB.Text,
-                username = txtUsername.Text, 
-                password = txtPassword.Text,
-                membership_date = txtDate.SelectedDate,
-                barcode_id = txtBarcode.Text,
-                Library_id = LibraryId
-            };
-            memberService.AddNewMember(newMember);
-            (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
+                txtOIB.Text = txtOIB.Text;
+            } else txtOIB.Text = "";
+            if (txtOIB.Text != "" && txtPassword.Password != "" && txtUsername.Text != "" && txtBarcode.Text != "")
+            {
+                int LibraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
+                Member newMember = new Member()
+                {
+                    name = (txtName.Text).Length <= 45 ? txtName.Text : (txtName.Text).Substring(0, 45),
+                    surname = (txtSurname.Text).Length <= 45 ? txtSurname.Text : (txtSurname.Text).Substring(0, 45),
+                    OIB = (txtOIB.Text).Length <= 11 ? txtOIB.Text : (txtOIB.Text).Substring(0, 11),
+                    username = (txtUsername.Text).Length <= 45 ? txtUsername.Text : (txtUsername.Text).Substring(0, 45), 
+                    password = (txtPassword.Password).Length <= 45 ? txtPassword.Password : (txtPassword.Password).Substring(0, 45),
+                    membership_date = txtDate.SelectedDate,
+                    barcode_id = (txtBarcode.Text).Length <= 45 ? txtBarcode.Text : (txtBarcode.Text).Substring(0, 45),
+                    Library_id = LibraryId
+                };
+                memberService.AddNewMember(newMember);
+                (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
+            } else
+            {
+                MessageBox.Show("Obavezni podaci čnana nisu uneseni ili su krivo unešeni!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void btnGenerateBarcode_Click(object sender, RoutedEventArgs e)
         {
