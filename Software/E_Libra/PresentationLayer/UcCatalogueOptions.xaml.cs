@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcCatalogueOptions.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class UcCatalogueOptions : UserControl
     {
         public UcCatalogueOptions()

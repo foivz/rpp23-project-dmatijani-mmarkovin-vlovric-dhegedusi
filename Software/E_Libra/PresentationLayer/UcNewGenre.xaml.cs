@@ -17,9 +17,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcNewGenre.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class UcNewGenre : UserControl
     {
         private UcAddNewBook prevForm;

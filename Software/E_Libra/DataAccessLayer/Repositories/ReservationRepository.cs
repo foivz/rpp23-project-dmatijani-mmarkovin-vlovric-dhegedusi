@@ -11,13 +11,14 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
+    //Viktor Lovrić
     public class ReservationRepository: Repository<Reservation>
     {
         public ReservationRepository() : base(new DatabaseModel())
         {
 
         }
-
+        
         public override int Update(Reservation entity, bool saveChanges = true)
         {
             throw new NotImplementedException();

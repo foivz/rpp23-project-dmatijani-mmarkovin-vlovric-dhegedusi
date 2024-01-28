@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
+    /*Viktor Lovrić, metode: Add, GenerateBarcodeId, BarcodeExists, GetAll, GetNonArchivedBooks, InsertNewCopies, ArhiveBook, GetNonArchivedBooksByName,
+     * SearchBooks, TransformDigital, GetBooksByGenre, GetBooksByAuthor, GetBooksByYear, GetWishlistBooksForMember, AddBookToWishlist, RemoveBookFromWishlist
+     */
     public class BookRepository : Repository<Book>
     {
         public BookRepository(): base(new DatabaseModel())
@@ -194,6 +197,7 @@ namespace DataAccessLayer.Repositories
                                     Id = book.id,
                                     Name = book.name,
                                     PublishDate = book.publish_date,
+                                    PublishDateDisplay = null,
                                     AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
                                     GenreName = book.Genre.name,
                                     Digital = book.digital.ToString(),
@@ -203,6 +207,7 @@ namespace DataAccessLayer.Repositories
                 Id = book.Id,
                 Name = book.Name,
                 PublishDate = book.PublishDate,
+                PublishDateDisplay = book.PublishDate.HasValue ? book.PublishDate.Value.ToString("dd-MM-yyyy") : null,
                 AuthorName = book.AuthorName,
                 GenreName = book.GenreName,
                 Digital = TransformDigital(book.Digital)
@@ -225,6 +230,7 @@ namespace DataAccessLayer.Repositories
                                    Id = book.id,
                                    Name = book.name,
                                    PublishDate = book.publish_date,
+                                   PublishDateDisplay = null,
                                    AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
                                    GenreName = book.Genre.name,
                                    Digital = book.digital.ToString(),
@@ -234,6 +240,7 @@ namespace DataAccessLayer.Repositories
                 Id = book.Id,
                 Name = book.Name,
                 PublishDate = book.PublishDate,
+                PublishDateDisplay = book.PublishDate.HasValue ? book.PublishDate.Value.ToString("dd-MM-yyyy") : null,
                 AuthorName = book.AuthorName,
                 GenreName = book.GenreName,
                 Digital = TransformDigital(book.Digital)
@@ -253,6 +260,7 @@ namespace DataAccessLayer.Repositories
                                     Id = book.id,
                                     Name = book.name,
                                     PublishDate = book.publish_date,
+                                    PublishDateDisplay = null,
                                     AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
                                     GenreName = book.Genre.name,
                                     Digital = book.digital.ToString(),
@@ -262,6 +270,7 @@ namespace DataAccessLayer.Repositories
                 Id = book.Id,
                 Name = book.Name,
                 PublishDate = book.PublishDate,
+                PublishDateDisplay = book.PublishDate.HasValue ? book.PublishDate.Value.ToString("dd-MM-yyyy") : null,
                 AuthorName = book.AuthorName,
                 GenreName = book.GenreName,
                 Digital = TransformDigital(book.Digital)
@@ -276,6 +285,7 @@ namespace DataAccessLayer.Repositories
                                   Id = book.id,
                                   Name = book.name,
                                   PublishDate = book.publish_date,
+                                  PublishDateDisplay = null,
                                   AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
                                   GenreName = book.Genre.name,
                                   Digital = book.digital.ToString(),
@@ -295,6 +305,7 @@ namespace DataAccessLayer.Repositories
                                     Id = book.id,
                                     Name = book.name,
                                     PublishDate = book.publish_date,
+                                    PublishDateDisplay = null,
                                     AuthorName = book.Authors.FirstOrDefault().name + " " + book.Authors.FirstOrDefault().surname,
                                     GenreName = book.Genre.name,
                                     Digital = book.digital.ToString(),
@@ -304,6 +315,7 @@ namespace DataAccessLayer.Repositories
                 Id = book.Id,
                 Name = book.Name,
                 PublishDate = book.PublishDate,
+                PublishDateDisplay = book.PublishDate.HasValue ? book.PublishDate.Value.ToString("dd-MM-yyyy") : null,
                 AuthorName = book.AuthorName,
                 GenreName = book.GenreName,
                 Digital = TransformDigital(book.Digital)
@@ -340,6 +352,7 @@ namespace DataAccessLayer.Repositories
             public int Id { get; set; }
             public string Name { get; set; }
             public DateTime? PublishDate { get; set; }
+            public string PublishDateDisplay { get; set; }
             public string AuthorName { get; set; }
             public string GenreName { get; set; }
             public string Digital { get; set; }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
+    //Viktor Lovrić, metode: GetMemberId
     public class MemberRepository : Repository<Member>
     {
         public DbSet<Member> Member { get; set; }

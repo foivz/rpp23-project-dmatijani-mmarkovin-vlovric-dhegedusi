@@ -17,9 +17,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for UcReservations.xaml
-    /// </summary>
+    //Viktor Lovrić
     public partial class UcReservations : UserControl
     {
         MemberService memberService = new MemberService();

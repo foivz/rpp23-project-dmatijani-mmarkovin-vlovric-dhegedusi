@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer.AdminPanels"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="#FFEFE8"
-        Title="AdminPanel" Height="450" Width="800">
+        Title="MyLibra" Height="450" Width="800">
     <DockPanel>
         <Grid x:Name="navPanel" DockPanel.Dock="Left" Width="200" Background="#637E78">
             <Grid.RowDefinitions>
