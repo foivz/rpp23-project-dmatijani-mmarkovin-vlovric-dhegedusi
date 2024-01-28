@@ -38,10 +38,7 @@ namespace PresentationLayer.EmployeePanels
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (double.TryParse(txtOIB.Text, out _))
-            {
-                txtOIB.Text = txtOIB.Text;
-            } else txtOIB.Text = "";
+            CheckOIB();
             if (txtOIB.Text != "" && txtPassword.Password != "" && txtUsername.Text != "" && txtBarcode.Text != "")
             {
                 int LibraryId = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
@@ -56,20 +53,47 @@ namespace PresentationLayer.EmployeePanels
                     barcode_id = (txtBarcode.Text).Length <= 45 ? txtBarcode.Text : (txtBarcode.Text).Substring(0, 45),
                     Library_id = LibraryId
                 };
-                bool exsists = memberService.CheckExistingUsername(newMember);
-                if (!exsists) {
-                    txtUsername.Text = "";
+                bool checkedConstraints = CheckUniqueConstraints(newMember);
+                if (checkedConstraints)
+                {
                     memberService.AddNewMember(newMember);
                     (Window.GetWindow(this) as EmployeePanel).contentPanel.Content = new UcMemberManagment();
-                } else
-                {
-                    MessageBox.Show("Korisničko ime već postoji!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
+
             } else
             {
                 MessageBox.Show("Obavezni podaci čnana nisu uneseni ili su krivo unešeni!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        private void CheckOIB()
+        {
+            if (double.TryParse(txtOIB.Text, out _))
+            {
+                txtOIB.Text = txtOIB.Text;
+            } else txtOIB.Text = "";
+        }
+        private bool CheckUniqueConstraints(Member member)
+        {
+            bool memberExsists = memberService.CheckExistingUsername(member);
+            bool barcodeExists = memberService.CheckBarcodeUnoque(member);
+            bool oibExsists = memberService.CheckOibUnoque(member);
+            if (memberExsists)
+            {
+                txtUsername.Text = "";
+                MessageBox.Show("Korisničko ime već postoji!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (barcodeExists)
+            {
+                MessageBox.Show("Barkod već postoji!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (oibExsists)
+            {
+                MessageBox.Show("Oib već postoji!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
         }
         private void btnGenerateBarcode_Click(object sender, RoutedEventArgs e)
         {
