@@ -22,6 +22,7 @@ namespace PresentationLayer
 {
     //Viktor Lovrić, metode: HideReserve, UserControl_Loaded, MakeImage, imgBook_ImageFailed, btnSaveReadList_Click, HideReserveDigital, HideAvailable, btnReserve_Click
     // Domagoj Hegedušić, metode: CheckIfDigital, btnAddReview_Click, CreateDigitalButton, DigitalButton_Click
+    // David Matijanić: CheckBookBorrowStatus, btnBorrow_Click, BorrowBook
     public partial class UcBookDetails : UserControl
     {
         BookServices bookServices = new BookServices();
