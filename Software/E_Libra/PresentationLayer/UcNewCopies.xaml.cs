@@ -104,6 +104,11 @@ namespace PresentationLayer
         {
             BookServices bookServices = new BookServices();
             string text = txtBookName.Text;
+            if (string.IsNullOrEmpty(text))
+            {
+                dgvBookNamesArchive.ItemsSource = null;
+                return;
+            }
             dgvBookNamesArchive.ItemsSource = bookServices.GetNonArchivedBooksByName(text);
             HideColumns();
         }

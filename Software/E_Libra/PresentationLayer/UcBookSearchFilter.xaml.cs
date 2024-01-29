@@ -98,6 +98,7 @@ namespace PresentationLayer
         {
             dgvBookSearch.ItemsSource = null;
             txtSearch.Text = string.Empty;
+            cmbFilter.SelectedIndex = 0;
         }
 
         private void btnDetails_Click(object sender, RoutedEventArgs e)

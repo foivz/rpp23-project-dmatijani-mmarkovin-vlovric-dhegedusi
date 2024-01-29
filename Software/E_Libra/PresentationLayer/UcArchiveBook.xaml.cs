@@ -39,6 +39,12 @@ namespace PresentationLayer
             }
 
             Book book = dgvBookNamesArchive.SelectedItem as Book;
+
+            if(book.current_copies != book.total_copies)
+            {
+                MessageBox.Show("Ne možete arhivirati ovu knjigu jer nisu vraćeni svi primjerci u knjižnicu!");
+                return;
+            }
             BookServices bookServices = new BookServices();
             EmployeeService employeeServices = new EmployeeService();
             var archive = new Archive
@@ -90,6 +96,11 @@ namespace PresentationLayer
         {
             BookServices bookServices = new BookServices();
             string text = txtBookName.Text;
+            if (string.IsNullOrEmpty(text))
+            {
+                dgvBookNamesArchive.ItemsSource = null;
+                return;
+            }
             dgvBookNamesArchive.ItemsSource= bookServices.GetNonArchivedBooksByName(text);
             HideColumns();
         }
