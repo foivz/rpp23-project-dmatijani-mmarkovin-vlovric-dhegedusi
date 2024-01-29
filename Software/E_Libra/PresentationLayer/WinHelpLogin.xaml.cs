@@ -1,6 +1,4 @@
-﻿using Patagames.Pdf.Net.Wrappers.OptionalContent;
-using Patagames.Pdf.Net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,25 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Patagames.Pdf.Net;
 using Patagames.Pdf.Net.Controls.Wpf;
 
-namespace PresentationLayer.MemberPanels {
+namespace PresentationLayer {
     /// <summary>
-    /// Interaction logic for UcHelpMember.xaml
+    /// Interaction logic for WinHelpLogin.xaml
     /// </summary>
-    public partial class UcHelpMember : UserControl {
+    public partial class WinHelpLogin : Window {
         private PdfDocument pdfDocument;
-
-        public UcHelpMember() {
+        public WinHelpLogin() {
             InitializeComponent();
 
             LoadPdfDocument();
         }
 
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e) {
+            ChangeHeight();
+        }
+
         private void LoadPdfDocument() {
-            pdfDocument = PdfDocument.Load("..\\..\\UserDocumentation\\User_documentation_member.pdf");
+            pdfDocument = PdfDocument.Load("..\\..\\UserDocumentation\\User_documentation_login.pdf");
             PdfViewer pdfViewer = new PdfViewer();
             pdfViewer.Document = pdfDocument;
 
@@ -49,8 +50,8 @@ namespace PresentationLayer.MemberPanels {
             Console.WriteLine("HEIGHT: " + pdfView.Height.ToString());
         }
 
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e) {
-            ChangeHeight();
+        private void btnClose_Click(object sender, RoutedEventArgs e) {
+            Close();
         }
     }
 }

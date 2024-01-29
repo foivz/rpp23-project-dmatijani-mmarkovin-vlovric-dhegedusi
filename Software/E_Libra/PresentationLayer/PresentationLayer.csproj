@@ -158,6 +158,9 @@
     <Compile Include="WinAcceptDecline.xaml.cs">
       <DependentUpon>WinAcceptDecline.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinHelpLogin.xaml.cs">
+      <DependentUpon>WinHelpLogin.xaml</DependentUpon>
+    </Compile>
     <Page Include="AdminPanels\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -376,6 +379,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WinHelpLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MemberPanel.xaml.cs">
@@ -409,6 +416,7 @@
     </None>
     <None Include="UserDocumentation\User_documentation_admin.pdf" />
     <None Include="UserDocumentation\User_documentation_employee.pdf" />
+    <None Include="UserDocumentation\User_documentation_login.pdf" />
     <None Include="UserDocumentation\User_documentation_member.pdf" />
   </ItemGroup>
   <ItemGroup>
