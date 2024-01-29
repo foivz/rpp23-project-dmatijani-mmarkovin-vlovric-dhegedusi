@@ -31,7 +31,9 @@ namespace PresentationLayer {
         }
 
         private void LoadPdfDocument() {
-            pdfDocument = PdfDocument.Load("..\\..\\UserDocumentation\\User_documentation_login.pdf");
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PDF", "User_documentation_login.pdf");
+            MessageBox.Show(path);
+            pdfDocument = PdfDocument.Load(path);
             PdfViewer pdfViewer = new PdfViewer();
             pdfViewer.Document = pdfDocument;
 

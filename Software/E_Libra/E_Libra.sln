@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinessLogicLayer", "Buss
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C9634D6C-75E7-4B13-8E18-5955F0257D97}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MyLibraSetup", "MyLibraSetup\MyLibraSetup.vdproj", "{CA9E2131-780A-4F15-9CEB-375A41FC387D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,8 @@ Global
 		{C9634D6C-75E7-4B13-8E18-5955F0257D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9634D6C-75E7-4B13-8E18-5955F0257D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9634D6C-75E7-4B13-8E18-5955F0257D97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA9E2131-780A-4F15-9CEB-375A41FC387D}.Debug|Any CPU.ActiveCfg = Debug
+		{CA9E2131-780A-4F15-9CEB-375A41FC387D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
