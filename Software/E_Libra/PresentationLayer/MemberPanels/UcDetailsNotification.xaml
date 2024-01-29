@@ -10,8 +10,8 @@
         <TextBlock Text="Detalji obavijesti" Style="{StaticResource titleText}" Background="#637E60" Foreground="#FFEFE8" DockPanel.Dock="Top"/>
         <Button x:Name="btnCancel" Width="150" Height="40" Margin="10" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Natrag" DockPanel.Dock="Bottom" Click="btnCancel_Click"/>
         <StackPanel Margin="20">
-            <TextBlock x:Name="lblTitle" Text="Naslov" Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10 0 0 20"/>
-            <Label x:Name="lblDescription" Content="opis"  HorizontalAlignment="Left" FontSize="16" Margin="10 0 0 20"/>
+            <TextBlock x:Name="lblTitle" Text="Naslov" Style="{StaticResource titleText}" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="0 0 0 20"/>
+            <TextBlock x:Name="lblDescription" Text="opis"  HorizontalAlignment="Stretch" FontSize="16" Margin="0 0 0 20" TextWrapping="Wrap"/>
         </StackPanel>
     </DockPanel>
 </UserControl>

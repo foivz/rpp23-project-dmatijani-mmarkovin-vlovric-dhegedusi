@@ -29,7 +29,7 @@ namespace PresentationLayer.MemberPanels
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             lblTitle.Text = selectedNotification.title;
-            lblDescription.Content = selectedNotification.description;
+            lblDescription.Text = selectedNotification.description;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
