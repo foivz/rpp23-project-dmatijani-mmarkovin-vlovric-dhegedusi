@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace PresentationLayer {
+    // David Matijanić
     public class BorrowStatusConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if (value is int number) {
