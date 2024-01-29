@@ -16,9 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer {
-    /// <summary>
-    /// Interaction logic for UcNewReview.xaml
-    /// </summary>
+    /// Domagoj Hegedušić
     public partial class UcNewReview : UserControl {
         private int bookId;
 

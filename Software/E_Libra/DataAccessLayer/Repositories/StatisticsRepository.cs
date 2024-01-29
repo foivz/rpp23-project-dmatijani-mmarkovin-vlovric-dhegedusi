@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
+    // Domagoj Hegedušić
     public class StatisticsRepository : IDisposable {
         protected DatabaseModel Context { get; set; }
         public StatisticsRepository() {

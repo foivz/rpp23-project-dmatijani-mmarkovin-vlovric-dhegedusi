@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
+    // Domagoj Hegedušić
     public class StatisticsService {
         public int GetMemberCount(int Library_id) {
             using (var repo = new StatisticsRepository()) {

@@ -19,6 +19,7 @@ using EntitiesLayer.Entities;
 using DataAccessLayer.Repositories;
 
 namespace PresentationLayer {
+    // Domagoj Hegedušić
     public partial class ucReviewsList : UserControl {
         ReviewService services = new ReviewService();
         MemberService memberService = new MemberService();

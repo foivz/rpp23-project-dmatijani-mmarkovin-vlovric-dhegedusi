@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    //Viktor Lovrić, metode: GetMemberId
+    // Viktor Lovrić, metode: GetMemberId
     // Magdalena Markovinović, metode: GetMemberByBarcodeId, GetMemberBarcode, GetAllMembersByFilter, UpdateMembershipDate, DeleteMember, GetMemberLogin
+    // Domagoj Hegedušić, metode: GetMemberCount
     public class MemberRepository : Repository<Member>
     {
         public DbSet<Member> Member { get; set; }

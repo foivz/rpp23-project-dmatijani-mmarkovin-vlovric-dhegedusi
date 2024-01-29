@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    //Viktor Lovrić, metode: GetAll, Add, 
+    //Viktor Lovrić, metode: GetAll, Add
+    //Domagoj Hegedušić, metode: GetMostPopularGenres
     public class GenreRepository: Repository<Genre>
     {
         public GenreRepository(): base(new DatabaseModel())

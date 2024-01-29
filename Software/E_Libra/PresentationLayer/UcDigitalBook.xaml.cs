@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 using static DataAccessLayer.Repositories.BookRepository;
 
 namespace PresentationLayer {
-    /// <summary>
-    /// Interaction logic for UcDigitalBook.xaml
-    /// </summary>
+    // Domagoj Hegedušić
     public partial class UcDigitalBook : UserControl {
         public UcDigitalBook(string online_path) {
             InitializeComponent();

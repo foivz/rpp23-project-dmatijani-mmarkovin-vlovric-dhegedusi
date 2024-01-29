@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
+    // Domagoj Hegedušić
     public class ReviewRepository : Repository<Review> {
         public ReviewRepository() : base(new DatabaseModel()) {
         }
@@ -23,13 +24,6 @@ namespace DataAccessLayer.Repositories {
 
             return query;
         }
-
-
-
-
-
-
-
 
         public override int Add(Review review, bool saveChanges = true) {
 

@@ -20,9 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer {
-    /// <summary>
-    /// Interaction logic for UcStatistics.xaml
-    /// </summary>
+    // Domagoj Hegedušić
     public partial class UcStatistics : UserControl {
         StatisticsService statisticsService = new StatisticsService();
         private DataGrid dgMostPopularBooks;
