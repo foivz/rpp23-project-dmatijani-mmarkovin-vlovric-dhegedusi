@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer {
     //Viktor Lovrić, metode: Window_Loaded
+    //Magdalena Markovinocić, metode: btnLogout_Click, btnNotifications_Click
     public partial class MemberPanel : Window {
         public MemberPanel() {
             InitializeComponent();

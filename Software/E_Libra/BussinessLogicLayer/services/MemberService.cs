@@ -24,6 +24,24 @@ namespace BussinessLogicLayer.services {
                 }
             }
         }
+        public bool CheckMembershipDateLogin(string username, string password) {
+            using (var memberRepo = new MemberRepository())
+            {
+                LibraryService libraryService = new LibraryService();
+                Member returned = memberRepo.GetMemberLogin(username, password).ToList().FirstOrDefault();
+                if(returned != null){
+                    decimal membershipDuration = libraryService.GetLibraryMembershipDuration(returned.Library_id);
+
+                    DateTime? membershipRunOutDate = returned.membership_date.HasValue ? returned.membership_date.Value.AddDays(Convert.ToInt16(membershipDuration)) : (DateTime?)null;
+                    DateTime dateNow = DateTime.Now;
+                    if (dateNow > membershipRunOutDate)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
         public bool CheckExistingUsername(Member member)
         {
             using (var memberRepo = new MemberRepository())

@@ -18,9 +18,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer.MemberPanels
 {
-    /// <summary>
-    /// Interaction logic for UcAllNotificationsMember.xaml
-    /// </summary>
+    //Magdalena Markovinocić
     public partial class UcAllNotificationsMember : UserControl
     {
         NotificationService notificationService;

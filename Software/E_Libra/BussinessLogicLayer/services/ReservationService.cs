@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace BussinessLogicLayer.services
 {
     //Viktor Lovrić
+    //Magdalena Markovinivić, metoda: GetReservationsForMemberNormal
     public class ReservationService
     {
         public int CheckNumberOfReservations(int id)

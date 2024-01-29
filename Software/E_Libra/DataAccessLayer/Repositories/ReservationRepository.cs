@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace DataAccessLayer.Repositories
 {
     //Viktor Lovrić
+    //Magdalena markovinović, metoda: GetReservationsForMemberNormal
     public class ReservationRepository: Repository<Reservation>
     {
         public ReservationRepository() : base(new DatabaseModel())

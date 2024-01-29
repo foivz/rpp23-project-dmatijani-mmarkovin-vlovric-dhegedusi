@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer {
+    //Magdalena Markovinocić
     public partial class MainWindow : Window {
         private AdministratorService adminService;
         private MemberService memberService;
@@ -64,41 +65,53 @@ namespace PresentationLayer {
 
             adminService.CheckLoginCredentials(username, password);
             employeeService.CheckLoginCredentials(username, password);
-            memberService.CheckLoginCredentials(username, password);
-
-            switch (LoggedUser.UserType)
+            bool membershipCheck = memberService.CheckMembershipDateLogin(username, password);
+            if (membershipCheck)
             {
-                case Role.Admin:
-                    {
-                        AdminPanel adminPanel = new AdminPanel();
-                        Hide();
-                        adminPanel.ShowDialog();
-                        Close();
-                        break;
-                    }
-                case Role.Employee:
-                    {
-                        EmployeePanel employeePanel = new EmployeePanel();
-                        Hide();
-                        employeePanel.ShowDialog();
-                        Close();
-                        break;
-                    }
+                MessageBox.Show("Članarina je istekla!" + Environment.NewLine + "Članarinu možete produljiti u svojoj knjižnici.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            } else
+            {
+                memberService.CheckLoginCredentials(username, password);
+                switch (LoggedUser.UserType)
+                {
+                    case Role.Admin:
+                        {
+                            AdminPanel adminPanel = new AdminPanel();
+                            Hide();
+                            adminPanel.ShowDialog();
+                            Close();
+                            break;
+                        }
+                    case Role.Employee:
+                        {
+                            EmployeePanel employeePanel = new EmployeePanel();
+                            Hide();
+                            employeePanel.ShowDialog();
+                            Close();
+                            break;
+                        }
                     
-                case Role.Member:
-                    {
-                        MemberPanel memberPanel = new MemberPanel();
-                        Hide();
-                        memberPanel.ShowDialog();
-                        Close();
-                        break;
-                    }
-                default:
-                    {
-                        MessageBox.Show("Unijeli ste krive korisničke podatke!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-                        break;
-                    }
+                    case Role.Member:
+                        {
+                            MemberPanel memberPanel = new MemberPanel();
+                            Hide();
+                            memberPanel.ShowDialog();
+                            Close();
+                            break;
+                        }
+                    default:
+                        {
+                            MessageBox.Show("Unijeli ste krive korisničke podatke!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        }
+                }
             }
+
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e) {

@@ -18,9 +18,7 @@ using Patagames.Pdf.Net;
 using Patagames.Pdf.Net.Controls.Wpf;
 
 namespace PresentationLayer.EmployeePanels {
-    /// <summary>
-    /// Interaction logic for UcHelpEmployee.xaml
-    /// </summary>
+    //Magdalena Markovinocić
     public partial class UcHelpEmployee : UserControl {
         private PdfDocument pdfDocument;
 

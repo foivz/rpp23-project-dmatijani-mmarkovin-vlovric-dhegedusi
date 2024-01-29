@@ -17,9 +17,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer.EmployeePanels
 {
-    /// <summary>
-    /// Interaction logic for UcMemberManagment.xaml
-    /// </summary>
+    //Magdalena Markovinocić
     public partial class UcMemberManagment : UserControl
     {
         MemberService memberService;

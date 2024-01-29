@@ -17,9 +17,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer.EmployeePanels
 {
-    /// <summary>
-    /// Interaction logic for UcNewNotification.xaml
-    /// </summary>
+    //Magdalena Markovinocić
     public partial class UcNewNotification : UserControl
     {
         NotificationService notificationService;
