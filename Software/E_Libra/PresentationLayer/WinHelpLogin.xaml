@@ -10,7 +10,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Vertical"
                     Background="#F8DFD4">
-            <Button x:Name="btnClose" Content="Close" Style="{StaticResource navButton}"
+            <Button x:Name="btnClose" Content="Zatvori" Style="{StaticResource navButton}"
                     Width="150" HorizontalAlignment="Right" Margin="5"
                     Click="btnClose_Click"/>
         </StackPanel>

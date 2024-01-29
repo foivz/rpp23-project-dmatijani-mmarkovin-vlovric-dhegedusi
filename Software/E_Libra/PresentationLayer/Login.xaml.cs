@@ -26,6 +26,8 @@ namespace PresentationLayer {
             adminService = new AdministratorService();
             memberService = new MemberService();
             employeeService = new EmployeeService();
+
+            KeyDown += MainWindow_KeyDown;
         }
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e) {
@@ -97,6 +99,17 @@ namespace PresentationLayer {
                         break;
                     }
             }
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.F1) {
+                ShowHelp();
+            }
+        }
+
+        private void ShowHelp() {
+            WinHelpLogin helpWindow = new WinHelpLogin();
+            helpWindow.ShowDialog();
         }
     }
 }
