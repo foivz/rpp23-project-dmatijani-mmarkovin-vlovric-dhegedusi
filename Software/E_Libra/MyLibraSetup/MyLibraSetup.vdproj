@@ -69,6 +69,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3B5B71FF362847868E2F03964C54571A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4563D784375B1660A8818C3D4AB2CF71"
         "OwnerKey" = "8:_2B0C2B9E9E5A484ABDF8B26801453A26"
         "MsmSig" = "8:_UNDEFINED"
@@ -559,6 +565,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B5B71FF362847868E2F03964C54571A"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\..\\Desktop\\icon.ico"
+            "TargetName" = "8:icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_289C3C2A9409451299CE0397EC6B221D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4563D784375B1660A8818C3D4AB2CF71"
             {
             "AssemblyRegister" = "3:1"
@@ -924,9 +950,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:MyLibraSetup"
+        "ProductName" = "8:MyLibra"
         "ProductCode" = "8:{31411CFF-E2FB-40A9-940D-A6734690D287}"
-        "PackageCode" = "8:{152031C0-B13B-415D-A6A7-366F4ADF1646}"
+        "PackageCode" = "8:{A56E3B73-2BA5-4066-ABFD-686DFA33C213}"
         "UpgradeCode" = "8:{D915CCF2-2BD9-4500-B4EE-F2460A6C6147}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -934,12 +960,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:Tim04"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:MyLibraSetup"
+        "Title" = "8:MyLibra"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Tim04"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -1057,7 +1083,7 @@
             "Target" = "8:_2B0C2B9E9E5A484ABDF8B26801453A26"
             "Folder" = "8:_AD7577504A7F48CC82CF67FCB02371D0"
             "WorkingFolder" = "8:_289C3C2A9409451299CE0397EC6B221D"
-            "Icon" = "8:"
+            "Icon" = "8:_3B5B71FF362847868E2F03964C54571A"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C5529118803A4BE3B6CA9C469E04D27A"
@@ -1071,7 +1097,7 @@
             "Target" = "8:_2B0C2B9E9E5A484ABDF8B26801453A26"
             "Folder" = "8:_E4B60D27EF9C4683885F7E6F4481A3F4"
             "WorkingFolder" = "8:_289C3C2A9409451299CE0397EC6B221D"
-            "Icon" = "8:"
+            "Icon" = "8:_3B5B71FF362847868E2F03964C54571A"
             "Feature" = "8:"
             }
         }
