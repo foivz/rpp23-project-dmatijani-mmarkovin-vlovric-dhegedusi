@@ -57,7 +57,7 @@
 
             <StackPanel Grid.Column="1" Margin="30">
                 <Label 
-            Content="Password:"
+            Content="Lozinka:"
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center" 
              Margin="20 0 0 10"/>

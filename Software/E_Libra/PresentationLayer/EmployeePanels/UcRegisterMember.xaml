@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel Background="#FFEFE8">
-        <TextBlock Text="Uredi obavijest" Style="{StaticResource titleText}" Background="#637E60" Foreground="#FFEFE8" DockPanel.Dock="Top"/>
+        <TextBlock Text="Registriraj člana" Style="{StaticResource titleText}" Background="#637E60" Foreground="#FFEFE8" DockPanel.Dock="Top"/>
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" DockPanel.Dock="Bottom">
             <Button x:Name="btnSave" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Spremi" Click="btnSave_Click"/>
             <Button x:Name="btnCancel" Width="150" Height="40" Margin="5" Style="{StaticResource bigButton}" Background="#637E60" HorizontalAlignment="Right" Content="Odustani" Click="btnCancel_Click"/>
@@ -57,7 +57,7 @@
 
             <StackPanel Grid.Column="1" Margin="30">
                 <Label 
-            Content="Password:*"
+            Content="Lozinka:*"
             FontSize="16" HorizontalAlignment="Left"
             VerticalAlignment="Center" x:Name="lblPassword"
              Margin="20 0 0 10"/>
