@@ -42,7 +42,7 @@ namespace PresentationLayer {
                 var Library_id = employeeService.GetEmployeeLibraryId(LoggedUser.Username);
 
                 switch (selectedOption) {
-                    case 0: // Najposuđenije knjige
+                    case 0:
                         if (icMostPopularGenres != null && grid.Children.Contains(icMostPopularGenres)) {
                             grid.Children.Remove(icMostPopularGenres);
                         }
@@ -57,7 +57,7 @@ namespace PresentationLayer {
                        
                         break;
 
-                    case 1: // Broj ukupnih posudbi po žanru
+                    case 1:
 
                         if (dgMostPopularBooks != null && grid.Children.Contains(dgMostPopularBooks)) {
                             grid.Children.Remove(dgMostPopularBooks);
@@ -73,7 +73,7 @@ namespace PresentationLayer {
                         break;
 
 
-                    case 2: // Broj napisanih recenzija
+                    case 2: 
                         if (dgMostPopularBooks != null && grid.Children.Contains(dgMostPopularBooks)) {
                             grid.Children.Remove(dgMostPopularBooks);
                         }
@@ -88,7 +88,7 @@ namespace PresentationLayer {
 
                         break;
 
-                    case 3: // Prihodi
+                    case 3: 
                         if (dgMostPopularBooks != null && grid.Children.Contains(dgMostPopularBooks)) {
                             grid.Children.Remove(dgMostPopularBooks);
                         }
@@ -122,11 +122,9 @@ namespace PresentationLayer {
 
             DataTemplate dataTemplate = new DataTemplate(typeof(IncomeStatistics));
 
-            // Create a StackPanel within the DataTemplate
             FrameworkElementFactory stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
             stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
 
-            // Create Border and TextBlock for Member Count
             FrameworkElementFactory border1Factory = new FrameworkElementFactory(typeof(Border));
             border1Factory.SetValue(Border.BorderBrushProperty, Brushes.Black);
             border1Factory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
@@ -140,10 +138,8 @@ namespace PresentationLayer {
             });
             textBlock1Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
 
-            // Add TextBlock to Border
             border1Factory.AppendChild(textBlock1Factory);
 
-            // Create Border and StackPanel for Total Income
             FrameworkElementFactory border2Factory = new FrameworkElementFactory(typeof(Border));
             border2Factory.SetValue(Border.BorderBrushProperty, Brushes.Black);
             border2Factory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
@@ -154,30 +150,24 @@ namespace PresentationLayer {
             FrameworkElementFactory stackPanel2Factory = new FrameworkElementFactory(typeof(StackPanel));
             stackPanel2Factory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
 
-            // Create TextBlock for Total Income
             FrameworkElementFactory textBlock2Factory = new FrameworkElementFactory(typeof(TextBlock));
             textBlock2Factory.SetBinding(TextBlock.TextProperty, new Binding("TotalIncome") {
                 StringFormat = "Ukupni prihod od članarine: {0}"
             });
             textBlock2Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
 
-            // Create TextBlock for "Eur" label
             FrameworkElementFactory textBlockEuroFactory = new FrameworkElementFactory(typeof(TextBlock));
             textBlockEuroFactory.SetValue(TextBlock.TextProperty, " €");
             textBlockEuroFactory.SetValue(TextBlock.FontSizeProperty, 18.0);
 
-            // Add TextBlocks to StackPanel
             stackPanel2Factory.AppendChild(textBlock2Factory);
             stackPanel2Factory.AppendChild(textBlockEuroFactory);
 
-            // Add StackPanel to Border
             border2Factory.AppendChild(stackPanel2Factory);
 
-            // Add Borders to StackPanel
             stackPanelFactory.AppendChild(border1Factory);
             stackPanelFactory.AppendChild(border2Factory);
 
-            // Set StackPanel as the VisualTree for the DataTemplate
             dataTemplate.VisualTree = stackPanelFactory;
 
             icIncomeStatistics.ItemTemplate = dataTemplate;
@@ -205,7 +195,6 @@ namespace PresentationLayer {
 
             DataTemplate dataTemplate = new DataTemplate(typeof(ReviewStatistics));
 
-            // Create a FrameworkElementFactory for a Border
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetValue(Border.BorderBrushProperty, Brushes.Black);
             borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
@@ -213,11 +202,9 @@ namespace PresentationLayer {
             borderFactory.SetValue(Border.PaddingProperty, new Thickness(5));
             borderFactory.SetValue(Border.MarginProperty, new Thickness(1));
 
-            // Create a StackPanel within the Border
             FrameworkElementFactory stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
             stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
 
-            // Create TextBlock for Grade
             FrameworkElementFactory textBlock1Factory = new FrameworkElementFactory(typeof(TextBlock));
             MultiBinding multiBinding = new MultiBinding();
             multiBinding.Bindings.Add(new Binding("Grade"));
@@ -226,21 +213,17 @@ namespace PresentationLayer {
             textBlock1Factory.SetValue(TextBlock.MarginProperty, new Thickness(5, 0, 60, 0));
             textBlock1Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
 
-            // Create TextBlock for Number_Count
             FrameworkElementFactory textBlock2Factory = new FrameworkElementFactory(typeof(TextBlock));
             textBlock2Factory.SetBinding(TextBlock.TextProperty, new Binding("Number_Count"));
             textBlock2Factory.SetValue(TextBlock.MarginProperty, new Thickness(60, 0, 0, 0));
             textBlock2Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
             textBlock2Factory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Right);
 
-            // Add TextBlocks to StackPanel
             stackPanelFactory.AppendChild(textBlock1Factory);
             stackPanelFactory.AppendChild(textBlock2Factory);
 
-            // Add StackPanel to the Border
             borderFactory.AppendChild(stackPanelFactory);
 
-            // Set Border as the VisualTree for the DataTemplate
             dataTemplate.VisualTree = borderFactory;
 
             icReviewCount.ItemTemplate = dataTemplate;
@@ -266,7 +249,6 @@ namespace PresentationLayer {
 
             DataTemplate dataTemplate = new DataTemplate(typeof(MostPopularGenres));
 
-            // Create a FrameworkElementFactory for a Border
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetValue(Border.BorderBrushProperty, Brushes.Black);
             borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
@@ -274,31 +256,25 @@ namespace PresentationLayer {
             borderFactory.SetValue(Border.PaddingProperty, new Thickness(5));
             borderFactory.SetValue(Border.MarginProperty, new Thickness(1));
 
-            // Create a StackPanel within the Border
             FrameworkElementFactory stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
             stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
 
-            // Create TextBlock for Genre_name
             FrameworkElementFactory textBlock1Factory = new FrameworkElementFactory(typeof(TextBlock));
             textBlock1Factory.SetBinding(TextBlock.TextProperty, new Binding("Genre_name"));
             textBlock1Factory.SetValue(TextBlock.MarginProperty, new Thickness(5, 0, 60, 0));
             textBlock1Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
 
-            // Create TextBlock for Times_Borrowed
             FrameworkElementFactory textBlock2Factory = new FrameworkElementFactory(typeof(TextBlock));
             textBlock2Factory.SetBinding(TextBlock.TextProperty, new Binding("Times_Borrowed"));
             textBlock2Factory.SetValue(TextBlock.MarginProperty, new Thickness(60, 0, 0, 0));
             textBlock2Factory.SetValue(TextBlock.FontSizeProperty, 18.0);
             textBlock2Factory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Right);
 
-            // Add TextBlocks to StackPanel
             stackPanelFactory.AppendChild(textBlock1Factory);
             stackPanelFactory.AppendChild(textBlock2Factory);
 
-            // Add StackPanel to the Border
             borderFactory.AppendChild(stackPanelFactory);
 
-            // Set Border as the VisualTree for the DataTemplate
             dataTemplate.VisualTree = borderFactory;
 
             icMostPopularGenres.ItemTemplate = dataTemplate;
