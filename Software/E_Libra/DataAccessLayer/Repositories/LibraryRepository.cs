@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
+    // David Matijanić
     public class LibraryRepository : Repository<Library> {
         public LibraryRepository() : base(new DatabaseModel()) {
 

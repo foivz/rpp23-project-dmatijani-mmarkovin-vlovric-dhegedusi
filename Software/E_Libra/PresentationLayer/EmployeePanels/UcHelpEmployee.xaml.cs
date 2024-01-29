@@ -14,11 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Patagames.Pdf.Net;
 using Patagames.Pdf.Net.Controls.Wpf;
 
 namespace PresentationLayer.EmployeePanels {
-    //Magdalena Markovinocić
+    // David Matijanić
     public partial class UcHelpEmployee : UserControl {
         private PdfDocument pdfDocument;
 

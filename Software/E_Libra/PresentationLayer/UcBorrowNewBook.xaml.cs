@@ -18,9 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer {
-    /// <summary>
-    /// Interaction logic for UcBorrowNewBook.xaml
-    /// </summary>
+    // David Matijanić
     public partial class UcBorrowNewBook : UserControl {
         private EmployeePanel mainWindow { get; set; }
         private UcEmployeeBorrows parentUserControl { get; set; }

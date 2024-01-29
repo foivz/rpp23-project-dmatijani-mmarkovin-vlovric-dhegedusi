@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
+    // David Matijanić
     public partial class UcAllLibraries : UserControl {
         private LibraryService service = new LibraryService();
 

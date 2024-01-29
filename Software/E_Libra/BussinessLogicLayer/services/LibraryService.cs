@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
+    // David Matijanić
     public class LibraryService {
         public List<Library> GetAllLibraries() {
             using (var repository = new LibraryRepository()) {

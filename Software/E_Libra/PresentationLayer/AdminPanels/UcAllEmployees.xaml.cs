@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
+    // David Matijanić
     public partial class UcAllEmployees : UserControl {
         private EmployeeService service = new EmployeeService();
 

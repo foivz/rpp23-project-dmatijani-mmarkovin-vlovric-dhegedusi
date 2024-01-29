@@ -17,9 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer {
-    /// <summary>
-    /// Interaction logic for UcEmployeeBorrows.xaml
-    /// </summary>
+    // David Matijanić
     public partial class UcEmployeeBorrows : UserControl {
         private BorrowService borrowService = new BorrowService();
         private EmployeePanel mainWindow { get; set; }

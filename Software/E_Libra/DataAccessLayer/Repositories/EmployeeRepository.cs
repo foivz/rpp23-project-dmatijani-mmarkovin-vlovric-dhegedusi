@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
     //Magdalena Markovinović, metode: GetEmployeeLogin, 
+    // David Matijanić: GetEmployeesByLibrary, GetEmployeesById, GetEmployeesByUsername, GetEmployeesByOIB,
+    // Add, Update, GetEmployeeLibraryId, GetEmployeeId
     public class EmployeeRepository : Repository<Employee> {
         public EmployeeRepository() : base(new DatabaseModel()) {
 

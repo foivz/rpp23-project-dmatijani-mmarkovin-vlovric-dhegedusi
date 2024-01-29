@@ -17,9 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
-    /// <summary>
-    /// Interaction logic for UcNewLibrary.xaml
-    /// </summary>
+    // David Matijanić
     public partial class UcNewLibrary : UserControl {
         private LibraryService service = new LibraryService();
         private bool editing { get; set; }

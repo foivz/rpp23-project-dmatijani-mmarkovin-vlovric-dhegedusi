@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
+    // David Matijanić
     public partial class AdminPanel : Window {
         public AdminPanel() {
             InitializeComponent();

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
+    // David Matijanić: osim HasUserBorrowedBook
     public class BorrowService {
         public List<Borrow> GetAllBorrowsForMember(int member_id, int library_id) {
             using (var context = new BorrowRepository()) {

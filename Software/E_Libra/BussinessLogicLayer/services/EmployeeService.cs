@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
+    // David Matijanić: GetEmployeesByLibrary, AddEmployee, UpdateEmployee, DeleteEmployee, GetEmployeeByUsername
     public class EmployeeService {
         public List<Employee> GetEmployeesByLibrary(Library library) {
             using (var repository = new EmployeeRepository()) {

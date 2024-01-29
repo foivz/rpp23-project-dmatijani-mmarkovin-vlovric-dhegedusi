@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.MemberPanels {
-    //Magdalena Markovinocić
+    // David Matijanić
     public partial class UcMemberBorrows : UserControl {
         private BorrowService borrowService = new BorrowService();
         private MemberService memberService = new MemberService();

@@ -11,6 +11,7 @@ using static DataAccessLayer.Repositories.BookRepository;
 namespace BussinessLogicLayer.services
 {
     //Viktor Lovrić
+    // David Matijanić: GetBookByBarcodeId
     public class BookServices
     {
         public bool AddBook(Book book, Author author)

@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using Patagames.Pdf.Net.Controls.Wpf;
 
 namespace PresentationLayer.MemberPanels {
-    //Magdalena Markovinocić
+    // David Matijanić
     public partial class UcHelpMember : UserControl {
         private PdfDocument pdfDocument;
 

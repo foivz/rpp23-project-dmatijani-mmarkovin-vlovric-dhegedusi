@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services {
+    // David Matijanić: GetMemberByBarcodeId
     public class MemberService {
         EmployeeService employeeService = new EmployeeService();
         BorrowService borrowService = new BorrowService();

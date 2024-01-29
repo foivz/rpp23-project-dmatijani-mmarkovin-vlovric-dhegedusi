@@ -13,6 +13,7 @@ namespace DataAccessLayer.Repositories
      * SearchBooks, TransformDigital, GetBooksByGenre, GetBooksByAuthor, GetBooksByYear, GetWishlistBooksForMember, AddBookToWishlist, RemoveBookFromWishlist
      */
     // Domagoj Hegedušić, metode: GetMostPopularBookss
+    // David Matijanić: GetBookByBarcodeId, Update, GetBookBarcode, GetBooksByLibrary
 
     public class BookRepository : Repository<Book>
     {

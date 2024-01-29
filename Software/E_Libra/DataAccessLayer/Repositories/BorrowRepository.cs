@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
+    // David Matijanić: sve osim HasUserBorrowedBook
     public class BorrowRepository : Repository<Borrow> {
         public BorrowRepository() : base(new DatabaseModel()) {
 

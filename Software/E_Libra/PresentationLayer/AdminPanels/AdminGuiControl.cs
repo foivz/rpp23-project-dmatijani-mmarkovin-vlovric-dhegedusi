@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace PresentationLayer.AdminPanels {
+    // David Matijanić
     public static class AdminGuiControl {
         public static AdminPanel AdminPanel { get; set; }
         private static UserControl previousUserControl { get; set; }

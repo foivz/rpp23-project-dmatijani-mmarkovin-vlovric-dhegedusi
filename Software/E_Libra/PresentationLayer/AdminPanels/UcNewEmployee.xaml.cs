@@ -17,9 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.AdminPanels {
-    /// <summary>
-    /// Interaction logic for UcNewEmployee.xaml
-    /// </summary>
+    // David Matijanić
     public partial class UcNewEmployee : UserControl {
         private bool editing { get; set; }
 

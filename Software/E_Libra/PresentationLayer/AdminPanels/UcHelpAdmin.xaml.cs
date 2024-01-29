@@ -17,9 +17,7 @@ using Patagames.Pdf.Net.Controls.Wpf;
 
 namespace PresentationLayer.AdminPanels
 {
-    /// <summary>
-    /// Interaction logic for UcHelpAdmin.xaml
-    /// </summary>
+    // David Matijanić
     public partial class UcHelpAdmin : UserControl
     {
         private PdfDocument pdfDocument;
