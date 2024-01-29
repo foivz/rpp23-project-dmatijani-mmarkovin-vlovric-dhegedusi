@@ -926,7 +926,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MyLibraSetup"
         "ProductCode" = "8:{31411CFF-E2FB-40A9-940D-A6734690D287}"
-        "PackageCode" = "8:{5896FA91-87AD-47F5-A10D-B2106F814636}"
+        "PackageCode" = "8:{152031C0-B13B-415D-A6A7-366F4ADF1646}"
         "UpgradeCode" = "8:{D915CCF2-2BD9-4500-B4EE-F2460A6C6147}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"

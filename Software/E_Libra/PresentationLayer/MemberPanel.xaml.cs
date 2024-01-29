@@ -4,6 +4,7 @@ using PresentationLayer.AdminPanels;
 using PresentationLayer.MemberPanels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,7 +77,8 @@ namespace PresentationLayer {
         }
 
         private void ShowHelp() {
-            contentPanel.Content = new UcHelpMember();
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PDF", "User_documentation_member.pdf");
+            Process.Start(path);
         }
     }
 }

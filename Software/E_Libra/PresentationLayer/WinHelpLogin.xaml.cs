@@ -34,13 +34,6 @@ namespace PresentationLayer {
         private void LoadPdfDocument() {
             var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PDF", "User_documentation_login.pdf");
             Process.Start(path);
-            MessageBox.Show(path);
-            pdfDocument = PdfDocument.Load(path);
-            PdfViewer pdfViewer = new PdfViewer();
-            pdfViewer.Document = pdfDocument;
-
-            pdfView.Content = pdfViewer;
-            ChangeHeight();
         }
 
         private void ChangeHeight() {

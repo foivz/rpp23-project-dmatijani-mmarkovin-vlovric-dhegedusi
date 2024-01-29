@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace PresentationLayer {
     //Magdalena Markovinocić
@@ -121,8 +122,8 @@ namespace PresentationLayer {
         }
 
         private void ShowHelp() {
-            WinHelpLogin helpWindow = new WinHelpLogin();
-            helpWindow.ShowDialog();
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PDF", "User_documentation_login.pdf");
+            Process.Start(path);
         }
     }
 }

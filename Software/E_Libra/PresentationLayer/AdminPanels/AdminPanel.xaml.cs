@@ -1,6 +1,7 @@
 ﻿using EntitiesLayer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,7 +60,8 @@ namespace PresentationLayer.AdminPanels {
         }
 
         private void ShowHelp() {
-            AdminGuiControl.LoadNewControl(new UcHelpAdmin());
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PDF", "User_documentation_admin.pdf");
+            Process.Start(path);
         }
     }
 }
