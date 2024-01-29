@@ -17,9 +17,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer.EmployeePanels
 {
-    /// <summary>
-    /// Interaction logic for UcEditMember.xaml
-    /// </summary>
+    //Magdalena Markovinocić
     public partial class UcEditMember : UserControl
     {
         Member editMember;

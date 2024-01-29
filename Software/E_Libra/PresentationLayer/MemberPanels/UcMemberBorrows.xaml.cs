@@ -16,9 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer.MemberPanels {
-    /// <summary>
-    /// Interaction logic for UcMemberBorrows.xaml
-    /// </summary>
+    //Magdalena Markovinocić
     public partial class UcMemberBorrows : UserControl {
         private BorrowService borrowService = new BorrowService();
         private MemberService memberService = new MemberService();

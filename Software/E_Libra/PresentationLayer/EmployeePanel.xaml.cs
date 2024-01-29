@@ -17,9 +17,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for EmployeePanel.xaml
-    /// </summary>
+    //Magdalena Markovinocić, metode: btnLogout_Click, btnNotifications_Click, btnMembership_Click
     public partial class EmployeePanel : Window
     {
         public EmployeePanel()

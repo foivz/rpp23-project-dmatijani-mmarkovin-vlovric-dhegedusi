@@ -18,9 +18,7 @@ using ZXing;
 
 namespace PresentationLayer.EmployeePanels
 {
-    /// <summary>
-    /// Interaction logic for UcRegisterMember.xaml
-    /// </summary>
+    //Magdalena Markovinocić
     public partial class UcRegisterMember : UserControl
     {
         MemberService memberService;

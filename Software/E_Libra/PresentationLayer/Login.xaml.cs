@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PresentationLayer {
+    //Magdalena Markovinocić
     public partial class MainWindow : Window {
         private AdministratorService adminService;
         private MemberService memberService;

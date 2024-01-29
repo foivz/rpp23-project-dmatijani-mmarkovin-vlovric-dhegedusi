@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BussinessLogicLayer.services
 {
+    //Magdalena Markovinocić
     public class NotificationService
     {
         MemberService memberService = new MemberService();

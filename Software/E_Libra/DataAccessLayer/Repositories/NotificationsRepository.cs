@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
+    //Magdalena Markovinocić
     public class NotificationsRepository : Repository<Notification>
     {
         public NotificationsRepository(): base(new DatabaseModel())

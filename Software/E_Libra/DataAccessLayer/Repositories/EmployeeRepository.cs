@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories {
+    //Magdalena Markovinović, metode: GetEmployeeLogin, 
     public class EmployeeRepository : Repository<Employee> {
         public EmployeeRepository() : base(new DatabaseModel()) {
 

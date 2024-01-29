@@ -16,9 +16,7 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer.MemberPanels
 {
-    /// <summary>
-    /// Interaction logic for UcDetailsNotification.xaml
-    /// </summary>
+    //Magdalena Markovinocić
     public partial class UcDetailsNotification : UserControl
     {
         Notification selectedNotification;
