@@ -414,10 +414,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="UserDocumentation\User_documentation_admin.pdf" />
-    <None Include="UserDocumentation\User_documentation_employee.pdf" />
-    <None Include="UserDocumentation\User_documentation_login.pdf" />
-    <None Include="UserDocumentation\User_documentation_member.pdf" />
+    <Content Include="UserDocumentation\User_documentation_admin.pdf" />
+    <Content Include="UserDocumentation\User_documentation_employee.pdf" />
+    <Content Include="UserDocumentation\User_documentation_login.pdf" />
+    <Content Include="UserDocumentation\User_documentation_member.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
