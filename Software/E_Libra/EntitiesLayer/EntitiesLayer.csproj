@@ -66,7 +66,7 @@
     <Compile Include="Entities\IncomeStatistics.cs" />
     <Compile Include="Entities\Library.cs" />
     <Compile Include="Entities\Member.cs" />
-    <Compile Include="Entities\MostPopularBooks.cs" />
+    <Compile Include="Entities\MostPopularBooksViewModel.cs" />
     <Compile Include="Entities\MostPopularGenres.cs" />
     <Compile Include="Member.code.cs" />
     <Compile Include="Entities\Notification.cs" />

@@ -17,7 +17,7 @@ namespace BussinessLogicLayer.services {
             }
         }
 
-        public List<MostPopularBooks> GetMostPopularBooks(int Library_id) {
+        public List<MostPopularBooksViewModel> GetMostPopularBooks(int Library_id) {
             using (var repo = new StatisticsRepository()) {
                 var result = repo.GetMostPopularBooks(Library_id);
                 return result;
@@ -36,25 +36,6 @@ namespace BussinessLogicLayer.services {
                 var result = repo.GetReviewCount(Library_id);
                 return result;
             }
-        }
-
-        public int CalculateTotalIncome(int Library_id) {
-            using (var repo = new StatisticsRepository()) {
-                var result = repo.GetMemberCount(Library_id);
-                return result*12;
-            }
-        }
-
-        public IncomeStatistics GetIncomeStatistics(int Library_id) {
-            int memberCount = GetMemberCount(Library_id);
-            int totalIncome = CalculateTotalIncome(Library_id);
-
-            IncomeStatistics statistics = new IncomeStatistics {
-                MemberCount = memberCount,
-                TotalIncome = totalIncome
-            };
-
-            return statistics;
         }
     }
 }

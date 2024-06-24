@@ -1,6 +1,7 @@
 ﻿using BussinessLogicLayer.Exceptions;
 using DataAccessLayer.Repositories;
 using EntitiesLayer;
+using EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace BussinessLogicLayer.services
 {
     //Viktor Lovrić
     // David Matijanić: GetBookByBarcodeId
+    // Domagoj Hegedušić: GetTopBorrowedBooks
     public class BookServices
     {
         public bool AddBook(Book book, Author author)
@@ -148,6 +150,19 @@ namespace BussinessLogicLayer.services
         public List<Book> GetBooksByLibrary(int libraryId) {
             using (var repository = new BookRepository()) {
                 return repository.GetBooksByLibrary(libraryId).ToList();
+            }
+        }
+
+        public List<MostPopularBooksViewModel> GetTopBorrowedBooks(int libraryId) {
+            using (var repository = new BookRepository()) {
+
+                var books = repository.GetTopBorrowedBooks(libraryId).ToList();
+
+                for (int i = 0; i < books.Count; i++) {
+                    books[i].Order_Number = i + 1;
+                }
+
+                return books;
             }
         }
     }

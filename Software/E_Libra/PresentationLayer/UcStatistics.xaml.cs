@@ -10,16 +10,13 @@ using System.Windows.Media;
 namespace PresentationLayer {
     public partial class UcStatistics : UserControl {
         private readonly StatisticsService _statisticsService;
-        private readonly EmployeeService _employeeService;
         private DataGrid _dgMostPopularBooks;
         private ItemsControl _icMostPopularGenres;
         private ItemsControl _icReviewCount;
-        private ItemsControl _icIncomeStatistics;
 
         public UcStatistics() {
             InitializeComponent();
             _statisticsService = new StatisticsService();
-            _employeeService = new EmployeeService();
             cmbStats.SelectionChanged += StatsComboBoxControl_SelectionChanged;
             cmbStats.SelectedIndex = 0;
         }
@@ -27,7 +24,7 @@ namespace PresentationLayer {
         private void StatsComboBoxControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (cmbStats.SelectedItem != null) {
                 int selectedOption = cmbStats.SelectedIndex;
-                var libraryId = _employeeService.GetEmployeeLibraryId(LoggedUser.Username);
+                var libraryId = LoggedUser.LibraryId;
                 ClearCurrentLayout();
 
                 switch (selectedOption) {
@@ -40,9 +37,6 @@ namespace PresentationLayer {
                     case 2:
                         CreateLayoutReviewCount(libraryId);
                         break;
-                    case 3:
-                        CreateLayoutIncome(libraryId);
-                        break;
                 }
             }
         }
@@ -51,14 +45,6 @@ namespace PresentationLayer {
             if (_dgMostPopularBooks != null) grid.Children.Remove(_dgMostPopularBooks);
             if (_icMostPopularGenres != null) grid.Children.Remove(_icMostPopularGenres);
             if (_icReviewCount != null) grid.Children.Remove(_icReviewCount);
-            if (_icIncomeStatistics != null) grid.Children.Remove(_icIncomeStatistics);
-        }
-
-        private void CreateLayoutIncome(int libraryId) {
-            var incomeStatistics = _statisticsService.GetIncomeStatistics(libraryId);
-            _icIncomeStatistics = CreateItemsControl("icIncomeStatistics", new List<IncomeStatistics> { incomeStatistics }, CreateIncomeStatisticsTemplate());
-
-            AddControlToGrid(_icIncomeStatistics, 1, 0);
         }
 
         private void CreateLayoutReviewCount(int libraryId) {
